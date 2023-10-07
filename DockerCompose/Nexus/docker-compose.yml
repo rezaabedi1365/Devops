@@ -8,8 +8,8 @@ services:
     ports:
       - "8081:8081"
       - "8085:8085"
-volumes:
-  - ./host-nexus-data:/nexus-data
+    volumes:
+    - ./host-nexus-data:/nexus-data
  # nexus-data: {}
 
 
