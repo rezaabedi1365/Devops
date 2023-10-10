@@ -1,3 +1,4 @@
+#https://github.com/sonatype/docker-nexus/blob/main/docker-compose.yml
 version: "3"
 services:
   nexus:
