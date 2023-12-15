@@ -3,9 +3,9 @@
 - ansible-config
 - ansible inventory
 - ansible Playbook
-    -- Playbook Modules
-             Module apt  
-             Module Copy 
+    * Playbook Modules
+            * Module apt  
+            * Module Copy 
              Module lineinfile 
              Module firewalld 
              Module EMail 
