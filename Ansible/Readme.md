@@ -1,18 +1,18 @@
 
 # Ansible
-- ansible-config
-- ansible inventory
-- ansible Playbook
-    * Playbook Modules
-            -*  Module apt  
-            * Module Copy 
-             Module lineinfile 
-             Module firewalld 
-             Module EMail 
-    * Playbook Conditionals
-    * Playbook Loops
-    * Playbook Vault
-- ansible Roles
+ansible-config
+ansible inventory
+ansible Playbook
+    - Playbook Modules
+             * Module apt  
+             * Module Copy 
+             * Module lineinfile 
+             * Module firewalld 
+             * Module EMail 
+    - Playbook Conditionals
+    - Playbook Loops
+    - Playbook Vault
+ansible Roles
 -------------------------------------
 ### ansible-config
 ###### Default path : /etc/ansible/ansible.cfg
