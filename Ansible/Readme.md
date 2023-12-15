@@ -9,9 +9,9 @@
              Module lineinfile 
              Module firewalld 
              Module EMail 
-    Playbook Conditionals
-    Playbook Loops
-    Playbook Vault
+    * Playbook Conditionals
+    * Playbook Loops
+    * Playbook Vault
 - ansible Roles
 -------------------------------------
 ### ansible-config
