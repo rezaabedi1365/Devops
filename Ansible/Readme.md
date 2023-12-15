@@ -95,7 +95,23 @@ ansible-inventory -i /etc/ansible/invent01.yml --list
 ```
 ##### Module lineinfile
 ```
-ansible
+- name: playbook-lineinfile
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: add sheken DNS server
+      lineinfile:
+        path: /etc/resolv.conf
+        line: 'nameserver: 178.22.122.100'
+
+    - name: Changing root login permit
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: "PrtmitRootLogin"
+        state: absent
+        line: 'PermitRootLogin yes'
+        backup: yes
 ```
 
 ##### Module firewalld
