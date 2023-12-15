@@ -46,7 +46,35 @@ ansible-inventory -i /etc/ansible/invent01.yml --list
 ----------------------------------------------------------------
 ##### Module apt
 ```
-ansible
+- name: playbook-apt
+  hosts: all
+  become: yes
+
+  tasks:
+    apt:
+      name:
+      state:
+      update_cache: present
+      ignore_error: yes
+
+  - name: Add diodon repository
+    apt_repository: repo=ppa:diodon-team/stable
+
+  - name: Install package
+    apt: name={{item}} state=present
+    with_items:
+    - vim
+    - nginx
+    - xrdp
+
+  - name: Remove Apache on ubuntu Servers
+    apt: name=apache2 state=absent
+    wihen: ansible_of_family="Debian"
+
+  - name: Remove Apache on Centos Servers
+    apt: name=httpd state=absent
+    wihen: ansible_of_family="RedHat"
+
 ```
 ##### Module Copy
 ```
