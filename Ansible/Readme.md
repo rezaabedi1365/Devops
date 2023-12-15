@@ -1,5 +1,9 @@
 
 # Ansible
+- [ansible-config]()
+- [ansible inventory]()
+- [ansible Playbook]()
+- [ansible Roles]()
 -------------------------------------
 ### ansible-config
 ###### Default path : /etc/ansible/ansible.cfg
@@ -25,6 +29,7 @@ ansible-inventory -i /etc/ansible/invent01.yml --list
 ### ansible Playbook
 - Playbook Conditionals
 - Playbook Loops
+- Playbook Vault 
 -----------------------------------------
 * [Module apt](####rd)
 * [Module Copy]()
@@ -54,3 +59,5 @@ ansible
 ```
 ansible
 ```
+### ansible Roles  
+-------------------------------------
