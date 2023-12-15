@@ -39,8 +39,11 @@ ansible-inventory -i /etc/ansible/invent01.yml --list
 -----------------------------------------
 - Playbook tasks
    * [Module apt](####rd)
+   * [Module yum]()
    * [Module Copy]()
    * [Module lineinfile]()
+   * [Module service]()
+   * [Module script]()
    * [Module firewalld]()
    * [Module EMail]()
 - Playbook Handlers
@@ -78,6 +81,26 @@ ansible-inventory -i /etc/ansible/invent01.yml --list
     wihen: ansible_of_family="RedHat"
 
 ```
+##### Module yum
+```
+  name: Install package(s) using yum
+  hosts: centos
+  become: yes
+  tasks:
+    - name: Install Apache & Postgresql
+      yum:
+        name:
+          - httpd
+          - postgresql
+          - psotgresql-server
+        state: present
+
+    - name: Install apache >= 2.4
+      yum:
+        name: httpd>=2.4
+        state: present
+```
+
 ##### Module Copy
 ```
 - name: playbook-copy
@@ -115,15 +138,87 @@ ansible-inventory -i /etc/ansible/invent01.yml --list
         line: 'PermitRootLogin yes'
         backup: yes
 ```
+##### Module service
+```
+- name: Start some Services in order
+  hosts: centos
+  become: yes
+  tasks:
+    - name: Start the database service
+      service:
+         name: postgresql
+         state: started
+         enabled: yes
+
+    - name: Start the httpd service
+      service: name=httpd state=started enabled=yes
+```
+##### Module script
+ ```
+  name: Play Scripts
+  hosts: centos
+  become: yes
+  tasks:
+    - name: Run a script on remote server
+      script: /home/user1/demo-module/script.sh
+```
 
 ##### Module firewalld
 ```
-ansible
+- name: Set Firewall Configurations
+  hosts: centos
+  become: yes
+
+  tasks:
+    -  firewalld:
+         service: https
+         permanent: true
+         state: enabled
+    
+    -  firewalld:
+         port: 8080/tcp
+         permanent: true
+         state: disabled
+                  
+    -  firewalld:
+         source: 192.168.100.0/24
+         zone: internal
+         state: enabled 
 ```
 ##### Module EMail
 ```
-ansible
+  name: sending mail 
+  hosts: localhost
+  tasks:
+    - name: sending mail to root
+      mail:
+         subject: 'System has been successfully configured'
+      delegate_to: localhost
+       
+    - name: Sending an e-mail using Gmail SMTP servers
+      mail:
+        host: smtp.gmail.com
+        port: 587
+        username: ansible@sematec.com
+        password: mysecret
+        to: John Smith <john.smith@example.com>
+        subject: Ansible-report
+        body: 'System has been successfully provisioned.'
+      delegate_to: localhost
 ```
+##### Module Handler
+```
+- name: Start some Services in order with handlers
+  hosts: centos
+  become: yes
+//tasks:
+//  - name: Start the httpd service
+//    service: name=httpd state=started enabled=yes
+  handlers:
+    - name: start vsftpd
+      service: name=vsftpd enabled=yes state=started
+```
+
 ### ansible Roles  
 -------------------------------------
 ![image](https://github.com/rezaabedi1365/Devops/assets/117336743/66947d81-9aca-4f77-b79e-f2f487985aa0)
