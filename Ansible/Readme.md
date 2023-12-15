@@ -12,13 +12,15 @@ ansible-config init --disabled > ansible.cfg
 ansible-config init --disabled -t all > ansible.cfg
 ```
 ### ansible inventory
-###### Default path : /etc/ansible/hosts
+
 ------------------------------------------
+Default path : /etc/ansible/host
 ```
-ansible-inventory -i inventory --list
+ansible-inventory  --list 
 ```
+Spesefic inventory
 ```
-ansible-inventory -i /etc/ansible/hosts/ --list
+ansible-inventory -i /etc/ansible/invent01.yml --list
 ```
 
 
