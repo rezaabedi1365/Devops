@@ -3,7 +3,7 @@
 - [ansible-config]()
 - [ansible inventory]()
 - [ansible Playbook]()
-          * [Playbook Conditionals]()
+[Playbook Conditionals]()
 - [ansible Roles]()
 -------------------------------------
 ### ansible-config
