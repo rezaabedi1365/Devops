@@ -13,7 +13,8 @@ ansible-config init --disabled -t all > ansible.cfg
 ```
 ### ansible inventory
 
-Default path : /etc/ansible/host
+###### Default path : /etc/ansible/host
+----------------------------------
 ```
 ansible-inventory  --list 
 ```
@@ -22,37 +23,31 @@ Spesefic inventory
 ansible-inventory -i /etc/ansible/invent01.yml --list
 ```
 ### ansible Playbook
+* Module apt
 * Module Copy
 * Module lineinfile
-* Module apt
-* Module EMail
 * Module firewalld
+* Module EMail
 
-##### ansible Playbook
+----------------------------------------------------------------
+##### apt
 ```
 ansible
 ```
-##### ansible Playboo
+##### Module Copy
 ```
 ansible
 ```
-##### ansible Playboo
+##### Module lineinfile
 ```
 ansible
 ```
-##### ansible Playboo
+
+##### Module firewalld
 ```
 ansible
 ```
-##### ansible Playboo
-```
-ansible
-```
-##### ansible Playboo
-```
-ansible
-```
-##### ansible Playboo
+##### Module EMail
 ```
 ansible
 ```
