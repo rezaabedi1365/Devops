@@ -52,8 +52,8 @@ ansible-inventory -i /etc/ansible/invent01.yml --list
 
   tasks:
     apt:
-      name:
-      state:
+      name: nginx
+      state: present
       update_cache: present
       ignore_error: yes
 
