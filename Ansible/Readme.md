@@ -37,13 +37,13 @@ ansible-inventory -i /etc/ansible/invent01.yml --list
 - Playbook Loops
 - Playbook Vault 
 -----------------------------------------
-Playbook tasks
+- Playbook tasks
 * [Module apt](####rd)
 * [Module Copy]()
 * [Module lineinfile]()
 * [Module firewalld]()
 * [Module EMail]()
-Playbook Handlers
+- Playbook Handlers
 
 ----------------------------------------------------------------
 ##### Module apt
