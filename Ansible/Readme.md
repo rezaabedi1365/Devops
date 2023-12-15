@@ -30,6 +30,7 @@ Spesefic inventory
 ansible-inventory -i /etc/ansible/invent01.yml --list
 ```
 ### ansible Playbook
+- Playbook Modules
 - Playbook Conditionals
 - Playbook Loops
 - Playbook Vault 
