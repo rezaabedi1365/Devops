@@ -27,10 +27,10 @@ ansible-inventory -i /etc/ansible/invent01.yml --list
 - Playbook Loops
 -----------------------------------------
 * [Module apt](####rd)
-* Module Copy
-* Module lineinfile
-* Module firewalld
-* Module EMail
+* [Module Copy]()
+* [Module lineinfile]()
+* [Module firewalld]()
+* [Module EMail]()
 
 ----------------------------------------------------------------
 ##### Module apt
