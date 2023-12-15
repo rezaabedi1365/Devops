@@ -78,7 +78,20 @@ ansible-inventory -i /etc/ansible/invent01.yml --list
 ```
 ##### Module Copy
 ```
-ansible
+- name: playbook-copy
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: copy file
+      copy:
+        src: /etc/ssh/sshd_config
+        dst: /root/backup
+        owner: root
+        group: root
+        mode: 0755
+        backup: yes
+        
 ```
 ##### Module lineinfile
 ```
