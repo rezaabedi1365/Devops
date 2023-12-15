@@ -23,6 +23,9 @@ Spesefic inventory
 ansible-inventory -i /etc/ansible/invent01.yml --list
 ```
 ### ansible Playbook
+- Playbook Conditionals
+- Playbook Loops
+-----------------------------------------
 * Module apt
 * Module Copy
 * Module lineinfile
@@ -30,7 +33,7 @@ ansible-inventory -i /etc/ansible/invent01.yml --list
 * Module EMail
 
 ----------------------------------------------------------------
-##### apt
+##### Module apt
 ```
 ansible
 ```
