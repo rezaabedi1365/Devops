@@ -5,11 +5,6 @@
 - ansible inventory
 - ansible Playbook
     * Playbook Modules
-             1- Module apt  
-             2- Module Copy 
-             3- Module lineinfile 
-             4- Module firewalld 
-             5- Module EMail 
     * Playbook Conditionals
     * Playbook Loops
     * Playbook Vault
