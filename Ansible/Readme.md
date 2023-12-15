@@ -26,7 +26,7 @@ ansible-inventory -i /etc/ansible/invent01.yml --list
 - Playbook Conditionals
 - Playbook Loops
 -----------------------------------------
-(Module apt)[]
+* [Module apt](####rd)
 * Module Copy
 * Module lineinfile
 * Module firewalld
