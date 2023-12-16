@@ -1,44 +1,11 @@
 
-
-# Ansible
----------------------------
-- ansible-config
-- ansible inventory
-- ansible Playbook
-    * Playbook Modules
-    * Playbook Conditionals
-    * Playbook Loops
-    * Playbook Vault
-- ansible Roles
--------------------------------------
-### ansible-config
-###### Default path : /etc/ansible/ansible.cfg
--------------------------------------
-Generating a sample ansible.cfg file
-```
-ansible-config init --disabled > ansible.cfg
-```
-```
-ansible-config init --disabled -t all > ansible.cfg
-```
-### ansible inventory
-
-###### Default path : /etc/ansible/host
-----------------------------------
-```
-ansible-inventory  --list 
-```
-Spesefic inventory
-```
-ansible-inventory -i /etc/ansible/invent01.yml --list
-```
-### ansible Playbook
+# ansible Playbook
 - Playbook Modules
 - Playbook Conditionals
 - Playbook Loops
 - Playbook Vault 
 -----------------------------------------
-- Playbook tasks
+- Playbook Modules
    * [Module apt](####rd)
    * [Module yum]()
    * [Module Copy]()
