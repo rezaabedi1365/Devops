@@ -2,7 +2,9 @@
 # addhoc
 - syntax :
   ```
-  ansible [inventory] -m [Module] command
+   ansible -i [inventory path] [group] -a "command"
+   ansible -i [inventory path] [group] -m [Module] "Module Parameters"
+
   ```
    * [shell](####rd)
    * [raw]()
