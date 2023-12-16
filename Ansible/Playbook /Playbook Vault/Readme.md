@@ -1,4 +1,5 @@
-![image](https://github.com/rezaabedi1365/Devops/assets/117336743/cd58860d-bf0a-4b96-aca6-454a7887e783)
+![image](https://github.com/rezaabedi1365/Devops/assets/117336743/94e6c2f0-59a3-4a40-bf36-2891bfb42826)
+
 ##### Playbook Vault
 Create an encrypted file
 ```
