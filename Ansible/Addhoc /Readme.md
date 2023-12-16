@@ -14,6 +14,16 @@
 
 
 ----------------------------------------------------------------
+### Command
+```
+ansible all –m command –a "date"
+```
+```
+ansible all  -m "date"
+```
+```
+ansible all –m "echo hi >~/test.txt" -vvvv 
+```
 ##### Module shell
 ```
 ansible all –b –m shell –a "whoami"
