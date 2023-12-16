@@ -1,6 +1,0 @@
-#####  Playbook Conditional and Fact Variable 
-```
-ansible all -m setup
-```
-
-
