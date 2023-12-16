@@ -84,7 +84,24 @@
         group: root
         mode: 0755
         backup: yes
-        
+
+    - name: copy some file
+      copy:
+        src: {{ item }}
+        with_file:
+          - file1.txt
+          - file2.txt
+        dst: /root/backup
+
+    - name: Create text file
+      copy:
+        content: |
+         hello
+         my name is reza.
+        dst: /root/scripts/text.txt
+        owner: root
+        group: root
+        mode: 0755 
 ```
 ##### Module lineinfile
 ```
@@ -187,6 +204,3 @@
       service: name=vsftpd enabled=yes state=started
 ```
 
-### ansible Roles  
--------------------------------------
-![image](https://github.com/rezaabedi1365/Devops/assets/117336743/66947d81-9aca-4f77-b79e-f2f487985aa0)
