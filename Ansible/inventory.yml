@@ -5,6 +5,7 @@ ungrouped:
   hosts:
     ubuntu-lvm:  
       ansible_host: 10.10.11.111
+      ansible_user: root
       ansible_port: 5555
       
 ### add group ########################################################   
@@ -26,8 +27,9 @@ ubuntu-servers:
       ansible_host: 10.10.11.128
 ###### vars assign to group
   vars:
+    ansible_user: root
     ntp_server: ntp.atlanta.example.com
-    proxy: proxy.atlanta.example.comcentos-servers:
+
   hosts:
     centos9:
       ansible_host: 10.10.11.110
@@ -35,7 +37,7 @@ ubuntu-servers:
        ntp_server: ntp.atlanta.example.com
        proxy: proxy.atlanta.example.com
 
-### add subgroup########################################################
+### add subgroup ########################################################
 all:
   children:
     ubuntu-servers:
