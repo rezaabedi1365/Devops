@@ -11,6 +11,7 @@
 git clone https://github.com/dev-sec/ansible-collection-hardening.git
 ```
 ![image](https://github.com/rezaabedi1365/Devops/assets/117336743/74a99298-b0ed-4149-853b-2f4d418cd458)
+![image](https://github.com/rezaabedi1365/Devops/assets/117336743/b73bb1d2-0c73-4e0b-85f3-38c64cfafeff)
 
 
 
