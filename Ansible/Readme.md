@@ -44,6 +44,13 @@ check inventory availability
 ```
 ansible all -m ping
 ```
+### Run role
+```
+- hosts: all
+  become: yes
+  reles:
+    - hardening
+```
 ### ansible Playbook
 - Playbook Modules
 - Playbook Conditionals
