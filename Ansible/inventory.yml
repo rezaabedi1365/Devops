@@ -6,6 +6,7 @@ ungrouped:
     ubuntu-lvm:  
       ansible_host: 10.10.11.111
       ansible_user: root
+      ansible_password: 123456@
       ansible_port: 5555
       
 ### add group ########################################################   
@@ -13,6 +14,7 @@ ubuntu-servers:
   hosts:
     Docker-1: 
       ansible_host: 10.10.11.122
+      ansible_password: 123456@
     Docker-2: 
       ansible_host: 10.10.11.123
     Gitlab:
