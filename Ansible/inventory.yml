@@ -1,24 +1,41 @@
 
 
-### add ungrouped
+### add ungrouped####################################################
 ungrouped:
   hosts:
-    ubuntu-lvm:
-### add group    
+    ubuntu-lvm:  
+      ansible_host: 10.10.11.111
+      ansible_port: 5555
+      
+### add group ########################################################   
 ubuntu-servers:
   hosts:
     Docker-1: 
+      ansible_host: 10.10.11.122
     Docker-2: 
-    Gitlab: 
-    kub-worker1: 
-    kub-worker2: 
+      ansible_host: 10.10.11.123
+    Gitlab:
+      ansible_host: 10.10.11.124
+    kub-worker1:
+      ansible_host: 10.10.11.125
+    kub-worker2:
+      ansible_host: 10.10.11.126
     kubrneties: 
-    prometheus:    
-centos-servers:
+      ansible_host: 10.10.11.127
+    prometheus:  
+      ansible_host: 10.10.11.128
+###### vars assign to group
+  vars:
+    ntp_server: ntp.atlanta.example.com
+    proxy: proxy.atlanta.example.comcentos-servers:
   hosts:
     centos9:
+      ansible_host: 10.10.11.110
+     vars:
+       ntp_server: ntp.atlanta.example.com
+       proxy: proxy.atlanta.example.com
 
-### add subgroup
+### add subgroup########################################################
 all:
   children:
     ubuntu-servers:
