@@ -3,8 +3,14 @@
 ![image](https://github.com/rezaabedi1365/Devops/assets/117336743/f5a4f0ea-77a8-43c1-aa8f-df370e6634cf)
 
 ---------------------------
-- ansible-config
-- ansible inventory
+## files
+* /etc/ansible/hosts         – Default inventory file
+
+* /etc/ansible/ansible.cfg   – Config file, used if present
+
+* ~/.ansible.cfg             – User config file, overrides the default config if present
+
+## ansible Command
 - Addhoc  
 - ansible Playbook
     * Playbook Modules
