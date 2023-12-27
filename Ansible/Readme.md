@@ -53,6 +53,7 @@ ansible-inventory -i /etc/ansible/invent01.yml --list
    * [Module lineinfile]()
    * [Module service]()
    * [Module script]()
+   * [Module iptables]()
    * [Module firewalld]()
    * [Module EMail]()
 - Playbook Handlers
@@ -171,7 +172,16 @@ ansible-inventory -i /etc/ansible/invent01.yml --list
     - name: Run a script on remote server
       script: /home/user1/demo-module/script.sh
 ```
-
+##### Module iptables
+```
+- hosts: dbservers
+  tasks:
+  - name: Allow access from 10.0.0.1
+    ansible.builtin.iptables:
+      chain: INPUT
+      jump: ACCEPT
+      source: 10.0.0.1
+```
 ##### Module firewalld
 ```
 - name: Set Firewall Configurations
