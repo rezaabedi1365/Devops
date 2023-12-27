@@ -12,12 +12,12 @@ ungrouped:
 ### add group ########################################################   
 ubuntu-servers:
   hosts:
-    Docker-1: 
+    docker-1: 
       ansible_host: 10.10.11.122
       ansible_password: 123456@
-    Docker-2: 
+    docker-2: 
       ansible_host: 10.10.11.123
-    Gitlab:
+    gitlab:
       ansible_host: 10.10.11.124
     kub-worker1:
       ansible_host: 10.10.11.125
