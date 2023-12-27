@@ -40,6 +40,10 @@ Spesefic inventory
 ```
 ansible-inventory -i /etc/ansible/invent01.yml --list
 ```
+check inventory availability
+```
+ansible all -m ping
+```
 ### ansible Playbook
 - Playbook Modules
 - Playbook Conditionals
