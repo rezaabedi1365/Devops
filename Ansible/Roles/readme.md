@@ -11,7 +11,7 @@ cd /etc/ansible/roles/
   hosts: all
   become: yes
   roles:
-    - rule_name
+    - role_name
 ```
 ```
 ansible-playbook role_name.yml
