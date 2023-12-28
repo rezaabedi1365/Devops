@@ -45,7 +45,7 @@ check inventory availability
 ansible all -m ping
 ```
 
-```
+
 ### ansible Playbook
 - Playbook Modules
 - Playbook Conditionals
@@ -65,6 +65,11 @@ ansible all -m ping
 - Playbook Handlers
 
 ----------------------------------------------------------------
+Run Playbook
+```
+ansible-playbook playbook1.yml
+ansible-playbook playbook1.yml -yy
+```
 ##### Module apt
 ```
 - name: playbook-apt
