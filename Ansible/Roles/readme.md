@@ -5,8 +5,10 @@
 
 
 ### Run role
+cd /etc/ansible/roles/
 ```
-- hosts: all
+- name: system hardening
+  hosts: all
   become: yes
-  reles:
+  roles:
     - rule_name
