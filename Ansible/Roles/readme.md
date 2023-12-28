@@ -7,4 +7,4 @@
 - hosts: all
   become: yes
   reles:
-    - hardening
+    - rule_name
