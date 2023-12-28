@@ -1,6 +1,7 @@
 # ansible Roles  
 -------------------------------------
-![image](https://github.com/rezaabedi1365/Devops/assets/117336743/0bea139c-7299-4497-9c27-4cafa7d67d27)
+![image](https://github.com/rezaabedi1365/Devops/assets/117336743/72a4865f-54ba-4f67-9711-78d93e5e8285)
+
 
 
 ### Run role
