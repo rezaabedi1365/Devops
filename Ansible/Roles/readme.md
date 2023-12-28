@@ -12,3 +12,7 @@ cd /etc/ansible/roles/
   become: yes
   roles:
     - rule_name
+```
+```
+ansible-playbook role_name.yml
+```
