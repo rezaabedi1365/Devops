@@ -1,4 +1,4 @@
-
+https://medium.com/@mucahitkumlay/kubernetes-install-with-ansible-7dbd958584e5
 
 
 
