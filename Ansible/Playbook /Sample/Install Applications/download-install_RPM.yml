@@ -1,0 +1,14 @@
+- name: Download RPM locally
+  get_url:
+    url: http://example.com/path/file.rpm
+    dest: /local_path/file.rpm
+  delegate_to: localhost
+  run_once: yes
+- name: Copying file.rpm 
+  copy:
+    src: /local_path/file.rpm
+    dest: /remote_path/file.rpm
+- name: Install rpm from a local file
+  yum:
+    name: /remote_path/file.rpm
+    state: present
