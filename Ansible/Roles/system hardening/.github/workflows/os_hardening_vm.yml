@@ -1,0 +1,67 @@
+---
+name: "devsec.os_hardening VM"
+on:  # yamllint disable-line rule:truthy
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - 'roles/os_hardening/**'
+      - 'molecule/os_hardening_vm/**'
+      - '.github/workflows/os_hardening_vm.yml'
+      - 'requirements.txt'
+  pull_request:
+    branches: [master]
+    paths:
+      - 'roles/os_hardening/**'
+      - 'molecule/os_hardening_vm/**'
+      - '.github/workflows/os_hardening_vm.yml'
+      - 'requirements.txt'
+  schedule:
+    - cron: '0 6 * * 2'
+
+concurrency:
+  group: >-
+    ${{ github.workflow }}-${{
+      github.event.pull_request.number || github.sha
+    }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: self-hosted
+    env:
+      PY_COLORS: 1
+      ANSIBLE_FORCE_COLOR: 1
+    strategy:
+      fail-fast: false
+      matrix:
+        molecule_distro:
+          - generic/centos7
+          - generic/centos8s
+          - generic/centos9s
+          - generic/rocky8
+          - generic/rocky9
+          - fedora/38-cloud-base
+          - fedora/39-cloud-base
+          - generic/ubuntu1804
+          - generic/ubuntu2004
+          - generic/ubuntu2204
+          - generic/debian10
+          - generic/debian11
+          - generic/debian12
+          - generic/opensuse15
+          - generic/arch
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          path: ansible_collections/devsec/hardening
+          submodules: true
+
+      - name: Test with molecule
+        run: |
+          molecule --version
+          molecule test -s os_hardening_vm
+        env:
+          MOLECULE_DISTRO: ${{ matrix.molecule_distro }}
+        working-directory: ansible_collections/devsec/hardening

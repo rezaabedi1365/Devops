@@ -1,0 +1,52 @@
+---
+name: create roles readme
+
+on:  # yamllint disable-line rule:truthy
+  push:
+    branches: [master]
+    paths:
+      - 'roles/**/meta/argument_specs.yml'
+  pull_request:
+    branches: [master]
+    paths:
+      - 'roles/**/meta/argument_specs.yml'
+
+jobs:
+  readme:
+    name: create roles readme
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        roles:
+          - mysql_hardening
+          - nginx_hardening
+          - os_hardening
+          - ssh_hardening
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+
+      - name: Install aar_doc
+        run: pip3 install aar_doc
+
+      - name: Run aar_doc
+        run: aar_doc roles/${{ matrix.roles }} markdown
+
+      - name: Output diff
+        run: git diff roles/${{ matrix.roles }}/README.md
+
+      - name: Push README
+        if: github.event_name != 'pull_request'
+        uses: github-actions-x/commit@v2.9
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'update ${{ matrix.roles }} readme'
+          files: roles/${{ matrix.roles }}/README.md
+          rebase: true
+          name: dev-sec CI
+          email: hello@dev-sec.io
