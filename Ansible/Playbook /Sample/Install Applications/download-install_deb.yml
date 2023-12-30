@@ -1,0 +1,13 @@
+- name: Download deb locally
+  get_url:
+    url: http://example.com/path/file.deb
+    dest: /local_path/file.deb
+  delegate_to: localhost
+  run_once: yes
+- name: Copying file.rpm 
+  copy:
+    src: /local_path/file.deb
+    dest: /remote_path/file.deb
+- name: Install a .deb package
+  apt:
+    deb: /remote_path/file.deb
