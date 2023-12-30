@@ -1,0 +1,2 @@
+- name: Ensure to add repository
+  shell: sudo add-apt-repository main -y && $ sudo add-apt-repository universe -y && sudo add-apt-repository restricted -y && sudo add-apt-repository multiverse -y
