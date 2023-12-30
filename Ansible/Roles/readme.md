@@ -24,3 +24,6 @@ git clone <git_repo_url>
 ```
 git clone <git_repo_url> <your_custom_directory_name>
 ```
+```
+git clone <git_repo_url> <your_custom_directory_name> / <sub_directory>
+```
