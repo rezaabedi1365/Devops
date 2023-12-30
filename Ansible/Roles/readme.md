@@ -16,3 +16,11 @@ cd /etc/ansible/roles/
 ```
 ansible-playbook role_name.yml
 ```
+
+## Download from git_repo
+```
+git clone <git_repo_url> 
+```
+```
+git clone <git_repo_url> <your_custom_directory_name>
+```
