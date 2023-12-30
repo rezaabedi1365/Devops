@@ -1,0 +1,22 @@
+# Add this lines- name: docker installation
+  hosts: masters,workers
+  remote_user: root
+  become: yes
+  become_method: sudo
+  become_user: root
+
+  tasks:
+  #docker add repo, install and start
+    - name: Add repository  
+      get_url:
+        url: https://download.docker.com/linux/centos/docker-ce.repo
+        dest: /etc/yum.repos.d/docker-ce.repo
+    - name: Install Docker
+      yum: 
+        name: docker
+        state: latest
+    - name: Start and enable
+      service: 
+        name: docker
+        state: started 
+        enabled: yes
