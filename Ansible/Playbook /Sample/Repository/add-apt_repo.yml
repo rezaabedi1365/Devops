@@ -4,15 +4,29 @@
     url: http://nginx.org/keys/nginx_signing.key 
     state: present 
 
+- name: Add key for Postgres repo
+  apt_key: url=https://www.postgresql.org/media/keys/ACCC4CF8.asc state=present
+  sudo: yes
+
+  
 - name: add nginx apt repository
   apt_repository: 
     repo: 'deb http://nginx.org/packages/mainline/ubuntu/ xenial nginx' 
     state: present 
     filename: nginx 
     update_cache: yes
+    
+- name: Add Postgres repo to sources list
+  apt_repository: repo='deb http://apt.postgresql.org/pub/repos/apt/ {{ distro }}-pgdg main' state=present
+  sudo: yes
 
 - name: install nginx
   apt: 
     name: nginx
     state: present
     update_cache: yes
+
+# This is necessary to install the latest versions of Postgres
+# For details see https://wiki.postgresql.org/wiki/Apt
+
+
