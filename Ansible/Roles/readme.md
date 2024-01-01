@@ -1,6 +1,5 @@
 # ansible Roles  
 -------------------------------------
-![image](https://github.com/rezaabedi1365/Devops/assets/117336743/72a4865f-54ba-4f67-9711-78d93e5e8285)
 ![image](https://github.com/rezaabedi1365/Devops/assets/117336743/66a651c8-4281-4529-a0bc-9aeb9f06ba72)
 
 
