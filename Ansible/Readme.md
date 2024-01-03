@@ -70,6 +70,20 @@ Run Playbook
 ansible-playbook playbook1.yml
 ansible-playbook playbook1.yml -yy
 ```
+##### Module get_url
+```
+- name: Download ElasticSearch
+  get_url:
+    url: [http://example.com/path/file.deb](https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-{{ elasticsearch_version }}.tar.gz)
+    dest: /vagrant 
+  delegate_to: localhost
+  run_once: yes
+```
+##### Module command
+```
+- name: Extract ElasticSearch files
+  command: tar zxvf elasticsearch-{{ elasticsearch_version}}.tar.gz chdir=/vagrant creates=/vagrant/elasticsearch-{{ elasticsearch_version }}.
+```
 ##### Module apt
 ```
 - name: playbook-apt
@@ -101,6 +115,18 @@ ansible-playbook playbook1.yml -yy
     apt: name=httpd state=absent
     wihen: ansible_of_family="RedHat"
 
+```
+##### Module apt key
+```
+- name: Add key for Postgres repo
+  apt_key: url=https://www.postgresql.org/media/keys/ACCC4CF8.asc state=present
+  sudo: yes
+```
+##### Module apt repository
+```
+- name: Add Postgres repo to sources list
+  apt_repository: repo='deb http://apt.postgresql.org/pub/repos/apt/ {{ distro }}-pgdg main' state=present
+  sudo: yes
 ```
 ##### Module yum
 ```
