@@ -18,3 +18,24 @@ docker-compose unpause
 docker-compose ps
 docker-compose up
 ```
+```
+# docker-compose.yml
+web:
+  # build from Dockerfile
+  build: .
+
+  # build from custom Dockerfile
+  build:
+    context: ./dir
+    dockerfile: Dockerfile.dev
+
+  # build from image
+  image: ubuntu
+
+    ports:
+     - "5000:5000"
+    volumes:
+     - .:/code
+  redis:
+    image: redis
+```
