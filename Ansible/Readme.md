@@ -4,6 +4,7 @@
 ### install
 ```
 add-apt-repository ppa:ansible/ansible \
+apt update \
 apt install ansible
 ```
 ---------------------------
