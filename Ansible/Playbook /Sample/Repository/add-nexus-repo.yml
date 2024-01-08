@@ -3,24 +3,26 @@
   become: yes
 
   tasks:
+    - name: Copy nexus repo for debian
+      copy:
+        src: ./repository/sources.list
+        dest: /etc/apt/sourcrs.list
+        owner: root
+        group: root
+        mode: '0644'
+        backup: yes
+      when:
+        - ansible_os_family == "Debian"
 
-  - name: Copy nexus repo for debian
-    copy:
-      src: ./repository/sources.list
-      dst: /etc/atp/sources.list
-      owner: root
-      group: root
-      mode: 0755
-      backup: yes
-    wihen: ansible_of_family="Debian"
 
-  - name: Copy nexus repo for Centos
-    src: ./repository/centos.repo
-      dst: /etc/yum.repos.d/centos.repo
-      owner: root
-      group: root
-      mode: 0755
-      backup: yes
-    wihen: ansible_of_family="RedHat"
+    - name: Copy nexus repo for Centos
+      src: ./repository/centos.repo
+        dest: /etc/yum.repos.d/centos.repo
+        owner: root
+        group: root
+        mode: '0644'
+        backup: yes
+      when: 
+        - ansible_os_family == "RedHat"
 
   # mkdir -p ./repository
