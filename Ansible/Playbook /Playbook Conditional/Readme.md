@@ -80,7 +80,6 @@ check passwd file . if user reza dosnot exist then creat it
 - name: check registered variable for emptiness
   hosts: lpic2-02
   tasks:
-
       - name: list contents of directory
         command: ls /etc/passwd
        #command: grep -e "reza" /etc/passwd
