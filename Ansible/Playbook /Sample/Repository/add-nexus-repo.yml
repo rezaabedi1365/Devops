@@ -1,0 +1,26 @@
+- name: Nexus Repo-Playbook Conditional
+  hosts: all
+  become: yes
+
+  tasks:
+
+  - name: Copy nexus repo for debian
+    copy:
+      src: ./repository/sources.list
+      dst: /etc/atp/sources.list
+      owner: root
+      group: root
+      mode: 0755
+      backup: yes
+    wihen: ansible_of_family="Debian"
+
+  - name: Copy nexus repo for Centos
+    src: ./repository/centos.repo
+      dst: /etc/yum.repos.d/centos.repo
+      owner: root
+      group: root
+      mode: 0755
+      backup: yes
+    wihen: ansible_of_family="RedHat"
+
+  # mkdir -p ./repository
