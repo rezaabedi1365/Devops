@@ -75,25 +75,30 @@ tasks:
 ```
 ### Register Variable
 Example :
+check passwd file . if user reza dosnot exist then creat it
 ```
-- name: test play
-  hosts: all
-
+- name: check registered variable for emptiness
+  hosts: lpic2-02
   tasks:
 
-      - shell: cat /etc/motd
-        register: motd_contents
+      - name: list contents of directory
+        command: ls /etc/passwd
+       #command: grep -e "reza" /etc/passwd
+        register: Register_Name
 
-      - shell: echo "motd contains the word hi"
-        when: motd_contents.stdout.find('hi') != -1
+      - name: check contents for emptiness
+        command: useradd -G sudo -p 123456aA2044  -m reza -s /bin/bash
+       #shell:
+
+        when: Register_Name.stdout.find('reza') != 1  # if not exist
+                                                  # != -1  # if exist
 ```
-check /etc/apt if keyrings directory not exited then create it
+check /etc/apt if keyrings directory dosnot exited then create it
 ```
 - name: check registered variable for emptiness
   hosts: lpic2-02
 
   tasks:
-
       - name: list contents of directory
         command: ls /etc/apt/
         register: Register_Name
