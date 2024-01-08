@@ -87,6 +87,25 @@ Example :
       - shell: echo "motd contains the word hi"
         when: motd_contents.stdout.find('hi') != -1
 ```
+check /etc/apt if keyrings directory not exited then create it
+```
+- name: check registered variable for emptiness
+  hosts: lpic2-02
+
+  tasks:
+
+      - name: list contents of directory
+        command: ls /etc/apt/
+        register: Register_Name
+
+      - name: check contents for emptiness
+        command: mkdir -p /etc/apt/keyrings
+       #shell: mkdir -p /etc/apt/keyrings
+
+        when: Register_Name.stdout.find('keyrings') != 1  # if not exist
+                                                  # != -1  # if exist
+
+```
 ```
 - name: check registered variable for emptiness
   hosts: all
