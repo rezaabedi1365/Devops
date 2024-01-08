@@ -102,3 +102,20 @@ Example :
           msg: "Directory is empty"
         when: contents.stdout == ""
 ```
+```
+- name: registered variable usage as a loop list
+  hosts: all
+  tasks:
+
+    - name: retrieve the list of home directories
+      command: ls /home
+      register: home_dirs
+
+    - name: add home dirs to the backup spooler
+      file:
+        path: /mnt/bkspool/{{ item }}
+        src: /home/{{ item }}
+        state: link
+      loop: "{{ home_dirs.stdout_lines }}"
+      # same as loop: "{{ home_dirs.stdout.split() }}"
+```
