@@ -163,10 +163,10 @@ ansible-playbook playbook1.yml -yy
     - name: copy file
       copy:
         src: /etc/ssh/sshd_config
-        dst: /root/backup
+        dest: /root/backup
         owner: root
         group: root
-        mode: 0755
+        mode: '0755'
         backup: yes
         
 ```
