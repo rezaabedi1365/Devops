@@ -9,17 +9,46 @@ ansible all -m setup -a "filter=*family*"
 
 ### Playbook Conditional
 ```
+ansible all –m setup
+```
+```
+ansible_os_family == "Debian"
+ansible_os_family == "RedHat"
+
+ansible_distribution == "Ubuntu"
+ansible_distribution == "CentOS"
+
+ansible_pkg_mgr == "apt"
+
+ansible_distribution_version == "22.04"
+ansible_distribution_version|float >= 18
+
+ansible_distribution_major_version == "22"
+ansible_distribution_major_version|int >= 18
+ 
+
+ansible_distribution_release == "jammy"
+```
+condition with sub fact
+```
+ansible_lsb.codename == "jammy"
+ansible_python.version.major == 3
+```
+
+```
+Example:
+```
 - name: playbook-Playbook Conditional
   hosts: all
   become: yes
 
   tasks:
+    - name: Remove Apache on ubuntu Servers
+      apt: name=apache2 state=absent
+      when:
+        - ansible_os_family == "Debian"
 
-  - name: Remove Apache on ubuntu Servers
-    apt: name=apache2 state=absent
-    when: ansible_of_family="Debian"
-
-  - name: Remove Apache on Centos Servers
-    apt: name=httpd state=absent
-    when: ansible_of_family="RedHat"
+     - name: Remove Apache on Centos Servers
+       apt: name=httpd state=absent
+       when: ansible_os_family == "RedHat" and ansible_lsb.major_release|int >= 6
 ```
