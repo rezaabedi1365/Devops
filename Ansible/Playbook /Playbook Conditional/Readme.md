@@ -1,10 +1,15 @@
 #####  Playbook Conditional and Fact Variable 
------------------------------
-### Fact Variable
 
-![image](https://github.com/rezaabedi1365/Devops/assets/117336743/2d21fed6-cf60-4385-b4ae-0c3950af4b5f)
+* Fact condition
+* Register Variable
+* 
+-----------------------------
+
+
+
 
 ### Fact Conditional
+![image](https://github.com/rezaabedi1365/Devops/assets/117336743/2d21fed6-cf60-4385-b4ae-0c3950af4b5f)
 ```
 ansible all -m setup
 ansible all -m setup -a "filter=*family*"
@@ -66,5 +71,34 @@ tasks:
 
   - command: /bin/still/something_else
     when: result is skipped
-```
 
+```
+### Register Variable
+Example :
+```
+- name: test play
+  hosts: all
+
+  tasks:
+
+      - shell: cat /etc/motd
+        register: motd_contents
+
+      - shell: echo "motd contains the word hi"
+        when: motd_contents.stdout.find('hi') != -1
+```
+```
+- name: check registered variable for emptiness
+  hosts: all
+
+  tasks:
+
+      - name: list contents of directory
+        command: ls mydir
+        register: contents
+
+      - name: check contents for emptiness
+        debug:
+          msg: "Directory is empty"
+        when: contents.stdout == ""
+```
