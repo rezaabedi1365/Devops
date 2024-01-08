@@ -35,7 +35,7 @@ ansible_lsb.codename == "jammy"
 ansible_python.version.major == 3
 ```
 
-```
+
 Example:
 ```
 - name: playbook-Playbook Conditional
@@ -51,4 +51,20 @@ Example:
      - name: Remove Apache on Centos Servers
        apt: name=httpd state=absent
        when: ansible_os_family == "RedHat" and ansible_lsb.major_release|int >= 6
+```
+```
+tasks:
+  - command: /bin/false
+    register: result
+    ignore_errors: True
+
+  - command: /bin/something
+    when: result is failed
+
+  # In older versions of ansible use ``success``, now both are valid but succeeded uses the correct tense.
+  - command: /bin/something_else
+    when: result is succeeded
+
+  - command: /bin/still/something_else
+    when: result is skipped
 ```
