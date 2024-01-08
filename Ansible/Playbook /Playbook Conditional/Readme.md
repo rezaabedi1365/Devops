@@ -17,9 +17,9 @@ ansible all -m setup -a "filter=*family*"
 
   - name: Remove Apache on ubuntu Servers
     apt: name=apache2 state=absent
-    wihen: ansible_of_family="Debian"
+    when: ansible_of_family="Debian"
 
   - name: Remove Apache on Centos Servers
     apt: name=httpd state=absent
-    wihen: ansible_of_family="RedHat"
+    when: ansible_of_family="RedHat"
 ```
