@@ -31,11 +31,11 @@
 ------------------------------------------------------------------------
 ## Docker Network command
 
-        ```
-	docker network ls
-	docker inspect Network_Name
-   	docker inspect Container_Name
-        ```
+```
+docker network ls
+docker inspect Network_Name
+docker inspect Container_Name
+ ```
  	
 ### docker network create
 
