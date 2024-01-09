@@ -35,7 +35,7 @@
 docker network ls
 docker inspect Network_Name
 docker inspect Container_Name
- ```
+```
  	
 ### docker network create
 
@@ -49,8 +49,33 @@ Create network with spesefic name and subnet and gateway
 docker network create   --driver=bridge   --subnet=10.10.11.0/24  --gateway=10.10.11.1   net2
 
 ```
+subneting :
+```
+docker network create   --driver=bridge   --subnet=10.10.11.0/25  --gateway=10.10.11.1   net3
+docker network create   --driver=bridge   --subnet=10.10.11.128/25  --gateway=10.10.11.1   net4
+```
+### docker network rm
+```
+docker network rm Network_Name
+docker network rm Network_ID
+```
+Reomove all unused Networks
+```
+docker network prune
+```
+### docker network connect / disconnect
+```
+docker network connect net4 Container_Name
+docker network disconnect net4 Container_Name
+```
 
 
+
+### docker run
+```
+docker run -dit --name nginx1  --network net1  nginx:latest
+docker run -dit --name nginx1  --network none  nginx:latest
+```
 ------------------------------
 ```
 version: "3.8"
