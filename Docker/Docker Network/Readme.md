@@ -35,7 +35,7 @@
 	docker inspect Network_Name
 	docker inspect Container_Name
 	 ```
- 	 ```
+ 	
 ### docker network create
 
 Create network with spesific name but with default subnet and gateway (default driver is bridge)
@@ -45,7 +45,7 @@ docker network create --driver bridge net1
 ```
 Create network with spesefic name and subnet and gateway
 ```
-docker network create   --driver=bridge   --subnet=10.10.11.0/24  --gateway=10.10.11.1   net5
+docker network create   --driver=bridge   --subnet=10.10.11.0/24  --gateway=10.10.11.1   net2
 
 ```
 
