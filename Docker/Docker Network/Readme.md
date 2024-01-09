@@ -1,5 +1,6 @@
 # Docker Network Cheat-sheet
 ### Type of network Driver in Docker
+
   •  Bridge       
 		○ #docker run –dit ubuntu  (it is default and container get ip to host range)
 		○ #docker run –dit  - - network nework1 ubuntu      (you catn create newtork and assign different range ip )  
@@ -8,8 +9,7 @@
 		○ #docker run –dit  -- network host  ubuntu
 	• None
 	• Overlay
-Macvlan  (physical NIC )![image](https://github.com/rezaabedi1365/Devops/assets/117336743/db0f69a5-40ba-46a9-a3df-0afe679d32f7)
-
+-----------------------------------------------------------------
 
 
 ```
