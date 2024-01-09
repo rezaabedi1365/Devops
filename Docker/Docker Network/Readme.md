@@ -3,7 +3,7 @@
 ### Type of network Driver in Docker
 
 * Bridge
-  	- it is default and container get ip to host range
+  	- it is default and container get ip to host range (172.17.0.1 ...)
   	  ```     
 	  docker run –dit ubuntu  
   	  ```
