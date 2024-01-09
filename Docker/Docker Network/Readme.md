@@ -1,14 +1,14 @@
 # Docker Network Cheat-sheet
 ### Type of network Driver in Docker
 
-  •  Bridge       
-		○ #docker run –dit ubuntu  (it is default and container get ip to host range)
-		○ #docker run –dit  - - network nework1 ubuntu      (you catn create newtork and assign different range ip )  
+•  Bridge       
+	○ #docker run –dit ubuntu  (it is default and container get ip to host range)
+	○ #docker run –dit  - - network nework1 ubuntu      (you catn create newtork and assign different range ip )  
 
-	•  Host           running container exactly mapped on the host     
-		○ #docker run –dit  -- network host  ubuntu
-	• None
-	• Overlay
+•  Host  running container exactly mapped on the host     
+	○ #docker run –dit  -- network host  ubuntu
+• None
+• Overlay
 -----------------------------------------------------------------
 
 
