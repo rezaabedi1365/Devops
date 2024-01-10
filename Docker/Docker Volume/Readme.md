@@ -9,16 +9,16 @@
   	- /var/lib/docker/volume
   	- volumes use regulary
   	- share between containers is simple
-  	  ```     
-	    docker run -d -v [VOLUME]:/var/www/html/    nginx 
-  	  ```
+      ```     
+	docker run -d -v [VOLUME]:/var/www/html/    nginx 
+      ```
 * Bind Mount
   	- Bind mount use for config file mostly
   	- other proccess outside container can be change data
 
       ```
-	  	cd /root/containers/nginx
-		  docker run -d -v   ./mydir:/var/www/html/    nginx 
+      cd /root/containers/nginx
+      docker run -d -v   ./mydir:/var/www/html/    nginx 
       docker run -d -v   ${PWD}/mydir:/var/www/html/    nginx 
   	  ```
 * tempfs
