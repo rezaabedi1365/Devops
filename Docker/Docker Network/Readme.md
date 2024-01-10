@@ -23,13 +23,6 @@
 * macvlan
 * ipvaln
 * Overlay
------------------------------------------------------------------
-### Port Maping 
-* Port Publish (out of Host)
-	- -p
-* Port Expose (out of Container)
-	- -expose
-
 ------------------------------------------------------------------------
 ## Docker Network command
 
@@ -94,7 +87,18 @@ docker run -dit --name nginx1 --network net1 --ip 10.10.12.20 nginx:latest
 ip route
 route
 ```
-------------------------------
+
+-----------------------------------------------------------------
+### Port Maping 
+* Port Publish (out of Host)
+	- -p
+
+* Port Expose (out of Container)
+	- -expose
+Docker Compose sets up a dedicated network for the defined containers, enabling communication between them
+ports will be accessible by other services connected to the same network, but won’t be published on the host machine.
+
+-----------------------------------------------------------------
 ```
 version: "3.8"
 
