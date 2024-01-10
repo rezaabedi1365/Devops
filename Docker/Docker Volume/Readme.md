@@ -10,7 +10,7 @@
   	- volumes use regulary
   	- share between containers is simple
       ```     
-	docker run -d -v [VOLUME]:/var/www/html/    nginx 
+      docker run -d -v [VOLUME]:/var/www/html/    nginx 
       ```
 * Bind Mount
   	- Bind mount use for config file mostly
@@ -18,8 +18,8 @@
 
       ```
       cd /root/containers/nginx
-      docker run -d -v   ./mydir:/var/www/html/    nginx 
-      docker run -d -v   ${PWD}/mydir:/var/www/html/    nginx 
+      docker run -d -v  ./mydir:/var/www/html/    nginx 
+      docker run -d -v  ${PWD}/mydir:/var/www/html/    nginx 
   	  ```
 * tempfs
     - store data in RAM 
