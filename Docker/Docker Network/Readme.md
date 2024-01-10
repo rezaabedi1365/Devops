@@ -26,8 +26,9 @@
 -----------------------------------------------------------------
 ### Port Maping 
 * Port Publish (out of Host)
+	- -p
 * Port Expose (out of Container)
-
+	- -expose
 
 ------------------------------------------------------------------------
 ## Docker Network command
