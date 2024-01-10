@@ -76,3 +76,15 @@ docker volume create --driver convoy --opt size=100m test
   ```
   docker volume rm Volume_Name
   ```
+-------------------------------------------------------------------------------------
+You can use an externally created volume in Docker Compose by specifying the volume and setting its value of external to true
+ ```
+services:
+  frontend:
+    image: node:lts
+    volumes:
+      - myapp:/home/node/app
+volumes:
+  myapp:
+    external: true
+ ```
