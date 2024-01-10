@@ -1,4 +1,4 @@
-![image](https://github.com/rezaabedi1365/Devops/assets/117336743/26a3b578-3507-4c7e-ad6e-f085e9235b7b)![image](https://github.com/rezaabedi1365/Devops/assets/117336743/73fcf083-b10e-46e9-98ab-58f7ef3956bf)
+![image](https://github.com/rezaabedi1365/Devops/assets/117336743/26a3b578-3507-4c7e-ad6e-f085e9235b7b)
 
 # Docker volume Cheat-sheet
 
