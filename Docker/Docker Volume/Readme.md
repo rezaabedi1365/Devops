@@ -61,6 +61,7 @@ defualt driver is local
 ```
 docker volume create myvol1
 docker volume create --driver local myvol1
+docker volume create --driver local --opt type=volume --opt device=dev/sda --opt o=size=500m,uid=100 myvol1
 docker volume create --driver local --opt type=btrfs --opt device=dev/sda --opt o=size=500m,uid=100 myvol1
 ```
 ![image](https://github.com/rezaabedi1365/Devops/assets/117336743/d4bd8370-a1b3-4b32-bd89-7d50dfcfa5d0)
