@@ -9,7 +9,8 @@
   	  ```
    	- you catn create bridge newtork with specefif name and assign different range ip
    	  ```
-	  docker run –dit --network nework1 ubuntu  
+   	  docker network create   --driver=bridge   --subnet=10.10.11.0/24  --gateway=10.10.11.1   net2
+	  docker run –dit --network net2 --ip 10.10.11.10 ubuntu  
 	  ```
 * Host
   	- running container exactly mapped on the host
