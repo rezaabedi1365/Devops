@@ -90,13 +90,26 @@ route
 
 -----------------------------------------------------------------
 ### Port Maping 
-* Port Publish (out of Host)
-	- -p
 
-* Port Expose (out of Container)
-	- -expose
-Docker Compose sets up a dedicated network for the defined containers, enabling communication between them
-ports will be accessible by other services connected to the same network, but won’t be published on the host machine.
+* Port Expose (out of Container) -expose
+	- Docker Compose sets up a dedicated network for the defined containers, enabling communication between them
+	- ports will be accessible by other services connected to the same network, but won’t be published on the host machine.
+ - 
+* Port Publish (out of Host) -p
+	- these ports will be accessible internally and published on the host machine.
+	- syntax
+	```
+ 	    ports:
+            - "3000"                             # container port (3000), assigned to random host port
+            - "3001-3005"                        # container port range (3001-3005), assigned to random host ports
+            - "8000:8000"                        # container port (8000), assigned to given host port (8000)
+            - "9090-9091:8080-8081"              # container port range (8080-8081), assigned to given host port range (9090-9091)
+            - "127.0.0.1:8002:8002"              # container port (8002), assigned to given host port (8002) and bind to 127.0.0.1
+            - "6060:6060/udp"                    # container port (6060) restricted to UDP protocol, assigned to 
+ 	
+ 	```
+
+
 
 -----------------------------------------------------------------
 ```
