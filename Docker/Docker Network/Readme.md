@@ -97,13 +97,12 @@ route
 	- syntax
 	```
 	myapp1:
-    		expose:
-      		- "3000"
-      		- "8000"
+          expose:
+            - "3000"
+            - "8000"
  	 myapp2:
-    
-    		expose:
-      		- "5000"
+           expose:
+            - "5000"
 	 ```
 
 * Port Publish (out of Host) -p
