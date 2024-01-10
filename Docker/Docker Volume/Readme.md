@@ -84,8 +84,17 @@ services:
   frontend:
     image: node:lts
     volumes:
-      - myapp:/home/node/app
+      - myvol:/home/node/app
 volumes:
-  myapp:
+  myvol:
     external: true
  ```
+Bind mount :
+ ```
+services:
+   maria_db:
+    image: mariadb:10.4.13
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./data_mariadb/:/var/lib/mysql/
+  ```
