@@ -3,11 +3,11 @@
 ### Type of network Driver in Docker
 
 * Bridge
-  	- it is default and container get ip to host range (172.17.0.1 With bridge driver and bridge Network_Name)
+  	- default Network_Name wich built in is bridg with bridge driver(172.17.0.0/16 With bridge driver and bridge Network_Name)
   	  ```     
 	  docker run –dit ubuntu  
   	  ```
-   	- you catn create bridge newtork with specefif name and assign different range ip
+   	- you catn create bridge newtork with specefic name and assign different range ip
    	  ```
    	  docker network create   --driver=bridge   --subnet=10.10.11.0/24  --gateway=10.10.11.1   net2
 	  docker run –dit --network net2 --ip 10.10.11.10 ubuntu  
@@ -86,6 +86,12 @@ user specified IP address is supported only when connecting to networks with use
 geteway was set whten network configured
 ```
 docker run -dit --name nginx1 --network net1 --ip 10.10.12.20 nginx:latest
+```
+
+### route
+```
+ip route
+route
 ```
 ------------------------------
 ```
