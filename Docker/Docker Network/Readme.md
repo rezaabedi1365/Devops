@@ -37,8 +37,10 @@ docker inspect Network_Name
 docker inspect Container_Name
 ```
 ```
+docker inspect network | grep IPv4Address
 docker exec [container-id or container-name] cat /etc/hosts 	
 docker exec [container-id or container-name] cat /etc/hostname
+
 ```
 ### docker network create
 
@@ -79,6 +81,8 @@ docker network disconnect net4 Container_Name
 docker run -dit --name nginx1  --network net1  nginx:latest
 docker run -dit --name nginx1  --network none  nginx:latest
 ```
+user specified IP address is supported only when connecting to networks with user configured subnets.
+
 ------------------------------
 ```
 version: "3.8"
