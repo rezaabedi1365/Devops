@@ -91,7 +91,7 @@ route
 -----------------------------------------------------------------
 ### Port Maping 
 
-* Port Expose (out of Container) -expose
+* Port Expose (out of Container) --expose
 	- Docker Compose sets up a dedicated network for the defined containers, enabling communication between them
 	- ports will be accessible by other services connected to the same network, but won’t be published on the host machine.
 	- syntax
@@ -106,7 +106,8 @@ route
 	 ```
 
 * Port Publish (out of Host) -p
-	- these ports will be accessible internally and published on the host machine.
+	- bind for 0.0.0.0:80 failed: port is already allocated.
+ 	- these ports will be accessible internally and published on the host machine.
 	- syntax
 	```
      ports:
