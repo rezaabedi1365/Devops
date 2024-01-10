@@ -57,7 +57,7 @@ docker network create   --driver=bridge   --subnet=10.10.11.0/24  --gateway=10.1
 subneting :
 ```
 docker network create   --driver=bridge   --subnet=10.10.11.0/25  --gateway=10.10.11.1   net3
-docker network create   --driver=bridge   --subnet=10.10.11.128/25  --gateway=10.10.11.1   net4
+docker network create   --driver=bridge   --subnet=10.10.11.128/25  --gateway=10.10.11.129   net4
 ```
 ### docker network rm
 ```
@@ -82,7 +82,10 @@ docker run -dit --name nginx1  --network net1  nginx:latest
 docker run -dit --name nginx1  --network none  nginx:latest
 ```
 user specified IP address is supported only when connecting to networks with user configured subnets.
-
+geteway was set whten network configured
+```
+docker run -dit --name nginx1 --network net1 --ip 10.10.12.20 nginx:latest
+```
 ------------------------------
 ```
 version: "3.8"
