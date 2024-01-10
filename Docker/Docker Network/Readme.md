@@ -36,7 +36,10 @@ docker network ls
 docker inspect Network_Name
 docker inspect Container_Name
 ```
- 	
+```
+docker exec [container-id or container-name] cat /etc/hosts 	
+docker exec [container-id or container-name] cat /etc/hostname
+```
 ### docker network create
 
 Create network with spesific name but with default subnet and gateway (default driver is bridge)
