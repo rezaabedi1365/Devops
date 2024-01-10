@@ -37,7 +37,7 @@ docker inspect Network_Name
 docker inspect Container_Name
 ```
 ```
-docker inspect network | grep IPv4Address
+docker inspect Network_Name | grep IPv4Address
 docker exec [container-id or container-name] cat /etc/hosts 	
 docker exec [container-id or container-name] cat /etc/hostname
 
