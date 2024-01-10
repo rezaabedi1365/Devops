@@ -3,11 +3,12 @@
 ### Type of network Driver in Docker
 
 * Bridge
-  	- it is default and container get ip to host range (172.17.0.1 ...)
+  	- it is default and container get ip to host range (172.17.0.1 With bridge driver and bridge Network_Name)
   	  ```     
-	  docker run –dit ubuntu  
+	docker run -dit --driver=bridge  --network=bridge ubuntu  
+        docker run –dit ubuntu  
   	  ```
-   	- you catn create newtork and assign different range ip
+   	- you catn create bridge newtork with specefif name and assign different range ip
    	  ```
 	  docker run –dit --network nework1 ubuntu  
 	  ```
