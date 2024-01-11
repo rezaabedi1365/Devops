@@ -1,0 +1,5 @@
+    - name: Add kube user to sudo profiles and enable no password
+      lineinfile:
+        dest: /etc/sudoers
+        line: 'kube ALL=(ALL) NOPASSWD: ALL'
+        validate: 'visudo -cf %s'
