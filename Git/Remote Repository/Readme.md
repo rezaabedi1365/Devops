@@ -13,9 +13,9 @@
   ```
   git remote rm
   ```
-* git push
+* git pull
   ```
-  git push
+   git pull git@github.com:rezaabedi1365/Devops.git
   ```
 * git fetch
   ```
@@ -25,8 +25,8 @@
   ```
   git merge
   ```
-* git pull
+* git push 
   ```
-  git pull 
+  git push --set-upstream git@github.com:rezaabedi1365/Devops.git masterl 
   ```
 
