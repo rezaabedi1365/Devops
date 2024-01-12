@@ -1,6 +1,11 @@
 # Remote repository
 ![image](https://github.com/rezaabedi1365/Devops/assets/117336743/77fd84f5-1f13-4e26-a58a-e7c8c3230a98)
-
+## git config
+```
+git config --global github.user YOUR_USERNAME
+git config --global github.token YOURTOKEN
+```
+--------------------------------------
 * git remote
   ```
   git remote
@@ -18,6 +23,7 @@
    git pull git@github.com:rezaabedi1365/Devops.git
   ```
 * git fetch
+  - git fetch <remote> <branch>
   ```
   git fetch
   ```
