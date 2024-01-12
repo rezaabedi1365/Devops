@@ -26,11 +26,12 @@
 
 
 verify:
-
     ```
     git status
     git log
     ```
+
+ 
 ---------------------------------------------------------------------
 * local repository
   - git config
