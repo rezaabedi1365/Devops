@@ -54,6 +54,11 @@ git log
     git config --local user.name "Reza Abedi"
     git config --local user.email r.abedi@faradis.net
     ```
+## Verify:
+```
+git config --list
+``` 
+  
 ----------------------------------------
  * local repository
       - git config
