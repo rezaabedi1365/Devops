@@ -3,10 +3,11 @@
 
 -----------------------------------------------------------------
 ## git state
-![image](https://github.com/rezaabedi1365/Devops/assets/117336743/d7e28cd4-81ca-4132-a62d-4b2b51437ba9)
 
 
-## 1- unstage ( untracked files)
+
+1- unstage ( untracked files)
+  
 ![image](https://github.com/rezaabedi1365/Devops/assets/117336743/3c2ab70e-8a9e-4425-9d91-755f8dc5196b)
 
 ## 2- staged 
