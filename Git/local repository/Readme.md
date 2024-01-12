@@ -15,13 +15,24 @@
     ```
     git reset --mixed
     ```
+  - verify:
+    ```
+    cat .git/HEAD
+    cat .git/refs/heads/master
+    ```
 * git revert
-* git restore            
+* git restore
+* git Clean
+    ```
+    git clean –n 
+    git clean -i    ( show menu for clean) 
+    git clean –f   (Delete untrack file from working directoory)
+    ```
 * create Difrent Project 
 * git branch 
 * git checkout 
 * git Head 
-* git Clean 
+ 
       
 * gitignore 
 * tree-ish 
