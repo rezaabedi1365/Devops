@@ -29,7 +29,7 @@
     git clean –f   (Delete untrack file from working directoory)
     ```
 * git .ignore
-    create .ignore file
+    - create .ignore file
     ```
     touch .ignore
     echo >>  file2 ./.gitignore
