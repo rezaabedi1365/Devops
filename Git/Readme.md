@@ -38,21 +38,21 @@ git log
 * 1-System 
   - /etc/gitconfig 
     ```
-    git config --system user.name "John Doe"
-    git config --system user.email johndoe@example.com 
+    git config --system user.name "Reza Abedi"
+    git config --system user.email r.abedi@faradis.net
     ```
         
 * 2-User 
   - ~/.gitconfig 
     ```
-    git config --global user.name "John Doe"
-    git config --global user.email johndoe@example.com 
+    git config --global user.name "Reza Abedi"
+    git config --global user.email r.abedi@faradis.net
     ```
 * 3-Project
   - My_projcet/.git/config
     ```
-    git config --local user.name "John Doe"
-    git config --local user.email johndoe@example.com
+    git config --local user.name "Reza Abedi"
+    git config --local user.email r.abedi@faradis.net
     ```
 ----------------------------------------
  * local repository
