@@ -5,6 +5,12 @@
 git config --global github.user YOUR_USERNAME
 git config --global github.token YOURTOKEN
 ```
+### Generating a new SSH key
+
+```
+ssh-keygen -t ed25519 -C "your_email@example.com"
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
 ```
 ssh -vT git@github.com
 ssh -T rezaabedi1365@github.com
