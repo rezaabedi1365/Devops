@@ -4,18 +4,18 @@
 * git add
 * git reset/revert/restore 
      - reset
-            - soft 
-            ```
-            git reset --soft
-            ```
-            - hard
-            ```
-            git reset --hard
-            ```
-            - mixed
-            ```
-            git reset --mixed
-            ```
+       - soft 
+         ```
+         git reset --soft
+         ```
+          - hard
+         ```
+         git reset --hard
+         ```
+          - mixed
+         ```
+         git reset --mixed
+         ```
             
 * create Difrent Project 
 * git branch 
