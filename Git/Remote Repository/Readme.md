@@ -5,6 +5,10 @@
 git config --global github.user YOUR_USERNAME
 git config --global github.token YOURTOKEN
 ```
+```
+ssh -vT git@github.com
+ssh -T rezaabedi1365@github.com
+```
 --------------------------------------
 * git remote
   ```
