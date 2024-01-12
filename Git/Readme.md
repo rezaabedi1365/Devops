@@ -26,6 +26,7 @@
 
 
 verify:
+
     ```
     git status
     git log
