@@ -2,6 +2,34 @@
 ![image](https://github.com/rezaabedi1365/Devops/assets/117336743/6455c93f-d8e1-4d94-8acc-d172af790592)
 
 -----------------------------------------------------------------
+
+# git Configuration 
+
+* 1-System 
+  - /etc/gitconfig 
+    ```
+    git config --system user.name "Reza Abedi"
+    git config --system user.email r.abedi@faradis.net
+    ```
+        
+* 2-User 
+  - ~/.gitconfig 
+    ```
+    git config --global user.name "Reza Abedi"
+    git config --global user.email r.abedi@faradis.net
+    ```
+* 3-Project
+  - My_projcet/.git/config
+    ```
+    git config --local user.name "Reza Abedi"
+    git config --local user.email r.abedi@faradis.net
+    ```
+## Verify:
+```
+git config --list
+```
+
+---------------------------------------------------------------------
 ## git state
 
 * 1- unstage ( untracked files)
@@ -30,34 +58,6 @@
 git status
 git log
 ```
-
- 
----------------------------------------------------------------------
-# git Configuration 
-
-* 1-System 
-  - /etc/gitconfig 
-    ```
-    git config --system user.name "Reza Abedi"
-    git config --system user.email r.abedi@faradis.net
-    ```
-        
-* 2-User 
-  - ~/.gitconfig 
-    ```
-    git config --global user.name "Reza Abedi"
-    git config --global user.email r.abedi@faradis.net
-    ```
-* 3-Project
-  - My_projcet/.git/config
-    ```
-    git config --local user.name "Reza Abedi"
-    git config --local user.email r.abedi@faradis.net
-    ```
-## Verify:
-```
-git config --list
-``` 
   
 ----------------------------------------
  * local repository
