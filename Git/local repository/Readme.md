@@ -28,7 +28,13 @@
     git clean -i    ( show menu for clean) 
     git clean –f   (Delete untrack file from working directoory)
     ```
-* create Difrent Project 
+* git .ignore
+    create .ignore file
+    ```
+    touch .ignore
+    echo >>  file2 ./.gitignore
+    echo >>  ./dir2 ./.gitignore
+    ```
 * git branch 
 * git checkout 
 * git Head 
