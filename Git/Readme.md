@@ -33,18 +33,25 @@ git log
 
  
 ---------------------------------------------------------------------
-* git Configuration 
+# git Configuration 
     - System 
-        - >git config - - system 
         - /etc/gitconfig 
+        ```
+        git config -- system 
+        ```
+        
     - User 
-        - >git config - -global 
         - ~/.gitconfig 
-    - Project 
-        - > git config 
-
-My_projcet/.git/config 
-* local repository
+        ```
+        - >git config --global 
+        ```
+    - Project
+        - My_projcet/.git/config
+        ```
+        - git config 
+        ```
+----------------------------------------
+ * local repository
   - git config
   - git init
   - git add
