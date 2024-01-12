@@ -34,22 +34,23 @@ git log
  
 ---------------------------------------------------------------------
 # git Configuration 
+
 * System 
-        - /etc/gitconfig 
-        ```
-        git config -- system 
-        ```
+  - /etc/gitconfig 
+    ```
+    git config -- system 
+    ```
         
 * User 
-        - ~/.gitconfig 
-        ```
-        - >git config --global 
-        ```
+  - ~/.gitconfig 
+    ```
+    git config --global 
+    ```
 * Project
-        - My_projcet/.git/config
-        ```
-        - git config 
-        ```
+  - My_projcet/.git/config
+    ```
+    git config 
+    ```
 ----------------------------------------
  * local repository
   - git config
