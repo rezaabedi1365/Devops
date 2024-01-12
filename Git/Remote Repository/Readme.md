@@ -18,6 +18,7 @@ ls
 cat id_rsa.pub
 ```
 * 3)insert key to github.com
+https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
   - login to your user
   - setting > SSH and GPG keys > add New SSH Ke
     
