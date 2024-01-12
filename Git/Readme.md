@@ -4,13 +4,13 @@
 -----------------------------------------------------------------
 ## git state
 
-1- unstage ( untracked files)
+*  1- unstage ( untracked files)
 ```
 git init
 ```
 ![image](https://github.com/rezaabedi1365/Devops/assets/117336743/3c2ab70e-8a9e-4425-9d91-755f8dc5196b)
 
-## 2- staged 
+*  2- staged 
 ```
 git add File_Name
 git add *
@@ -18,7 +18,7 @@ git add *
 ![image](https://github.com/rezaabedi1365/Devops/assets/117336743/8ac3ffac-cf53-492a-a531-7dfb57fda439)
 
 
-## 3- working
+*  3- working
 ```
 git commit -m Commit_Name
 ```
