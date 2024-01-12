@@ -25,7 +25,7 @@
     ![image](https://github.com/rezaabedi1365/Devops/assets/117336743/c4e51818-d42d-4a69-84a7-85faeec49892)
 
 
-verify:
+## Verify:
     ```
     git status
     git log
