@@ -1,0 +1,13 @@
+# https://www.cherryservers.com/blog/install-kubernetes-on-ubuntu
+# https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
+
+Overall, installing Kubernetes on Ubuntu involves steps such as:
+
+Disabling swap;
+Setting up hostnames;
+Setting up the IPV4 bridge on all nodes;
+Installing Kubernetes components on all nodes;
+Installing Docker or a suitable containerization tool;
+Initializing the Kubernetes cluster;
+Configuring Kubectl and Calico;
+Adding worker nodes.
