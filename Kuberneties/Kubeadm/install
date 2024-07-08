@@ -83,7 +83,7 @@ EOF
 
    
 
- Step 3) Install K8s  
+Step 3) Install K8s  
 https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/ 
 https://pwittrock.github.io/docs/tasks/tools/install-kubectl/ 
 
@@ -91,21 +91,13 @@ https://pwittrock.github.io/docs/tasks/tools/install-kubectl/
 #sudo apt-get update 
 sudo apt-get install -y kubelet kubeadm kubectl 
  
-
 #sudo apt-mark hold kubelet kubeadm kubectl 
 
- 
-
 Verify: 
-
 #Kubeadm version 
-
 #kubectl version 
-
 #kubectl get namespace 
-
 #Kubelet version 
-
 Configuring a cgroup driver 
 
  
@@ -115,17 +107,13 @@ Configuring a cgroup driver
   
 
 Step 4) Initialize the Kubernetes cluster on the master node 
-
 #sudo kubeadm config images pull 
-
 #sudo kubeadm init --pod-network-cidr=10.10.12.0/24 
 
  
 
 #mkdir -p $HOME/.kube 
-
 #sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config 
-
 #sudo chown $(id -u):$(id -g) $HOME/.kube/config 
 
  
@@ -133,7 +121,6 @@ Step 4) Initialize the Kubernetes cluster on the master node
   
 
 Step 5) Configure kubectl and Calico 
-
 https://docs.tigera.io/calico/latest/getting-started/kubernetes/self-managed-onprem/onpremises 
 
  
