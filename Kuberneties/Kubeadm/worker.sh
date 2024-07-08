@@ -1,16 +1,37 @@
 #!/bin/bash
 set -e
-
+### Step1) prerequisites
 # Set hostname
 echo "-------------Setting hostname-------------"
-hostnamectl set-hostname $1
+hostnamectl set-hostname worker1
+exec sh
 
 # Disable swap
 echo "-------------Disabling swap-------------"
 swapoff -a
 sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+swapon --show
+# Forwarding IPv4 and letting iptables see bridged traffic
+echo "-------------Setting IPTables-------------"
+cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
+overlay
+br_netfilter
 
-# Install Containerd
+EOF
+sudo modprobe overlay
+sudo modprobe br_netfilter
+cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-iptables = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+net.ipv4.ip_forward = 1
+EOF
+
+sudo sysctl --system
+sysctl net.bridge.bridge-nf-call-iptables net.bridge.bridge-nf-call-ip6tables net.ipv4.ip_forward
+modprobe br_netfilter
+sysctl -p /etc/sysctl.conf
+
+### Step2 ) Install Containerd
 echo "-------------Installing Containerd-------------"
 wget https://github.com/containerd/containerd/releases/download/v1.7.4/containerd-1.7.4-linux-amd64.tar.gz
 tar Cxzvf /usr/local containerd-1.7.4-linux-amd64.tar.gz
@@ -46,27 +67,9 @@ debug: false
 pull-image-on-create: false
 EOF
 
-# Forwarding IPv4 and letting iptables see bridged traffic
-echo "-------------Setting IPTables-------------"
-cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
-overlay
-br_netfilter
 
-EOF
-sudo modprobe overlay
-sudo modprobe br_netfilter
-cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
-net.bridge.bridge-nf-call-iptables = 1
-net.bridge.bridge-nf-call-ip6tables = 1
-net.ipv4.ip_forward = 1
-EOF
 
-sudo sysctl --system
-sysctl net.bridge.bridge-nf-call-iptables net.bridge.bridge-nf-call-ip6tables net.ipv4.ip_forward
-modprobe br_netfilter
-sysctl -p /etc/sysctl.conf
-
-# Install kubectl, kubelet and kubeadm
+### Step3) Install kubectl, kubelet and kubeadm
 echo "-------------Installing Kubectl, Kubelet and Kubeadm-------------"
 apt-get update && sudo apt-get install -y apt-transport-https curl
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
