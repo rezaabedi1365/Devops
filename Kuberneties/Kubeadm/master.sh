@@ -5,7 +5,7 @@ sudo apt-get install -y apt-transport-https ca-certificates curl
 # Set hostname
 echo "-------------Setting hostname-------------"
 hostnamectl set-hostname master
-exec sh
+exec bash
 
 # Disable swap
 echo "-------------Disabling swap-------------"
