@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 ### Step1) prerequisites
+sudo apt-get install -y apt-transport-https ca-certificates curl
 # Set hostname
 echo "-------------Setting hostname-------------"
 hostnamectl set-hostname worker1
