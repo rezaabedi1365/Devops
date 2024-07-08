@@ -4,7 +4,7 @@ set -e
 # Set hostname
 echo "-------------Setting hostname-------------"
 hostnamectl set-hostname worker1
-exec bash
+
 
 # Disable swap
 echo "-------------Disabling swap-------------"
