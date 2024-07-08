@@ -1,16 +1,39 @@
 #!/bin/bash
 set -e
-
+### step1 ) prerequisites
+sudo apt-get install -y apt-transport-https ca-certificates curl
 # Set hostname
 echo "-------------Setting hostname-------------"
-hostnamectl set-hostname $1
+hostnamectl set-hostname master
+exec sh
 
 # Disable swap
 echo "-------------Disabling swap-------------"
 swapoff -a
 sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+swapon --show
 
-# Install Containerd
+# Forwarding IPv4 and letting iptables see bridged traffic
+echo "-------------Setting IPTables-------------"
+cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
+overlay
+br_netfilter
+
+EOF
+modprobe overlay
+modprobe br_netfilter
+cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-iptables = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+net.ipv4.ip_forward = 1
+EOF
+
+sysctl --system
+sysctl net.bridge.bridge-nf-call-iptables net.bridge.bridge-nf-call-ip6tables net.ipv4.ip_forward
+modprobe br_netfilter
+sysctl -p /etc/sysctl.conf
+
+### step2) Install Containerd
 echo "-------------Installing Containerd-------------"
 wget https://github.com/containerd/containerd/releases/download/v1.7.4/containerd-1.7.4-linux-amd64.tar.gz
 tar Cxzvf /usr/local containerd-1.7.4-linux-amd64.tar.gz
@@ -46,25 +69,6 @@ debug: false
 pull-image-on-create: false
 EOF
 
-# Forwarding IPv4 and letting iptables see bridged traffic
-echo "-------------Setting IPTables-------------"
-cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
-overlay
-br_netfilter
-
-EOF
-modprobe overlay
-modprobe br_netfilter
-cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
-net.bridge.bridge-nf-call-iptables = 1
-net.bridge.bridge-nf-call-ip6tables = 1
-net.ipv4.ip_forward = 1
-EOF
-
-sysctl --system
-sysctl net.bridge.bridge-nf-call-iptables net.bridge.bridge-nf-call-ip6tables net.ipv4.ip_forward
-modprobe br_netfilter
-sysctl -p /etc/sysctl.conf
 
 # Install kubectl, kubelet and kubeadm
 echo "-------------Installing Kubectl, Kubelet and Kubeadm-------------"
@@ -78,6 +82,13 @@ EOF
 apt update -y
 apt install -y kubelet kubeadm kubectl
 apt-mark hold kubelet kubeadm kubectl
+
+# Configure kubectl and Calico 
+kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/tigera-operator.yaml 
+curl https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/custom-resources.yaml -O
+kubectl create -f custom-resources.yaml 
+
+
 
 echo "-------------Printing Kubeadm version-------------"
 kubeadm version
