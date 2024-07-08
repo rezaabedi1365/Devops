@@ -1,3 +1,7 @@
+https://github.com/kunchalavikram1427/kubernetes_using_kubeadm_with_terraform_on_aws/blob/master/master.sh
+
+
+
 https://www.cherryservers.com/blog/install-kubernetes-on-ubuntu 
 https://phoenixnap.com/kb/install-kubernetes-on-ubuntu 
 
