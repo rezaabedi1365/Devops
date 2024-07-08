@@ -70,7 +70,7 @@ pull-image-on-create: false
 EOF
 
 
-# Install kubectl, kubelet and kubeadm
+### Step3) Install kubectl, kubelet and kubeadm
 echo "-------------Installing Kubectl, Kubelet and Kubeadm-------------"
 apt-get update && sudo apt-get install -y apt-transport-https curl
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
