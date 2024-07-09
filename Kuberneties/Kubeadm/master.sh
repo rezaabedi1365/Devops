@@ -34,8 +34,10 @@ modprobe br_netfilter
 sysctl -p /etc/sysctl.conf
 
 ### step2) Install Containerd
+# https://github.com/containerd/containerd/blob/main/docs/getting-started.md
 echo "-------------Installing Containerd-------------"
-wget https://github.com/containerd/containerd/releases/download/v1.7.4/containerd-1.7.4-linux-amd64.tar.gz
+VERSION="1.7.19" # check latest version in /releases page
+wget https://github.com/containerd/containerd/releases/download/v1.7.19/containerd-1.7.19-linux-amd64.tar.gz
 tar Cxzvf /usr/local containerd-1.7.4-linux-amd64.tar.gz
 wget https://raw.githubusercontent.com/containerd/containerd/main/containerd.service
 mkdir -p /usr/local/lib/systemd/system
@@ -44,17 +46,21 @@ systemctl daemon-reload
 systemctl enable --now containerd
 
 # Install Runc
+# https://github.com/opencontainers/runc/releases
 echo "-------------Installing Runc-------------"
+VERSION="1.7.19" # check latest version in /releases page
 wget https://github.com/opencontainers/runc/releases/download/v1.1.9/runc.amd64
 install -m 755 runc.amd64 /usr/local/sbin/runc
 
 # Install CNI
+# https://github.com/containernetworking/plugins/releases
 echo "-------------Installing CNI-------------"
 wget https://github.com/containernetworking/plugins/releases/download/v1.2.0/cni-plugins-linux-amd64-v1.2.0.tgz
 mkdir -p /opt/cni/bin
 tar Cxzvf /opt/cni/bin cni-plugins-linux-amd64-v1.2.0.tgz
 
 # Install CRICTL
+# https://github.com/kubernetes-sigs/cri-tools/releases
 echo "-------------Installing CRICTL-------------"
 VERSION="v1.30.0" # check latest version in /releases page
 wget https://github.com/kubernetes-sigs/cri-tools/releases/download/$VERSION/crictl-$VERSION-linux-amd64.tar.gz
