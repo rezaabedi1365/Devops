@@ -49,20 +49,15 @@ echo \
   $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-#verify :
-sudo docker run hello-world
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+
    
 ### Step 3) Install kubectl 
 echo "-------------Installing Kubectl-------------"
 #https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-#verify:
-kubectl version 
-kubectl get namespace 
-kubectl get nods
-kubectl get pods
+
 
 ### Step 4) Install Minikube 
 echo "-------------Installing Mikukube-------------"
@@ -72,14 +67,8 @@ sudo install minikube-linux-amd64 /usr/local/bin/minikube
 
 
 ### Step 5) Start your cluster 
-minikube start --driver=docker 
+minikube start --driver=docker --force
 
-#verify: 
-minikube version 
-minikube status 
-minikube service list 
-kubectl get pv 
-minikube kubectl -- get nodes 
    
 ### Step 6) Enable addons 
 minikube addons enable ingress 
