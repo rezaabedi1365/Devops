@@ -83,6 +83,8 @@ apt update -y
 apt install -y kubelet kubeadm kubectl
 apt-mark hold kubelet kubeadm kubectl
 
+
+echo "-------------Deploying Calico Pod Networking-------------"
 # Configure kubectl and Calico 
 kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/tigera-operator.yaml 
 curl https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/custom-resources.yaml -O
@@ -107,9 +109,4 @@ sudo chown $(id -u):$(id -g) /root/.kube/config
 echo "-------------Exporting Kubeconfig-------------"
 export KUBECONFIG=/etc/kubernetes/admin.conf
 
-echo "-------------Deploying Weavenet Pod Networking-------------"
-kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
-
-echo "-------------Creating file with join command-------------"
-echo `kubeadm token create --print-join-command` > ./join-command.sh
  
