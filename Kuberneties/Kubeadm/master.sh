@@ -74,7 +74,7 @@ sudo chown $(id -u):$(id -g) /$HOME/.kube/config
 echo "-------------Deploying Calico Pod Networking-------------"
 kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/tigera-operator.yaml
 curl https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/custom-resources.yaml -O
-sudo sed -i 's/cidr: 192\.168\.0\.0\/16/cidr: 10.10.12.0/24/g' custom-resources.yaml
+sudo sed -i 's/cidr: 192\.168\.0\.0\/16/cidr: 10.10.12.0\/24/g' custom-resources.yaml
 kubectl create -f custom-resources.yaml 
 
 
