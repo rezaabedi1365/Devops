@@ -335,3 +335,4 @@ sudo kubectl create -f custom-resources.yaml
 
 
 ### Step 11: Join Worker Nodes to the Cluster
+#worker port test : nc -zv 10.0.2.15 6443
