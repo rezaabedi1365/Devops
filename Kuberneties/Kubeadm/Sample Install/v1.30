@@ -318,4 +318,20 @@ export KUBECONFIG=/etc/kubernetes/admin.conf
 #Apply the CNI YAML
 kubectl apply -f https://reweave.azurewebsites.net/k8s/v1.30/net.yaml
 
+# verify:
+kubectl get pods -n kube-system   # a few minit need to create nodes (watch kubectl get pods -n kube-system)
+kubectl get nodes
+kubectl get svc 
+
+
+
+#kubectl expose pod nginx-pod --port=8080 --target-port=80 --name=nginx-https --type=NodePort
+
+echo "-------------Deploying Calico Pod Networking-------------"
+sudo kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/tigera-operator.yaml
+sudo curl https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/custom-resources.yaml -O
+sudo sed -i 's/cidr: 192\.168\.0\.0\/16/cidr: 10.10.12.0\/24/g' custom-resources.yaml
+sudo kubectl create -f custom-resources.yaml 
+
+
 ### Step 11: Join Worker Nodes to the Cluster
