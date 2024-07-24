@@ -1,0 +1,56 @@
+https://github.com/Aareez01/kubernetes-v1.30.2-cluster-using-kubeadm
+
+#!/bin/bash
+set -e
+### Step 0: prerequisites
+#Dont use root account . Create soduer user with root access 
+
+# Set hostname
+echo "-------------Setting hostname-------------"
+sudo hostnamectl set-hostname master
+#set /etc/hosts file and vrify it from ping 
+
+
+### Step 1: Disable Swap on All Nodes
+echo "-------------Disabling swap-------------"
+sudo swapoff -a
+sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+sudo swapon --show
+
+
+### Step 2: Enable IPv4 Packet Forwarding
+sudo cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.ipv4.ip_forward = 1
+EOF
+sudo sysctl --system
+
+
+### step 3: Install Containerd
+echo "-------------Installing Containerd-------------"
+# Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update && sudo apt-get install containerd.io && systemctl enable --now containerd
+
+
+### Step 4: Install CNI Plugin
+wget https://github.com/containernetworking/plugins/releases/download/v1.4.0/cni-plugins-linux-amd64-v1.4.0.tgz
+mkdir -p /opt/cni/bin
+tar Cxzvf /opt/cni/bin cni-plugins-linux-amd64-v1.4.0.tgz
+
+Step 6: Forward IPv4 and Configure iptables
+
+Step 7: Modify containerd Configuration for systemd Support
+Step 8: Restart containerd and Check the Status
+Step 9: Install kubeadm, kubelet, and kubectl
+Step 10: Initialize the Cluster and Install CNI
+Step 11: Join Worker Nodes to the Cluster
