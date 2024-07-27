@@ -306,6 +306,9 @@ sudo apt-mark hold kubelet kubeadm kubectl
 sudo kubeadm config images pull
 #sudo kubeadm init
 sudo kubeadm init --apiserver-advertise-address=10.10.12.22 --pod-network-cidr=10.244.0.0/16
+# /etc/kubernetes/pki/apiserver.crt
+# /etc/kubernetes/pki/apiserver.key
+
 
 #To start using your cluster, you need to run the following as a regular user:
 
@@ -324,6 +327,13 @@ kubectl get pods -n kube-system   # a few minit need to create nodes (watch kube
 kubectl get nodes
 kubectl get svc 
 
+#https://teckbootcamps.com/containerd-basic-commands-and-usage/
+# containerd verify:
+crictl ps
+crictl pods
+
+# show token
+kubeadm token create --print-join-command
 
 
 #kubectl expose pod nginx-pod --port=8080 --target-port=80 --name=nginx-https --type=NodePort
@@ -333,6 +343,8 @@ sudo kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3
 sudo curl https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/custom-resources.yaml -O
 sudo sed -i 's/cidr: 192\.168\.0\.0\/16/cidr: 10.10.12.0\/24/g' custom-resources.yaml
 sudo kubectl create -f custom-resources.yaml 
+
+
 
 
 ### Step 11: Join Worker Nodes to the Cluster
