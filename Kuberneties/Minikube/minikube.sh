@@ -77,3 +77,8 @@ minikube start --driver=docker --force
 ### Step 6) Enable addons 
 minikube addons enable ingress 
 minikube addons list 
+
+
+### verify :
+minikube status
+minikube get nodes
