@@ -1,3 +1,4 @@
+https://www.youtube.com/watch?v=2XlI9qqed04&t=1025s
 https://github.com/Aareez01/kubernetes-v1.30.2-cluster-using-kubeadm
 
 #!/bin/bash
