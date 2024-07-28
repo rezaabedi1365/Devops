@@ -1,4 +1,4 @@
-https://github.com/Aareez01/kubernetes-v1.30.2-cluster-using-kubeadm
+# https://www.youtube.com/watch?v=DrcS4jrA_no
 
 #!/bin/bash
 set -e
