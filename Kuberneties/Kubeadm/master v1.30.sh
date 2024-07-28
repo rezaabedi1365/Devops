@@ -310,7 +310,7 @@ sudo apt-mark hold kubelet kubeadm kubectl
 ### Step 10: Initialize the Cluster and Install CNI
 sudo kubeadm config images pull
 #sudo kubeadm init
-sudo kubeadm init --apiserver-advertise-address=10.10.12.22 --pod-network-cidr=10.244.0.0/16 (flanel range)
+sudo kubeadm init --apiserver-advertise-address=10.10.12.22 --pod-network-cidr=10.244.0.0/16 # (flanel range)
 
 
 # To start using your cluster, you need to run the following as a regular user:
