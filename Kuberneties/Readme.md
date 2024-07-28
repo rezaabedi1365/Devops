@@ -1,0 +1,14 @@
+
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  namespace: default
+spec:
+  containers:
+  - name: nginx-ctr
+    image: nginx:latest
+    ports:
+    - containerPort:80
