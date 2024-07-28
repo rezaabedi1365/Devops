@@ -65,10 +65,6 @@ echo "-------------Installing Mikukube-------------"
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 sudo install minikube-linux-amd64 /usr/local/bin/minikube 
 
-mkdir -p $HOME/.kube 
-sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config 
-sudo chown $(id -u):$(id -g) $HOME/.kube/config 
-
 
 ### Step 5) Start your cluster 
 minikube start --driver=docker --force
