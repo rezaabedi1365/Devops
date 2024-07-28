@@ -338,7 +338,6 @@ kubeadm token create --print-join-command
 kubectl taint node $HOSTNAME key:NoSchedule
 
 echo "-------------Deploying Flannel Pod Networking-------------"
-kubectl apply -f 
 kubectl apply -f https://github.com/coreos/flannel/raw/master/Documentation/kube-flannel.yml
 
 echo "-------------Deploying Calico Pod Networking-------------"
