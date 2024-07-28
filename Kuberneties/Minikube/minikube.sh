@@ -65,6 +65,8 @@ echo "-------------Installing Mikukube-------------"
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 sudo install minikube-linux-amd64 /usr/local/bin/minikube 
 
+minikube start
+
 
 ### Step 5) Start your cluster 
 minikube start --driver=docker --force
@@ -72,9 +74,18 @@ minikube start --driver=docker --force
    
 ### Step 6) Enable addons 
 minikube addons enable ingress 
+minikube dashboard
+minikube addons enable dashboard
 minikube addons list 
 
 
 ### verify :
 minikube status
-minikube get nodes
+kubectl get nodes
+kubectl cluster-info
+
+### Try to deploy a sample nginx deployment, run following set of commands.
+kubectl create deployment nginx-web --image=nginx
+kubectl expose deployment nginx-web --type NodePort --port=80
+kubectl get pods
+kubectl get deployment,pod,svc
