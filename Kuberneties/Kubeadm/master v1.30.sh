@@ -41,6 +41,10 @@ echo \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update && sudo apt-get install containerd.io && systemctl enable --now containerd
 
+#https://teckbootcamps.com/containerd-basic-commands-and-usage/
+# containerd verify:
+crictl ps
+crictl pods
 
 ### Step 4: Install CNI Plugin
 wget https://github.com/containernetworking/plugins/releases/download/v1.4.0/cni-plugins-linux-amd64-v1.4.0.tgz
@@ -288,7 +292,8 @@ version = 2
 
 
 ### Step 8: Restart containerd and Check the Status
-sudo systemctl restart containerd && systemctl status containerd
+sudo systemctl restart containerd 
+#systemctl status containerd
 
 ### Step 9: Install kubeadm, kubelet, and kubectl
 sudo apt-get update
@@ -305,12 +310,10 @@ sudo apt-mark hold kubelet kubeadm kubectl
 ### Step 10: Initialize the Cluster and Install CNI
 sudo kubeadm config images pull
 #sudo kubeadm init
-sudo kubeadm init --apiserver-advertise-address=10.10.12.22 --pod-network-cidr=10.244.0.0/16
-# /etc/kubernetes/pki/apiserver.crt
-# /etc/kubernetes/pki/apiserver.key
+sudo kubeadm init --apiserver-advertise-address=10.10.12.22 --pod-network-cidr=10.244.0.0/16 (flanel range)
 
 
-#To start using your cluster, you need to run the following as a regular user:
+# To start using your cluster, you need to run the following as a regular user:
 
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
@@ -327,25 +330,22 @@ kubectl get pods -n kube-system   # a few minit need to create nodes (watch kube
 kubectl get nodes
 kubectl get svc 
 
-#https://teckbootcamps.com/containerd-basic-commands-and-usage/
-# containerd verify:
-crictl ps
-crictl pods
 
 # show token
 kubeadm token create --print-join-command
 
+### Running Workloads on Master Node
+kubectl taint node $HOSTNAME key:NoSchedule
 
-#kubectl expose pod nginx-pod --port=8080 --target-port=80 --name=nginx-https --type=NodePort
+echo "-------------Deploying Flannel Pod Networking-------------"
+kubectl apply -f 
+kubectl apply -f https://github.com/coreos/flannel/raw/master/Documentation/kube-flannel.yml
 
 echo "-------------Deploying Calico Pod Networking-------------"
 sudo kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/tigera-operator.yaml
 sudo curl https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/custom-resources.yaml -O
 sudo sed -i 's/cidr: 192\.168\.0\.0\/16/cidr: 10.10.12.0\/24/g' custom-resources.yaml
 sudo kubectl create -f custom-resources.yaml 
-
-
-
 
 ### Step 11: Join Worker Nodes to the Cluster
 #worker port test : nc -zv 10.0.2.15 6443
