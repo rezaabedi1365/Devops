@@ -26,10 +26,12 @@ apiVersion: v1
 kind: ReplicationController
 metadate:
   name=nginx-rc
+  namespace: default
 spec:
   replicas: 5
   selector:
     app: nginx
+
   template:
     metadate:
       labels:
