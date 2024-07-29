@@ -64,3 +64,7 @@ kubectl cluster-info
 kubectl get pods -n kube-system
 kubectl get deployment,pod,svc
 ```
+# Namespace
+```
+
+```
