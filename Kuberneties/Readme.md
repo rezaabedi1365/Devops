@@ -1,4 +1,7 @@
-
+# Creating Highly Available Clusters with kubeadm
+```
+sudo kubeadm init --control-plane-endpoint "10.10.12.22" --upload-certs
+```
 ## Pods
 ```
 kubectl create deployment nginx-web --image=nginx
