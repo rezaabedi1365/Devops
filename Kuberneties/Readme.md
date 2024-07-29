@@ -18,6 +18,7 @@ spec:
     ports:
     - containerPort:80
 ```
+verify:
 ```
 kubectl apply -f pod1.yml
 kubectl get pods
