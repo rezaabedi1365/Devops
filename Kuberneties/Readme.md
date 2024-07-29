@@ -1,4 +1,5 @@
 
+## Pods
 ```
 kubectl create deployment nginx-web --image=nginx
 kubectl expose deployment nginx-web --type NodePort --port=80
@@ -19,7 +20,27 @@ spec:
 ```
 kubectl apply -f pod1.yml
 
-
+## Replication Controller
+```
+apiVersion: v1
+kind: ReplicationController
+metadate:
+  name=nginx-rc
+spec:
+  replicas: 5
+  selector:
+    app: nginx
+  template:
+    metadate:
+      labels:
+        app:  nginx
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx:latest
+        ports:
+        - containerPort:80
+```      
 ```
 kubectl get pods
 kubectl describe pod nginx-web-01
