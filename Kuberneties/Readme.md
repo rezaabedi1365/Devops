@@ -23,9 +23,11 @@ kubectl apply -f pod1.yml
 ```
 kubectl get pods
 kubectl describe pod nginx-web-01
+kubectl get pods nginx-web-54f478b58f-jfsx8 -o yaml
 
 kubectl get nodes
 kubectl get nodes -o wide
+kubectl get nodes -o yaml
 
 kubectl cluster-info
 kubectl get pods -n kube-system
