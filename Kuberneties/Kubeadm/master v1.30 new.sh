@@ -83,5 +83,7 @@ sudo kubeadm init --apiserver-advertise-address 10.10.12.22 --pod-network-cidr 1
 
 echo "-------------Deploying Flannel Pod Networking-------------"
 # https://kubernetes.io/docs/concepts/cluster-administration/addons/
+kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
+# you can use wave insted flannel
 kubectl apply -f https://reweave.azurewebsites.net/k8s/v1.30/net.yaml
 
