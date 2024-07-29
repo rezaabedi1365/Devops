@@ -48,6 +48,7 @@ spec:
         ports:
         - containerPort:80
 ```
+verify:
 ```
 kubectl apply -f rc.yaml
 kunectl get rc -o wide
