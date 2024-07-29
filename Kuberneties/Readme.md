@@ -40,7 +40,9 @@ spec:
         image: nginx:latest
         ports:
         - containerPort:80
-```      
+```
+
+##  Verify: 
 ```
 kubectl get pods
 kubectl describe pod nginx-web-01
