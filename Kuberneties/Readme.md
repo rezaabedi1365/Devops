@@ -18,8 +18,12 @@ spec:
     ports:
     - containerPort:80
 ```
+```
 kubectl apply -f pod1.yml
-
+kubectl get pods
+kubectl describe pod nginx-web-01
+kubectl get pods nginx-web-54f478b58f-jfsx8 -o yaml
+```
 ## Replication Controller
 ```
 apiVersion: v1
@@ -43,13 +47,13 @@ spec:
         ports:
         - containerPort:80
 ```
-
-##  Verify: 
 ```
-kubectl get pods
-kubectl describe pod nginx-web-01
-kubectl get pods nginx-web-54f478b58f-jfsx8 -o yaml
+kubectl apply -f rc.yaml
+kunectl get rc -o wide
+```
 
+##  Nodes
+```
 kubectl get nodes
 kubectl get nodes -o wide
 kubectl get nodes -o yaml
