@@ -93,6 +93,7 @@ kubectl get nodes
 * NodePort
     - above 30000
 * LoadBalancer
+*   - ingress
 * ExternalName
 ```
 
