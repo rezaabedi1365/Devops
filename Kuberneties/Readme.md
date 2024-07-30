@@ -9,11 +9,12 @@ bash -l
 
 
 ## Pods
+Create pod with kubectl
 ```
 kubectl create deployment nginx-web --image=nginx
 kubectl expose deployment nginx-web --type NodePort --port=80
 ```
-
+Create pod with yaml 
 ```
 apiVersion: v1
 kind: Pod
