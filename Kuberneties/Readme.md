@@ -101,8 +101,22 @@ kubectl get nodes
 * ExternalName
     - Cname Record
 ```
-
+apiVersion: v1
+kind: Service
+metadate:
+  name: nginx-svc
+spec:
+  selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 9376 
 ```
+```
+kubectl create -f svc.yaml
+```
+
 
 ## logs
 ```
