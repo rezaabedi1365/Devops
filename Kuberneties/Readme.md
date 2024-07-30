@@ -63,6 +63,10 @@ Scaling Replication Controller
 kubectl scale --replicas=8 rc/nginx-rc
 
 ```
+exec 
+```
+kubectl exec -it nginx-rc --bash
+```
 verify:
 ```
 kubectl apply -f rc.yaml
