@@ -142,13 +142,14 @@ spec:
       port: 8080        #(service port)
       nodetPort: 30008  #(host port)
   selector:
-    app: myapp
+    app: myapp #(pod label)
 ```
 
 
 verify:
 ```
 kubectl get svc
+kubectl describe svc nginx-svc-01
 ```
 ```
 kubectl create -f svc.yaml
