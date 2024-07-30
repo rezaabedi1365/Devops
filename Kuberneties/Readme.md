@@ -94,7 +94,12 @@ kubectl get nodes
     - above 30000
 * LoadBalancer
 *   - ingress
+    - Metallb on bermetal
+       + ALB
+       + NLB
+       + GWLB 
 * ExternalName
+    - Cname Record
 ```
 
 ```
