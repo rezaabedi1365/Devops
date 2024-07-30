@@ -2,9 +2,9 @@
 
 # Creating Highly Available Clusters with kubeadm
 ```
+sudo kubeadm init --control-plane-endpoint "10.10.12.22" --upload-certs --pod-network-cidr 10.244.0.0/16 --cri-socket unix:///var/run/containerd/containerd.sock
 kubeadm token list
 kubeadm token create --print-join-command
-sudo kubeadm init --control-plane-endpoint "10.10.12.22" --upload-certs --pod-network-cidr 10.244.0.0/16 --cri-socket unix:///var/run/containerd/containerd.sock
 ```
 
 # Delete Flannel
