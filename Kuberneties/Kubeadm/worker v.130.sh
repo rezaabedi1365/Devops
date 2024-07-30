@@ -72,4 +72,6 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 
 ### Step 5: join to Cluster
+kubeadm token create --print-join-command
+kubeadm join 10.10.12.22:6443 --token shmky1.6pagk5qwxf420bny --discovery-token-ca-cert-hash sha256:bb5bf288811c38117ff439e6db4d372e7d357d558d33aaafc9094471afca22f4
 
