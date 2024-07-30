@@ -118,7 +118,7 @@ spec:
 ClusterIP Service
 ```
 apiVersion: v1
-kind: Endpoings
+kind: Endpoints
 metadate:
   name: nginx-svc
 subsets:
@@ -138,9 +138,9 @@ metadate:
 spec:
   type: NodePort
   ports:
-    - targetPort: 80
-      port: 8080
-      nodetPort: 30008
+    - targetPort: 80    #(pod port)
+      port: 8080        #(service port)
+      nodetPort: 30008  #(host port)
   selector:
     app: myapp
 ```
