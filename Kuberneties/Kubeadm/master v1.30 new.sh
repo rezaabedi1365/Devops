@@ -73,14 +73,14 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 
-### Step 10: Initialize the Cluster and Install CNI
+### Step 5: Initialize the Cluster
 sudo kubeadm config images pull
-#sudo kubeadm init
+
 ## (flanel range 10.10.12.22) 
 sudo kubeadm init --apiserver-advertise-address 10.10.12.22 --pod-network-cidr 10.244.0.0/16 --cri-socket unix:///var/run/containerd/containerd.sock
+## Create /etc/kubernetes/kubelet.conf and /etc/kubernetes/pki/ca.crt
 
-
-
+### Step 6: Deploying Flannel Pod Networking
 echo "-------------Deploying Flannel Pod Networking-------------"
 # https://kubernetes.io/docs/concepts/cluster-administration/addons/
 kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
