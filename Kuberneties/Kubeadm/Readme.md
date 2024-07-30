@@ -1,8 +1,16 @@
 
 
 # Creating Highly Available Clusters with kubeadm
+method 1)
 ```
-sudo kubeadm init --control-plane-endpoint "10.10.12.22" --upload-certs --pod-network-cidr 10.244.0.0/16 --cri-socket unix:///var/run/containerd/containerd.sock
+kubeadm init --control-plane-endpoint "10.10.12.22" --upload-certs --pod-network-cidr 10.244.0.0/16 --cri-socket unix:///var/run/containerd/containerd.sock
+```
+method 2)
+```
+kubeadm init phase upload-certs --upload-certs
+kubeadm init --control-plane-endpoint "10.10.12.22"  --certificate-key $KEY_FROM_STEP1 --pod-network-cidr 10.244.0.0/16 --cri-socket unix:///var/run/containerd/containerd.sock
+```
+```
 kubeadm token list
 kubeadm token create --print-join-command
 ```
