@@ -58,6 +58,11 @@ spec:
         ports:
         - containerPort:80
 ```
+Scaling Replication Controller
+```
+kubectl scale --replicas=8 rc/nginx-rc
+
+```
 verify:
 ```
 kubectl apply -f rc.yaml
