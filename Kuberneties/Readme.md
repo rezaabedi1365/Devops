@@ -91,6 +91,7 @@ kubectl get nodes
 ## Service
 * ClusterIP
 * NodePort
+    - above 30000
 * LoadBalancer
 * ExternalName
 ```
