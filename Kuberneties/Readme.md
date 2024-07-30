@@ -84,3 +84,9 @@ kubectl get deployment,pod,svc
 kubectl create ns test
 kubectl get nodes
 ```
+# logs
+```
+kubectl logs nginx-pod-01 -f
+kubectl logs rc/nginx-rc
+
+```
