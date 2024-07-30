@@ -105,6 +105,8 @@ apiVersion: v1
 kind: Service
 metadate:
   name: nginx-svc
+  labels:
+    app: myapp
 spec:
   selector:
     app: nginx
@@ -112,6 +114,41 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 9376 
+```
+ClusterIP Service
+```
+apiVersion: v1
+kind: Endpoings
+metadate:
+  name: nginx-svc
+subsets:
+  - addresses:
+      - ip: 192.0.2.42
+    ports:
+      - protocol: TCP
+        port: 80
+        targetPort: 9376
+```
+NodePort Service
+```
+apiVersion: v1
+kind: Service
+metadate:
+  name: nginx-svc
+spec:
+  type: NodePort
+  ports:
+    - targetPort: 80
+      port: 80
+      nodetPort: 30008
+  selector:
+    app: myapp
+```
+
+
+verify:
+```
+kubectl get svc
 ```
 ```
 kubectl create -f svc.yaml
