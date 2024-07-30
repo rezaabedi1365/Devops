@@ -83,12 +83,21 @@ kubectl cluster-info
 kubectl get pods -n kube-system
 kubectl get deployment,pod,svc
 ```
-# Namespace
+## Namespace
 ```
 kubectl create ns test
 kubectl get nodes
 ```
-# logs
+## Service
+* ClusterIP
+* NodePort
+* LoadBalancer
+* ExternalName
+```
+
+```
+
+## logs
 ```
 kubectl logs nginx-pod-01 -f
 kubectl logs rc/nginx-rc
