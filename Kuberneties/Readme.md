@@ -1,3 +1,12 @@
+## Kubectl Bash Auto Completion
+```
+apt-get install bash-completion
+kubectl completion bash | sudo tee /etc/bash_completion.d/kubectl > /dev/null
+echo 'alias k=kubectl' >> ~/.bashrc
+echo 'complete -F __start_kubectl k' >> ~/.bashrc
+bash -l
+```
+
 
 ## Pods
 ```
@@ -66,5 +75,6 @@ kubectl get deployment,pod,svc
 ```
 # Namespace
 ```
-
+kubectl create ns test
+kubectl get nodes
 ```
