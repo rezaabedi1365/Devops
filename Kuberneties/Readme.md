@@ -139,7 +139,7 @@ spec:
   type: NodePort
   ports:
     - targetPort: 80
-      port: 80
+      port: 8080
       nodetPort: 30008
   selector:
     app: myapp
