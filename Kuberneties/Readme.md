@@ -44,7 +44,7 @@ spec:
   template:
     metadate:
       labels:
-        app:  nginx
+        app: nginx
     spec:
       containers:
       - name: nginx-container
