@@ -87,3 +87,9 @@ kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/
 # you can use wave insted flannel
 kubectl apply -f https://reweave.azurewebsites.net/k8s/v1.30/net.yaml
 
+### Step 7: Kubectl Bash Auto Completion
+apt-get install bash-completion
+kubectl completion bash | sudo tee /etc/bash_completion.d/kubectl > /dev/null
+echo 'alias k=kubectl' >> ~/.bashrc
+echo 'complete -F __start_kubectl k' >> ~/.bashrc
+bash -l
