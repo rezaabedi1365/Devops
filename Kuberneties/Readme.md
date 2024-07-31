@@ -6,7 +6,9 @@ echo 'alias k=kubectl' >> ~/.bashrc
 echo 'complete -F __start_kubectl k' >> ~/.bashrc
 bash -l
 ```
-
+# Kubernetes YAML Generator 
+- https://gimlet.io/k8s-yaml-generator
+- https://k8syaml.com/
 
 ## Pods
 Create pod with kubectl
