@@ -14,6 +14,12 @@ kubeadm init --control-plane-endpoint "10.10.12.22"  --certificate-key $KEY_FROM
 kubeadm token list
 kubeadm token create --print-join-command
 ```
+# Kubectl Bash Auto Completion
+apt-get install bash-completion
+kubectl completion bash | sudo tee /etc/bash_completion.d/kubectl > /dev/null
+echo 'alias k=kubectl' >> ~/.bashrc
+echo 'complete -F __start_kubectl k' >> ~/.bashrc
+bash -l
 
 # Delete Flannel
 ```
