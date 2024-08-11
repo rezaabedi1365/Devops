@@ -98,7 +98,10 @@ spec:
         ports:
         - containerPort: 80
 ```
-
+verify:
+```
+kubectl get deploy -o wide
+```
 
 ##  Nodes
 ```
