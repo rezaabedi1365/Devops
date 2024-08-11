@@ -97,10 +97,10 @@ kubectl get nodes
 * ExternalName
     - Cname Record
  
-###### cluster ip (local)
+#### cluster ip (local)
 10.10.12.10:8080  > 10.10.12.20:80
 
-###### Nodeport service
+#### Nodeport service
 nodeport 5.120.11.20:30001 > service port (master port) 10.244.2.8:8080  > pod port(target port) 10.10.12.20:80 or Pod Ports
 
 ```
