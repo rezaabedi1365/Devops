@@ -31,6 +31,9 @@ kubectl get pods nginx-web-54f478b58f-jfsx8 -o yaml
 ```
 # Scaling
 ## Replication Controller (depricated)       Vs      Deployment
+  + Rulling updates
+  + Rulling Backs
+## Replication Controller
 ```
 apiVersion: v1
 kind: ReplicationController
@@ -68,6 +71,34 @@ kubectl apply -f rc.yaml
 kubectl get rc -o wide
 kubectl describe rc nginx-rc
 ```
+## Deployment
+```
+kubectl rolling-update -f RC-V2.yaml![image](https://github.com/user-attachments/assets/71303c36-f38f-4525-b81e-7556aed541f5)
+```
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+```
+
 
 ##  Nodes
 ```
