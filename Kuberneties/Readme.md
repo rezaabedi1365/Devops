@@ -73,7 +73,7 @@ kubectl describe rc nginx-rc
 ```
 ## Deployment
 ```
-kubectl rolling-update -f RC-V2.yaml![image](https://github.com/user-attachments/assets/71303c36-f38f-4525-b81e-7556aed541f5)
+kubectl rolling-update -f RC-V2.yaml
 ```
 ```
 apiVersion: apps/v1
