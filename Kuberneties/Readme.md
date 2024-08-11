@@ -101,6 +101,7 @@ spec:
 verify:
 ```
 kubectl get deploy -o wide
+kubectl get rs -o wide
 ```
 
 ##  Nodes
