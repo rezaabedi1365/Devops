@@ -65,7 +65,8 @@ kubectl exec -it nginx-rc --bash
 verify:
 ```
 kubectl apply -f rc.yaml
-kunectl get rc -o wide
+kubectl get rc -o wide
+kubectl describe rc nginx-rc
 ```
 
 ##  Nodes
