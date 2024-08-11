@@ -153,6 +153,9 @@ verify:
 ```
 kubectl get svc
 kubectl describe svc nginx-svc-01
+
+kubectl get ep -o wide
+kubectl describe ep svc-01
 ```
 ```
 kubectl create -f svc.yaml
