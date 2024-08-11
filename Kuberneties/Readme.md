@@ -89,7 +89,7 @@ kubectl get nodes
 * NodePort
     - above 30000
 * LoadBalancer
-*   - ingress
+    - ingress
     - Metallb on bermetal
        + ALB
        + NLB
