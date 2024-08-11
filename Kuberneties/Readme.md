@@ -30,7 +30,7 @@ kubectl describe pod nginx-web-01
 kubectl get pods nginx-web-54f478b58f-jfsx8 -o yaml
 ```
 # Scaling
-## Replication Controller (depricated)  Vs Deployment
+## Replication Controller (depricated)       Vs      Deployment
 ```
 apiVersion: v1
 kind: ReplicationController
