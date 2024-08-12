@@ -38,11 +38,11 @@ metadate:
 spec:
   type: NodePort
   ports:
-    - targetPort: 80    #(pod port)
-      port: 8080        #(service port)
-      nodetPort: 30008  #(host port)
+    - targetPort: 80     #(pod port)
+      port: 8080         #(service port)
+      nodetPort: 30008   #(host port)
   selector:
-    app: myapp #Point to podName
+    app: myapp           #Point to podName
 ```
 
 
