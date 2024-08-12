@@ -17,5 +17,5 @@ kubectl get pods
 ```
 Unistall Helm
 ```
-helm list; helm uninstall my-release![image](https://github.com/user-attachments/assets/08a14467-903d-4969-9081-80d76876f26e)
+helm list; helm uninstall my-release
 ```
