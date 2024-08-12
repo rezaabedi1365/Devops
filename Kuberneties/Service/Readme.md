@@ -19,7 +19,7 @@
 apiVersion: v1
 kind: Endpoints
 metadate:
-  name: nginx-svc
+  name: nginx-svc  
 subsets:
   - addresses:
       - ip: 192.0.2.42
@@ -42,7 +42,7 @@ spec:
       port: 8080        #(service port)
       nodetPort: 30008  #(host port)
   selector:
-    app: myapp #(pod label)
+    app: myapp #Point to podName
 ```
 
 
