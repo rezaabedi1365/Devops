@@ -29,14 +29,14 @@ kubectl get pods
 kubectl describe pod nginx-web-01
 kubectl get pods nginx-web-54f478b58f-jfsx8 -o yaml
 ```
-# Scaling
+
 ##  Deployment    Vs     Replication Controller (depricated)
   + Rulling updates
   + Rulling Backs
 
 ## Deployment
 ```
-kubectl rolling-update -f deploy-01.yaml
+kubectl apply -f deploy-01.yaml
 ```
 ```
 apiVersion: apps/v1
