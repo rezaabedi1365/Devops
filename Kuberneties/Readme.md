@@ -17,14 +17,17 @@ Create pod with yaml
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nginx-pod
-  namespace: default
+  name: nginx-meta
 spec:
   containers:
-  - name: nginx-ctr
-    image: nginx:latest
+  - name: nginx-con
+    image: nginx:1.14.2
     ports:
-    - containerPort:80
+    - containerPort: 80
+```
+delete pod
+```
+kubectl delete pods [podName]
 ```
 verify:
 ```
