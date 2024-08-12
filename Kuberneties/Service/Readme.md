@@ -1,3 +1,4 @@
+for access from external to pod use service
 ## Service
 * ClusterIP
 * NodePort
