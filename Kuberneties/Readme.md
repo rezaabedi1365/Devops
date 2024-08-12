@@ -33,8 +33,8 @@ kubectl get pods nginx-web-54f478b58f-jfsx8 -o yaml
 ```
 
 ##  Deployment    Vs     Replication Controller (depricated)
-  + Rulling updates
-  + Rulling Backs
+  * + Rulling updates
+  * + Rulling Backs
 
 ## Deployment
 ```
