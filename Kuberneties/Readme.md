@@ -33,44 +33,7 @@ kubectl get pods nginx-web-54f478b58f-jfsx8 -o yaml
 ## Replication Controller (depricated)       Vs      Deployment
   + Rulling updates
   + Rulling Backs
-## Replication Controller
-```
-apiVersion: v1
-kind: ReplicationController
-metadate:
-  name=nginx-rc
-  namespace: default
-spec:
-  replicas: 5
-  selector:
-    app: nginx
 
-  template:
-    metadate:
-      labels:
-        app: nginx
-    spec:
-      containers:
-      - name: nginx-container
-        image: nginx:latest
-        ports:
-        - containerPort:80
-```
-Scaling Replication Controller
-```
-kubectl scale --replicas=8 rc/nginx-rc
-
-```
-exec 
-```
-kubectl exec -it nginx-rc --bash
-```
-verify:
-```
-kubectl apply -f rc.yaml
-kubectl get rc -o wide
-kubectl describe rc nginx-rc
-```
 ## Deployment
 ```
 kubectl rolling-update -f RC-V2.yaml
@@ -98,10 +61,15 @@ spec:
         ports:
         - containerPort: 80
 ```
+update image
+```
+kubectl set image deployment/nginx-deploy nginx=nginx:1.16.1
+```
 verify:
 ```
 kubectl get deploy -o wide
 kubectl get rs -o wide
+kubectl describe deploy nginx-deploy
 ```
 
 ##  Nodes
