@@ -7,6 +7,8 @@ Create pod with kubectl
 ```
 kubectl create deployment nginx-web --image=nginx
 kubectl expose deployment nginx-web --type NodePort --port=80
+kubectl exec -it task-pv-pod -- /bin/bash
+
 ```
 Create pod with yaml 
 ```
@@ -117,7 +119,7 @@ kubectl annotate deployment/nginx-deployment kubernetes.io/change-cause="image u
 kubectl rollout pause deployment/nginx-deployment![image](https://github.com/user-attachments/assets/3144258e-3fd4-4411-bfc3-fe1afc0d9f36)
 ```
 
-Interacting with Nodes and cluster ![image](https://github.com/user-attachments/assets/e34817b5-5e65-40b5-afa8-4f66cf816392)
+Interacting with Nodes and cluster
 * Stopping nodes for maintenance and other managements:
 ```
 kubectl cordon node2
@@ -149,9 +151,33 @@ kubectl get pods -n kube-system
 kubectl get deployment,pod,svc
 ```
 ## Namespace
+* Organizing
 ```
-kubectl create ns test
-kubectl get nodes
+kubectl apply -f pod.yaml --namespace=test
+```
+create Namespace with command
+```
+kubectl create namespace test
+```
+create Namespace with yaml file
+```
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: test
+  labels:
+    name: test
+```
+```
+kubectl apply -f test.yaml
+```
+
+
+verify:
+```
+kubectl get pods --namespace=test
+
+kubectl get namespace
 ```
 ## Service
 * ClusterIP
@@ -237,3 +263,58 @@ kubectl logs nginx-pod-01 -f
 kubectl logs rc/nginx-rc
 
 ```
+Kubectl Resource Requests & Limits
+```
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: demo
+spec:
+  hard:
+    requests.cpu: 500m
+    requests.memory: 100Mib
+    limits.cpu: 700m
+    limits.memory: 500Mib
+```
+Default Limit Range in a Namespace
+```
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: mem-limit-range
+spec:
+  limits:
+  - default:
+      memory: 512Mi
+    defaultRequest:
+      memory: 256Mi
+    type: Container
+```
+## A Pod that is run on a schedule
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: hello
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: hello
+            image: busybox
+            args:
+            - /bin/sh
+            - -c
+            - date; echo Hello from the Kubernetes cluster
+          restartPolicy: OnFailure
+
+
+## ConfigMap
+![image](https://github.com/user-attachments/assets/146e6df4-08a9-475c-91ce-769d465253d5)
+
+Helm
+* In simple terms, Helm is a package manager for Kubernetes![image](https://github.com/user-attachments/assets/94ed85a9-bc52-4490-8eb0-6fe109aecc8d)
+
+
