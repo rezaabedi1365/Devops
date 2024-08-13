@@ -5,6 +5,7 @@
 #### Selector Type
 * Equality
 * Set-Based
+
   ![image](https://github.com/user-attachments/assets/6e293d1a-0924-42f2-ac4a-ef707a4c0d09)
 
 
