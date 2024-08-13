@@ -47,27 +47,6 @@ spec:
       memory: 256Mi
     type: Container
 ```
-## A Pod that is run on a schedule
-```
-apiVersion: batch/v1
-kind: CronJob
-metadata:
-  name: hello
-spec:
-  schedule: "*/1 * * * *"
-  jobTemplate:
-    spec:
-      template:
-        spec:
-          containers:
-          - name: hello
-            image: busybox
-            args:
-            - /bin/sh
-            - -c
-            - date; echo Hello from the Kubernetes cluster
-          restartPolicy: OnFailure
-```
 
 ## ConfigMap
 ![image](https://github.com/user-attachments/assets/146e6df4-08a9-475c-91ce-769d465253d5)
