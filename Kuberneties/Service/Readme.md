@@ -63,5 +63,32 @@ kubectl describe ep svc-01
 ```
 kubectl create -f svc.yaml
 ```
+#### LoadBalancer Service
+Use olny in Service Provider - Cant use in local Kuberneties
+```
+apiVersion: v1
+kind: Service
+metadate:
+  name: nginx-svc
+spec:
+  type: LoadBalancer
+  selector:
+    app: nginx
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+```
 
+#### ExternalName Service
+Use for Cname in external name in internal environment
+```
+apiVersion: v1
+kind: Service
+metadate:
+  name: nginx-svc
+spec:
+  type: ExternalName
+  externalName: examlple.ir
 
+```
