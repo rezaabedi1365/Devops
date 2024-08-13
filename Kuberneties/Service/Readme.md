@@ -19,7 +19,7 @@
 10.10.12.10:8080  > 10.10.12.20:80
 ```
 apiVersion: v1
-kind: Endpoints
+kind: Service
 metadate:
   name: nginx-svc  
 subsets:
@@ -28,7 +28,7 @@ subsets:
     ports:
       - protocol: TCP
         port: 80
-        targetPort: 9376
+        targetPort: 8080
 ```
 #### Nodeport service
 nodeport 5.120.11.20:30001 > service port (master port) 10.244.2.8:8080  > pod port(target port) 10.10.12.20:80 or [Pod /pods/rc]
