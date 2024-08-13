@@ -21,14 +21,15 @@
 apiVersion: v1
 kind: Service
 metadate:
-  name: nginx-svc  
-subsets:
-  - addresses:
-      - ip: 192.0.2.42
-    ports:
-      - protocol: TCP
-        port: 80
-        targetPort: 8080
+  name: nginx-svc
+spec:
+  selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+clusterIP: 10.105.10.10          # optional and use for spcefy IP
 ```
 #### Nodeport service
 nodeport 5.120.11.20:30001 > service port (master port) 10.244.2.8:8080  > pod port(target port) 10.10.12.20:80 or [Pod /pods/rc]
