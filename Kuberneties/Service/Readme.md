@@ -1,6 +1,6 @@
 
 ## Service
-* ClusterIP
+* ClusterIP (Default)
 * NodePort
     - above 30000
 * LoadBalancer
