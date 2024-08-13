@@ -47,12 +47,15 @@ spec:
   selector:
     app: myapp           #Point to podName
 ```
-
-
+show pods behind specfic service
+kubectl describe svc nginx-svc
+```
+kubectl describe svc nginx-svc
+```
 verify:
 ```
 kubectl get svc
-kubectl describe svc nginx-svc-01
+kubectl describe svc nginx-svc
 
 kubectl get ep -o wide
 kubectl describe ep svc-01
