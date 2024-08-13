@@ -1,4 +1,9 @@
 #### Selector is condition for select nod to implement pod,servce
+* selector in Nod
+* Selector in Service
+
+---------------------------------------------------------------------------------------------------------
+## Selector in Node
 *you can select nod with nodeSelector and Nod label 
 ![image](https://github.com/user-attachments/assets/48734580-dd23-4096-9adb-04dec17ec888)
 
