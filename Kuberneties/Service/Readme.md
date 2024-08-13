@@ -11,6 +11,8 @@
        + GWLB 
 * ExternalName
     - Cname Record
+![image](https://github.com/user-attachments/assets/4b233b0f-4672-4a33-9c7c-88107050a1ee)
+
  ------------------------------------------------------------------------------------------------------------------------------
 
 #### cluster ip (local)
