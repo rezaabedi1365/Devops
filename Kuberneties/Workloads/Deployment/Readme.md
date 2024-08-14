@@ -94,7 +94,7 @@ spec:
         - containerPort: 80
 ```
 
-Rolling Back to a Previous Revision
+### Rolling Back to a Previous Revision
 ```
 kubectl rollout undo deployment/nginx-deployment
 kubectl rollout undo deployment/nginx-deployment --to-revision=2
@@ -104,14 +104,10 @@ kubectl rollout status deployment/nginx-deployment
 
 kubectl rollout pause deployment/nginx-deployment
 kubectl rollout resume deployment/nginx-deployment
+
+kubectl annotate deployment/nginx-deployment kubernetes.io/change-cause="image updated to 1.16.1"
 ```
 
-### Checking Rollout History
-```
-kubectl rollout history deployment nginx-deployment
-kubectl annotate deployment/nginx-deployment kubernetes.io/change-cause="image updated to 1.16.1"
-kubectl rollout pause deployment/nginx-deployment![image](https://github.com/user-attachments/assets/3144258e-3fd4-4411-bfc3-fe1afc0d9f36)
-```
 
 ### Interacting with Nodes and cluster
 * Stopping nodes for maintenance and other managements:
