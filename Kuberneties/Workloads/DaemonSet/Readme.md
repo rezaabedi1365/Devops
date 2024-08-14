@@ -33,7 +33,7 @@ spec:
 ```
 
 ### Rolling Back to a Previous Revision
-deployment 
+daemonset
 * daemonset/nginx-deployment
 * daemonset.app/nginx-deployment
 ```
