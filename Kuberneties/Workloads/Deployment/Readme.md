@@ -1,5 +1,4 @@
 
-* when you create deploment if delete pod imediatly crate agin with deployment
 ##  Deployment    Vs     Replication Controller (depricated)
   * +Rulling updates
   * +Rulling Backs
@@ -36,17 +35,21 @@ spec:
         ports:
         - containerPort: 80
 ```
-Scaling Deployments
+### Delete Deployment
+* when you create deploment if delete pod imediatly crate agin with deployment
+kubectl delete deployment nginx-deployment
+
+### Scaling Deployments
 ```
 kubectl scale deployment/nginx-deployment --replicas=10
 kubectl autoscale deployment/nginx-deployment --min=10 --max=15 --cpu-percent=80
 kubectl get rc -o wide
 ```
-update image
+### update image
 ```
 kubectl set image deployment/nginx-deploy nginx=nginx:1.16.1
 ```
-Updating a Deployment Using Yaml
+##### Updating a Deployment Using Yaml
 ```
 apiVersion: apps/v1
 kind: Deployment
@@ -85,14 +88,14 @@ kubectl rollout history deployment/nginx-deployment
 kubectl rollout pause deployment/nginx-deployment
 ```
 
-Checking Rollout History
+### Checking Rollout History
 ```
 kubectl rollout history deployment nginx-deployment
 kubectl annotate deployment/nginx-deployment kubernetes.io/change-cause="image updated to 1.16.1"
 kubectl rollout pause deployment/nginx-deployment![image](https://github.com/user-attachments/assets/3144258e-3fd4-4411-bfc3-fe1afc0d9f36)
 ```
 
-Interacting with Nodes and cluster
+### Interacting with Nodes and cluster
 * Stopping nodes for maintenance and other managements:
 ```
 kubectl cordon node2
@@ -102,7 +105,7 @@ kubectl drain node2
 ```
 
 
-verify:
+### verify:
 ```
 kubectl get deploy
 kebectl describe deploy nginx-rs
