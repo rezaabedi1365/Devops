@@ -95,6 +95,9 @@ spec:
 ```
 
 ### Rolling Back to a Previous Revision
+deployment 
+* deployment/nginx-deployment
+* deployment.app/nginx-deployment
 ```
 kubectl rollout undo deployment/nginx-deployment
 kubectl rollout undo deployment/nginx-deployment --to-revision=2
