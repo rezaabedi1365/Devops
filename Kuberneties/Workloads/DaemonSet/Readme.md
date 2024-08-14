@@ -12,7 +12,7 @@ kind: DaemonSet
 metadata:
   name: nginx-Daemonset
 spec:
-  replicas: 3
+  revisionHistoryLimit: 3
   selector:
     matchLabels:
       app: nginx
