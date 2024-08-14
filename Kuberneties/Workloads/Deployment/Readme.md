@@ -98,8 +98,12 @@ Rolling Back to a Previous Revision
 ```
 kubectl rollout undo deployment/nginx-deployment
 kubectl rollout undo deployment/nginx-deployment --to-revision=2
+
 kubectl rollout history deployment/nginx-deployment
+kubectl rollout status deployment/nginx-deployment
+
 kubectl rollout pause deployment/nginx-deployment
+kubectl rollout resume deployment/nginx-deployment
 ```
 
 ### Checking Rollout History
