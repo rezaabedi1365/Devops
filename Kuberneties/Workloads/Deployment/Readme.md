@@ -2,8 +2,15 @@
 ##  Deployment    Vs     Replication Controller (depricated)
   * +Rulling updates
   * +Rulling Backs
+------------------------------------------------
 
 ## Deployment
+* revisionHistoryLimit
+* strategy
+  - recreate
+  - rollingUpdate
+     + maxSure
+     + maxUnavailable
 ```
 kubectl apply -f deploy-01.yaml
 ```
