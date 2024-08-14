@@ -55,7 +55,7 @@ kubectl rollout resume daemonset/nginx-Daemonset
 ### verify:
 ```
 kubectl get daemonset
-kebectl describe daemonset nginx-rs
+kubectl describe daemonset nginx-daemonset
 
 kubectl get rs
 kubectl describe rs
