@@ -1,5 +1,5 @@
 
-
+* when you create deploment if delete pod imediatly crate agin with deployment
 ##  Deployment    Vs     Replication Controller (depricated)
   * +Rulling updates
   * +Rulling Backs
@@ -21,7 +21,10 @@ spec:
     matchLabels:
       app: nginx
   strategy:
-    type: 
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable : 0
   template:
     metadata:
       labels:
