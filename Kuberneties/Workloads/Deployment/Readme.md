@@ -20,6 +20,8 @@ spec:
   selector:
     matchLabels:
       app: nginx
+  strategy:
+    type: 
   template:
     metadata:
       labels:
@@ -82,7 +84,7 @@ kubectl rollout pause deployment/nginx-deployment
 
 Checking Rollout History
 ```
-kubectl rollout history deployment/nginx-deployment
+kubectl rollout history deployment nginx-deployment
 kubectl annotate deployment/nginx-deployment kubernetes.io/change-cause="image updated to 1.16.1"
 kubectl rollout pause deployment/nginx-deployment![image](https://github.com/user-attachments/assets/3144258e-3fd4-4411-bfc3-fe1afc0d9f36)
 ```
