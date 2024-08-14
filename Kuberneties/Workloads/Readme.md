@@ -43,3 +43,8 @@ spec:
         ports:
         - containerPort: 80
 ```
+verify:
+```
+kubectl get pods
+kubectl describe rs Replica-1
+```
