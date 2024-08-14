@@ -18,9 +18,9 @@ spec:
   parallelism: 2
 
   template:
-    metadata:
-      labels:
-        app: nginx
+    spec:
+      restartPolicyt: Never
+
     spec:
       containers:
       - name: nginx
