@@ -35,6 +35,8 @@ spec:
         ports:
         - containerPort: 80
 ```
+![image](https://github.com/user-attachments/assets/4e2c8b7a-79e6-4cf6-b319-6afb0c6f1237)
+
 ### Delete Deployment
 * when you create deploment if delete pod imediatly crate agin with deployment
 ```
