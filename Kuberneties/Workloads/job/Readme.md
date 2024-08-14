@@ -19,9 +19,18 @@ spec:
     spec:
       containers:
       - name: hello
-        image: alpine: latest
+        image: alpine:latest
         command: ["/bin/bash", "-c"]
         args: ["echo hello from $HOSTNAME"]
       restartPolicy: Never
 
+```
+Delete job 
+```
+kubectl delete job job-example
+```
+verify:
+```
+kubectl get jobs
+kubectl get pods
 ```
