@@ -24,7 +24,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        restartPolicy: Never
         image: nginx:1.14.2
         ports:
         - containerPort: 80
