@@ -1,5 +1,6 @@
 
-##  Deployment    Vs     Replication Controller (depricated)
+##  Deployment    Vs     ReplicaSet 
+#### Replication Controller (depricated)
   * +Rulling updates
   * +Rulling Backs
 ------------------------------------------------
