@@ -11,20 +11,17 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: job-example
-
 spec:
   backoffLimit: 4
   completions: 4
   parallelism: 2
-
   template:
     spec:
-      restartPolicyt: Never
-
-    spec:
       containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
+      - name: hello
+        image: alpine: latest
+        command: ["/bin/bash", "-c"]
+        args: ["echo hello from $HOSTNAME"]
+      restartPolicy: Never
+
 ```
