@@ -1,4 +1,5 @@
 use for create pod in all nod and always available with high priority
+- can use nod selector
 ## DaemonSets
 * revisionHistoryLimit
 * updateStrategy
