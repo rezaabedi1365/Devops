@@ -102,13 +102,15 @@ deployment
 kubectl rollout undo deployment/nginx-deployment
 kubectl rollout undo deployment/nginx-deployment --to-revision=2
 
+kubectl annotate deployment/nginx-deployment kubernetes.io/change-cause="image updated to 1.16.1"
+
 kubectl rollout history deployment/nginx-deployment
 kubectl rollout status deployment/nginx-deployment
 
 kubectl rollout pause deployment/nginx-deployment
 kubectl rollout resume deployment/nginx-deployment
 
-kubectl annotate deployment/nginx-deployment kubernetes.io/change-cause="image updated to 1.16.1"
+
 ```
 
 
