@@ -31,17 +31,20 @@ spec:
     matchLabels:
       app: nginx
       env: prod
+      role: front
   template:
     metadata:
       labels:
         app: nginx
         env: prod
+        role: front
     spec:
       containers:
       - name: nginx
         image: nginx
         ports:
-        - containerPort: 80
+          - containerPort: 80
+            protocol: TCP
 ```
 verify:
 ```
