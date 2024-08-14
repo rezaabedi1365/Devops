@@ -34,19 +34,19 @@ spec:
 
 ### Rolling Back to a Previous Revision
 daemonset
-* daemonset/nginx-deployment
-* daemonset.app/nginx-deployment
+* daemonset/nginx-Daemonset
+* daemonset.app/nginx-Daemonset
 ```
-kubectl rollout undo daemonset/nginx-deployment
-kubectl rollout undo daemonset/nginx-deployment --to-revision=2
+kubectl rollout undo daemonset/nginx-Daemonset
+kubectl rollout undo daemonset/nginx-Daemonset --to-revision=2
 
 kubectl annotate daemonset/nginx-deployment kubernetes.io/change-cause="image updated to 1.16.1"
 
-kubectl rollout history daemonset/nginx-deployment
-kubectl rollout status daemonset/nginx-deployment
+kubectl rollout history daemonset/nginx-Daemonset
+kubectl rollout status daemonset/nginx-Daemonset
 
-kubectl rollout pause daemonset/nginx-deployment
-kubectl rollout resume daemonset/nginx-deployment
+kubectl rollout pause daemonset/nginx-Daemonset
+kubectl rollout resume daemonset/nginx-Daemonset
 
 
 ```
@@ -60,5 +60,5 @@ kebectl describe daemonset nginx-rs
 kubectl get rs
 kubectl describe rs
 
-kubectl logs daemonset/nginx-deployment
+kubectl logs daemonset/nginx-Daemonset
 ```
