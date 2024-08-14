@@ -5,7 +5,7 @@
 * Job
 * CronJob
 
-## Replicatset
+## ReplicaSet
 ```
 apiVersion: v1
 kind: ReplicaSet
