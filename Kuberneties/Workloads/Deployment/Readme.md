@@ -40,6 +40,7 @@ spec:
 ### Delete Deployment
 * when you create deploment if delete pod imediatly crate agin with deployment
 ```
+kubectl get deploy
 kubectl delete deployment nginx-deployment
 ```
 
