@@ -7,7 +7,7 @@
   -------------------------------------------------------------------------------------------
 
 ```
-apiVersion: apps/v1
+apiVersion: batch/v1
 kind: Job
 metadata:
   name: job-example
