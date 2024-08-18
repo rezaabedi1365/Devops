@@ -9,7 +9,7 @@ CronJobs within Kubernetes use UTC OLNY
 ![image](https://github.com/user-attachments/assets/c7f9b2dd-2d23-497b-8ad4-99bfb4ce1368)
 
 ```
-apiVersion: batch/v1
+apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
   name: cronjob-example
