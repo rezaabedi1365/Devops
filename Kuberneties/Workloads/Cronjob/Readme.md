@@ -17,13 +17,20 @@ spec:
   schedule: "*/1 * * * *"
   successfulJobHistoryLimit: 3
   failedJobHistoryLomit: 1
+
   jobTemplate:
     spec:
+      backoffLimit: 4
       completions: 4
       parallelism: 2
       template:
-        command: ["/bin/bash", "-c"]
-        args: ["echo hello from $HOSTNAME"]
+        spec:
+          containers:
+          - name: hello
+            image: alpine:latest
+            command: ["/bin/bash", "-c"]
+            args: ["echo hello from $HOSTNAME"]
+        restartPolicy: Never
       
 ```
 
