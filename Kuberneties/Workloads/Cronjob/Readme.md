@@ -10,21 +10,21 @@ CronJobs within Kubernetes use UTC OLNY
 
 ```
 apiVersion: batch/v1
-kind: Job
+kind: CronJob
 metadata:
-  name: job-example
+  name: cronjob-example
 spec:
-  backoffLimit: 4
-  completions: 4
-  parallelism: 2
-  template:
+  schedule: "*/1 * * * *"
+  successfulJobHistoryLimit: 3
+  failedJobHistoryLomit: 1
+  jobTemplate:
     spec:
-      containers:
-      - name: hello
-        image: alpine:latest
+      completions: 4
+      parallelism: 2
+      template:
         command: ["/bin/bash", "-c"]
         args: ["echo hello from $HOSTNAME"]
-      restartPolicy: Never
+      
 ```
 
 
