@@ -16,7 +16,7 @@ metadata:
 spec:
   schedule: "*/1 * * * *"
   successfulJobHistoryLimit: 3
-  failedJobHistoryLomit: 1
+  failedJobHistoryLimit: 1
   jobTemplate:
     spec:
       completions: 4
@@ -24,7 +24,7 @@ spec:
       template:
         spec:
           containers:
-          - name: hello
+          - name: hello2
             image: alpine:latest
             command: ["/bin/bash", "-c"]
             args: ["echo hello from $HOSTNAME"]
