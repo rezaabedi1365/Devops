@@ -20,7 +20,6 @@ spec:
 
   jobTemplate:
     spec:
-      backoffLimit: 4
       completions: 4
       parallelism: 2
       template:
@@ -30,7 +29,7 @@ spec:
             image: alpine:latest
             command: ["/bin/bash", "-c"]
             args: ["echo hello from $HOSTNAME"]
-        restartPolicy: Never
+           restartPolicy: Never
       
 ```
 
