@@ -29,7 +29,7 @@ spec:
             image: alpine:latest
             command: ["/bin/bash", "-c"]
             args: ["echo hello from $HOSTNAME"]
-           restartPolicy: Never
+          restartPolicy: Never
       
 ```
 
