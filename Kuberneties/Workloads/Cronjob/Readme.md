@@ -17,7 +17,6 @@ spec:
   schedule: "*/1 * * * *"
   successfulJobHistoryLimit: 3
   failedJobHistoryLomit: 1
-
   jobTemplate:
     spec:
       completions: 4
