@@ -1,4 +1,5 @@
 CronJobs within Kubernetes use UTC OLNY
+https://medium.com/@muppedaanvesh/a-hand-on-guide-to-kubernetes-cronjobs-%EF%B8%8F-47393a98716d
 
 * schedule
 * successfulJobHistoryLimit
@@ -8,48 +9,72 @@ CronJobs within Kubernetes use UTC OLNY
 
 ![image](https://github.com/user-attachments/assets/c7f9b2dd-2d23-497b-8ad4-99bfb4ce1368)
 
-```
-apiVersion: batch/v1beta1
-kind: CronJob
-metadata:
-  name: cronjob-example
-spec:
-  schedule: "*/1 * * * *"
-  successfulJobHistoryLimit: 3
-  failedJobHistoryLimit: 1
-  jobTemplate:
-    spec:
-      completions: 4
-      parallelism: 2
-      template:
-        spec:
-          containers:
-          - name: hello2
-            image: alpine:latest
-            command: ["/bin/bash", "-c"]
-            args: ["echo hello from $HOSTNAME"]
-          restartPolicy: Never
-      
-```
+1. Basic CronJobs
 ```
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: hello
+  name: basic-cronjob
 spec:
-  schedule: "* * * * *"
+  schedule: "*/1 * * * *"  # Run every 1 minutes
   jobTemplate:
     spec:
       template:
         spec:
           containers:
-          - name: hello
-            image: busybox:1.28
-            imagePullPolicy: IfNotPresent
-            command:
-            - /bin/sh
-            - -c
-            - date; echo Hello from the Kubernetes cluster
-          restartPolicy: OnFailure
+          - name: basic-container
+            image: busybox
+            command: ["echo", "Hello from the basic CronJob"]
+          restartPolicy: Never
 
+```
+2. Job History Limits CronJobs
+```
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: history-limit-cronjob
+spec:
+  schedule: "*/1 * * * *"  # Run every 1 minutes
+  successfulJobsHistoryLimit: 2  # Retain up to 2 successful Job completions
+  failedJobsHistoryLimit: 1  # Retain only the latest failed Job completion
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: history-limit-container
+            image: busybox
+            command: ["echo", "Hello from the history-limit CronJob"]
+          restartPolicy: Never
+      
+```
+3. Concurrency Policy CronJobs
+```
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: concurrency-cronjob
+spec:
+  schedule: "*/1 * * * *"  # Run every 1 minutes
+  concurrencyPolicy: Forbid  # Do not allow concurrent executions
+  # Allowed Values are
+  # : Allow (default)
+  # : Forbid
+  # : Replace
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: concurrency-container
+            image: busybox
+            command: ["echo", "Hello from the concurrency CronJob"]
+          restartPolicy: Never
+```
+
+
+Deleting a CronJob
+```
+kubectl delete cronjob hello
 ```
