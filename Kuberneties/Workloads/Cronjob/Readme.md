@@ -1,5 +1,7 @@
-CronJobs within Kubernetes use UTC OLNY
 * https://medium.com/@muppedaanvesh/a-hand-on-guide-to-kubernetes-cronjobs-%EF%B8%8F-47393a98716d
+* 
+CronJobs within Kubernetes use UTC OLNY
+
 
 * schedule
 * successfulJobHistoryLimit
