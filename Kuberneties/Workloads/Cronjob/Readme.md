@@ -73,6 +73,10 @@ spec:
           restartPolicy: Never
 ```
 
+verify:
+```
+kubectl describe cronjob history-limit-cronjob
+```
 
 Deleting a CronJob
 ```
