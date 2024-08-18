@@ -5,7 +5,7 @@
 * spec.template.spec.restartPolicy
 
   -------------------------------------------------------------------------------------------
-
+you can impelemnt job or command with this workload
 ```
 apiVersion: batch/v1
 kind: Job
