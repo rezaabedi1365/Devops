@@ -1,10 +1,10 @@
 
-##  Deployment    Vs     ReplicaSet 
+##  Deployment    &     ReplicaSet 
 #### Replication Controller (depricated)
   * +Rulling updates
   * +Rulling Backs
 ------------------------------------------------
-
+In deployment we create replicaset
 ## Deployment
 * revisionHistoryLimit
 * strategy
