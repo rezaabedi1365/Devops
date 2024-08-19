@@ -12,5 +12,6 @@
 ---------------------------------------------------------------------------
  ## Volume Type
 
- ![image](https://github.com/user-attachments/assets/c888992f-f35e-4019-af7a-82dd9724c9ed)
+ ![image](https://github.com/user-attachments/assets/b415c151-2bfe-4456-9cce-aa634a5595c3)
+
 
