@@ -1,17 +1,15 @@
 
 * local storage
-
+ - hostpath
+ - Ephemeral [temporady]
 حثق
 * Remote storage
-  * [ersistent Volumes]
-    - NFS
-    - CephFS
-    - Ceph-RBD
-    - GlusterFS
----------------------------------------------------------------------------
-## Ephemeral vs Persistent
-* store Data temporary
-* store Data permanently
+  - [Persistent Volumes]
+     + NFS
+     + CephFS
+     + Ceph-RBD
+     + GlusterFS
+
 --------------------------------------------------------------------------
 * Volumes
   - volumes  ( per Pod)
