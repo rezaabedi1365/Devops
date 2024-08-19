@@ -8,6 +8,13 @@
    * ReadWriteOnce
    * ReadWriteMany
    * ReadOnlyMany
+- persistentVolumeReclaimPolicy
+     * Retain
+     * Delete
+- StorageClassName
+     * slow
+- mountOptions
+  
 
 ```
 apiVersion: v1
