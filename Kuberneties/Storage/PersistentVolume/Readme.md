@@ -5,16 +5,21 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: test-pd
+  name: nfsserver
 spec:
-  containers:
-  - image: registry.k8s.io/test-webserver
-    name: test-container
-    volumeMounts:
-    - mountPath: /cache
-      name: cache-volume
-  volumes:
-  - name: cache-volume
-    emptyDir:
-      sizeLimit: 500Mi
+  capacity:
+    storage: 50Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+    - ReadWriteMany
+
+  PersistentVolumeReclaimPolicy: Delete
+  storageClassName: slow
+  mountOptions:
+    - hard
+    - nfservers=4.1
+  nfs:
+    path: /exports
+    server: 172.22.0.42
 ```
