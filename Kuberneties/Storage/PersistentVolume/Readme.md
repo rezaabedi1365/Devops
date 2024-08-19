@@ -19,9 +19,7 @@ spec:
     storage: 50Gi
   volumeMode: Filesystem
   accessModes:
-    - ReadWriteOnce
     - ReadWriteMany
-
   PersistentVolumeReclaimPolicy: Delete
   storageClassName: slow
   mountOptions:
