@@ -50,6 +50,9 @@ spec:
     requests:
       storage: 1Gi
   storageClassName: slow
+  selector:
+    matchLabels:
+      type: hostpath
 ```
 ------------------------------------------------------------------------------------------------------
 
