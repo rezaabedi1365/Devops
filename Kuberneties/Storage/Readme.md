@@ -1,3 +1,4 @@
+https://kubernetes.io/docs/concepts/storage/volumes/
 
 * local storage
  - hostpath
