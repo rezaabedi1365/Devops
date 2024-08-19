@@ -1,4 +1,10 @@
+# Secret
 
+```
+kubectl create secret generic literal-secret \
+--from-literal=username=admin \
+--from-literal=passwork=123456aA 
+```
 
 ```
 apiVersion: v1
