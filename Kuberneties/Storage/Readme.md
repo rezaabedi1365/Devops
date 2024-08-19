@@ -1,6 +1,9 @@
 
 * local storage
+
+حثق
 * Remote storage
+  * [ersistent Volumes]
     - NFS
     - CephFS
     - Ceph-RBD
