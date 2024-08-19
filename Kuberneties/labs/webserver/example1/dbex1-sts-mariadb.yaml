@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mariadb
+  labels:
+    component: mariadb
+spec:
+  ports:
+  - port: 3306
+    name: mariadb
+  clusterIP: None
+  selector:
+    component: mariadb
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mariadb
+  labels:
+    app: wordpress
+    component: mariadb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wordpress
+      component: mariadb
+  serviceName: mariadb
+  template:
+    metadata:
+      labels:
+        app: wordpress
+        component: mariadb
+    spec:
+      containers:
+      - image: mariadb:10.3
+        name: mariadb
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: password
+        ports:
+        - containerPort: 3306
+          name: mariadb
+        volumeMounts:
+        - name: mysql-data
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-data
+        hostPath:
+          path: /data/mysql
+          type: DirectoryOrCreate
