@@ -42,3 +42,9 @@ spec:
     emptyDir:
       sizeLimit: 500Mi
 ```
+
+verify:
+```
+kubectl exex -it volume-example nginx --bash
+kubectl exex -it volume-example nginx --sh
+```
