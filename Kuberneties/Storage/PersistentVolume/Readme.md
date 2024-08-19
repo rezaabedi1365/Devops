@@ -1,5 +1,5 @@
 
-# PersistentVolume
+# PersistentVolume & PersistentVolumeClaim
 - capacity.storage
 - columeMode
     * Filesystem
@@ -36,3 +36,21 @@ spec:
     path: /exports
     server: 172.22.0.42
 ```
+------------------------------------------------------------------------------------------------------
+# PersistentVolumeClaim
+```
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-sc-example
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: slow
+```
+------------------------------------------------------------------------------------------------------
+
+![image](https://github.com/user-attachments/assets/213e1730-f820-4dd1-88fe-3c73d2704369)
