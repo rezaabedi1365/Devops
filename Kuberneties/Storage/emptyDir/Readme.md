@@ -45,6 +45,6 @@ spec:
 
 verify:
 ```
-kubectl exex -it volume-example nginx --bash
-kubectl exex -it volume-example nginx --sh
+kubectl exex -it volume-example -c nginx --bash
+kubectl exex -it volume-example -c nginx --sh
 ```
