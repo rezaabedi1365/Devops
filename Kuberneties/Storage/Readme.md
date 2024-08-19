@@ -3,7 +3,7 @@ https://kubernetes.io/docs/concepts/storage/volumes/
 * local storage
  - hostpath
  - Ephemeral [temporady]
-حثق
+
 * Remote storage
   - [Persistent Volumes]
      + NFS
