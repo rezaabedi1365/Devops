@@ -1,6 +1,9 @@
 ## ConfigMap
 
 ```
+kubectl create configmap file-example --from-file=ifo/city --from-file=info/state
+```
+```
 apiVersion: v1
 kind: ConfigMap
 metadata:
