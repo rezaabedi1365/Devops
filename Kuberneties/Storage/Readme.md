@@ -5,9 +5,11 @@
     - Ceph-RBD
     - GlusterFS
 ---------------------------------------------------------------------------
+* Volumes
 * Persistent Volumes ( store Date does not temporary )
-* 
-* 
+* Persistent VolumeClaims
+* StorageClesses
+  
 
 ---------------------------------------------------------------------------
  ## Volume Type
