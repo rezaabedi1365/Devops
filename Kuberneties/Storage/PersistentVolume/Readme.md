@@ -1,5 +1,13 @@
 
 # PersistentVolume
+- capacity.storage
+- columeMode
+    * Filesystem
+    * Block
+- accessModes
+   * ReadWriteOnce
+   * ReadWriteMany
+   * ReadOnlyMany
 
 ```
 apiVersion: v1
