@@ -1,16 +1,16 @@
 https://kubernetes.io/docs/concepts/storage/volumes/
 
-* local storage
+### local storage
  - hostpath
  - Ephemeral [temporady]
 
-* Remote storage
-  - [Persistent Volumes]
+### Remote storage
+  * [Persistent Volumes]
      + NFS
      + Ceph
-        * CephFS
-        * Ceph-RBD
-        * Ceph-s3
+         - CephFS
+         - Ceph-RBD
+         - Ceph-s3
       + GlusterFS
       + MinIO
 
