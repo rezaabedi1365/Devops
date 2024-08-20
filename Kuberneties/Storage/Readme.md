@@ -7,9 +7,12 @@ https://kubernetes.io/docs/concepts/storage/volumes/
 * Remote storage
   - [Persistent Volumes]
      + NFS
-     + CephFS
-     + Ceph-RBD
-     + GlusterFS
+     + Ceph
+        * CephFS
+        * Ceph-RBD
+        * Ceph-s3
+      + GlusterFS
+      + MinIO
 
 --------------------------------------------------------------------------
 * Volumes
