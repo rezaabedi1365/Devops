@@ -40,12 +40,16 @@ helm list; helm uninstall my-release
 ```
 --------------------------------------------------------------------------------------------------------------
 install ingress-nginx
+*   step1 ) pull tar file
 ```
 helm pull ingress-nginx/ingress/nginx
-helm pull ingress-nginx/ingress/nginx 3.4.1
+helm pull ingress-nginx/ingress/nginx --version 3.4.1
 helm pull ingress-nginx/ingress/nginx --untar
 ```
+* step2) change value.yaml
+* step3)
 
+  
 ![image](https://github.com/user-attachments/assets/7b0811fc-b236-4f28-ac00-cfbf1af4c285)
 
 
