@@ -20,10 +20,14 @@ add repo to helm
 # add first repo
 helm repo add stable https://charts.helm.sh/stable
 # add second repo
-helm search repo ingress-nginx
 helm repo add ingress-nginx https://github.com/kubernetes/ingress-nginx
 
 helm repo update
+```
+
+search in repolist
+```
+helm search repo ingress-nginx
 ```
 
 Unistall Helm
