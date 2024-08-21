@@ -1,6 +1,9 @@
-https://helm.sh/docs/intro/install/
+https://artifacthub.io/
+
 
 install 
+https://helm.sh/docs/intro/install/
+
 ```
 curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
 sudo apt-get install apt-transport-https --yes
