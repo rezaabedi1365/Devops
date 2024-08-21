@@ -16,6 +16,8 @@ helm repo add stable https://charts.helm.sh/stable
 verify:
 ```
 helm version
+helm repo list
+helm list --all-namespace
 ```
 
 add repo to helm
@@ -47,6 +49,8 @@ helm pull ingress-repo1/ingress/nginx --version 3.4.1
 helm pull ingress-repo1/ingress/nginx --untar
 ```
 * step2) change value.yaml
+      - change port
+      - chenge replica
 * step3) Create namespace
 ```
 kubectl create namespace ingress-Namespace
