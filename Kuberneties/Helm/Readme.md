@@ -38,6 +38,14 @@ Unistall Helm
 ```
 helm list; helm uninstall my-release
 ```
+--------------------------------------------------------------------------------------------------------------
+install ingress-nginx
+```
+helm pull ingress-nginx/ingress/nginx
+helm pull ingress-nginx/ingress/nginx 3.4.1
+helm pull ingress-nginx/ingress/nginx --untar
+```
 
-![image](https://github.com/user-attachments/assets/33944cad-2363-4c1f-8ea4-afe8016393d8)
+![image](https://github.com/user-attachments/assets/7b0811fc-b236-4f28-ac00-cfbf1af4c285)
+
 
