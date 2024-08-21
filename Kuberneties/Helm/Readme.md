@@ -42,16 +42,16 @@ helm list; helm uninstall my-release
 ```
 --------------------------------------------------------------------------------------------------------------
 install ingress-nginx
-* step1) pull tar file
+step1) pull tar file
 ```
 helm pull ingress-repo1/ingress/nginx
 helm pull ingress-repo1/ingress/nginx --version 3.4.1
 helm pull ingress-repo1/ingress/nginx --untar
 ```
-* step2) change value.yaml
-      - change port
-      - chenge replica
-* step3) Create namespace
+step2) change value.yaml
+  * change port
+  * chenge replica
+step3) Create namespace
 ```
 kubectl create namespace ingress-Namespace
 ```
