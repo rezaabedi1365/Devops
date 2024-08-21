@@ -24,14 +24,14 @@ add repo to helm
 helm repo add stable https://charts.helm.sh/stable
 # add second repo
 helm search hub ingress-nginx
-helm repo add ingress-nginx https://github.com/kubernetes/ingress-nginx
+helm repo add ingress-repo1 https://github.com/kubernetes/ingress-nginx
 
 helm repo update
 ```
 
 search in repolist
 ```
-helm search repo ingress-nginx
+helm search repo ingress-repo1
 ```
 
 Unistall Helm
@@ -40,14 +40,21 @@ helm list; helm uninstall my-release
 ```
 --------------------------------------------------------------------------------------------------------------
 install ingress-nginx
-*   step1 ) pull tar file
+* step1) pull tar file
 ```
-helm pull ingress-nginx/ingress/nginx
-helm pull ingress-nginx/ingress/nginx --version 3.4.1
-helm pull ingress-nginx/ingress/nginx --untar
+helm pull ingress-repo1/ingress/nginx
+helm pull ingress-repo1/ingress/nginx --version 3.4.1
+helm pull ingress-repo1/ingress/nginx --untar
 ```
 * step2) change value.yaml
-* step3)
+* step3) Create namespace
+```
+kubectl create namespace ingress-Namespace
+```
+* step4) install 
+```
+helm install ingress-app ingress-nginx/ --namespace ingress-Namespace
+```
 
   
 ![image](https://github.com/user-attachments/assets/7b0811fc-b236-4f28-ac00-cfbf1af4c285)
