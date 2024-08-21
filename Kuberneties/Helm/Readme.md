@@ -41,7 +41,7 @@ Unistall Helm
 helm list; helm uninstall my-release
 ```
 --------------------------------------------------------------------------------------------------------------
-install ingress-nginx
+### install ingress-nginx
 
 ####step1) pull tar file
 ```
@@ -61,6 +61,11 @@ kubectl create namespace ingress-Namespace
 helm install ingress-app ingress-nginx/ --namespace ingress-Namespace
 ```
 
+### upgrade ingress-nginx
+```
+#change value or replace tar file
+helm upgrade ingress-app ingress-nginx/ --namespace ingress-Namespace
+```
   
 ![image](https://github.com/user-attachments/assets/7b0811fc-b236-4f28-ac00-cfbf1af4c285)
 
