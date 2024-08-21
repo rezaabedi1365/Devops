@@ -10,6 +10,9 @@ helm repo add stable https://charts.helm.sh/stable
 ```
 verify:
 ```
+helm version
+```
+```
 helm repo list
 helm repo update
 helm repo list
