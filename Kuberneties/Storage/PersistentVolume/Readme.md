@@ -23,18 +23,13 @@ metadata:
   name: nfsserver
 spec:
   capacity:
-    storage: 50Gi
-  volumeMode: Filesystem
+    storage: 1Mi
   accessModes:
     - ReadWriteMany
-  PersistentVolumeReclaimPolicy: Delete
-  storageClassName: slow
-  mountOptions:
-    - hard
-    - nfservers=4.1
   nfs:
-    path: /exports
-    server: 172.22.0.42
+    server: 10.10.12.10
+    path: /share
+    
 ```
 ------------------------------------------------------------------------------------------------------
 # PersistentVolumeClaim
