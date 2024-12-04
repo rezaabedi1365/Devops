@@ -6,7 +6,7 @@ chown 200:200 ./host-nexus-data
 ```
 
 ```  
-version: "3"
+version: "2"
 services:
   nexus:
     image: sonatype/nexus3
