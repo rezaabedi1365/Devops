@@ -25,5 +25,5 @@ sudo docker-compose up -d
 ```
 Get admin password by executing below command
 ```
-sudo docker exec -it ubuntu_nexus_1 cat /nexus-data/admin.password
+sudo docker exec -it CONTAINER_NAME cat /nexus-data/admin.password
 ```
