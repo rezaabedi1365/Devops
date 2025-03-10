@@ -1,19 +1,6 @@
 # install docker
 sudo wget -qO- https://get.docker.com/ | sh
 
-### Docker run (Create and custom Container from image) 
-* -dit 
-* --expose  (port) 
-* --name 
-* --ip 
-* --user (default root) 
-* --dns 
-* --host 
-* --env (environment variable)
-
-```
-```
-
 ### Docker exec ( entire in bash or consol from Container) 
 
 * -it  
