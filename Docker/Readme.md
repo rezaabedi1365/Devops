@@ -1,6 +1,3 @@
-# install docker
-sudo wget -qO- https://get.docker.com/ | sh
-
 
 ### Docker exec ( entire in bash or consol from Container) 
 * -it  
