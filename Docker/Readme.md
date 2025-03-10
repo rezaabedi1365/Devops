@@ -1,8 +1,11 @@
 # install docker
 sudo wget -qO- https://get.docker.com/ | sh
 
+# docker run
+```
+```
 
-### docker logs
+# docker logs
 ```
 docker logs --tail 50 --follow --timestamps CONTAINER_NAME
 ```
