@@ -2,6 +2,8 @@
 ### Docker exec ( entire in bash or consol from Container) 
 * -it  
 ```
+docker exec -it containername /bin/bash
+docker exec -it containername powershell
 ```
 
 ### docker Import /export  (for container) 
