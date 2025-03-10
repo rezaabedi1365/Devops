@@ -5,7 +5,16 @@
 docker exec -it containername /bin/bash
 docker exec -it containername powershell
 ```
+### docker cp
+```
+# copy file from container to host
+docker cp <container>:/path/to/file.ext .
 
+# copy file from hot to container 
+docker cp file.ext <container>:/path/to/file.ext
+```
+* Edit Files in the volume
+* Any changes to files inside the mounted volume are reflected on both the host machine and the container. Edit files in the mounted volume using the steps mentioned earlier.
 ### docker Import /export  (for container) 
 ```
 ```
