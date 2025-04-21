@@ -70,4 +70,7 @@ After sysctl changes, restart the rootless Docker service:
 ```
 systemctl --user restart docker
 ```
-
+```
+docker compose down --remove-orphans
+docker compose up -d --force-recreate
+```
