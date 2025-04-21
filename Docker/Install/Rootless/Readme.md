@@ -70,6 +70,7 @@ After sysctl changes, restart the rootless Docker service:
 ```
 systemctl --user restart docker
 ```
+if you have probleme in compose up use this command to up or down
 ```
 docker compose down --remove-orphans
 docker compose up -d --force-recreate
