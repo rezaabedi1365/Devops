@@ -54,7 +54,20 @@ docker run hello-world
 ```
 docker info
 ```
+# When running Docker in rootless mode, binding to ports below 1024 (like 80 or 443) is restricted for security reasons.
 
+Solution : Adjust ip_unprivileged_port_start (Recommended)
+- Lower the minimum port number requiring root privileges system-wide
+```
+# Temporarily set for the current session
+sudo sysctl -w net.ipv4.ip_unprivileged_port_start=80
 
-
+# Make it permanent
+echo "net.ipv4.ip_unprivileged_port_start=80" | sudo tee -a /etc/sysctl.conf
+sudo sysctl -p
+```
+After sysctl changes, restart the rootless Docker service:
+```
+systemctl --user restart docker
+```
 
