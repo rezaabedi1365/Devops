@@ -51,6 +51,9 @@ systemctl --user enable docker
 ```
 docker run hello-world
 ```
+```
+docker info
+```
 
 
 
