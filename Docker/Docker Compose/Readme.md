@@ -9,6 +9,11 @@ docker compose up -d
 docker compose down
 ```
 ```
+docker compose down --remove-orphans
+docker compose up -d --force-recreate
+```
+
+```
 docker compose start
 docker compose stop
 docker compose pause
@@ -90,3 +95,5 @@ services:
       - db:database
       - redis
 ```
+
+
