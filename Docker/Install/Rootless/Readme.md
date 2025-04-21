@@ -11,6 +11,10 @@ sudo apt install uidmap dbus-user-session fuse-overlayfs slirp4netns
 
 Verify subordinate UIDs/GIDs:
 ```
+cat /etc/subuid
+cat /etc/subgid
+```
+```
 grep ^$(whoami): /etc/subuid
 grep ^$(whoami): /etc/subgid
 ```
@@ -41,7 +45,6 @@ source ~/.bashrc
 ```
 systemctl --user start docker
 systemctl --user enable docker
-sudo loginctl enable-linger $(whoami)
 ```
 ### Verify Installation :
 
