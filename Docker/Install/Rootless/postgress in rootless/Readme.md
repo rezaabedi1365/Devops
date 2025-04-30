@@ -23,11 +23,11 @@ services:
     build: .
     restart: always
     environment:
-      POSTGRES_USER: postgres
+      POSTGRES_USER: postgres-db
       POSTGRES_PASSWORD: Aa123456
       POSTGRES_DB: namad
       PGDATA: /var/lib/postgresql/data/pgdata
-    user: "70:70"
+    user: "70:70" #default user 
     ports:
       - 5432:5432
     volumes:
@@ -36,6 +36,9 @@ services:
 ```
 
 ### verify
+use DBeaver application to connect to database
+https://soft98.ir/software/programming/2962-dbeaver.html
 ```
 docker ps
+ss -tunlp | grep postgres
 ```
