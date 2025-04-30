@@ -59,6 +59,11 @@ docker run hello-world
 ```
 docker info
 ```
+check docker with which user to run 
+```
+pstree -hp | grep docker
+ps -aux | grep contain
+```
 # When running Docker in rootless mode, binding to ports below 1024 (like 80 or 443) is restricted for security reasons.
 
 Solution : Adjust ip_unprivileged_port_start (Recommended)
@@ -80,3 +85,9 @@ if you have probleme in compose up use this command to up or down
 docker compose down --remove-orphans
 docker compose up -d --force-recreate
 ```
+# PostgreSQL Database in rootless mode
+check container with which user run 
+```
+docker exec Container_NAME id
+```
+
