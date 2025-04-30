@@ -3,6 +3,11 @@
 - https://docs.docker.com/engine/security/rootless/
 
 # To install Docker in rootless mode on Ubuntu, follow these steps:
+```
+useradd -m docker1 -s /bin/bash -G sudoer
+passwd docker1
+```
+login with spesfic user and instlal component
 
 ```
 sudo apt update
