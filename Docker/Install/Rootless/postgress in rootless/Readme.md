@@ -37,7 +37,7 @@ services:
 
 ### verify
 use DBeaver application to connect to database
-https://soft98.ir/software/programming/2962-dbeaver.html
+- https://soft98.ir/software/programming/2962-dbeaver.html
 ```
 docker ps
 ss -tunlp | grep postgres
