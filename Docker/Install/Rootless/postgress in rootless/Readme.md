@@ -16,6 +16,22 @@ mkdir -p /opt/services/postgres/pgdata
 mkdir -p /opt/services/postgres/run
 ```
 create docker-compose.yml
+- step1 : first one time run docker compose without user parametr in file ( in this step created volume and insert root uid as owner volume directory path
+```
+docker exec -it postgresql-rootless-postgres-1 id
+docker exec -it postgresql-rootless-postgres-1 ps
+```
+
+- step2 : run container with docker run command and get postgre uid
+```
+docker run -v ./postgres_data:/var/lib/postgresql/data -e POSTGRES_PASSWORD=secret -e PGDATA=/var/lib/postgresql/data/ -e POSTGRES_DB=namad -e POSTGRES_USER=namadu postgres:14.4-alpine
+```
+- step3: now set rootles user in host and postgress user in container as same
+```
+```
+usermod -g 70 -u 70 namad
+```
+- step4:
 ```
 
 services:
