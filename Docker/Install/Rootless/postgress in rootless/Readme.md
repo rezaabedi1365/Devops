@@ -63,7 +63,7 @@ docker-compose up -d
 
 ![image](https://github.com/user-attachments/assets/c10813c2-fe3c-4caa-9ad6-08713baa11c2)
 
-**7. verify
+**7. verify:**
 ```
 docker ps
 ss -tunlp | grep postgres
