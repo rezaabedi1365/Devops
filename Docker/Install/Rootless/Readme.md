@@ -59,6 +59,12 @@ docker run hello-world
 ```
 docker info
 ```
+- /home/YOUR_USER/bin
+```
+which docker
+```
+- path /usr/bin is false
+  
 check docker with which user to run 
 ```
 pstree -hp | grep docker
