@@ -1,5 +1,3 @@
-### Error response from daemon: failed to create task for container: failed to start shim: start failed: : fork/exec /home/namad/bin/containerd-shim-runc-v2: no such file or directory
-
 ## Explanation of the Error
 
 The error message:
