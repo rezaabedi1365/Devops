@@ -39,8 +39,9 @@ chmod u+x ~/.docker/cli-plugins/docker-compose
 ```
 ### Set environment variables:
 ```
+export XDG_RUNTIME_DIR=/home/$USER/.docker/run
 export PATH=/home/$USER/bin:$PATH
-export DOCKER_HOST=unix:///run/user/$(id -u)/docker.sock
+export DOCKER_HOST=unix:///home/$USER/.docker/run/docker.sock
 ```
 Apply the changes:
 ```
