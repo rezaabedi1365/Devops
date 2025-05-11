@@ -1,6 +1,3 @@
-- https://www.youtube.com/watch?v=mKtyhrvZVrw
-- https://www.youtube.com/watch?v=1J8u24lAriE
-- https://docs.docker.com/engine/security/rootless/
 
 # To install Docker in rootless mode on Ubuntu, follow these steps:
 ```
@@ -24,18 +21,22 @@ grep ^$(whoami): /etc/subuid
 grep ^$(whoami): /etc/subgid
 ```
 
-If Docker is already installed: Disable the system-wide daemon:
+If Docker is already installed: Remove it:
 
 ```
-sudo systemctl disable --now docker.service docker.socket
-sudo rm /var/run/docker.sock
+apt remove --purge docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
 ### Install Rootless Docker
 ```
 curl -fsSL https://get.docker.com/rootless | sh
-```
 
+```
+install dockercompose
+```
+curl -SL https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose
+chmod u+x ~/.docker/cli-plugins/docker-compose
+```
 ### Set environment variables:
 ```
 export PATH=/home/$USER/bin:$PATH
@@ -43,7 +44,7 @@ export DOCKER_HOST=unix:///run/user/$(id -u)/docker.sock
 ```
 Apply the changes:
 ```
-source ~/.bashrc
+nano ~/.bashrc
 ```
 
 ### Start Docker in rootless mode:
@@ -56,19 +57,17 @@ systemctl --user enable docker
 ```
 docker run hello-world
 ```
+
 ```
 docker info
-```
-- /home/YOUR_USER/bin
-```
 which docker
 ```
-- path /usr/bin is false
-  
+- /home/YOUR_USER/bin
+
 check docker with which user to run 
 ```
 pstree -hp | grep docker
-ps -aux | grep contain
+ps -aux | grep containerd
 ```
 # When running Docker in rootless mode, binding to ports below 1024 (like 80 or 443) is restricted for security reasons.
 
