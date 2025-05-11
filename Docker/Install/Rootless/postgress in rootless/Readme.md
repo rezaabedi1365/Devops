@@ -1,5 +1,5 @@
 # Method 1 (chat GPT)
-## Running PostgreSQL with Docker Compose in Rootless Mode
+## Running PostgreSQL with Docker Compose in Rootless Mode with root user
 
 Running PostgreSQL in Docker Compose under rootless mode is both possible and increasingly common for enhanced security. Rootless Docker allows non-root users to run containers, reducing the risk of privilege escalation. Here’s how you can set up PostgreSQL in this environment, along with key considerations.
 
@@ -49,7 +49,6 @@ Start the service as your (non-root) user:
 ```sh
 docker-compose up -d
 ```
-
 **5. Notes and Troubleshooting**
 
 - If you encounter permission errors, double-check volume ownership and permissions[2][4].
@@ -69,23 +68,43 @@ docker ps
 ss -tunlp | grep postgres
 ```
 # Method 2 (khayat)
-### Create docker file
+## Running PostgreSQL with Docker Compose in Rootless Mode with root user
+
+**1. Create docker compose**
 ```
-nano Dockerfile
+mkdir -p ./postgres_data
 ```
-change image file with chown 
 ```
-FROM postgres:14.4-alpine
-RUN chown -R postgres:postgres /var/lib/postgresql /var/run/postgresql
-USER postgres
-RUN id
+services:
+  postgres-ownership:
+    image: postgres:14.4-alpine
+    volumes:
+      - "./postgres_data:/take"
+    entrypoint:
+      - sh
+      - -c
+      - |
+        chown -R 70:70 /take
+  postgres:
+    depends_on:
+      postgres-ownership:
+        condition: service_completed_successfully
+    image: postgres:14.4-alpine
+    container_name: postgres-rootless
+    environment:
+      POSTGRES_USER: namadu
+      POSTGRES_PASSWORD: aA123456
+      POSTGRES_DB: namadb
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    user: "70"
+    restart: unless-stopped
+    volumes:
+      - "./postgres_data:/var/lib/postgresql/data"
 ```
 
-### Create Docker compose
-```
-mkdir -p /opt/services/postgres/pgdata
-mkdir -p /opt/services/postgres/run
-```
+
 create docker-compose.yml
 - step1 : first one time run docker compose without user parametr in file ( in this step created volume and insert root uid as owner volume directory path
 ```
@@ -107,25 +126,7 @@ docker exec -it postgresql-rootless-postgres-1 id
 #in host change uid and gid rootless user (in this case namad)
 usermod -g 70 -u 70 namad
 ```
-- step4:
 
-```
-services:
-  db:
-    build: .
-    restart: always
-    environment:
-      POSTGRES_USER: postgres-db
-      POSTGRES_PASSWORD: Aa123456
-      POSTGRES_DB: namad
-      PGDATA: /var/lib/postgresql/data/pgdata
-    user: "70:70" #default user 
-    ports:
-      - 5432:5432
-    volumes:
-      - "./pgdata:/var/lib/postgresql/data"
-      - "./run:/var/run/postgresql"
-```
 
 ### verify
 use DBeaver application to connect to database
