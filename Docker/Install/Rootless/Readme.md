@@ -39,11 +39,14 @@ chmod u+x ~/.docker/cli-plugins/docker-compose
 ```
 ### Set environment variables:
 ```
+sudo loginctl enable-linger $(whomani)
+```
+```
 export XDG_RUNTIME_DIR=/home/$USER/.docker/run
 export PATH=/home/$USER/bin:$PATH
 export DOCKER_HOST=unix:///home/$USER/.docker/run/docker.sock
 ```
-Apply the changes:
+Apply the changes in bashrc:
 ```
 nano ~/.bashrc
 ```
