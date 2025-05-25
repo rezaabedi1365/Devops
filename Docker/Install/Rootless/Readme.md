@@ -39,7 +39,7 @@ chmod u+x ~/.docker/cli-plugins/docker-compose
 ```
 ### Set environment variables:
 ```
-sudo loginctl enable-linger $(whomani)
+sudo loginctl enable-linger $(whoami)
 ```
 ```
 export XDG_RUNTIME_DIR=/home/$USER/.docker/run
@@ -55,6 +55,7 @@ nano ~/.bashrc
 ```
 systemctl --user start docker
 systemctl --user enable docker
+systemctl --user status docker
 ```
 ### Verify Installation :
 
