@@ -1,4 +1,15 @@
-
+# Senario
+export image on this host and migrate to other host
+```
+docker save postgres:14.4-alpine > mypostgres.tar
+docker load -i mypostgres.tar
+```
+export container on this host and migrate as a image to other host
+```
+docker export example-voting-app-db-1 > voting-db.tar
+docker import voting-db.tar voting-db:test
+```
+------------------------------------------------------------------------------------------------
 To clarify, there is often confusion between **exporting a Docker image** and **exporting a Docker container**. Here’s how these concepts differ and how to perform each operation:
 
 ## docker save vs. docker export
