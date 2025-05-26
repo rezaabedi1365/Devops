@@ -1,12 +1,16 @@
 # Senario
 export image on this host and migrate to other host
 ```
+#host1
 docker save postgres:14.4-alpine > mypostgres.tar
+#host2
 docker load -i mypostgres.tar
 ```
 export container on this host and migrate as a image to other host
 ```
+#host1
 docker export example-voting-app-db-1 > voting-db.tar
+#host2
 docker import voting-db.tar voting-db:test
 ```
 ------------------------------------------------------------------------------------------------
