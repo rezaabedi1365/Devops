@@ -43,6 +43,7 @@ docker export mycontainer > mycontainer.tar
 docker import mycontainer.tar mynewimage:tag
 ```
 -----------------------------------------------------------------------------------------------
+# docker import vs docker save vs docker load
 Here’s a clear comparison of `docker import`, `docker save`, and `docker load`:
 
 ## Comparison Table
