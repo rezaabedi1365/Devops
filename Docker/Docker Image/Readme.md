@@ -27,7 +27,6 @@ To clarify, there is often confusion between **exporting a Docker image** and **
 
 | Command         | Target/Object      | What It Does                                      | What It Preserves         | Typical Use Case                              |
 |-----------------|-------------------|---------------------------------------------------|--------------------------|------------------------------------------------|
-| docker save     | Image             | Saves one or more images as a tarball             | All layers, metadata, tags, history | Backup, migration, or offline transfer of images |
 | docker load     | Image             | Restores images from a tarball created by `save`   | All layers, metadata, tags, history | Restoring or migrating images                   |
 | docker import   | Filesystem tarball| Creates a new image from a filesystem tarball      | Only the filesystem (no layers, metadata, history) | Creating a new image from a container export or any filesystem archive |
 
