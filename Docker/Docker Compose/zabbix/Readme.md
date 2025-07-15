@@ -1,7 +1,8 @@
 ## official
 - https://github.com/zabbix/zabbix-docker
+- 
   ```
-  docker compose -f zabbix-docker-compose.yml -p zabbix up -d
+  docker compose -f docker-compose_v3_ubuntu_pgsql_latest.yaml up -d
   ```
 
 ## non-official
