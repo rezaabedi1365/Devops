@@ -1,5 +1,8 @@
 ## official
 - https://github.com/zabbix/zabbix-docker
+  ```
+  docker compose -f zabbix-docker-compose.yml -p zabbix up -d
+  ```
 
 ## non-official
 - https://github.com/heyvaldemar/zabbix-docker-compose
