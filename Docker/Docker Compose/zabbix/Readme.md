@@ -7,7 +7,14 @@
   ```
   docker compose -f docker-compose_v3_alpine_mysql_latest.yaml up -d
   ```
-
+## with Grafana
+- https://github.com/akmalovaa/zabbix-docker
+```
+git clone https://github.com/akmalovaa/zabbix-docker.git
+```
+```
+docker compose up -d
+```
 ## non-official
 - https://github.com/heyvaldemar/zabbix-docker-compose
 
