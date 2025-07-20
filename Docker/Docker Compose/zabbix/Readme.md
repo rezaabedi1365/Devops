@@ -30,39 +30,54 @@
 ### 🔹 اگر می‌خواهی Grafana همراه Zabbix با Docker Compose داشته باشی:
 
 باید خودت به docker-compose.yml زیر اضافه کنی مثل:
+✅ چند نکته مهم برای یکپارچگی با ساختار فایل شما:
 
-```yaml
-grafana:
-  image: grafana/grafana:latest
-  container_name: grafana
-  ports:
-    - "3000:3000"
-  environment:
-    - GF_SECURITY_ADMIN_USER=admin
-    - GF_SECURITY_ADMIN_PASSWORD=admin
-  depends_on:
-    - zabbix-server
-  networks:
-    - frontend
+به ساختار لیست سرویس‌های بالا پایبند مانده است.
+
+از شبکه frontend استفاده شده که در تعریف شما وجود دارد.
+
+اگر نیاز به نصب Zabbix plugin در Grafana باشد (مثل Zabbix Data Source)، باید آن را در محیط یا volumes تعریف کنید. اگر می‌خواهی، می‌توانم آن را هم برایت اضافه کنم.
+
+```
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_INSTALL_PLUGINS=alexanderzobnin-zabbix-app
+    depends_on:
+      zabbix-server:
+        condition: service_started
+    networks:
+      - frontend
+      - backend
+    volumes:
+      - grafana_data:/var/lib/grafana
+
+```
+✅ و در بخش volumes به انتهای فایل اضافه کن:
+```
+volumes:
+  snmptraps:
+  grafana_data:
+
 ```
 
-و بعد
-📥 داخل گرافانا پلاگین **Zabbix Datasource** را نصب کنی.
-(از Marketplace خود Grafana)
-
----
 
 ```
 services:
   server-db-init:
     extends:
       file: compose_zabbix_components.yaml
-      service: server-mysql-db-init
-    image: "${ZABBIX_SERVER_MYSQL_IMAGE}:${ZABBIX_ALPINE_IMAGE_TAG}${ZABBIX_IMAGE_TAG_POSTFIX}"
+      service: server-pgsql-db-init
+    image: "${ZABBIX_SERVER_PGSQL_IMAGE}:${ZABBIX_ALPINE_IMAGE_TAG}${ZABBIX_IMAGE_TAG_POSTFIX}"
     volumes:
       - /etc/timezone:/etc/timezone:ro
     depends_on:
-      mysql-server:
+      postgres-server:
         condition: service_started
     labels:
       com.zabbix.os: "${ALPINE_OS_TAG}"
@@ -83,8 +98,8 @@ services:
   zabbix-server:
     extends:
       file: compose_zabbix_components.yaml
-      service: server-mysql
-    image: "${ZABBIX_SERVER_MYSQL_IMAGE}:${ZABBIX_ALPINE_IMAGE_TAG}${ZABBIX_IMAGE_TAG_POSTFIX}"
+      service: server-pgsql
+    image: "${ZABBIX_SERVER_PGSQL_IMAGE}:${ZABBIX_ALPINE_IMAGE_TAG}${ZABBIX_IMAGE_TAG_POSTFIX}"
     volumes:
       - /etc/timezone:/etc/timezone:ro
     depends_on:
@@ -116,11 +131,11 @@ services:
     labels:
       com.zabbix.os: "${ALPINE_OS_TAG}"
 
-  zabbix-web-apache-mysql:
+  zabbix-web-apache-pgsql:
     extends:
       file: compose_zabbix_components.yaml
-      service: web-apache-mysql
-    image: "${ZABBIX_WEB_APACHE_MYSQL_IMAGE}:${ZABBIX_ALPINE_IMAGE_TAG}${ZABBIX_IMAGE_TAG_POSTFIX}"
+      service: web-apache-pgsql
+    image: "${ZABBIX_WEB_APACHE_PGSQL_IMAGE}:${ZABBIX_ALPINE_IMAGE_TAG}${ZABBIX_IMAGE_TAG_POSTFIX}"
     volumes:
       - /etc/timezone:/etc/timezone:ro
     depends_on:
@@ -129,11 +144,11 @@ services:
     labels:
       com.zabbix.os: "${ALPINE_OS_TAG}"
 
-  zabbix-web-nginx-mysql:
+  zabbix-web-nginx-pgsql:
     extends:
       file: compose_zabbix_components.yaml
-      service: web-nginx-mysql
-    image: "${ZABBIX_WEB_NGINX_MYSQL_IMAGE}:${ZABBIX_ALPINE_IMAGE_TAG}${ZABBIX_IMAGE_TAG_POSTFIX}"
+      service: web-nginx-pgsql
+    image: "${ZABBIX_WEB_NGINX_PGSQL_IMAGE}:${ZABBIX_ALPINE_IMAGE_TAG}${ZABBIX_IMAGE_TAG_POSTFIX}"
     volumes:
       - /etc/timezone:/etc/timezone:ro
     depends_on:
@@ -177,14 +192,28 @@ services:
       com.zabbix.os: "${ALPINE_OS_TAG}"
 
   mysql-server:
+    profiles:
+      - all
     extends:
       file: compose_databases.yaml
       service: mysql-server
 
+  postgres-server:
+    extends:
+      file: compose_databases.yaml
+      service: postgres-server
+
   db-data-mysql:
+    profiles:
+      - all
     extends:
       file: compose_databases.yaml
       service: db-data-mysql
+
+  db-data-pgsql:
+    extends:
+      file: compose_databases.yaml
+      service: db-data-pgsql
 
   elasticsearch:
     extends:
@@ -215,11 +244,15 @@ services:
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_INSTALL_PLUGINS=alexanderzobnin-zabbix-app
     depends_on:
       zabbix-server:
         condition: service_started
     networks:
       - frontend
+      - backend
+    volumes:
+      - grafana_data:/var/lib/grafana
 
 networks:
   frontend:
@@ -229,7 +262,6 @@ networks:
       driver: "${FRONTEND_NETWORK_DRIVER}"
       config:
         - subnet: "${FRONTEND_SUBNET}"
-
   backend:
     driver: bridge
     enable_ipv6: "${BACKEND_ENABLE_IPV6}"
@@ -238,14 +270,12 @@ networks:
       driver: "${BACKEND_NETWORK_DRIVER}"
       config:
         - subnet: "${BACKEND_SUBNET}"
-
   database:
     driver: bridge
     enable_ipv6: "${DATABASE_NETWORK_ENABLE_IPV6}"
     internal: true
     ipam:
       driver: "${DATABASE_NETWORK_DRIVER}"
-
   tools_frontend:
     driver: bridge
     enable_ipv6: "${ADD_TOOLS_ENABLE_IPV6}"
@@ -256,6 +286,7 @@ networks:
 
 volumes:
   snmptraps:
+  grafana_data:
 
 secrets:
   MYSQL_USER:
@@ -266,6 +297,10 @@ secrets:
     file: ${ENV_VARS_DIRECTORY}/.MYSQL_ROOT_USER
   MYSQL_ROOT_PASSWORD:
     file: ${ENV_VARS_DIRECTORY}/.MYSQL_ROOT_PASSWORD
+  POSTGRES_USER:
+    file: ${ENV_VARS_DIRECTORY}/.POSTGRES_USER
+  POSTGRES_PASSWORD:
+    file: ${ENV_VARS_DIRECTORY}/.POSTGRES_PASSWORD
 
 ```
 
