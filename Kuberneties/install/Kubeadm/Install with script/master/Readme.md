@@ -103,4 +103,8 @@ kubectl get pods --all-namespaces
 ```
 journalctl -u kubelet -f
 ```
-
+# Token
+```
+kubeadm token list
+kubeadm token create --print-join-command
+```
