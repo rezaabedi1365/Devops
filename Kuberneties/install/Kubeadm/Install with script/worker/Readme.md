@@ -4,7 +4,7 @@
 set -e
 
 echo "-------------Setting hostname-------------"
-# تنظیم hostname دلخواه برای کلاینت
+# تنظیم hostname دلخواه برای نود کلاینت
 sudo hostnamectl set-hostname worker-node
 
 echo "-------------Disabling Swap-------------"
@@ -22,12 +22,12 @@ echo "-------------Installing containerd-------------"
 sudo apt-get update
 sudo apt-get install -y ca-certificates curl apt-transport-https
 
-# اضافه کردن کلید GPG داکر
+# اضافه کردن کلید GPG رسمی داکر
 sudo install -m 0755 -d /etc/apt/keyrings
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 sudo chmod a+r /etc/apt/keyrings/docker.asc
 
-# اضافه کردن مخزن داکر
+# اضافه کردن مخزن داکر برای نصب containerd
 echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
   $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
@@ -36,7 +36,7 @@ echo \
 sudo apt-get update
 sudo apt-get install -y containerd.io
 
-# پیکربندی containerd برای استفاده از systemd cgroup
+# پیکربندی containerd برای systemd cgroup
 sudo mkdir -p /etc/containerd
 sudo containerd config default | sudo tee /etc/containerd/config.toml
 sudo sed -i 's/SystemdCgroup = false/SystemdCgroup = true/' /etc/containerd/config.toml
@@ -44,23 +44,17 @@ sudo sed -i 's/SystemdCgroup = false/SystemdCgroup = true/' /etc/containerd/conf
 sudo systemctl restart containerd
 sudo systemctl enable containerd
 
-echo "-------------Installing kubeadm, kubelet, kubectl-------------"
+echo "-------------Installing kubeadm, kubelet, kubectl v1.33.3-------------"
 sudo apt-get update
 
-# کلید GPG و مخزن Kubernetes (نسخه باید با مستر شما یکی باشد، مثال 1.30)
+# اضافه کردن کلید و مخزن Kubernetes نسخه 1.33
 sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
-echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.33/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.33/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
 sudo apt-get update
-sudo apt-get install -y kubelet kubeadm kubectl
+sudo apt-get install -y kubelet=1.33.3-00 kubeadm=1.33.3-00 kubectl=1.33.3-00
 sudo apt-mark hold kubelet kubeadm kubectl
-
-echo "-------------Joining the Kubernetes cluster-------------"
-# دستور join را جایگزین دستور نمونه زیر کنید (با توکن و hash متناسب با مستر خود)
-sudo kubeadm join 10.10.12.22:6443 --token shmky1.6pagk5qwxf420bny --discovery-token-ca-cert-hash sha256:bb5bf288811c38117ff439e6db4d372e7d357d558d33aaafc9094471afca22f4
-
-echo "-------------Node joined to cluster successfully-------------"
 
 ```
 ```
