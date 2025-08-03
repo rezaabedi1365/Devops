@@ -1,4 +1,5 @@
-### Install
+### Master
+- use other user and dont user root user
 ```
 #!/bin/bash
 set -e
