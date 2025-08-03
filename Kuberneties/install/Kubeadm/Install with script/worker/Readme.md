@@ -57,6 +57,25 @@ sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 
 ```
+# verify 
+```
+kubeadm version
+kubelet --version
+kubectl version --client
+
+sudo systemctl status kubelet
+
+kubectl get nodes
+
+kubectl get pods --all-namespaces
+
+journalctl -u kubelet -f
+```
+# Token
+```
+kubeadm token list
+kubeadm token create --print-join-command
+```
 ```
 echo "-------------Joining the Kubernetes cluster-------------"
 # دستور join را جایگزین دستور نمونه زیر کنید (با توکن و hash متناسب با مستر خود)
