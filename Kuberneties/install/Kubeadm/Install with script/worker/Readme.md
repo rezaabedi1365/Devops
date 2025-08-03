@@ -84,5 +84,6 @@ sudo kubeadm join 10.10.12.22:6443 --token shmky1.6pagk5qwxf420bny --discovery-t
 echo "-------------Node joined to cluster successfully-------------"
 ```
 ```
+# run in master
 kubectl get nodes
 ```
