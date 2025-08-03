@@ -66,10 +66,9 @@ kubectl version --client
 
 sudo systemctl status kubelet
 
+### not work in worker
 kubectl get nodes
-
 kubectl get pods --all-namespaces
-
 journalctl -u kubelet -f
 ```
 # Token
