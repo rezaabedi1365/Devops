@@ -73,9 +73,10 @@ journalctl -u kubelet -f
 ```
 # Token
 ```
-kubeadm token list
+# in server run
 kubeadm token create --print-join-command
 ```
+- run with root user
 ```
 echo "-------------Joining the Kubernetes cluster-------------"
 # دستور join را جایگزین دستور نمونه زیر کنید (با توکن و hash متناسب با مستر خود)
