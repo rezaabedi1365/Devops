@@ -90,17 +90,13 @@ bash -l
 kubeadm version
 kubelet --version
 kubectl version --client
-```
-```
+
 sudo systemctl status kubelet
-```
-```
+
 kubectl get nodes
-```
-```
+
 kubectl get pods --all-namespaces
-```
-```
+
 journalctl -u kubelet -f
 ```
 # Token
