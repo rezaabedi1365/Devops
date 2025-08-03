@@ -97,6 +97,7 @@ sudo systemctl status kubelet
 kubectl get nodes
 
 kubectl get pods --all-namespaces
+kubectl get pods -n kube-system
 
 journalctl -u kubelet -f
 ```
