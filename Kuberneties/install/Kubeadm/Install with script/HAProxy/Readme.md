@@ -67,3 +67,28 @@ kubectl get ingress -n monitoring
 kubectl describe ingress <ingress-name> -n monitoring
 kubectl get ingress <ingress-name> -n monitoring -o yaml
 ```
+### Port Forward with TLS
+- create secret with PEM
+```
+kubectl create secret tls zabbix-tls-secret -n monitoring --cert=/path/to/tls.crt.pem --key=/path/to/tls.key.pem
+```
+```
+spec:
+  ingressClassName: haproxy
+  tls:
+  - hosts:
+    - zabbix.yourdomain.com
+    secretName: zabbix-tls-secret
+  rules:
+  - host: zabbix.yourdomain.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: zabbix-zabbix-web
+            port:
+              number: 80
+
+```
