@@ -16,7 +16,7 @@ sudo hostnamectl set-hostname master
 ### Step 1: Disable Swap on All Nodes
 echo "-------------Disabling swap-------------"
 sudo swapoff -a
-sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+sudo sed -i '/swap/ s/^\(.*\)$/#\1/g' /etc/fstab
 sudo swapon --show
 
 ### Step 2: Install containerd 2.1.4
