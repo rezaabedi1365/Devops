@@ -83,3 +83,11 @@ kubectl get svc -n --all-namespaces
 kubectl get pods --all-namespaces -o wide
 
 ```
+
+### Tshoot
+```
+kubectl describe node <node-name>
+kubectl describe pod <pod-name> -n <namespace>
+kubectl logs pod-name> -n <namespace>
+kubectl exec -n <namespace> -it <pod-name> -- nslookup google.com
+```
