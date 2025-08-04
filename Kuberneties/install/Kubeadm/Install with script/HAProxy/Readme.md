@@ -28,3 +28,32 @@ verify:
 kubectl get pods -n ingress-controller
 kubectl get svc -n ingress-controller
 ```
+
+### Port forward with haproxy
+- nano zabbix-ingress.yaml
+```
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: zabbix-web-ingress
+  namespace: monitoring
+  annotations:
+    kubernetes.io/ingress.class: "haproxy"  # یا نام ingress class شما
+spec:
+  rules:
+  - host: zabbix.yourdomain.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: zabbix-zabbix-web
+            port:
+              number: 80
+
+```
+
+```
+kubectl apply -f zabbix-ingress.yaml
+```
