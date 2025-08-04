@@ -1,5 +1,5 @@
 ### Master
-- use other user and dont user root user
+- use other user and dont use root user
 ```
 #!/bin/bash
 set -e
