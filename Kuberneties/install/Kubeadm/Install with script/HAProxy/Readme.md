@@ -37,9 +37,8 @@ kind: Ingress
 metadata:
   name: zabbix-web-ingress
   namespace: monitoring
-  annotations:
-    kubernetes.io/ingress.class: "haproxy"  # یا نام ingress class شما
 spec:
+  ingressClassName: haproxy
   rules:
   - host: zabbix.yourdomain.com
     http:
@@ -56,4 +55,15 @@ spec:
 
 ```
 kubectl apply -f zabbix-ingress.yaml
+```
+```
+kubectl delete -f zabbix-ingress.yaml
+kubectl delete ingress zabbix-web-ingress -n monitoring
+```
+verify:
+```
+kubectl get ingress --all-namespaces
+kubectl get ingress -n monitoring
+kubectl describe ingress <ingress-name> -n monitoring
+kubectl get ingress <ingress-name> -n monitoring -o yaml
 ```
