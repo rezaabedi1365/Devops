@@ -53,14 +53,22 @@ which kubelet
 which kubeadm
 ```
 ----------------------------------------------------------------------
+### flannel
+```
+kubectl get pods -n kube-flannel
+kubectl get pods --all-namespaces | grep flannel
+```
+
+----------------------------------------------------------------------
 ### Config file
 - check config file path
 ```
 $HOME/.kube/config
 ```
 --------------------------------------------------------------------
+```
 sudo swapon --show
-
+```
 --------------------------------------------------------------------
 # verify 
 ```
