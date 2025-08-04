@@ -54,6 +54,7 @@ which kubeadm
 ----------------------------------------------------------------------
 ### Calico
 ```
+kubectl get pods -n kube-system -l k8s-app=calico-node
 kubectl get pods --all-namespaces | grep calic
 ```
 ```
