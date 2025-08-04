@@ -36,7 +36,9 @@ kubectl version
 - check kubelet service
 ```
 systemctl status kubelet
+journalctl -u kubelet -f
 ```
+
 - check kubelet path
     * /user/bin/kubelet
 ```
@@ -58,3 +60,14 @@ $HOME/.kube/config
 ```
 --------------------------------------------------------------------
 sudo swapon --show
+
+--------------------------------------------------------------------
+# verify 
+```
+kubectl get nodes
+
+kubectl get pods --all-namespaces
+kubectl get pods -n kube-system
+
+
+```
