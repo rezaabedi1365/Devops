@@ -21,17 +21,16 @@ which containerd
 ```
 which kubectl
 ```
+
 ```
 kubectl version --cllient
 ```
-
-
-- check cluster conectivity 
+- check cluster conectivity
 ```
 kubectl version
 ```
-
 -----------------------------------------------------------------------
+
 ### kubelet
 - check kubelet service
 ```
@@ -68,12 +67,13 @@ kubectl get daemonsets -n kube-system
 $HOME/.kube/config
 ```
 --------------------------------------------------------------------
+- check swapon
 ```
 sudo swapon --show
 ```
 --------------------------------------------------------------------
-# verify
 
+### verify
 ```
 kubectl get nodes
 kubectl get namespaces
