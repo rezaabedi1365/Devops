@@ -52,10 +52,9 @@ which kubelet
 which kubeadm
 ```
 ----------------------------------------------------------------------
-### flannel
+### Calico
 ```
-kubectl get pods -n kube-flannel
-kubectl get pods --all-namespaces | grep flannel
+kubectl get pods --all-namespaces | grep calic
 ```
 ```
 kubectl get daemonsets -n kube-system
