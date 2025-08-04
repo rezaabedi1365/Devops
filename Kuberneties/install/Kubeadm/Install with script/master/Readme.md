@@ -74,9 +74,9 @@ mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
-### Step 5: Deploy Flannel Pod Network
-echo "-------------Deploying Flannel Pod Networking-------------"
-kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
+### Step 5: Deploy Calico Pod Network
+echo "-------------Deploying Calico Pod Networking-------------"
+kubectl apply -f https://projectcalico.docs.tigera.io/manifests/calico.yaml
 
 ### Step 6: Enable kubectl bash completion and alias
 sudo apt-get install -y bash-completion
