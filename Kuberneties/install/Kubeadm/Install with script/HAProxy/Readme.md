@@ -62,6 +62,7 @@ kubectl delete ingress zabbix-web-ingress -n monitoring
 ```
 verify:
 ```
+kubectl get svc 
 kubectl get ingress --all-namespaces
 kubectl get ingress -n monitoring
 kubectl describe ingress <ingress-name> -n monitoring
