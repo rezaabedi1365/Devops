@@ -76,8 +76,9 @@ sudo swapon --show
 ### verify
 ```
 kubectl get nodes
-kubectl get namespaces
-
 kubectl get pods --all-namespaces
-kubectl get pods -n kube-system
+        # kubectl get pods -n kube-system
+kubectl get namespaces
+kubectl get svc -n --all-namespaces
+
 ```
