@@ -59,7 +59,7 @@ kubectl get pods --all-namespaces | grep flannel
 ```
 ```
 kubectl get daemonsets -n kube-system
-
+```
 ----------------------------------------------------------------------
 ### Config file
 - check config file path
