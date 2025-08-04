@@ -58,6 +58,8 @@ which kubeadm
 kubectl get pods -n kube-flannel
 kubectl get pods --all-namespaces | grep flannel
 ```
+```
+kubectl get daemonsets -n kube-system
 
 ----------------------------------------------------------------------
 ### Config file
@@ -73,6 +75,7 @@ sudo swapon --show
 # verify 
 ```
 kubectl get nodes
+kubectl get namespaces
 
 kubectl get pods --all-namespaces
 kubectl get pods -n kube-system
