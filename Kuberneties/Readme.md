@@ -38,11 +38,13 @@ kubectl logs rc/nginx-rc
 apiVersion: v1
 kind: Pod
 metadata:
-  name: pod-nginx
+  name: nginx-pod
 spec:
   containers:
-  - name: nginx01
+  - name: nginx-ctr
     image: nginx:latest
+    ports:
+    - conteinerPort: 80
 ```
 ```
 kubectl create -f pod.yml
