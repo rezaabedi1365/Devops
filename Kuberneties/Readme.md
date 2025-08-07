@@ -38,9 +38,11 @@ kubectl logs rc/nginx-rc
 apiVersion: v1
 kind: Pod
 metadata:
-  name: demo
+  name: pod-nginx
 spec:
-  hard:
+  containers:
+  - name: nginx01
+    image: nginx:latest
 ```
 ```
 kubectl create -f pod.yml
