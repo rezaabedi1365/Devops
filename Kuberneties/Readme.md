@@ -46,6 +46,10 @@ spec:
     limits.cpu: 700m
     limits.memory: 500Mib
 ```
+```
+kubectl create -f pod.yml
+kubectl apply -f pod,yml
+```
 - Default Limit Range in a Namespace
 ```
 apiVersion: v1
@@ -60,7 +64,10 @@ spec:
       memory: 256Mi
     type: Container
 ```
-
+```
+kubectl create -f pod.yml
+kubectl apply -f pod,yml
+```
 ## K8S Command
 ```
 ```
