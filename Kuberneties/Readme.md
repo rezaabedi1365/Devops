@@ -10,7 +10,7 @@ kubectl cluster-info
 ```
 kubectl get nodes
 kubectl get nodes -o wide
-kubectl get nodes -o yaml
+kubectl get nodes -o yaml  #show in yaml format
 ```
 ```
 kubectl get pods -A
