@@ -3,14 +3,23 @@
 - https://k8syaml.com/
 
 
-##  Nodes
+##  get commands
+```
+kubectl cluster-info
+```
 ```
 kubectl get nodes
 kubectl get nodes -o wide
 kubectl get nodes -o yaml
-
-kubectl cluster-info
-kubectl get pods -n kube-system
+```
+```
+kubectl get pods -A
+kubectl get pods -n <NamaSpace>
+```
+```
+kubectl get svc
+```
+```
 kubectl get deployment,pod,svc
 ```
 
@@ -20,7 +29,7 @@ kubectl logs nginx-pod-01 -f
 kubectl logs rc/nginx-rc
 
 ```
-Kubectl Resource Requests & Limits
+- Kubectl Resource Requests & Limits
 ```
 apiVersion: v1
 kind: ResourceQuota
@@ -33,7 +42,7 @@ spec:
     limits.cpu: 700m
     limits.memory: 500Mib
 ```
-Default Limit Range in a Namespace
+- Default Limit Range in a Namespace
 ```
 apiVersion: v1
 kind: LimitRange
