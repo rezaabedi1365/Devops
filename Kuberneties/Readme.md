@@ -33,6 +33,20 @@ kubectl logs rc/nginx-rc
 - https://gimlet.io/k8s-yaml-generator
 - https://k8syaml.com/
 
+  
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo
+spec:
+  hard:
+```
+```
+kubectl create -f pod.yml
+kubectl apply -f pod,yml
+```
+
 - Kubectl Resource Requests & Limits
 ```
 apiVersion: v1
