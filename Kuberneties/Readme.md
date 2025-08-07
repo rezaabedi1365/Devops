@@ -1,9 +1,6 @@
-# Kubernetes YAML Generator 
-- https://gimlet.io/k8s-yaml-generator
-- https://k8syaml.com/
+# Kubernetes (K8S)
 
-
-##  get commands
+## Verify
 ```
 kubectl cluster-info
 ```
@@ -32,6 +29,10 @@ kubectl logs nginx-pod-01 -f
 kubectl logs rc/nginx-rc
 
 ```
+### YAML Generator 
+- https://gimlet.io/k8s-yaml-generator
+- https://k8syaml.com/
+
 - Kubectl Resource Requests & Limits
 ```
 apiVersion: v1
@@ -60,3 +61,6 @@ spec:
     type: Container
 ```
 
+## K8S Command
+```
+```
