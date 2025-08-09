@@ -1,4 +1,4 @@
-# Install docekr
+# Install docker
 ```
 # Add Docker's official GPG key:
 sudo apt-get update
