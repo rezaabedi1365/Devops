@@ -1,4 +1,5 @@
 # Install Minikube
+- use another user root
 ```
 #!/bin/bash
 set -e
