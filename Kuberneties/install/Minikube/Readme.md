@@ -1,3 +1,5 @@
+# Install Minikube
+```
 #!/bin/bash
 set -e
 
@@ -96,3 +98,5 @@ kubectl completion bash | sudo tee /etc/bash_completion.d/kubectl > /dev/null
 echo 'alias k=kubectl' >> ~/.bashrc
 echo 'complete -F __start_kubectl k' >> ~/.bashrc
 bash -l
+
+```
