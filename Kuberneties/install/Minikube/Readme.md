@@ -17,7 +17,7 @@ hostnamectl set-hostname Minikube
 # Disable swap
 echo "-------------Disabling swap-------------"
 swapoff -a
-sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+sudo sed -i '/swap/ s/^\(.*\)$/#\1/g' /etc/fstab
 swapon --show
 
 # Forwarding IPv4 and letting iptables see bridged traffic
