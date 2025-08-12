@@ -1,4 +1,9 @@
 # Kubernetes (K8S)
+## object
+- pod
+- service
+- deployment
+
 
 ## Verify
 ```
