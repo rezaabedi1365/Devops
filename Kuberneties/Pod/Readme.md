@@ -9,7 +9,8 @@ kubectl run test-nginx --image=nginx
 
 kubectl create deployment nginx-web --image=nginx
 kubectl expose deployment nginx-web --type NodePort --port=80
-
+```
+```
 kubectl exec -it <pod-name> -- <command>
 kubectl exec -it task-pv-pod -- /bin/bash
 ```
