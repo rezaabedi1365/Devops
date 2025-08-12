@@ -6,11 +6,14 @@ kubectl cluster-info
 ```
 ```
 kubectl get nodes
-kubectl get nodes -o wide  #show with detail
-kubectl get nodes -o yaml  #show in yaml format
+  #show with detail
+kubectl get nodes -o wide
+  #show in yaml format
+kubectl get nodes -o yaml  
 ```
 ```
 kubectl get pods -A
+kubectl get pods -A -o wide
 kubectl get pods -n <NamaSpace>
 ```
 ```
@@ -22,6 +25,7 @@ kubectl get svc
 ```
 ```
 kubectl get deployment -A
+kubectl get deployment -A -o wide
 kubectl get deployment -n <NamaSpace>
 ```
 
