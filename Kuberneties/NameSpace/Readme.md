@@ -19,7 +19,7 @@ kubectl get pods --namespace=test
 kubectl get namespace
 ```
 :x: Delete ns with all pods
-:heavy_check_mark: test
+
 ```
 kubectl delete ns test
 ```
