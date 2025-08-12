@@ -13,6 +13,11 @@ kubectl expose deployment nginx-web --type NodePort --port=80
 ```
 kubectl exec -it -n <Namespace> <pod-name> -- <command>
 kubectl exec -it -n <Namespace> <pod-name> -- /bin/bash
+kubectl exec -it -n <Namespace>/<pod-name> -- /bin/bash
+```
+```
+kubectl cp file1.txt <Namespace>/<pod-name>:/path
+kubectl cp file1.txt zabbix/nginx-pod:/tmp
 ```
 
 ## Create pod with yaml
