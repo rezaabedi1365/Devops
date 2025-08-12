@@ -25,6 +25,7 @@ apiVersion: v1
 kind: Pod
 metadata:                  #information
   name: nginx-pod          #pod name
+  namespace: zabbix-NS
   label:
     app: zabbix
 spec:
