@@ -11,8 +11,8 @@ kubectl create deployment nginx-web --image=nginx
 kubectl expose deployment nginx-web --type NodePort --port=80
 ```
 ```
-kubectl exec -it <pod-name> -- <command>
-kubectl exec -it task-pv-pod -- /bin/bash
+kubectl exec -it -n <Namespace> <pod-name> -- <command>
+kubectl exec -it -n <Namespace> <pod-name> -- /bin/bash
 ```
 
 ## Create pod with yaml
