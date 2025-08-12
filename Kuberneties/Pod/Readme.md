@@ -1,12 +1,10 @@
-## Pods
+# Pods
 - Create pod with kubectl
 - Create pod with yaml
 - Create pod with Helm
 
-# Create Pod 
-- Helm
-- yaml file
 
+## Create pod with yaml
 ### YAML Generator 
   * https://gimlet.io/k8s-yaml-generator
   * https://k8syaml.com/
