@@ -48,7 +48,7 @@ kubectl create -f pod.yml
 kubectl apply -f pod,yml
 ```
 
-## :heavy_check_mark:  create Namespace and pod 
+:heavy_check_mark: create Namespace and pod 
 ```
 apiVersion: v1
 kind: Namespace
