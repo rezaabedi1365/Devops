@@ -22,11 +22,13 @@ kubectl exec -it task-pv-pod -- /bin/bash
 ```
 apiVersion: v1
 kind: Pod
-metadata:
-  name: nginx-meta          #pod name
+metadata:                  #information
+  name: nginx-pod          #pod name
+  label:
+    app: zabbix
 spec:
   containers:
-  - name: nginx-con         #container-name
+  - name: nginx-cont        #container-name
     image: nginx:1.14.2
     ports:
     - containerPort: 80
