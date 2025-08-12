@@ -22,6 +22,7 @@ kubectl get svc
 ```
 ```
 kubectl get deployment -A
+kubectl get deployment -n <NamaSpace>
 ```
 
 ## logs
