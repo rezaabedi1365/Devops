@@ -26,6 +26,7 @@ spec:
 kubectl create -f pod.yml
 kubectl apply -f pod,yml
 ```
+
 # limit Resource
 
 - Resource Requests & Limits
