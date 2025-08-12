@@ -22,8 +22,10 @@ kubectl cp file1.txt zabbix/nginx-pod:/tmp
 
 ## Create pod with yaml
 - YAML Generator 
+  * https://k8s-examples.container-solutions.com/
   * https://gimlet.io/k8s-yaml-generator
   * https://k8syaml.com/
+<img width="1362" height="897" alt="image" src="https://github.com/user-attachments/assets/cf0e113d-e197-474a-b8b0-1d9bc4d12bb1" />
 
 ```
 apiVersion: v1
