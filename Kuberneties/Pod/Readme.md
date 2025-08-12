@@ -9,7 +9,6 @@
   * https://gimlet.io/k8s-yaml-generator
   * https://k8syaml.com/
 
-- pod  
 ```
 apiVersion: v1
 kind: Pod
