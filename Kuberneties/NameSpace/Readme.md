@@ -1,6 +1,8 @@
 * Default
 * Kube-public
 * Kube-system
+* kube-node-lease
+  
 ## Namespace
 * use for Organizing
 ```
