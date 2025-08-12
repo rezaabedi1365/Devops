@@ -18,7 +18,7 @@ kubectl get pods --namespace=test
 
 kubectl get namespace
 ```
-- Delete ns with all pods
+- <span style="color:red" > Delete ns with all pods </span>
 ```
 kubectl delete ns test
 ```
