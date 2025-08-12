@@ -25,7 +25,6 @@ kubectl cp file1.txt zabbix/nginx-pod:/tmp
   * https://k8s-examples.container-solutions.com/
   * https://gimlet.io/k8s-yaml-generator
   * https://k8syaml.com/
-<img width="1362" height="897" alt="image" src="https://github.com/user-attachments/assets/cf0e113d-e197-474a-b8b0-1d9bc4d12bb1" />
 
 ```
 apiVersion: v1
@@ -47,6 +46,30 @@ spec:
 ```
 kubectl create -f pod.yml
 kubectl apply -f pod,yml
+```
+
+## :heavy_check_mark:  create Namespace and pod 
+```
+apiVersion: v1
+kind: Namespace
+metadata:                  
+  name: zabbix-NS       
+
+---
+apiVersion: v1
+kind: Pod
+metadata:                  #information
+  name: nginx-pod          #pod name
+  namespace: zabbix-NS
+  label:
+    app: zabbix
+spec:
+  containers:
+  - name: nginx-cont        #container-name
+    image: nginx:1.14.2
+    ports:
+    - containerPort: 80
+      protocol: TCP
 ```
 
 - delete pod
