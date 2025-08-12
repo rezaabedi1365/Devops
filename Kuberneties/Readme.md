@@ -15,6 +15,7 @@ kubectl get pods -n <NamaSpace>
 ```
 ```
 kubectl get ns
+kubectl get namespace
 ```
 ```
 kubectl get svc
