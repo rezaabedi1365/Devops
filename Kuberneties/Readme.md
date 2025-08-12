@@ -1,8 +1,13 @@
 # Kubernetes (K8S)
 ## object
 - pod
-- service
+- services
 - deployment
+- replication contriller
+- resourceQuota
+- LimitRange
+- deamonset
+- statefulset
 
 
 ## Verify
