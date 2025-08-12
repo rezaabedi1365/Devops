@@ -27,15 +27,20 @@ kubectl get deployment -n <NamaSpace>
 
 ## logs
 ```
+kubectl logs <PodName>
 kubectl logs nginx-pod-01 -f
 kubectl logs rc/nginx-rc
-
 ```
-### YAML Generator 
-- https://gimlet.io/k8s-yaml-generator
-- https://k8syaml.com/
+-----------------------------------------------------------------------
+# Create Pod 
+- Helm
+- yaml file
 
-  
+### YAML Generator 
+  * https://gimlet.io/k8s-yaml-generator
+  * https://k8syaml.com/
+
+- pod  
 ```
 apiVersion: v1
 kind: Pod
@@ -53,7 +58,7 @@ kubectl create -f pod.yml
 kubectl apply -f pod,yml
 ```
 
-- Kubectl Resource Requests & Limits
+- Resource Requests & Limits
 ```
 apiVersion: v1
 kind: ResourceQuota
@@ -86,8 +91,6 @@ spec:
 ```
 ```
 kubectl create -f pod.yml
-kubectl apply -f pod,yml
+kubectl apply -f pod.yml
 ```
-## K8S Command
-```
-```
+
