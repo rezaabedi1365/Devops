@@ -21,7 +21,7 @@ kubectl get namespace
 kubectl get svc
 ```
 ```
-kubectl get deployment,pod,svc
+kubectl get deployment -A
 ```
 
 ## logs
