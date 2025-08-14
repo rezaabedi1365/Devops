@@ -1,0 +1,5 @@
+- ConfigMap
+- Secret
+- ServiceAccount
+- Role/Cluster Role
+- RoleBinding/ClusterRoleBinding
