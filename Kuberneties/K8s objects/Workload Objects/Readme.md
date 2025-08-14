@@ -1,5 +1,5 @@
 - Pod
-- ReplicationSet
+- ReplicaSet
 - Deployment
 - StatefuleSet
 - DeamonSet
