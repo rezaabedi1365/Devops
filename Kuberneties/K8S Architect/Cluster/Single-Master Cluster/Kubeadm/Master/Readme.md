@@ -87,7 +87,7 @@ echo 'complete -F __start_kubectl k' >> ~/.bashrc
 bash -l
 
 ```
-# verify 
+### verify 
 ```
 kubeadm version
 kubelet --version
@@ -102,8 +102,34 @@ kubectl get pods -n kube-system
 
 journalctl -u kubelet -f
 ```
-# Token
+### Token
 ```
 kubeadm token list
 kubeadm token create --print-join-command
+```
+
+# Reset cluster
+```
+sudo kubeadm reset
+```
+```
+sudo rm -rf /etc/cni/net.d
+```
+
+```
+sudo rm -rf ~/.kube
+sudo rm -rf /var/lib/etcd
+sudo rm -rf /var/lib/kubelet/*
+sudo rm -rf /etc/kubernetes
+```
+
+```
+sudo iptables -F && sudo iptables -t nat -F && sudo iptables -t mangle -F
+sudo iptables -X
+sudo ip link delete cni0
+sudo ip link delete flannel.1
+```
+
+```
+sudo kubeadm init --pod-network-cidr=192.168.0.0/16
 ```
