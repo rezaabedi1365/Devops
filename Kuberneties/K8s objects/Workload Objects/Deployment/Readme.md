@@ -1,9 +1,9 @@
 
 ##  Deployment    &     ReplicaSet 
-#### Replication Controller (depricated)
+- :X: Replication Controller (depricated)
   * +Rulling updates
   * +Rulling Backs
-------------------------------------------------
+------------------------------------------------ 
 In deployment we create replicaset
 ## Deployment
 * revisionHistoryLimit
@@ -12,9 +12,7 @@ In deployment we create replicaset
   - rollingUpdate
      + maxSure
      + maxUnavailable
-```
-kubectl apply -f deploy-01.yaml
-```
+--------------------------------------------------
 ```
 apiVersion: apps/v1
 kind: Deployment
@@ -26,16 +24,16 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: nginx
+      app: nginx       ## point to PodName
   strategy:
     type: RollingUpdate
     rollingUpdate:
       maxSurge: 1
       maxUnavailable : 0
-  template:
+  template:            ## pod information template for create replicas
     metadata:
       labels:
-        app: nginx
+        app: nginx     ## PodName
     spec:
       containers:
       - name: nginx
@@ -43,7 +41,9 @@ spec:
         ports:
         - containerPort: 80
 ```
-
+```
+kubectl apply -f deploy-01.yaml
+```
 
 ### Delete Deployment
 * when you create deploment if delete pod imediatly crate agin with deployment
