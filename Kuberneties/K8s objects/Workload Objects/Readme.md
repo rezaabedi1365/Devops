@@ -1,0 +1,7 @@
+- Pod
+- ReplicationSet
+- Deployment
+- StatefuleSet
+- DeamonSet
+- Job
+- CronJob
