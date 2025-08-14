@@ -75,7 +75,7 @@ mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
-### Step 5: Deploy Calico Pod Network
+### Step 5: Deploy CNI - Calico Pod Network
 echo "-------------Deploying Calico Pod Networking-------------"
 kubectl apply -f https://projectcalico.docs.tigera.io/manifests/calico.yaml
 
