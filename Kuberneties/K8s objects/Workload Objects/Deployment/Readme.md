@@ -1,6 +1,6 @@
 
 ##  Deployment    &     ReplicaSet 
-- :x: Replication Controller (depricated)
+:x: Replication Controller (depricated)
   * +Rulling updates
   * +Rulling Backs
 ------------------------------------------------ 
