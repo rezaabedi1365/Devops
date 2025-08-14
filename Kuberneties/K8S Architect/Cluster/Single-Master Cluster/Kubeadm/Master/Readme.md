@@ -66,10 +66,11 @@ sudo apt-get install -y kubelet=1.33.3-00 kubeadm=1.33.3-00 kubectl=1.33.3-00
 sudo apt-mark hold kubelet kubeadm kubectl
 
 ### Step 4: Initialize Kubernetes Cluster
+### 192.168.0.0/24 cidr for calico &   10.244.0.0/16 cidr for Flannel
 sudo kubeadm config images pull
-sudo kubeadm init --apiserver-advertise-address 10.10.12.22 --pod-network-cidr 10.244.0.0/16 --cri-socket unix:///var/run/containerd/containerd.sock
+sudo kubeadm init --apiserver-advertise-address <MasterIpAddress> --pod-network-cidr 192.168.0.0/24 --cri-socket unix:///var/run/containerd/containerd.sock
 
-# پس از init، برای kubectl به کاربر معمولی کپی و تنظیم دسترسی‌ها:
+### user Pormission
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
