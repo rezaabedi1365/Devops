@@ -1,2 +1,3 @@
 - Minikube
 - K3S
+- Kind
