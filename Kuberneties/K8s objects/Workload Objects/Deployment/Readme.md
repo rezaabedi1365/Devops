@@ -44,7 +44,11 @@ spec:
 ```
 kubectl apply -f deploy-01.yaml
 ```
-
+```
+kubectl get deployment
+kubectl get deployment -o wide
+kubectl get deployment <DeploymentName>
+```
 ### Delete Deployment
 * when you create deploment if delete pod imediatly crate agin with deployment
 ```
