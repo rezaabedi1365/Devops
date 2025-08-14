@@ -1,0 +1,3 @@
+- PersistentVolume (PV)
+- PersistentVolumeClaim (PVC)
+- StorageClass
