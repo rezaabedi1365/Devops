@@ -78,10 +78,13 @@ kubectl delete pods <podName> --force
 ```
 - verify:
 ```
-kubectl get pods -A 
-kubectl get pods <PodName> -o wide
-kubectl get pods <PodName> -o yaml
+kubectl get pods 
+kubectl get pods -o wide
+kubectl get pods -o yaml
 kubectl describe pod <PodName>
+
+kubectl get pods -A
+kubectl get pods -o wide -A
 ```
 
 
