@@ -1,0 +1,4 @@
+- Namespace
+- LimmitRange
+- ResourceQuota
+- HPA/VPA/PorDistruptionBudget
