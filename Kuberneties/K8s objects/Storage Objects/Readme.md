@@ -1,7 +1,16 @@
-- PersistentVolume (PV)
-- PersistentVolumeClaim (PVC)
-- StorageClass
+## Storage objects
+  - PersistentVolume (PV)
+  - PersistentVolumeClaim (PVC)
+  - StorageClass
 
+## Volumes
+  - volumes  ( per Pod)
+  - volumeMounts (per Container)
+    
+## VolumeType and DriverInterface
+  - CSI
+  - emptyDir
+  - hostPath
 ------------------------------------------------------------------------
 https://kubernetes.io/docs/concepts/storage/volumes/
 
@@ -19,22 +28,8 @@ https://kubernetes.io/docs/concepts/storage/volumes/
       + GlusterFS
       + MinIO
 
---------------------------------------------------------------------------
-* Volumes
-  - volumes  ( per Pod)
-  - volumeMounts (per Container)
-* Persistent Volumes
-  - CANNOT
-  - 
-* Persistent VolumeClaims
-* StorageClesses
-  
 
----------------------------------------------------------------------------
- ## Volume Type
 
- ![image](https://github.com/user-attachments/assets/b415c151-2bfe-4456-9cce-aa634a5595c3)
- 
 Verify:
 ```
 kubectl exex -it volume-example nginx --bash
