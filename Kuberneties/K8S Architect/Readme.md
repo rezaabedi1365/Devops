@@ -21,3 +21,29 @@ systemctl status kubelet
 kubectl version
 kubeadm version
 ```
+
+# verify:
+```
+kubectl cluster-info
+```
+
+```
+kubectl get nodes
+kubectl get nodes -o wide
+kubectl describe nodes
+```
+
+```
+kubectl get pods -A
+kubectl get pods -A -o wide
+```
+
+```
+kubectl get ns
+kubectl get namespace
+```
+
+```
+kubectl get svc
+```
+
