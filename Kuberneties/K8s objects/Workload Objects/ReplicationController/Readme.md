@@ -1,5 +1,5 @@
 ## ReplicationController (RC)
-- Depricated and replace with ReplicaSet
+:x: Depricated and replace with ReplicaSet
 
 ```
 apiVersion: v1
