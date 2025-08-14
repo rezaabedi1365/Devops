@@ -1,4 +1,5 @@
 ## ReplicationController (RC)
+- Depricated and replace with ReplicaSet
 
 ```
 apiVersion: v1
