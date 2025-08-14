@@ -126,10 +126,18 @@ sudo rm -rf /etc/kubernetes
 ```
 sudo iptables -F && sudo iptables -t nat -F && sudo iptables -t mangle -F
 sudo iptables -X
+```
+Flannel
+```
 sudo ip link delete cni0
 sudo ip link delete flannel.1
 ```
-
+calico
+```
+sudo ip link delete cni0
+sudo ip link delete tunl0         # اگر Calico روی IP-in-IP هست
+sudo ip link delete vxlan.calico  # اگر Calico روی VXLAN هست
+```
 ```
 sudo kubeadm init --pod-network-cidr=192.168.0.0/16
 ```
