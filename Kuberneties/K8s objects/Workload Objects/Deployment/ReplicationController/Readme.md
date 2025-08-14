@@ -22,7 +22,10 @@ spec:
         ports:
         - containerPort: 80
 ```
-### use deployment object
+```
+kubectl get rc -o wide
+```
+:heavy_check_mark: use deployment object
 ```
 apiVersion: apps/v1
 kind: Deployment
