@@ -1,6 +1,6 @@
 ## ReplicationController (RC)
-:x: Depricated and replace with ReplicaSet
-:heavy_check_mark: use Deployment object
+- :x: Depricated and replace with ReplicaSet
+- :heavy_check_mark: use Deployment object
 
 ```
 apiVersion: v1
