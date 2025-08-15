@@ -11,7 +11,7 @@
 - Network Policy
 
 -----------------------------------------------
-# kubernetirs Network
+# kuberneties Network
 - ingress (Kubernetes Resource)
      * Network Service
 - Ha proxy ( external Load Balancer / Reverse Proxy )
