@@ -5,9 +5,9 @@
 -----------------------------------------------
 # kubernetirs Network
 - ingress (Kubernetes Resource)
-      * Network Service
+     * Network Service
 - Ha proxy ( external Load Balancer / Reverse Proxy )
-      * Network Service
+     * Network Service
   
 ## Network Service
 * ClusterIP (Default)
