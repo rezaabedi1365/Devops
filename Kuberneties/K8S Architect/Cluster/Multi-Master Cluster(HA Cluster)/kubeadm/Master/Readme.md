@@ -68,7 +68,12 @@ sudo apt-mark hold kubelet kubeadm kubectl
 ### Step 4: Initialize Kubernetes Cluster
 ### 192.168.0.0/24 cidr for calico &   10.244.0.0/16 cidr for Flannel
 sudo kubeadm config images pull
-sudo kubeadm init --apiserver-advertise-address <MasterIpAddress> --pod-network-cidr 192.168.0.0/24 --cri-socket unix:///var/run/containerd/containerd.sock
+kubeadm init \
+  --control-plane-endpoint "<MasterIpAddress>:6443" \
+  --upload-certs \
+  --pod-network-cidr=192.168.0.0/16 \
+  --apiserver-advertise-address <MasterIpAddress>
+
 
 ### user Pormission
 mkdir -p $HOME/.kube
