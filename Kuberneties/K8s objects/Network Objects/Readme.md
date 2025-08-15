@@ -1,3 +1,4 @@
+- External Haproxy or Nginx
 - Ingress Controller
     * HAProxy ingress Controller
     * NGINX ingress Controller
@@ -6,7 +7,7 @@
     * Nodeport Service
     * Loadbalancer
     * ExternalName
-- External Haproxy or Nginx
+
 - Network Policy
 
 -----------------------------------------------
