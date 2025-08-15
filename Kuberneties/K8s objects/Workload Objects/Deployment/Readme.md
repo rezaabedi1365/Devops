@@ -25,11 +25,6 @@ spec:
   selector:
     matchLabels:
       app: nginx       ## point to PodName
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable : 0
   template:            ## pod information template for create replicas
     metadata:
       labels:
