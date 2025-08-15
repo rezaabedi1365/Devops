@@ -112,7 +112,14 @@ journalctl -u kubelet -f
 kubeadm token list
 kubeadm token create --print-join-command
 ```
-
+# join Master
+```
+kubeadm join <CONTROL_PLANE_ENDPOINT>:6443 \
+  --token <TOKEN> \
+  --discovery-token-ca-cert-hash sha256:<HASH> \
+  --control-plane \
+  --certificate-key <CERT_KEY>
+```
 # Reset cluster
 ```
 sudo kubeadm reset
