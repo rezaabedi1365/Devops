@@ -25,6 +25,9 @@ spec:
 ```
 kubectl get rc -o wide
 ```
+```
+kubectl scale --replicas=5 <replicaName/podname>
+```
 :heavy_check_mark: use deployment object
 ```
 apiVersion: apps/v1
