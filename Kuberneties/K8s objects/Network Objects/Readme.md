@@ -57,8 +57,8 @@ kubectl get svc
 ```
 ### 2- Nodeport service
 :heavy_check_mark:  Nodeport service with HAproxy ingress controller and External HAproxy use for project
-- [ExternalIP(hostip):3000] 5.120.11.20:30008 > [NodportService-IP] 10.244.2.8:8080  > [Pod-IP] 10.10.12.20:80
-- NodportService-IP is Mastercluster ip . with workercluster ip can be see it but maybe will be change.
+- [ExternalIP(Master|worker):3000] 5.120.11.20:30008 > [NodportSVC-IP] 10.244.2.8:8080  > [Pod-IP] 10.10.12.20:80
+- ExternalIP is Mastercluster ip or workerclusterip Butt workercluster ip maybe will be change therfore use MasterIP.
 
 - Create Namespace > Pod > Nodport Service
 ```
