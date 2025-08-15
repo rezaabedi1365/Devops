@@ -8,7 +8,8 @@
   
 ### Kube-system Namespace on Worker
 - coredns ( 2 core for all architechtur)
-- kube-proxy 
+- kube-proxy
+    * use for releation betwen cluster nods and masters
 - kube-calico
 
 ### kubelet
