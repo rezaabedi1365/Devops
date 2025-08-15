@@ -8,7 +8,7 @@
 * ClusterIP (Default)
 * NodePort
     - above 30000
-* LoadBalancer
+* LoadBalancer (depricated)
     - ingress
     - Metallb on bermetal
        + ALB
