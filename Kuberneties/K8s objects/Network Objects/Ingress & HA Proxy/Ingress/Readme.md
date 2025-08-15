@@ -1,4 +1,0 @@
-## install with Helm
-```
-```
-
