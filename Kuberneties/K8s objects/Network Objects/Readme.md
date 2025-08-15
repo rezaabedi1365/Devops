@@ -47,7 +47,8 @@ clusterIP: 10.105.10.10          # optional and use for spcify IP
 kubectl get svc
 ```
 ### 2- Nodeport service
-nodeport 5.120.11.20:30001 > service port (master port) 10.244.2.8:8080  > pod port(target port) 10.10.12.20:80 or [Pod /pods/rc]
+:heavy_check_mark:  Nodeport service with HA proxy use for project
+- nodeport 5.120.11.20:30001 > service port (master port) 10.244.2.8:8080  > pod port(target port) 10.10.12.20:80 or [Pod /pods/rc]
 ```
 apiVersion: v1
 kind: Service
