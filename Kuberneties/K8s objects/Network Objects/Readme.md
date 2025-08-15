@@ -9,7 +9,7 @@
 - Ha proxy ( external Load Balancer / Reverse Proxy )
      * Network Service
   
-## Network Service
+### Network Service
 * ClusterIP (Default)
 * NodePort
     - above 30000
