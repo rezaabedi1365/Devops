@@ -49,6 +49,44 @@ kubectl get deployment
 kubectl get deployment -o wide
 kubectl get deployment <DeploymentName>
 ```
+- rollingUpdate
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx       ## point to PodName
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable : 0
+  template:            ## pod information template for create replicas
+    metadata:
+      labels:
+        app: nginx     ## PodName
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+```
+```
+kubectl apply -f deploy-01.yaml
+```
+```
+kubectl get deployment
+kubectl get deployment -o wide
+kubectl get deployment <DeploymentName>
+```
+
 ### Delete Deployment
 * when you create deploment if delete pod imediatly crate agin with deployment
 ```
