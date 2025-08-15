@@ -94,3 +94,69 @@ spec:
               number: 80
 
 ```
+
+- sample
+```
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: zabbix-NS
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deploy
+  namespace: zabbix-NS
+  labels:
+    app: zabbix
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zabbix
+  template:
+    metadata:
+      labels:
+        app: zabbix
+    spec:
+      containers:
+      - name: nginx-cont
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-svc
+  namespace: zabbix-NS
+spec:
+  type: NodePort
+  selector:
+    app: zabbix
+  ports:
+    - port: 8080
+      targetPort: 80
+      nodePort: 30008
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: zabbix-web-ingress
+  namespace: zabbix-NS
+spec:
+  ingressClassName: haproxy
+  rules:
+  - host: zabbix.yourdomain.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx-svc
+            port:
+              number: 8080
+
+```
