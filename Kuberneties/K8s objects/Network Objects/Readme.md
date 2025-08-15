@@ -47,12 +47,12 @@ kubectl get svc
 ```
 ### 2- Nodeport service
 :heavy_check_mark:  Nodeport service with HA proxy use for project
-- [ExternalIP:3000] 5.120.11.20:30001 > [ClusterIP] 10.244.2.8:8080  > [Pod-IP] 10.10.12.20:80 
+- [ExternalIP:3000] 5.120.11.20:30008 > [ClusterIP] 10.244.2.8:8080  > [Pod-IP] 10.10.12.20:80 
 ```
 apiVersion: v1
 kind: Pod
 metadata:                  
-  name: nginx-pod          #PodName     
+  name: nginx-pod           #PodName     
   namespace: zabbix-NS
   label:
     app: zabbix
