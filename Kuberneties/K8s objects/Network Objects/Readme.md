@@ -20,7 +20,8 @@
        + GWLB 
 * ExternalName
     - Cname Record
-<img width="1500" height="1950" alt="image" src="https://github.com/user-attachments/assets/d94bbd08-5ba7-4714-93d1-0f7ca610d0c4" />
+<img width="688" height="904" alt="image" src="https://github.com/user-attachments/assets/036ddf7d-dd12-4b40-96b4-2f6cb5df018e" />
+
 
 
 
