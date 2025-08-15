@@ -54,7 +54,7 @@ kind: Pod
 metadata:                  
   name: nginx-pod           #PodName     
   namespace: zabbix-NS
-  label:
+  labels:
     app: zabbix
 spec:
   containers:
@@ -66,14 +66,15 @@ spec:
 ---
 apiVersion: v1
 kind: Service
-metadate:
+metadata:
   name: nginx-svc
+  namespace: zabbix-NS      #in service must write pod namespace 
 spec:
   type: NodePort
   ports:
     - port: 8080         #(service port)
       targetPort: 80     #(container port in pod )
-      nodetPort: 30008   #(host port)
+      nodePort: 30008   #(host port)
   selector:
     app: zabbix           #Point to pod label>app
 ```
