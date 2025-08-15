@@ -87,8 +87,52 @@ spec:
   selector:
     app: zabbix           #Point to pod label>app
 ```
+```
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: zabbix-NS
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deploy
+  namespace: zabbix-NS
+  labels:
+    app: zabbix
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zabbix
+  template:
+    metadata:
+      labels:
+        app: zabbix
+    spec:
+      containers:
+      - name: nginx-cont
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-svc
+  namespace: zabbix-NS
+spec:
+  type: NodePort
+  selector:
+    app: zabbix
+  ports:
+    - port: 8080        # پورت سرویس
+      targetPort: 80    # پورت داخل پاد
+      nodePort: 30008   # پورت روی نود
+
+```
 show pods behind specfic service
-kubectl describe svc nginx-svc
 ```
 kubectl describe svc nginx-svc
 ```
