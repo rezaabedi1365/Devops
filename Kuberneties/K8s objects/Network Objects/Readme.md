@@ -50,6 +50,13 @@ kubectl get svc
 - [ExternalIP:3000] 5.120.11.20:30008 > [ClusterIP] 10.244.2.8:8080  > [Pod-IP] 10.10.12.20:80 
 ```
 apiVersion: v1
+kind: Namespace
+metadata:
+  name: zabbix-NS
+
+---
+
+apiVersion: v1
 kind: Pod
 metadata:                  
   name: nginx-pod           #PodName     
@@ -63,7 +70,9 @@ spec:
     ports:
     - containerPort: 80
       protocol: TCP
+
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
