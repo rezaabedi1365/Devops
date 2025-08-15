@@ -77,13 +77,12 @@ kubeadm token create --print-join-command
 ```
 :heavy_check_mark: run with root user
 ```
-echo "-------------Joining the Kubernetes cluster-------------"
-# دستور join را جایگزین دستور نمونه زیر کنید (با توکن و hash متناسب با مستر خود)
-sudo kubeadm join 10.10.12.22:6443 --token shmky1.6pagk5qwxf420bny --discovery-token-ca-cert-hash sha256:bb5bf288811c38117ff439e6db4d372e7d357d558d33aaafc9094471afca22f4
+kubeadm join <CONTROL_PLANE_ENDPOINT>:6443 \
+  --token <TOKEN> \
+  --discovery-token-ca-cert-hash sha256:<HASH>
 
-echo "-------------Node joined to cluster successfully-------------"
 ```
+- run in master
 ```
-# run in master
 kubectl get nodes
 ```
