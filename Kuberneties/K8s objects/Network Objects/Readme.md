@@ -36,6 +36,9 @@ spec:
       targetPort: 8080
 clusterIP: 10.105.10.10          # optional and use for spcefy IP
 ```
+```
+kubectl get svc
+```
 #### Nodeport service
 nodeport 5.120.11.20:30001 > service port (master port) 10.244.2.8:8080  > pod port(target port) 10.10.12.20:80 or [Pod /pods/rc]
 ```
