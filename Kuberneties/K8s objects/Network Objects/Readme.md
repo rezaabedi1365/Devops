@@ -76,6 +76,8 @@ kubectl describe ep svc-01
 ```
 kubectl create -f svc.yaml
 ```
+<img width="1170" height="460" alt="image" src="https://github.com/user-attachments/assets/1d505ddf-5d6a-4be6-b35a-e5c6a4e4f00c" />
+
 ### 3- LoadBalancer Service
 Use olny in Service Provider - Cant use in local Kuberneties
 ```
