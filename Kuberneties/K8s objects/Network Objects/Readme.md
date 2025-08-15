@@ -1,7 +1,7 @@
-- Service
-- Ingress
-- Network Policy
 
+
+- Service
+- Network Policy
 -----------------------------------------------
 # kubernetirs Network
 - ingress (Kubernetes Resource)
