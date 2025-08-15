@@ -26,6 +26,7 @@
  ------------------------------------------------------------------------------------------------------------------------------
 
 ### 1- cluster ip (local)
+- By Default create ClusterIP Network service for your pods you dont need to create on . 
 [ClusterIP]10.103.81.165:8080  > (Pod-IP)10.244.3.10:80
 ```
 apiVersion: v1
@@ -49,6 +50,21 @@ kubectl get svc
 - [ExternalIP:3000] 5.120.11.20:30001 > [ClusterIP] 10.244.2.8:8080  > [Pod-IP] 10.10.12.20:80 
 ```
 apiVersion: v1
+kind: Pod
+metadata:                  
+  name: nginx-pod          #PodName     
+  namespace: zabbix-NS
+  label:
+    app: zabbix
+spec:
+  containers:
+  - name: nginx-cont        #ContainerName
+    image: nginx:1.14.2
+    ports:
+    - containerPort: 80
+      protocol: TCP
+---
+apiVersion: v1
 kind: Service
 metadate:
   name: nginx-svc
@@ -59,7 +75,7 @@ spec:
       targetPort: 80     #(container port in pod )
       nodetPort: 30008   #(host port)
   selector:
-    app: myapp           #Point to podName
+    app: zabbix           #Point to pod label>app
 ```
 show pods behind specfic service
 kubectl describe svc nginx-svc
