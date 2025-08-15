@@ -1,12 +1,14 @@
 - Ingress Controller
-    * HA Proxy ingress Controller
+    * HAProxy ingress Controller
     * NGINX ingress Controller
 - Service
     * ClusterIP
     * Nodeport Service
     * Loadbalancer
     * ExternalName
+- External Haproxy or Nginx
 - Network Policy
+
 -----------------------------------------------
 # kubernetirs Network
 - ingress (Kubernetes Resource)
