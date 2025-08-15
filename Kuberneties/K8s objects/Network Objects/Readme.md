@@ -39,7 +39,7 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 8080
-clusterIP: 10.105.10.10          # optional and use for spcefy IP
+clusterIP: 10.105.10.10          # optional and use for spcify IP
 ```
 ```
 kubectl get svc
