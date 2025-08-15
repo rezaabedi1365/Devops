@@ -47,7 +47,9 @@ kubectl get svc
 ```
 ### 2- Nodeport service
 :heavy_check_mark:  Nodeport service with HA proxy use for project
-- [ExternalIP:3000] 5.120.11.20:30008 > [ClusterIP] 10.244.2.8:8080  > [Pod-IP] 10.10.12.20:80 
+- [ExternalIP:3000] 5.120.11.20:30008 > [ClusterIP] 10.244.2.8:8080  > [Pod-IP] 10.10.12.20:80
+
+- Create Namespace > Pod > Nodport Service
 ```
 apiVersion: v1
 kind: Namespace
@@ -87,6 +89,7 @@ spec:
   selector:
     app: zabbix           #Point to pod label>app
 ```
+- Create Namespace > Deployment insted Pod > Nodport Service
 ```
 apiVersion: v1
 kind: Namespace
