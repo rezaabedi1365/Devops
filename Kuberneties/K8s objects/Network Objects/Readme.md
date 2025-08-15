@@ -1,4 +1,4 @@
-- External Haproxy or Nginx
+- External Haproxy or Nginx [in multi-master cluster]
 - Ingress Controller
     * HAProxy ingress Controller
     * NGINX ingress Controller
