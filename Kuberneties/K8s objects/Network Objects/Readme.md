@@ -47,7 +47,7 @@ kubectl get svc
 ```
 ### 2- Nodeport service
 :heavy_check_mark:  Nodeport service with HA proxy use for project
-- [ExternalIP:3000] 5.120.11.20:30008 > [ClusterIP] 10.244.2.8:8080  > [Pod-IP] 10.10.12.20:80
+- [ExternalIP(hostip):3000] 5.120.11.20:30008 > [NodportService-IP] 10.244.2.8:8080  > [Pod-IP] 10.10.12.20:80
 
 - Create Namespace > Pod > Nodport Service
 ```
