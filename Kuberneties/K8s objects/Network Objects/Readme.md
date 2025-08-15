@@ -1,4 +1,11 @@
+- Ingress Controller
+    * HA Proxy ingress Controller
+    * NGINX ingress Controller
 - Service
+    * ClusterIP
+    * Nodeport Service
+    * Loadbalancer
+    * ExternalName
 - Network Policy
 -----------------------------------------------
 # kubernetirs Network
