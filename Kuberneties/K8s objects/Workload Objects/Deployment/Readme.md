@@ -155,13 +155,13 @@ kubectl rollout resume deployment/nginx-deployment
 
 ### verify:
 ```
-kubectl get deploy
-kebectl describe deploy nginx-rs
+kubectl get deploy -n <Namespace>
+kebectl describe deploy <Podname>
 
-kubectl get rs
-kubectl describe rs
+kubectl get rs -n <Namespace>
+kubectl describe rs -n <namespace>
 
-kubectl logs deploy/nginx-deployment
+kubectl logs deploy/<DeploymentName>
 ```
 
 ### Delete Deployment
