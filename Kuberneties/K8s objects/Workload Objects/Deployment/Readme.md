@@ -18,23 +18,26 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-deployment
+  namespace: push-stage      
   labels:
     app: nginx
+    version: "1.14.2"       
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: nginx       ## point to PodName
-  template:            ## pod information template for create replicas
+      app: nginx
+  template:
     metadata:
       labels:
-        app: nginx     ## PodName
+        app: nginx
     spec:
       containers:
       - name: nginx
         image: nginx:1.14.2
         ports:
         - containerPort: 80
+
 ```
 ```
 kubectl apply -f deploy-01.yaml
