@@ -75,7 +75,7 @@ kubectl rollout history deployment/deploy-nginx-1-14-2 -n push-stage
 - Rollout with yaml
 - Rollout with kubectl
 
-#### roolout with kubectl
+## roolout with kubectl
 
 ```
 kubectl set image deployment/nginx-deploy nginx=nginx:1.16.1
@@ -84,7 +84,7 @@ kubectl set image deployment/nginx-deploy nginx=nginx:1.16.1
 kubectl annotate deployment/nginx-deployment kubernetes.io/change-cause="image updated to 1.16.1"
 kubectl rollout history deployment
 ```
-##### roulout with yaml
+## roulout with yaml
 ```
 apiVersion: apps/v1
 kind: Deployment
