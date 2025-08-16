@@ -17,7 +17,7 @@ In deployment we create replicaset
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deploy-nginx-1.14.2
+  name: deploy-nginx-1-14-2
   namespace: push-stage
   labels:
     app: nginx
@@ -41,18 +41,26 @@ spec:
 
 ```
 ```
-kubectl apply -f deploy-01.yaml
+kubectl apply -f deploy_nginx-1.14.2.yaml
 ```
 ```
-kubectl get deployment
-kubectl get deployment -o wide
-kubectl get deployment <DeploymentName>
+kubectl get pods -n push-stage
+kubectl get pods -n push-stage -o wide
+kubectl get deployment -n push-stage
+kubectl get deployment -n push-stage -o wide
+kubectl get rs -n push-stage
 ```
 ### Scaling Deployments
+- HorizontalPodAutoscaler (HPA)
 ```
-kubectl scale deployment/nginx-deployment --replicas=10
-kubectl autoscale deployment/nginx-deployment --min=10 --max=15 --cpu-percent=80
-kubectl get rs -o wide
+kubectl scale deployment/deploy-nginx-1-14-2 --replicas=10 -n push-stage
+```
+```
+kubectl autoscale deployment/deploy-nginx-1-14-2 \
+  --min=10 \
+  --max=15 \
+  --cpu-percent=80 \
+  -n push-stage
 ```
 ## anotate
 ```
