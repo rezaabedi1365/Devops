@@ -1,3 +1,5 @@
+
+install gitlab-ce cumunity Edition
 ```
 sudo apt update && sudo apt upgrade -y
 
