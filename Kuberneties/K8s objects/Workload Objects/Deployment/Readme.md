@@ -98,15 +98,16 @@ kubectl rollout history deployment -n push-stage
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: deploy-nginx-1-14-2
+  namespace: push-stage
   labels:
     app: nginx
+    version: "1.16.1"
 spec:
   replicas: 3
   selector:
     matchLabels:
       app: nginx
-  minReadySeconds: 10
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -116,12 +117,14 @@ spec:
     metadata:
       labels:
         app: nginx
+        version: "1.16.1"
     spec:
       containers:
       - name: nginx
         image: nginx:1.16.1
         ports:
         - containerPort: 80
+
 ```
 ```
 kubectl apply -f deploy-01.yaml
