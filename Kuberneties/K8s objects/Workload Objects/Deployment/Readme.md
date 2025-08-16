@@ -44,51 +44,6 @@ kubectl get deployment
 kubectl get deployment -o wide
 kubectl get deployment <DeploymentName>
 ```
-- rollingUpdate
-```
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-deployment
-  labels:
-    app: nginx
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: nginx       ## point to PodName
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable : 0
-  template:            ## pod information template for create replicas
-    metadata:
-      labels:
-        app: nginx     ## PodName
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
-```
-```
-kubectl apply -f deploy-01.yaml
-```
-```
-kubectl get deployment
-kubectl get deployment -o wide
-kubectl get deployment <DeploymentName>
-```
-
-### Delete Deployment
-* when you create deploment if delete pod imediatly crate agin with deployment
-```
-kubectl get deploy
-kubectl delete deployment nginx-deployment
-```
-
 ### Scaling Deployments
 ```
 kubectl scale deployment/nginx-deployment --replicas=10
@@ -99,6 +54,7 @@ kubectl get rc -o wide
 ```
 kubectl set image deployment/nginx-deploy nginx=nginx:1.16.1
 ```
+
 ##### Updating a Deployment Using Yaml
 ```
 apiVersion: apps/v1
@@ -150,16 +106,6 @@ kubectl rollout resume deployment/nginx-deployment
 ```
 
 
-### Interacting with Nodes and cluster
-* Stopping nodes for maintenance and other managements:
-```
-kubectl cordon node2
-kubectl uncordon node2
-kubectl drain node2
-
-```
-
-
 ### verify:
 ```
 kubectl get deploy
@@ -169,4 +115,11 @@ kubectl get rs
 kubectl describe rs
 
 kubectl logs deploy/nginx-deployment
+```
+
+### Delete Deployment
+* when you create deploment if delete pod imediatly crate agin with deployment
+```
+kubectl get deploy
+kubectl delete deployment nginx-deployment
 ```
