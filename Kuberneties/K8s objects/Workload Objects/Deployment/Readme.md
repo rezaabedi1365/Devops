@@ -48,7 +48,7 @@ kubectl get deployment <DeploymentName>
 ```
 kubectl scale deployment/nginx-deployment --replicas=10
 kubectl autoscale deployment/nginx-deployment --min=10 --max=15 --cpu-percent=80
-kubectl get rc -o wide
+kubectl get rs -o wide
 ```
 ## anotate
 ```
@@ -57,8 +57,17 @@ kubectl rollout history deployment
 ```
 
 # Rolleout
+- Rollout with yaml
+- Rollout with kubectl
+
+#### roolout with kubectl
+
 ```
 kubectl set image deployment/nginx-deploy nginx=nginx:1.16.1
+```
+```
+kubectl annotate deployment/nginx-deployment kubernetes.io/change-cause="image updated to 1.16.1"
+kubectl rollout history deployment
 ```
 ##### roulout with yaml
 ```
@@ -90,32 +99,29 @@ spec:
         ports:
         - containerPort: 80
 ```
-
-##### Rollout with yaml
 ```
-kubectl set image 
+kubectl apply -f deploy-01.yaml
 ```
-
 ```
 kubectl rollout history deployment/nginx-deployment
 kubectl rollout status deployment/nginx-deployment
 ```
 
-### RollBack to a Previous Revision
+## RollBack to a Previous Revision
+
+```
+kubectl rollout history deployment/nginx-deployment
+kubectl rollout status deployment/nginx-deployment
+```
 
 ```
 kubectl rollout undo deployment/nginx-deployment
 kubectl rollout undo deployment/nginx-deployment --to-revision=2
 ```
 
-
-kubectl rollout history deployment/nginx-deployment
-kubectl rollout status deployment/nginx-deployment
-
+```
 kubectl rollout pause deployment/nginx-deployment
 kubectl rollout resume deployment/nginx-deployment
-
-
 ```
 
 
