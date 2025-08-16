@@ -53,6 +53,7 @@ kubectl get rc -o wide
 ## anotate
 ```
 kubectl annotate deployment/nginx-deployment kubernetes.io/change-cause="image updated to 1.16.1"
+kubectl rollout history deployment
 ```
 
 # Rolleout
