@@ -13,12 +13,12 @@ In deployment we create replicaset
      + maxSure
      + maxUnavailable
 --------------------------------------------------
-:red_circle: The Deployment name can only be changed by creating a new Deployment .
+:red_circle: The Deployment name can only be changed by creating a new Deployment; therefore, to keep the rollout history, the Deployment name must remain fixed.
 ```
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deploy-nginx-1-14-2
+  name: deploy-nginx
   namespace: push-stage
   labels:
     app: nginx
@@ -99,7 +99,7 @@ kubectl rollout history deployment -n push-stage
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deploy-nginx-1-16-1
+  name: deploy-nginx
   namespace: push-stage
   labels:
     app: nginx
