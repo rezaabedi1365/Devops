@@ -92,7 +92,7 @@ spec:
 
 ```
 
-### revisionHistoryLimit
+### updateStrategy
 ```
 apiVersion: apps/v1
 kind: DaemonSet
