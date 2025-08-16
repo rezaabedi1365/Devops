@@ -1,30 +1,5 @@
-🔹 updateStrategy
+<img width="816" height="479" alt="image" src="https://github.com/user-attachments/assets/adfabc55-086c-46e1-b862-6b7c43bd06da" />
 
-    Two possible strategies for StatefulSets:
-
-      1- RollingUpdate (default)
-
-    Pods are updated sequentially, respecting their ordinal index.
-
-    Extra option:
-
-    partition:
-
-  partition: 0 → update all pods.
-
-    partition: n → only pods with ordinal ≥ n are updated; lower ones stay on the old version.
-
-OnDelete
-
-Pods will not update automatically when the StatefulSet spec changes.
-
-You need to manually delete each pod → the new version will be created.
-
-✅ Key difference vs. DaemonSet:
-
-DaemonSet uses maxUnavailable for rolling updates.
-
-StatefulSet uses partition, because pod order and identity matter.
 
 ```
 apiVersion: apps/v1
