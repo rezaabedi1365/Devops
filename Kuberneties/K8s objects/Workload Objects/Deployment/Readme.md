@@ -13,6 +13,7 @@ In deployment we create replicaset
      + maxSure
      + maxUnavailable
 --------------------------------------------------
+:red_circle: The Deployment name can only be changed by creating a new Deployment .
 ```
 apiVersion: apps/v1
 kind: Deployment
@@ -76,9 +77,9 @@ kubectl rollout history deployment -n push-stage
 - Rollout with kubectl
 
 ## roolout with kubectl
-
+:red_circle: The Deployment name can only be changed by creating a new Deployment .
 ```
-kubectl set image deployment/deploy-nginx-1-14-2 \
+kubectl set image deployment/deploy-nginx \
   nginx=nginx:1.16.1 \
   -n push-stage
 ```
@@ -98,7 +99,7 @@ kubectl rollout history deployment -n push-stage
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deploy-nginx-1-14-2
+  name: deploy-nginx-1-16-1
   namespace: push-stage
   labels:
     app: nginx
@@ -127,7 +128,7 @@ spec:
 
 ```
 ```
-kubectl apply -f deploy-01.yaml
+kubectl apply -f deploy_nginx-1.16.1.yaml
 ```
 ```
 kubectl rollout history deployment/nginx-deployment
