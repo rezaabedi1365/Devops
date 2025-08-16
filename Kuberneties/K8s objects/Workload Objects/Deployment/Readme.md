@@ -50,12 +50,16 @@ kubectl scale deployment/nginx-deployment --replicas=10
 kubectl autoscale deployment/nginx-deployment --min=10 --max=15 --cpu-percent=80
 kubectl get rc -o wide
 ```
-### update image
+## anotate
+```
+kubectl annotate deployment/nginx-deployment kubernetes.io/change-cause="image updated to 1.16.1"
+```
+
+# Rolleout
 ```
 kubectl set image deployment/nginx-deploy nginx=nginx:1.16.1
 ```
-
-##### Updating a Deployment Using Yaml
+##### roulout with yaml
 ```
 apiVersion: apps/v1
 kind: Deployment
@@ -86,15 +90,23 @@ spec:
         - containerPort: 80
 ```
 
-### Rolling Back to a Previous Revision
-deployment 
-* deployment/nginx-deployment
-* deployment.app/nginx-deployment
+##### Rollout with yaml
+```
+kubectl set image 
+```
+
+```
+kubectl rollout history deployment/nginx-deployment
+kubectl rollout status deployment/nginx-deployment
+```
+
+### RollBack to a Previous Revision
+
 ```
 kubectl rollout undo deployment/nginx-deployment
 kubectl rollout undo deployment/nginx-deployment --to-revision=2
+```
 
-kubectl annotate deployment/nginx-deployment kubernetes.io/change-cause="image updated to 1.16.1"
 
 kubectl rollout history deployment/nginx-deployment
 kubectl rollout status deployment/nginx-deployment
