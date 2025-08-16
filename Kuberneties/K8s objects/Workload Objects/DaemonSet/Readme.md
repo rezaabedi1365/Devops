@@ -1,4 +1,5 @@
-use for create pod in all nod and always available with high priority
+- use for create pod in all nod and always available with high priority
+- suitable for agent same as zabbix and ....
 - can use nod selector
 ## DaemonSets
 * revisionHistoryLimit
