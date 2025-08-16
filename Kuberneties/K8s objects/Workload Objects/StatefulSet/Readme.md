@@ -1,27 +1,31 @@
-وضیح‌ها:
+🔹 updateStrategy
 
-revisionHistoryLimit
-مثل Deployment و DaemonSet → تعداد history (ControllerRevisions) که نگه داشته میشه.
+Two possible strategies for StatefulSets:
 
-updateStrategy
+RollingUpdate (default)
 
-حالت‌های قابل استفاده:
+Pods are updated sequentially, respecting their ordinal index.
 
-RollingUpdate (پیش‌فرض): پادها به صورت تدریجی آپدیت میشن.
+Extra option:
 
-پارامتر partition خیلی مهمه:
+partition:
 
-اگر partition=0 → همه پادها آپدیت میشن.
+partition: 0 → update all pods.
 
-اگر partition=n → فقط پادهایی با ایندکس ≥ n آپدیت میشن، بقیه همون ورژن قدیمی می‌مونن.
+partition: n → only pods with ordinal ≥ n are updated; lower ones stay on the old version.
 
-OnDelete: مثل DaemonSet → پادها فقط وقتی آپدیت میشن که خودت دستی پاکشون کنی.
+OnDelete
 
-🔎 فرق اصلی با DaemonSet:
+Pods will not update automatically when the StatefulSet spec changes.
 
-DaemonSet از maxUnavailable استفاده می‌کنه، ولی StatefulSet از partition.
+You need to manually delete each pod → the new version will be created.
 
-StatefulSet روی ترتیب و identity پادها خیلی حساسه.
+✅ Key difference vs. DaemonSet:
+
+DaemonSet uses maxUnavailable for rolling updates.
+
+StatefulSet uses partition, because pod order and identity matter.
+
 ```
 apiVersion: apps/v1
 kind: StatefulSet
