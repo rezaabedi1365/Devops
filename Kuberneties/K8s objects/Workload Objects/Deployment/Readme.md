@@ -17,7 +17,7 @@ In deployment we create replicaset
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deploy_nginx-1.14.2
+  name: deploy-nginx-1.14.2
   namespace: push-stage      
   labels:
     app: nginx
@@ -29,7 +29,6 @@ spec:
       app: nginx
   template:
     metadata:
-      amespace: push-stage  
       labels:
         app: nginx
         version: "1.14.2"  
