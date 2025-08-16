@@ -11,3 +11,12 @@ curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/scrip
 sudo EXTERNAL_URL="http://10.10.12.18" apt install gitlab-ce -y
 
 ```
+
+- GitLab Runner
+```
+sudo apt install gitlab-runner -y
+sudo gitlab-runner register
+```
+```
+sudo gitlab-runner status
+```
