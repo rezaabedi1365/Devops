@@ -1,18 +1,18 @@
 🔹 updateStrategy
 
-Two possible strategies for StatefulSets:
+    Two possible strategies for StatefulSets:
 
-RollingUpdate (default)
+      1- RollingUpdate (default)
 
-Pods are updated sequentially, respecting their ordinal index.
+    Pods are updated sequentially, respecting their ordinal index.
 
-Extra option:
+    Extra option:
 
-partition:
+    partition:
 
-partition: 0 → update all pods.
+  partition: 0 → update all pods.
 
-partition: n → only pods with ordinal ≥ n are updated; lower ones stay on the old version.
+    partition: n → only pods with ordinal ≥ n are updated; lower ones stay on the old version.
 
 OnDelete
 
