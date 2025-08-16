@@ -18,10 +18,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: deploy-nginx-1.14.2
-  namespace: push-stage      
+  namespace: push-stage
   labels:
     app: nginx
-    version: "1.14.2"       
+    version: "1.14.2"
 spec:
   replicas: 3
   selector:
@@ -31,7 +31,7 @@ spec:
     metadata:
       labels:
         app: nginx
-        version: "1.14.2"  
+        version: "1.14.2"
     spec:
       containers:
       - name: nginx
