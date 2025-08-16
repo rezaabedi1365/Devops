@@ -64,10 +64,13 @@ kubectl autoscale deployment/deploy-nginx-1-14-2 \
 ```
 ## anotate
 ```
-kubectl annotate deployment/nginx-deployment kubernetes.io/change-cause="image updated to 1.16.1"
-kubectl rollout history deployment
+kubectl annotate deployment/deploy-nginx-1-14-2 \
+  kubernetes.io/change-cause="image updated to 1.16.1" \
+  -n push-stage --overwrite
 ```
-
+```
+kubectl rollout history deployment/deploy-nginx-1-14-2 -n push-stage
+```
 # Rolleout
 - Rollout with yaml
 - Rollout with kubectl
