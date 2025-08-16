@@ -69,21 +69,30 @@ kubectl annotate deployment/deploy-nginx-1-14-2 \
   -n push-stage --overwrite
 ```
 ```
-kubectl rollout history deployment/deploy-nginx-1-14-2 -n push-stage
+kubectl rollout history deployment -n push-stage
 ```
-# Rolleout
+# Rollout
 - Rollout with yaml
 - Rollout with kubectl
 
 ## roolout with kubectl
 
 ```
-kubectl set image deployment/nginx-deploy nginx=nginx:1.16.1
+kubectl set image deployment/deploy-nginx-1-14-2 \
+  nginx=nginx:1.16.1 \
+  -n push-stage
 ```
+- anotate
 ```
-kubectl annotate deployment/nginx-deployment kubernetes.io/change-cause="image updated to 1.16.1"
-kubectl rollout history deployment
+kubectl annotate deployment/deploy-nginx-1-14-2 \
+  kubernetes.io/change-cause="image updated to 1.16.1" \
+  -n push-stage --overwrite
 ```
+- rollout history
+```
+kubectl rollout history deployment -n push-stage
+```
+
 ## roulout with yaml
 ```
 apiVersion: apps/v1
