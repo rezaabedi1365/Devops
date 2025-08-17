@@ -29,13 +29,17 @@ nano /etc/gitlab/gitlab.rb
 curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | sudo bash
 sudo apt install gitlab-runner -y
 ```
+- method 1
+```
+gitlab-runner register
+```
+<img width="1045" height="259" alt="image" src="https://github.com/user-attachments/assets/8910d611-37d0-4f8f-9e92-34ee70356db3" />
 
+- method 2
 ```
 gitlab-runner register  --url http://10.10.12.18  --token glrt-I2lmHY0dAwVt3Oauiapwr286MQpwOjIKdDozCnU6MQ8.01.1712fij8y
 ```
-```
-gitlab-runner run
-```
+
 - verify
 ```
 sudo gitlab-runner status
