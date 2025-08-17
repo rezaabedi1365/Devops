@@ -31,6 +31,13 @@ nano /etc/gitlab/gitlab.rb
 curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | sudo bash
 sudo apt install gitlab-runner -y
 ```
+### Runner registery tag format Suggested
+
+<project>-<executor>-<stage>-<master-number>
+```
+push-shell-deplpy-master1
+push-kuberneties-deploy-master1
+```
 - method 1
 - in this method have some questioin step aboue gitlab address , type of executer and name for runner
 ```
