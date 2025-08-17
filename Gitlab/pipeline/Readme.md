@@ -28,6 +28,22 @@ deploy_job:
 
 ```
 
+- Commit Cindition
+```
+stages:
+  - deploy
+
+deploy_nginx:
+  stage: deploy
+  script:
+    - echo "Deploying..."
+  rules:
+    - if: '$CI_COMMIT_MESSAGE =~ /deploy/'
+      when: always
+    - when: never
+
+```
+
 - runner tag
 ```
 stages:
