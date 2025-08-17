@@ -1,5 +1,9 @@
 
 ## pipeline
+- stage
+- job
+
+
 ```
 stages:
   - build
