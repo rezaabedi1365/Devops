@@ -29,3 +29,76 @@
 ---
 
 
+
+---
+
+# 📑 `crictl` Cheat Sheet
+
+---
+
+
+```bash
+crictl pull nginx:latest
+
+crictl images
+
+crictl rmi nginx:latest
+```
+
+---
+
+
+```bash
+crictl ps
+
+crictl ps -a
+
+crictl stop <container-id>
+
+crictl rm <container-id>
+
+crictl exec -it <container-id> bash
+```
+
+---
+
+
+```bash
+crictl pods
+
+crictl stopp <pod-id>
+
+crictl rmp <pod-id>
+```
+
+---
+
+
+
+```bash
+
+crictl logs <container-id>
+
+
+crictl inspect <container-id>
+
+
+crictl inspectp <pod-id>
+```
+
+---
+
+
+```bash
+crictl version
+
+crictl info
+
+crictl events
+
+crictl --runtime-endpoint unix:///run/containerd/containerd.sock ps
+```
+
+
+
+
