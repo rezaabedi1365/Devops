@@ -5,7 +5,8 @@
     * CRI-O
     * Mirantis Container Runtime
     * Kata Containers
-
+## Containerd have seperate command to .
+     * ctr
 ---
 
 ### 📊 Docker ↔ crictl (CRI[containerd] / CRI-O)
@@ -36,13 +37,15 @@
 
 ---
 
-
-```bash
+```
 crictl pull nginx:latest
+crictl --runtime-endpoint unix:///run/containerd/containerd.sock pull docker.io/library/<ImageName:Version>
+crictl --runtime-endpoint unix:///run/containerd/containerd.sock pull docker.io/library/nginx:latest
 
 crictl images
 
 crictl rmi nginx:latest
+crictl --runtime-endpoint unix:///run/containerd/containerd.sock rmi docker.io/library/nginx
 ```
 
 ---
@@ -98,7 +101,22 @@ crictl events
 
 crictl --runtime-endpoint unix:///run/containerd/containerd.sock ps
 ```
+# some command not in cri and only have in containerd
+<img width="688" height="270" alt="image" src="https://github.com/user-attachments/assets/428574d7-805f-4580-98d4-e63d63331b4c" />
 
+```
+docker save -o nginx.tar nginx:latest
+ctr -n k8s.io images export nginx.tar docker.io/library/nginx:latest
+
+docker load -i nginx.tar
+ctr -n k8s.io images import nginx.tar
+
+docker import container.tar newimage:tag
+ctr -n k8s.io images import container.tar
+
+docker export <container_id> -o container.tar
+*****
+```
 
 
 
