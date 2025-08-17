@@ -5,8 +5,10 @@
     * CRI-O
     * Mirantis Container Runtime
     * Kata Containers
-## Containerd have seperate command to .
-    - ctr
+## Containerd have seperate command to 
+
+
+
 ---
 
 ### 📊 Docker ↔ crictl (CRI[containerd] / CRI-O)
