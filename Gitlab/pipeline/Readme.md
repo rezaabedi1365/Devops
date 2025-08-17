@@ -27,3 +27,17 @@ deploy_job:
     - echo "Deploying the application..."
 
 ```
+
+- runner tag
+```
+stages:
+  - deploy
+
+deploy_nginx:
+  stage: deploy
+  tags:
+    - kubernetes  # تگ رانر که موقع ثبت رانر دادی
+  script:
+    - kubectl apply -f k8s/nginx-nodeport.yaml
+
+```
