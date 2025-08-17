@@ -1,4 +1,4 @@
-## crictl
+# crictl
 - crictl is a command for CRI .CRI is a layer/interface between container runtimes and kubelet.
 - CRI supports these container runtimes:
     * containerd
