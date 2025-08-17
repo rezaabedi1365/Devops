@@ -28,7 +28,7 @@ deploy_job:
 
 ```
 
-- Commit Cindition
+- Commit Condition
 ```
 stages:
   - deploy
