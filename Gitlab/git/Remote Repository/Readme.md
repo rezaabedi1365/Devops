@@ -79,38 +79,43 @@ ssh -T git@10.10.12.18
 git remote remove origin
 ```
 ## git branch
-```
-git branch                   # نمایش شاخه‌ها
-git branch <branch_name>     # ایجاد شاخه جدید
-git checkout <branch_name>   # رفتن به شاخه مورد نظر
-git checkout -b <branch_name> # ایجاد و رفتن به شاخه جدید همزمان
-git merge <branch_name>      # ادغام شاخه با شاخه فعلی
-git branch -d <branch_name>  # حذف شاخه
-```
-## git commit 
-```
-git commit -m "Commit for this change"
-```
+- git branch                   # نمایش شاخه‌ها
+- git branch <branch_name>     # ایجاد شاخه جدید
+- git checkout <branch_name>   # رفتن به شاخه مورد نظر
+- git checkout -b <branch_name> # ایجاد و رفتن به شاخه جدید همزمان
+- git merge <branch_name>      # ادغام شاخه با شاخه فعلی
+- git branch -d <branch_name>  # حذف شاخه
 
-## git pull and git clone
+
+- git pull and git clone
 ```
 git clone http://10.10.12.18/pushgroup/pushproject.git
 git pull http://10.10.12.18/pushgroup/pushproject.git
 ```
 
-## git push
+- git push
 ```
 git push --set-upstream <remote> <branch>
 git push --set-upstream http://10.10.12.18/pushgroup/pushproject.git main
 ```
 
-## git fetch
+- git fetch
 ```
 git fetch <remote> <branch>
 git>git fetch http://10.10.12.18/pushgroup/pushproject.git main
 ```
 
-
+- git merge
+```
+```
+-------------------------------------------------------------------------------------------------------------------------------------------
+# Senario
+```
+git clone http://10.10.12.18/pushgroup/pushproject.git
+cd pushproject
+git checkout -b test
+git push -u origin test
+```
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
