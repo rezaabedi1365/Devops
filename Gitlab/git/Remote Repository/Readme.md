@@ -40,7 +40,7 @@ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 * 2)copy key to clipboard
 - in windows
 ```
-
+%USERPROFILE%\.ssh\id_ed25519.pub
 ```
 - in linux
 ```
