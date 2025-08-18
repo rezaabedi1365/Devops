@@ -3,6 +3,7 @@
 - show remote repository
 ```
 git remote -v
+git branch
 ```
 
 # add remote origin 
