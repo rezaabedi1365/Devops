@@ -9,7 +9,10 @@ git remote -v
 <img width="1246" height="869" alt="image" src="https://github.com/user-attachments/assets/02fd8073-cbbf-4fa6-bb55-33f81567f367" />
 
 ```
-git remote add origin https://gitlab.com/username/project.git
+cd existing_repo
+git remote add origin http://10.10.12.18/pushgroup/pushproject.git
+git branch -M main
+git push -uf origin main
 ```
 - change remote origin address
 ```
