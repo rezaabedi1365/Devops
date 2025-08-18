@@ -6,11 +6,12 @@ git remote -v
 ```
 
 # add remote origin 
-### add remote originwith https
-<img width="1246" height="869" alt="image" src="https://github.com/user-attachments/assets/02fd8073-cbbf-4fa6-bb55-33f81567f367" />
 
+<img width="1246" height="869" alt="image" src="https://github.com/user-attachments/assets/02fd8073-cbbf-4fa6-bb55-33f81567f367" />
+### add remote originwith https
 ```
-cd existing_repo
+mkdir project1
+cd project1
 git remote add origin http://10.10.12.18/pushgroup/pushproject.git
 git branch -M main
 git push -uf origin main
