@@ -1,71 +1,45 @@
-# Version control system (vcs) 
-![image](https://github.com/rezaabedi1365/Devops/assets/117336743/6455c93f-d8e1-4d94-8acc-d172af790592)
-
------------------------------------------------------------------
-
-# git Configuration 
-
-* 1-System 
-  - /etc/gitconfig 
+# local repository
+* git config
+* git init
+* git add
+* git reset
+  - soft 
     ```
-    git config --system user.name "Reza Abedi"
-    git config --system user.email r.abedi@faradis.net
+    git reset --soft
     ```
-        
-* 2-User 
-  - ~/.gitconfig 
+  - hard
     ```
-    git config --global user.name "Reza Abedi"
-    git config --global user.email r.abedi@faradis.net
+    git reset --hard
     ```
-* 3-Project
-  - My_projcet/.git/config
+  - mixed
     ```
-    git config --local user.name "Reza Abedi"
-    git config --local user.email r.abedi@faradis.net
+    git reset --mixed
     ```
-## Verify:
-```
-git config --list
-```
-
----------------------------------------------------------------------
-## git state
-
-* 1- unstage ( untracked files)
+  - verify:
     ```
-    git init
+    cat .git/HEAD
+    cat .git/refs/heads/master
     ```
-    ![image](https://github.com/rezaabedi1365/Devops/assets/117336743/3c2ab70e-8a9e-4425-9d91-755f8dc5196b)
-
-* 2- staged 
+* git revert
+* git restore
+* git Clean
     ```
-    git add File_Name
-    git add *
+    git clean –n 
+    git clean -i    ( show menu for clean) 
+    git clean –f   (Delete untrack file from working directoory)
     ```
-    ![image](https://github.com/rezaabedi1365/Devops/assets/117336743/8ac3ffac-cf53-492a-a531-7dfb57fda439)
-
-
-* 3- working
+* git .ignore
+    - create .gitignore file
     ```
-    git commit -m Commit_Name
+    touch .ignore
+    echo >>  file2 ./.gitignore
+    echo >>  ./dir2 ./.gitignore
     ```
-    ![image](https://github.com/rezaabedi1365/Devops/assets/117336743/c4e51818-d42d-4a69-84a7-85faeec49892)
-
-
-## Verify:
-```
-git status
-git log
-```
-  
-----------------------------------------
-
-
-
-* remote repository
-      - git remote 
-      - git pull 
-      - git push 
-
+* git branch 
+* git checkout 
+* git Head 
  
+      
+* gitignore 
+* tree-ish 
+* git stash 
