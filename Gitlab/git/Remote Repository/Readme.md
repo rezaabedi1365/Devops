@@ -5,7 +5,8 @@
 git remote -v
 ```
 
-### add remote origin with https
+# add remote origin 
+### add remote originwith https
 <img width="1246" height="869" alt="image" src="https://github.com/user-attachments/assets/02fd8073-cbbf-4fa6-bb55-33f81567f367" />
 
 ```
@@ -32,16 +33,41 @@ git remote set-url origin git@gitlab.com:username/project.git
 ```
 git remote remove origin
 ```
-
-### git commit and git push
+## git branch
+```
+git branch                   # نمایش شاخه‌ها
+git branch <branch_name>     # ایجاد شاخه جدید
+git checkout <branch_name>   # رفتن به شاخه مورد نظر
+git checkout -b <branch_name> # ایجاد و رفتن به شاخه جدید همزمان
+git merge <branch_name>      # ادغام شاخه با شاخه فعلی
+git branch -d <branch_name>  # حذف شاخه
+```
+## git commit 
 ```
 git commit -m "Commit for this change"
-git push origin branch-name
+```
+
+## git pull and git clone
+```
+git clone http://10.10.12.18/pushgroup/pushproject.git
+git pull http://10.10.12.18/pushgroup/pushproject.git
+```
+
+## git push
+```
+git push --set-upstream <remote> <branch>
+git push --set-upstream http://10.10.12.18/pushgroup/pushproject.git main
+```
+
+## git fetch
+```
+git fetch <remote> <branch>
+git>git fetch http://10.10.12.18/pushgroup/pushproject.git main
 ```
 
 
 
-
+--------------------------------------------------------------------------------------------------------------------------------------------
 * 1)Generating a new SSH key
 
 ```
@@ -64,37 +90,7 @@ cat id_rsa.pub
 ssh -vT git@github.com
 ssh -T rezaabedi1365@github.com
 ```
---------------------------------------
 
 
---------------------------------------------------------
-* git remote
-  ```
-  git remote
-  ```
-* git remote add
-  ```
-  git remote add
-  ```
-* git remote rm
-  ```
-  git remote rm
-  ```
-* git pull
-  ```
-   git pull git@github.com:rezaabedi1365/Devops.git
-  ```
-* git fetch
-  - git fetch <remote> <branch>
-  ```
-  git fetch
-  ```
-* git merge
-  ```
-  git merge
-  ```
-* git push 
-  ```
-  git push --set-upstream git@github.com:rezaabedi1365/Devops.git masterl 
-  ```
+
 
