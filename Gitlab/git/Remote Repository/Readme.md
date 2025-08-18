@@ -117,6 +117,40 @@ git checkout -b test
 git push -u origin test
 ```
 
+
+
+
+### Command:
+
+```bash
+git push -u origin test
+```
+
+---
+
+### Explanation:
+
+1. **`git push`** → Sends your local commits to a remote repository.
+
+2. **`origin`** → The default name of the remote repository (in your case, GitLab at `http://10.10.12.18/...`).
+
+3. **`test`** → The name of the branch you want to push (your new branch created locally).
+
+4. **`-u` / `--set-upstream`** → Sets the upstream (tracking) relationship.
+
+   * This means your local branch `test` will now be linked to the remote branch `origin/test`.
+   * After this, you don’t need to type the full command anymore. You can simply use:
+
+     ```bash
+     git push
+     git pull
+     ```
+
+     and Git will know which remote branch to use.
+
+---
+
+
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 
