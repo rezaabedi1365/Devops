@@ -42,6 +42,9 @@ git config --list
 
 * 2- staged 
     ```
+    git status
+    ```
+    ```
     git add File_Name
     git add *
     ```
