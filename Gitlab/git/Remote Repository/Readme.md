@@ -68,22 +68,35 @@ git>git fetch http://10.10.12.18/pushgroup/pushproject.git main
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------
-* 1)Generating a new SSH key
+# add remote origin with SSH
+* 1)Generating a new SSH key in your client system
 
 ```
 ssh-keygen -t ed25519 -C "your_email@example.com"
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ```
+<img width="662" height="421" alt="image" src="https://github.com/user-attachments/assets/348c5dfa-3574-46f7-a550-53c31f7fb61e" />
+
 * 2)copy key to clipboard
+- in windows
+```
+
+```
+- in linux
 ```
 cd ~/.ssh
-ls
 cat id_rsa.pub
 ```
-* 3)insert key to github.com
-  - https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
-  - login to your user
-  - setting > SSH and GPG keys > add New SSH Ke
+* 3)insert key in gitlab or github.com
+- gitlab
+<img width="1706" height="856" alt="image" src="https://github.com/user-attachments/assets/9313e6da-12bf-4120-af4c-584e99be0850" />
+
+
+
+- github
+  * https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
+  * login to your user
+  * setting > SSH and GPG keys > add New SSH Ke
     
 ### Verify :
 ```
