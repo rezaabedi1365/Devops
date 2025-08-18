@@ -99,7 +99,7 @@ git push --set-upstream <remote> <branch>
 git push --set-upstream http://10.10.12.18/pushgroup/pushproject.git main
 ```
 
-- git fetch
+- git fetch 
 ```
 git fetch <remote> <branch>
 git fetch http://10.10.12.18/pushgroup/pushproject.git main
@@ -107,6 +107,8 @@ git fetch http://10.10.12.18/pushgroup/pushproject.git main
 
 - git merge
 ```
+git fetch origin
+git merge origin/main
 ```
 -------------------------------------------------------------------------------------------------------------------------------------------
 # Senario
