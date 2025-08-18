@@ -65,9 +65,11 @@ git push -uf origin main
 
 ### Verify :
 ```
-ssh -vT root@10.10.12.18
-ssh -T root@10.10.12.18
+ssh -vT git@10.10.12.18
+ssh -T git@10.10.12.18
 ```
+<img width="512" height="57" alt="image" src="https://github.com/user-attachments/assets/20898216-bd03-41d8-8be6-0b401c2900fc" />
+
 
 ### Remove remote origin
 ```
