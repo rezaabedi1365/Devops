@@ -32,7 +32,7 @@ ssh-keygen -t ed25519 -C "your_email@example.com"
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ```
 <img width="662" height="421" alt="image" src="https://github.com/user-attachments/assets/348c5dfa-3574-46f7-a550-53c31f7fb61e" />
-<img width="619" height="348" alt="image" src="https://github.com/user-attachments/assets/3e55cd02-058a-4b97-aa99-dcbd8c6124ac" />
+<img width="662" height="421" alt="image" src="https://github.com/user-attachments/assets/3e55cd02-058a-4b97-aa99-dcbd8c6124ac" />
 
 
 
