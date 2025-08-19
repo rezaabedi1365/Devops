@@ -12,21 +12,40 @@
 ```
 stages:
   - build
+  - docker-build
 
+# Job اول: بیلد پروژه‌ی دات‌نت
 build_job:
   stage: build
   image: mcr.microsoft.com/dotnet/sdk:7.0
   tags:
-    - push-docker-build-local   # اجرای Job روی رانر با این تگ
+    - push-docker-build-local
   script:
     - echo "Building .NET Core project..."
-    - dotnet restore            # بازیابی بسته‌ها (NuGet packages)
-    - dotnet build --configuration Release   # بیلد پروژه در حالت Release
+    - dotnet restore
+    - dotnet build --configuration Release
   artifacts:
     paths:
       - bin/
       - obj/
 
+# Job دوم: بیلد ایمیج Docker
+docker_build_job:
+  stage: docker-build
+  image: docker:24.0.2
+  services:
+    - docker:24.0.2-dind
+  variables:
+    DOCKER_DRIVER: overlay2
+    DOCKER_TLS_CERTDIR: ""
+  tags:
+    - push-docker-build-local
+  script:
+    - echo "Building Docker image for commit $CI_COMMIT_SHORT_SHA ..."
+    - docker build -t myapp:$CI_COMMIT_SHORT_SHA -f Dockerfile .
+    - docker images | grep myapp
+  needs:
+    - build_job
 ```
 ## Method 2
 - build application in Dockerfile
