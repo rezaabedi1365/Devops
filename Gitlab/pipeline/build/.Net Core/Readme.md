@@ -115,7 +115,7 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "DotNetSample.dll"]
 ```
-#### With Shell executer
+#### method 2-1): With Shell executer
 
 - in branch main pipline
 ```
@@ -136,7 +136,7 @@ build_job:
       docker run $CI_COMMIT_TITLE
 ```
 
-#### with docker executer
+#### metod 2-2): with docker executer
 ```
 stages:
   - build
