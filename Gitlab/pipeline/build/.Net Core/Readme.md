@@ -8,7 +8,7 @@
     * pull image in cluster
     * run pod in cluster or run container in docker
 
-#### bulid applicatin pipeline
+
 ```
 stages:
   - build
