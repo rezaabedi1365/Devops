@@ -17,7 +17,7 @@ docker service create --name api --network my_overlay nginx:alpine
 
 ```
 
-# ingress
+# ingress (routing mesh)
 - created by default with swarm just publish port with an
 ```
 # ایجاد یک سرویس وب که روی پورت 80 در دسترس باشد
