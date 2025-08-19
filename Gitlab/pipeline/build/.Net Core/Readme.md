@@ -167,4 +167,47 @@ build_docker:
 ```
 <img width="794" height="399" alt="image" src="https://github.com/user-attachments/assets/998b4121-9e88-426c-bcfa-e1caf3e9a7af" />
 
+### Method1 and Method2 in one pipeline . select metohd with runner executer type
+```
+stages:
+  - build
 
+# --- Method 2-1: Shell executor ---
+build_shell:
+  stage: build
+  image: docker-with-jq:1.0.0
+  tags:
+    - push-docker-build-local
+  script:
+    - echo "Using Shell executor pipeline..."
+    - echo "COMMIT_TITLE : $CI_COMMIT_TITLE"
+    - cd "$CI_PROJECT_DIR/myproject"
+    - docker build -t $CI_COMMIT_TITLE -f "Dockerfile" .
+    - cd "$CI_PROJECT_DIR"
+    - docker run $CI_COMMIT_TITLE
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'   # فقط روی main
+
+# --- Method 2-2: Docker executor (DinD) ---
+build_dind:
+  stage: build
+  image: docker:24.0.2
+  services:
+    - docker:24.0.2-dind
+  variables:
+    DOCKER_DRIVER: overlay2
+    DOCKER_TLS_CERTDIR: ""   # غیرفعال کردن TLS برای سادگی
+  tags:
+    - push-docker-build-local
+  before_script:
+    - echo "Using Docker-in-Docker executor pipeline..."
+    - docker info
+  script:
+    - cd "$CI_PROJECT_DIR/myproject"
+    - echo "Building Docker image for commit $CI_COMMIT_SHORT_SHA"
+    - docker build -t myapp:$CI_COMMIT_SHORT_SHA -f Dockerfile .
+    - echo "Running Docker container..."
+    - docker run --rm myapp:$CI_COMMIT_SHORT_SHA
+  rules:
+    - if: '$CI_COMMIT_BRANCH != "main"'   # روی همه‌ی branchها به جز main
+```
