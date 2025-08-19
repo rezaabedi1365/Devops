@@ -54,7 +54,7 @@ docker_build_job:
     * pull image in cluster
     * run pod in cluster or run container in docker
 
-
+#### ِDockerfile
 ```
 # مرحله اول: Restore و Build
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
