@@ -167,9 +167,60 @@ build_docker:
 
 ```
 - build and push image
+```
+stages:
+  - build
+  - release
+
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: ""
+
+# --- Build stage: build and run Docker image for branches ---
+build_docker:
+  stage: build
+  image: docker:24.0.2
+  services:
+    - docker:24.0.2-dind
+  tags:
+    - push-docker-build-local
+  before_script:
+    - echo "Using Docker-in-Docker executor..."
+    - docker info
+  script:
+    - cd "$CI_PROJECT_DIR/myproject"
+    - echo "Building Docker image for commit $CI_COMMIT_SHORT_SHA"
+    - docker build -t myapp:$CI_COMMIT_SHORT_SHA -f Dockerfile .
+    - echo "Running Docker container..."
+    - docker run --rm myapp:$CI_COMMIT_SHORT_SHA
+  rules:
+    - if: '$CI_COMMIT_TAG == null'   # فقط branchها، نه تگ‌ها
+
+# --- Release stage: build & push image when tag matches vX.X.X ---
+release_docker:
+  stage: release
+  image: docker:24.0.2
+  services:
+    - docker:24.0.2-dind
+  tags:
+    - push-docker-build-local
+  before_script:
+    - echo "Logging in to GitLab Container Registry..."
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
+  script:
+    - cd "$CI_PROJECT_DIR/myproject"
+    - echo "Building Docker image for tag $CI_COMMIT_TAG"
+    - docker build -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_TAG" -f Dockerfile .
+    - echo "Pushing image to GitLab Container Registry..."
+    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_TAG"
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^v\d+\.\d+\.\d+$/'   # فقط تگ‌های SemVer
+
+```
 <img width="794" height="399" alt="image" src="https://github.com/user-attachments/assets/998b4121-9e88-426c-bcfa-e1caf3e9a7af" />
 
-### Method1 and Method2 in one pipeline . select metohd with runner executer type
+### Method1 and Method2 in one pipeline . 
+- select metohd with runner executer type
 ```
 stages:
   - build
