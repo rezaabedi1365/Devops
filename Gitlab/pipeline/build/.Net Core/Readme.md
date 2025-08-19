@@ -162,10 +162,6 @@ build_docker:
     - echo "Running Docker container..."
     - docker run --rm myapp:$CI_COMMIT_SHORT_SHA
       #can use docker compose . must be creafe docker-compose.yml 
-  artifacts:
-    paths:
-      - bin/
-      - obj/
     expire_in: 1 week
 
 ```
