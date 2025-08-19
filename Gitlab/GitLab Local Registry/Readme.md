@@ -1,5 +1,5 @@
 
-
+## GitLab Local Registry
 ```
 sudo nano /etc/gitlab/gitlab.rb
 ```
