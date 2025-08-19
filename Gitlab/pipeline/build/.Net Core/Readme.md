@@ -95,17 +95,11 @@ build_job:
     - push-docker-build-local
   script:
     - |
-      echo "COMMIT_MESSAGE : $CI_COMMIT_MESSAGE"
+      echo "COMMIT_TITLE : $CI_COMMIT_TITLE"
       cd "$CI_PROJECT_DIR/myproject"
-      docker build -t myapp:$CI_COMMIT_SHORT_SHA -f "Dockerfile" .
+      docker build -t $CI_COMMIT_TITLE -f "Dockerfile" .
       cd "$CI_PROJECT_DIR"
-      docker run --rm myapp:$CI_COMMIT_SHORT_SHA
-      #can use docker compose . must be creafe docker-compose.yml 
-  artifacts:
-    paths:
-      - bin/
-      - obj/
-
+      docker run $CI_COMMIT_TITLE
 ```
 
 #### with docker executer
