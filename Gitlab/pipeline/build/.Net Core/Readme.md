@@ -171,13 +171,14 @@ build_docker:
 ```
 stages:
   - build
+  - release
 
 # --- Method 2-1: Shell executor ---
 build_shell:
   stage: build
   image: docker-with-jq:1.0.0
   tags:
-    - push-docker-build-local
+    - push-shell-build-local   # رانر با executor = shell
   script:
     - echo "Using Shell executor pipeline..."
     - echo "COMMIT_TITLE : $CI_COMMIT_TITLE"
@@ -198,7 +199,7 @@ build_dind:
     DOCKER_DRIVER: overlay2
     DOCKER_TLS_CERTDIR: ""   # غیرفعال کردن TLS برای سادگی
   tags:
-    - push-docker-build-local
+    - push-docker-build-local   # رانر با executor = docker
   before_script:
     - echo "Using Docker-in-Docker executor pipeline..."
     - docker info
@@ -210,4 +211,28 @@ build_dind:
     - docker run --rm myapp:$CI_COMMIT_SHORT_SHA
   rules:
     - if: '$CI_COMMIT_BRANCH != "main"'   # روی همه‌ی branchها به جز main
+
+# --- Release stage: build & push image when tag matches vX.X.X ---
+release_docker:
+  stage: release
+  image: docker:24.0.2
+  services:
+    - docker:24.0.2-dind
+  variables:
+    DOCKER_DRIVER: overlay2
+    DOCKER_TLS_CERTDIR: ""
+  tags:
+    - push-docker-build-local
+  before_script:
+    - echo "Logging in to GitLab Container Registry..."
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
+  script:
+    - cd "$CI_PROJECT_DIR/myproject"
+    - echo "Building Docker image for tag $CI_COMMIT_TAG"
+    - docker build -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_TAG" -f Dockerfile .
+    - echo "Pushing image to GitLab Container Registry..."
+    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_TAG"
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^v\d+\.\d+\.\d+$/'
+
 ```
