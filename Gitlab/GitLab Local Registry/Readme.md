@@ -17,7 +17,7 @@ sudo gitlab-ctl reconfigure
 docker tag my-image registry.example.com/group/project:latest
 docker push registry.example.com/group/project:latest
 ```
--pull image
+- pull image
 ```
 docker pull registry.example.com/group/project:latest
 ```
