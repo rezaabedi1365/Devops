@@ -1,4 +1,21 @@
+# Build
+- step1: application build
+- step2: image build
+### Method 1
+- build application in pipeline
+- build image in pipeline
+    * push image to local registry
+    * pull image in cluster
+    * run pod in cluster or run container in docker
 
+### Method 2
+- build application in pipeline
+- build image in pipeline
+    * push image to local registry
+    * pull image in cluster
+    * run pod in cluster or run container in docker
+
+# bulid applicatin pipeline
 ```
 stages:
   - build
