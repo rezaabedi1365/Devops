@@ -130,6 +130,8 @@ http {
 ```
 docker stack deploy -c docker-compose.yml my_stack
 ```
+<img width="754" height="76" alt="image" src="https://github.com/user-attachments/assets/38e61b10-5bad-4487-8d64-b6d08671fc3f" />
+
 
 - http://<IP>/api
 - http://<IP>/app
