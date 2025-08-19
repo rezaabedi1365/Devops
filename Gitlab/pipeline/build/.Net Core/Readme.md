@@ -137,6 +137,7 @@ build_job:
 ```
 
 #### metod 2-2): with docker executer
+- build
 ```
 stages:
   - build
@@ -165,6 +166,7 @@ build_docker:
     expire_in: 1 week
 
 ```
+- build and push image
 <img width="794" height="399" alt="image" src="https://github.com/user-attachments/assets/998b4121-9e88-426c-bcfa-e1caf3e9a7af" />
 
 ### Method1 and Method2 in one pipeline . select metohd with runner executer type
