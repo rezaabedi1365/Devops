@@ -9,16 +9,17 @@ build_job:
   stage: build
   image: docker-with-jq:1.0.0
   tags:
-    - push-docker-build-local   # اجرای Job روی رانر با این تگ
+    - push-docker-build-local
   script:
     - |
-      echo "CCOMMIT_TITLE : $CI_COMMIT_TITLE"
+      echo "COMMIT_MESSAGE : $CI_COMMIT_MESSAGE"
       cd "$CI_PROJECT_DIR/myproject"
-      docker build -t $CI_COMMIT_TITLE -f "Dockerfile" .
+      docker build -t myapp:$CI_COMMIT_SHORT_SHA -f "Dockerfile" .
       cd "$CI_PROJECT_DIR"
-      docker run $CI_COMMIT_TITLE
+      docker run --rm myapp:$CI_COMMIT_SHORT_SHA
   artifacts:
     paths:
       - bin/
       - obj/
+
 ```
