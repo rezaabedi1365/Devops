@@ -81,6 +81,7 @@ build_job:
       docker build -t myapp:$CI_COMMIT_SHORT_SHA -f "Dockerfile" .
       cd "$CI_PROJECT_DIR"
       docker run --rm myapp:$CI_COMMIT_SHORT_SHA
+      #can use docker compose . must be creafe docker-compose.yml 
   artifacts:
     paths:
       - bin/
@@ -113,6 +114,7 @@ build_docker:
     - docker build -t myapp:$CI_COMMIT_SHORT_SHA -f Dockerfile .
     - echo "Running Docker container..."
     - docker run --rm myapp:$CI_COMMIT_SHORT_SHA
+      #can use docker compose . must be creafe docker-compose.yml 
   artifacts:
     paths:
       - bin/
