@@ -102,6 +102,8 @@ sudo cat /var/log/gitlab/nginx/error.log
 sudo cat /var/log/gitlab/registry/current
 ```
 ### docker login
+<img width="1351" height="883" alt="image" src="https://github.com/user-attachments/assets/07eb8861-7533-49eb-9161-0d88e4876af1" />
+
 <img width="1726" height="830" alt="image" src="https://github.com/user-attachments/assets/351d86c3-addb-45d8-8eae-73e356f840f5" />
 
 <img width="1256" height="833" alt="image" src="https://github.com/user-attachments/assets/7d9a8424-4576-4d98-b631-484bba446171" />
