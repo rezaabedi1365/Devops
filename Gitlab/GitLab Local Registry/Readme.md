@@ -3,26 +3,27 @@
 ```
 sudo nano /etc/gitlab/gitlab.rb
 ```
-- Crate A Record in DNS and after edit gitlab.rb file
+- Crate A Record in DNS or add record in /etc/hosts and after edit gitlab.rb file
 ```
 # دامنه GitLab (UI اصلی)
-external_url 'https://gitlab.example.com'
+external_url 'https://gitlabregistry.faratest.net'
 ```
+- important: external_url = registry_external_url
 ```
 # Registry داخلی GitLab
-registry_external_url 'https://registry.example.com'
+registry_external_url 'https://gitlabregistry.faratest.net'
 
 # فعال کردن Registry
 gitlab_rails['registry_enabled'] = true
-gitlab_rails['registry_host'] = "registry.example.com"
+gitlab_rails['registry_host'] = "gitlabregistry.faratest.net"
 gitlab_rails['registry_port'] = "5005" 
 gitlab_rails['registry_path'] = "/var/opt/gitlab/gitlab-rails/shared/registry"
 
 # Nginx برای Registry
 registry_nginx['enable'] = true
 registry_nginx['listen_https'] = true
-registry_nginx['ssl_certificate'] = "/etc/gitlab/ssl/registry.example.com.crt"
-registry_nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/registry.example.com.key"
+registry_nginx['ssl_certificate'] = "/etc/gitlab/ssl/bundle-fullchain.crt"
+registry_nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/private.key"
 
 ```
 ```
