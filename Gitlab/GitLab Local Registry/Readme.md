@@ -1,5 +1,22 @@
 
 ## GitLab Local Registry
+- copy your certificate file
+```
+sudo chown root:root /etc/gitlab/ssl/*.crt /etc/gitlab/ssl/*.*
+sudo chmod 600 /etc/gitlab/ssl/*.crt /etc/gitlab/ssl/*.*
+```
+- bundle-fullchain crt
+```
+-----BEGIN CERTIFICATE-----
+(Server certificate)
+-----END CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+(Intermediate certificate)
+-----END CERTIFICATE-----
+```
+- Privatekey (clear_
+```
+## Edit /etc/gitlab/gitlab.rb file
 ```
 sudo nano /etc/gitlab/gitlab.rb
 ```
@@ -37,17 +54,7 @@ sudo ss -tlnp | grep -E "443|5005"
 sudo cat /var/log/gitlab/nginx/error.log
 sudo cat /var/log/gitlab/registry/current
 ```
-- bundle-fullchain crt
-```
------BEGIN CERTIFICATE-----
-(Server certificate)
------END CERTIFICATE-----
------BEGIN CERTIFICATE-----
-(Intermediate certificate)
------END CERTIFICATE-----
-```
-- Privatekey (clear_
-```
+
 -----BEGIN PRIVATE KEY-----
 (Your private key)
 -----END PRIVATE KEY-----
