@@ -30,6 +30,9 @@ letsencrypt['enable'] = false
 ```
 sudo gitlab-ctl reconfigure
 ```
+```
+sudo gitlab-ctl status
+```
 - bundle-fullchain crt
 ```
 -----BEGIN CERTIFICATE-----
