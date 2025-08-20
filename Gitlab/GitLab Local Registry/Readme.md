@@ -14,7 +14,7 @@ registry_external_url 'https://registry.example.com'
 # فعال کردن Registry
 gitlab_rails['registry_enabled'] = true
 gitlab_rails['registry_host'] = "registry.example.com"
-gitlab_rails['registry_port'] = "443"  # پیش‌فرض HTTPS
+gitlab_rails['registry_port'] = "5005" 
 gitlab_rails['registry_path'] = "/var/opt/gitlab/gitlab-rails/shared/registry"
 
 # Nginx برای Registry
