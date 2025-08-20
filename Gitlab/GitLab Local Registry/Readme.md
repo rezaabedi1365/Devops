@@ -108,6 +108,10 @@ sudo cat /var/log/gitlab/registry/current
 
 <img width="1256" height="833" alt="image" src="https://github.com/user-attachments/assets/7d9a8424-4576-4d98-b631-484bba446171" />
 
+#### Token type in github
+- <Personal-Access-Token>: profile > access token > Personal access tokens
+- <Project-Access-Token> : project > setting > access token > Project access tokens
+- <Deploy-Token> :         project > setting > Repository > access token > Deploy Token 
 
 ```
 docker login gitlabregistry.faradis.net -u <GitLab-username> -p <Personal-Access-Token>
