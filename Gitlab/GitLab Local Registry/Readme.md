@@ -66,10 +66,6 @@ sudo cat /var/log/gitlab/nginx/error.log
 sudo cat /var/log/gitlab/registry/current
 ```
 
------BEGIN PRIVATE KEY-----
-(Your private key)
------END PRIVATE KEY-----
-```
 ### push image
 ```
 docker login gitlabregistry.faratest.net
