@@ -108,6 +108,7 @@ sudo cat /var/log/gitlab/registry/current
 
 #### Token type in github
 - <Personal-Access-Token>: profile > access token > Personal access tokens
+      * Add Token witn Read and write Registry Permition
 - <Project-Access-Token> : project > setting > access token > Project access tokens
 - <Deploy-Token> :         project > setting > Repository > access token > Deploy Token 
 
