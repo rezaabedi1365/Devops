@@ -101,11 +101,16 @@ sudo ss -tlnp | grep -E "443|5000"
 sudo cat /var/log/gitlab/nginx/error.log
 sudo cat /var/log/gitlab/registry/current
 ```
+### docker login
+<img width="1726" height="830" alt="image" src="https://github.com/user-attachments/assets/351d86c3-addb-45d8-8eae-73e356f840f5" />
+
+```
+docker login gitlabregistry.faradis.net -u <GitLab-username> -p <Personal-Access-Token>
+docker login gitlabregistry.faradis.net -u root -p glpat-svrGJgzJsQvxLGYGFobb
+```
 
 ### push image
-```
-docker login gitlabregistry.faratest.net
-```
+
 ```
 docker tag <ImageName> <name>:<tag>
 docker tag nginx:latest gitlabregistry.faradis.net/pushgroup/pushproject:v_1-0-0
@@ -117,9 +122,7 @@ docker push docker push gitlabregistry.faradis.net/pushgroup/pushproject:v_1-0-0
 ```
 
 ### pull image
-```
-docker login gitlabregistry.faratest.net
-```
+
 ```
 docker pull registry.example.com:5005/group/project:latest
 ```
