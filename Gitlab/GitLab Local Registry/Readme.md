@@ -15,12 +15,12 @@ bundle-fullchai.crt format
 (Intermediate certificate)
 -----END CERTIFICATE-----
 ```
-Privatekey (clear) format
-```
+
 ## Edit /etc/gitlab/gitlab.rb file
 ```
 sudo nano /etc/gitlab/gitlab.rb
 ```
+
 Crate A Record in DNS or add record in /etc/hosts and after edit gitlab.rb file
 
 ```
