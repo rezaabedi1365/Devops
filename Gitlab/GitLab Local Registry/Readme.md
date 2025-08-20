@@ -108,6 +108,7 @@ sudo cat /var/log/gitlab/registry/current
 docker login gitlabregistry.faradis.net -u <GitLab-username> -p <Personal-Access-Token>
 docker login gitlabregistry.faradis.net -u root -p glpat-svrGJgzJsQvxLGYGFobb
 ```
+- save in ./.docker/config.json
 
 ### push image
 
@@ -118,7 +119,7 @@ docker tag nginx:latest gitlabregistry.faradis.net/pushgroup/pushproject:v_1-0-0
 
 ```
 docker push <registry>/<group>/<project>:<tag>
-docker push docker push gitlabregistry.faradis.net/pushgroup/pushproject:v_1-0-0
+docker push gitlabregistry.faradis.net/pushgroup/pushproject:v_1-0-0
 ```
 
 ### pull image
