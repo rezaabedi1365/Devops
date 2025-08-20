@@ -7,7 +7,8 @@ sudo nano /etc/gitlab/gitlab.rb
 ```
 # دامنه GitLab (UI اصلی)
 external_url 'https://gitlab.example.com'
-
+```
+```
 # Registry داخلی GitLab
 registry_external_url 'https://registry.example.com'
 
