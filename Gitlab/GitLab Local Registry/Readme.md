@@ -25,6 +25,7 @@ sudo nano /etc/gitlab/gitlab.rb
 # دامنه GitLab (UI اصلی)
 external_url 'https://gitlabregistry.faratest.net'
 ```
+
 - important: external_url = registry_external_url
 ```
 # Registry داخلی GitLab
