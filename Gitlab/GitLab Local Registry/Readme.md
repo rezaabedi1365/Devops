@@ -22,7 +22,6 @@ gitlab_rails['registry_path'] = "/var/opt/gitlab/gitlab-rails/shared/registry"
 # Nginx برای Registry
 registry_nginx['enable'] = true
 registry_nginx['listen_https'] = true
-registry_nginx['listen_port'] = 5005
 registry_nginx['ssl_certificate'] = "/etc/gitlab/ssl/bundle-fullchain.crt"
 registry_nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/private.key"
 
@@ -55,10 +54,16 @@ sudo cat /var/log/gitlab/registry/current
 ```
 ### push image
 ```
-docker tag my-image registry.example.com:5005/group/project:latest
-docker push registry.example.com:5005/group/project:latest
+docker login gitlabregistry.faratest.net
+```
+```
+docker tag my-image gitlabregistry.faratest.net/group/project:latest
+docker push gitlabregistry.faratest.net/group/project:latest
 ```
 ### pull image
+```
+docker login gitlabregistry.faratest.net
+```
 ```
 docker pull registry.example.com:5005/group/project:latest
 ```
