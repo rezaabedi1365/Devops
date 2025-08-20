@@ -25,6 +25,7 @@ registry_nginx['listen_https'] = true
 registry_nginx['ssl_certificate'] = "/etc/gitlab/ssl/bundle-fullchain.crt"
 registry_nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/private.key"
 
+letsencrypt['enable'] = false
 ```
 ```
 sudo gitlab-ctl reconfigure
