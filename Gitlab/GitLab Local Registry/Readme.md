@@ -15,8 +15,14 @@ bundle-fullchai.crt format
 (Intermediate certificate)
 -----END CERTIFICATE-----
 ```
+private.key format
+```
+-----BEGIN PRIVATE KEY-----
+(Your private key)
+-----END PRIVATE KEY-----
 
-## Edit /etc/gitlab/gitlab.rb file
+```
+### Edit /etc/gitlab/gitlab.rb file
 ```
 sudo nano /etc/gitlab/gitlab.rb
 ```
