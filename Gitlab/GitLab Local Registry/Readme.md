@@ -104,6 +104,9 @@ sudo cat /var/log/gitlab/registry/current
 ### docker login
 <img width="1726" height="830" alt="image" src="https://github.com/user-attachments/assets/351d86c3-addb-45d8-8eae-73e356f840f5" />
 
+<img width="1256" height="833" alt="image" src="https://github.com/user-attachments/assets/7d9a8424-4576-4d98-b631-484bba446171" />
+
+
 ```
 docker login gitlabregistry.faradis.net -u <GitLab-username> -p <Personal-Access-Token>
 docker login gitlabregistry.faradis.net -u root -p glpat-svrGJgzJsQvxLGYGFobb
