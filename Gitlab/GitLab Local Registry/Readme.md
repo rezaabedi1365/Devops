@@ -32,6 +32,9 @@ Crate A Record in DNS or add record in /etc/hosts and after edit gitlab.rb file
 ```
 # دامنه GitLab (UI اصلی)
 external_url 'https://gitlabregistry.faratest.net'
+nginx['redirect_http_to_https'] = true
+nginx['ssl_certificate'] = "/etc/gitlab/ssl/bundle-fullchain.crt"
+nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/private.key"
 ```
 
 - important: external_url = registry_external_url
