@@ -1,11 +1,12 @@
 
 ## GitLab Local Registry
-- copy your certificate file
+ copy your certificate file
 ```
 sudo chown root:root /etc/gitlab/ssl/*.crt /etc/gitlab/ssl/*.*
 sudo chmod 600 /etc/gitlab/ssl/*.crt /etc/gitlab/ssl/*.*
 ```
-- bundle-fullchain crt
+
+bundle-fullchai.crt format
 ```
 -----BEGIN CERTIFICATE-----
 (Server certificate)
@@ -14,13 +15,14 @@ sudo chmod 600 /etc/gitlab/ssl/*.crt /etc/gitlab/ssl/*.*
 (Intermediate certificate)
 -----END CERTIFICATE-----
 ```
-- Privatekey (clear_
+Privatekey (clear) format
 ```
-
+## Edit /etc/gitlab/gitlab.rb file
 ```
 sudo nano /etc/gitlab/gitlab.rb
 ```
-- Crate A Record in DNS or add record in /etc/hosts and after edit gitlab.rb file
+Crate A Record in DNS or add record in /etc/hosts and after edit gitlab.rb file
+
 ```
 # دامنه GitLab (UI اصلی)
 external_url 'https://gitlabregistry.faratest.net'
