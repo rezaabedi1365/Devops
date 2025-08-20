@@ -107,15 +107,30 @@ sudo cat /var/log/gitlab/registry/current
 docker login gitlabregistry.faratest.net
 ```
 ```
-docker tag my-image gitlabregistry.faratest.net/group/project:latest
-docker push gitlabregistry.faratest.net/group/project:latest
+docker tag <ImageName> <name>:<tag>
+docker tag nginx:latest gitlabregistry.faradis.net/pushgroup/pushproject:v_1-0-0
 ```
+
+```
+docker push <registry>/<group>/<project>:<tag>
+docker push docker push gitlabregistry.faradis.net/pushgroup/pushproject:v_1-0-0
+```
+
 ### pull image
 ```
 docker login gitlabregistry.faratest.net
 ```
 ```
 docker pull registry.example.com:5005/group/project:latest
+```
+### Remove tag & Remove image
+- remove tag
+```
+docker rmi <ImageName>:tag
+```
+- remove image
+```
+docker image rmi <ImageName>:<tag>
 ```
 <img width="1423" height="843" alt="image" src="https://github.com/user-attachments/assets/8d755b97-d1db-47b6-9f23-f5431cb5e85f" />
 
