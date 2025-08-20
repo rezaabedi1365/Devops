@@ -17,6 +17,7 @@ sudo chmod 600 /etc/gitlab/ssl/*.crt /etc/gitlab/ssl/*.*
 - Privatekey (clear_
 ```
 ## Edit /etc/gitlab/gitlab.rb file
+
 ```
 sudo nano /etc/gitlab/gitlab.rb
 ```
