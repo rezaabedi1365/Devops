@@ -37,6 +37,7 @@ nginx['ssl_certificate'] = "/etc/gitlab/ssl/bundle-fullchain.crt"
 nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/private.key"
 ```
 
+
 - important: external_url = registry_external_url
 ```
 # Registry داخلی GitLab
@@ -57,6 +58,41 @@ letsencrypt['enable'] = false
 ```
 ```
 sudo gitlab-ctl reconfigure
+```
+
+verify nginx config for external_url :
+- /var/opt/gitlab/nginx/conf/gitlab-http.conf
+```
+server {
+  listen *:443 ssl http2;
+  server_name gitlab.faratest.net;
+
+  ssl_certificate /etc/gitlab/ssl/bundle-fullchain.crt;
+  ssl_certificate_key /etc/gitlab/ssl/private.key;
+
+  location / {
+    proxy_pass http://gitlab-workhorse;
+    ...
+  }
+}
+
+```
+verify nginx config for registry_external_url :
+- nano /var/opt/gitlab/nginx/conf/gitlab-registry.conf
+```
+server {
+  listen *:443 ssl http2;
+  server_name gitlabregistry.faratest.net;
+
+  ssl_certificate /etc/gitlab/ssl/bundle-fullchain.crt;
+  ssl_certificate_key /etc/gitlab/ssl/private.key;
+
+  location /v2/ {
+    proxy_pass http://localhost:5000;
+    ...
+  }
+}
+
 ```
 - verify:
 ```
