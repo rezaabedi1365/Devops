@@ -61,7 +61,7 @@ sudo gitlab-ctl reconfigure
 - verify:
 ```
 sudo gitlab-ctl status
-sudo ss -tlnp | grep -E "443|5005"
+sudo ss -tlnp | grep -E "443|5000"
 sudo cat /var/log/gitlab/nginx/error.log
 sudo cat /var/log/gitlab/registry/current
 ```
