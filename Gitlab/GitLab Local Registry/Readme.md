@@ -30,8 +30,12 @@ letsencrypt['enable'] = false
 ```
 sudo gitlab-ctl reconfigure
 ```
+- verify:
 ```
 sudo gitlab-ctl status
+sudo ss -tlnp | grep -E "443|5005"
+sudo cat /var/log/gitlab/nginx/error.log
+sudo cat /var/log/gitlab/registry/current
 ```
 - bundle-fullchain crt
 ```
