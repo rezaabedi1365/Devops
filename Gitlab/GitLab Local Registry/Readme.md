@@ -28,12 +28,27 @@ registry_nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/registry.example.com.ke
 ```
 sudo gitlab-ctl reconfigure
 ```
-- push image
+- bundle-fullchain crt
+```
+-----BEGIN CERTIFICATE-----
+(Server certificate)
+-----END CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+(Intermediate certificate)
+-----END CERTIFICATE-----
+```
+- Privatekey (clear_
+```
+-----BEGIN PRIVATE KEY-----
+(Your private key)
+-----END PRIVATE KEY-----
+```
+### push image
 ```
 docker tag my-image registry.example.com:5005/group/project:latest
 docker push registry.example.com:5005/group/project:latest
 ```
-- pull image
+### pull image
 ```
 docker pull registry.example.com:5005/group/project:latest
 ```
