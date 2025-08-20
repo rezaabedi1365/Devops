@@ -117,4 +117,5 @@ docker login gitlabregistry.faratest.net
 ```
 docker pull registry.example.com:5005/group/project:latest
 ```
+<img width="1423" height="843" alt="image" src="https://github.com/user-attachments/assets/8d755b97-d1db-47b6-9f23-f5431cb5e85f" />
 
