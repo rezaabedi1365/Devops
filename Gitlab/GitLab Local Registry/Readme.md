@@ -29,11 +29,11 @@ sudo gitlab-ctl reconfigure
 ```
 - push image
 ```
-docker tag my-image registry.example.com/group/project:latest
-docker push registry.example.com/group/project:latest
+docker tag my-image registry.example.com:5005/group/project:latest
+docker push registry.example.com:5005/group/project:latest
 ```
 - pull image
 ```
-docker pull registry.example.com/group/project:latest
+docker pull registry.example.com:5005/group/project:latest
 ```
 
