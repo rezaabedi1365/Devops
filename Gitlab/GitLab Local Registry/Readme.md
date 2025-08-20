@@ -16,12 +16,13 @@ registry_external_url 'https://gitlabregistry.faratest.net'
 # فعال کردن Registry
 gitlab_rails['registry_enabled'] = true
 gitlab_rails['registry_host'] = "gitlabregistry.faratest.net"
-gitlab_rails['registry_port'] = "5005" 
+gitlab_rails['registry_port'] = "5005"
 gitlab_rails['registry_path'] = "/var/opt/gitlab/gitlab-rails/shared/registry"
 
 # Nginx برای Registry
 registry_nginx['enable'] = true
 registry_nginx['listen_https'] = true
+registry_nginx['listen_port'] = 5005
 registry_nginx['ssl_certificate'] = "/etc/gitlab/ssl/bundle-fullchain.crt"
 registry_nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/private.key"
 
