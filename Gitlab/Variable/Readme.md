@@ -6,7 +6,10 @@
 - File variables → برای فایل‌ها (cert/kubeconfig)
 - Protected Variables → فقط روی branch/tag محافظت‌شده
 - Masked Variables → مخفی تو لاگ
-- Job scoped Variables → فقط تو همون 
+- Job scoped Variables → فقط تو همون
+
+----------------------------------------------------
+
 این یه **چیت‌شیت متغیرهای GitLab CI/CD** هست که می‌تونی تو pipeline و پروژه استفاده کنی، مخصوص داکر، Kubernetes، و .NET Core:
 
 ---
