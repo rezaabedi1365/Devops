@@ -5,7 +5,7 @@
 
 ---
 
-## 📄 `.gitlab-ci.yml` آماده
+##  .gitlab-ci.yml
 
 ```yaml
 stages:
