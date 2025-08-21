@@ -1,27 +1,12 @@
 # Variable
-- Predefined Variables
-- Custom Variables
-- Instance-Level Variables & Group Variables
-- File Variables
-- Protected Variables
-- Masked Variables
-- Job Variables
 
-خلاصه:
-
-- Predefined → GitLab خودش می‌ده
-
-- Custom → تو تعریف می‌کنی (توی YAML یا UI)
-
-- Group/Instance level → برای کل گروپ/سازمان
-
+- Predefined Variables → GitLab خودش می‌ده
+- Custom Variables → تو تعریف می‌کنی (توی YAML یا UI)
+- Group/Instance level Variables → برای کل گروپ/سازمان
 - File variables → برای فایل‌ها (cert/kubeconfig)
-
-- Protected → فقط روی branch/tag محافظت‌شده
-
-- Masked → مخفی تو لاگ
-
-- Job scoped → فقط تو همون 
+- Protected Variables → فقط روی branch/tag محافظت‌شده
+- Masked Variables → مخفی تو لاگ
+- Job scoped Variables → فقط تو همون 
 این یه **چیت‌شیت متغیرهای GitLab CI/CD** هست که می‌تونی تو pipeline و پروژه استفاده کنی، مخصوص داکر، Kubernetes، و .NET Core:
 
 ---
