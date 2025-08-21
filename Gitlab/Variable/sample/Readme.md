@@ -105,3 +105,78 @@ deploy:
 
 ---
 
+
+
+
+
+
+
+
+
+
+----------------------------------------
+
+تو **GitLab** متغیرهای CI/CD رو می‌تونی از طریق UI یا `.gitlab-ci.yml` تعریف کنی. برای pipelineهایی که شامل **سرویس‌های حساس** مثل Nexus یا Kubernetes هستن، بهتره از **GitLab CI/CD Variables** استفاده کنی و آنها را **Masked** و **Protected** کنی.
+
+---
+
+## ۱️⃣ تعریف متغیرها از طریق UI
+
+1. به پروژه برو → **Settings → CI/CD → Variables**
+2. روی **“Add variable”** کلیک کن.
+3. فیلدها رو پر کن:
+
+| فیلد          | توضیح                                                          |
+| ------------- | -------------------------------------------------------------- |
+| **Key**       | نام متغیر، مثال: `NEXUS_USER`                                  |
+| **Value**     | مقدار متغیر، مثال: `admin`                                     |
+| **Type**      | Variable (معمولی) یا File (برای فایل‌های base64 یا kubeconfig) |
+| **Protected** | فقط روی branchهای Protected (مثلاً main) در دسترس است          |
+| **Masked**    | مقدار متغیر در logها نمایش داده نمی‌شود                        |
+
+مثال متغیرهای مورد نیاز ما:
+
+| Key                 | Value                     | توضیح                          |
+| ------------------- | ------------------------- | ------------------------------ |
+| NEXUS\_USER         | `admin`                   | یوزرنیم لاگین به Nexus         |
+| NEXUS\_PASSWORD     | `mypassword`              | پسورد یا توکن                  |
+| KUBE\_TOKEN         | `<token>`                 | سرویس اکانت Kubernetes         |
+| KUBE\_SERVER        | `https://k8s.example.com` | API Server                     |
+| KUBE\_CA\_PEM\_FILE | Base64 cert               | اگر نیاز به CA certificate هست |
+
+> توجه: متغیرهایی که **Masked** هستن، تو لاگ pipeline نشون داده نمی‌شن.
+
+---
+
+## ۲️⃣ تعریف متغیرها در `.gitlab-ci.yml` (غیر حساس)
+
+برای متغیرهای غیر حساس (مثل نام release یا namespace) می‌توانی مستقیم در فایل YAML تعریف کنی:
+
+```yaml
+variables:
+  DOCKER_IMAGE: "nexus.example.com/docker-repo/my-app"
+  KUBE_NAMESPACE: "default"
+  RELEASE_NAME: "my-app"
+  DOTNET_VERSION: "7.0"
+```
+
+> ⚠️ هیچوقت متغیرهای حساس مثل پسورد یا توکن را در YAML مستقیم ننویس، همیشه از **GitLab UI** استفاده کن.
+
+---
+
+## ۳️⃣ استفاده از متغیرها در pipeline
+
+در script هر job می‌توانی از متغیرها استفاده کنی:
+
+```yaml
+script:
+  - docker login -u $NEXUS_USER -p $NEXUS_PASSWORD nexus.example.com
+  - helm upgrade --install $RELEASE_NAME ./helm-chart --namespace $KUBE_NAMESPACE --set image.repository=$DOCKER_IMAGE
+```
+
+> `$VAR_NAME` = فراخوانی متغیر
+
+---
+
+
+
