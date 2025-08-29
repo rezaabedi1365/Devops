@@ -30,11 +30,13 @@ kubectl get pods -n <NamaSpace>
 kubectl get ns
 kubectl get namespace
 ```
-```
-kubectl get ep
-```
+
 ```
 kubectl get svc
+```
+- show pods behind service
+```
+kubectl get ep
 ```
 ```
 kubectl get deployment -A
