@@ -21,7 +21,21 @@ spec:
     ports:
     - containerPort: 80
       protocol: TCP
-
+---
+apiVersion: v1
+kind: Pod
+metadata:                  
+  name: nginx-pod           #PodName     
+  namespace: zabbix-NS
+  labels:
+    app: zabbix
+spec:
+  containers:
+  - name: nginx-cont        #ContainerName
+    image: nginx:1.14.2
+    ports:
+    - containerPort: 80
+      protocol: TCP
 ---
 
 apiVersion: v1
