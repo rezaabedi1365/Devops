@@ -4,6 +4,7 @@
 
 - External Haproxy or Nginx [in multi-master cluster]
 - Ingress Controller
+    * traefik ingress controller
     * HAProxy ingress Controller
     * NGINX ingress Controller
 - Service
