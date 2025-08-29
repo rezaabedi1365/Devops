@@ -11,9 +11,9 @@ apiVersion: v1
 kind: Pod
 metadata:                  
   name: nginx-pod           #PodName     
-  namespace: zabbix-NS
+  namespace: push-NS
   labels:
-    app: zabbix
+    app: push-web
 spec:
   containers:
   - name: nginx-cont        #ContainerName
@@ -21,20 +21,22 @@ spec:
     ports:
     - containerPort: 80
       protocol: TCP
+    - containerPort: 443
+      protocol: TCP
 ---
 apiVersion: v1
 kind: Pod
 metadata:                  
-  name: nginx-pod           #PodName     
-  namespace: zabbix-NS
+  name: mysql-pod           #PodName     
+  namespace: push-NS
   labels:
-    app: zabbix
+    app: push-db
 spec:
   containers:
-  - name: nginx-cont        #ContainerName
-    image: nginx:1.14.2
+  - name: mysql-cont        #ContainerName
+    image: mysql:latest
     ports:
-    - containerPort: 80
+    - containerPort: 3306
       protocol: TCP
 ---
 
@@ -42,7 +44,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx-svc
-  namespace: zabbix-NS      #in service must write pod namespace 
+  namespace: push-NS      #in service must write pod namespace 
 spec:
   type: NodePort
   ports:
@@ -50,8 +52,10 @@ spec:
       targetPort: 80     #(container port in pod )
       nodePort: 30008   #(host port)
   selector:
-    app: zabbix           #Point to pod label>app
+    app: push-web           #Point to pod label>app
 ```
+
+
 ### Sample2 (load balance)
 ```
 
