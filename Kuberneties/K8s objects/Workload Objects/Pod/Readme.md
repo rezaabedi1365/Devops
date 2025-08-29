@@ -1,4 +1,5 @@
 # Pods
+:x: in Pod can create 2 container (sidecar) . usualy use for log pod or agent pod
 - Create pod with kubectl
 - Create pod with yaml
 - Create pod with Helm
