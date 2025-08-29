@@ -1,4 +1,4 @@
-### Sample 1 (port forward)
+### Sample 1 (NodPort)
 ```
 apiVersion: v1
 kind: Namespace
