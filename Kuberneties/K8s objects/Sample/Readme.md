@@ -3,7 +3,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: zabbix-NS
+  name: push-NS
 
 ---
 
