@@ -42,3 +42,6 @@ spec:
 ```
 
 ```
+### Sample3 (ha proxy in external and loadbalance in trafik ingress)
+```
+```
