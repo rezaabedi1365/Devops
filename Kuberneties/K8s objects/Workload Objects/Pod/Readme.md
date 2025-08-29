@@ -64,7 +64,7 @@ kind: Pod
 metadata:                  #information
   name: nginx-pod          #pod name
   namespace: zabbix-NS
-  label:
+  labels:
     app: zabbix
 spec:
   containers:
@@ -81,7 +81,7 @@ kind: Pod
 metadata:                  #information
   name: mysql-pod          #pod name
   namespace: zabbix-NS
-  label:
+  labels:
     app: zabbix
 spec:
   containers:
