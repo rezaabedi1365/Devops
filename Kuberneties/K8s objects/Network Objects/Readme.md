@@ -42,7 +42,7 @@
 ### 1- cluster ip (local)
 - By Default create ClusterIP Network service for your pods you dont need to create on . 
 [ClusterIP]10.103.81.165:8080  > (Pod-IP)10.244.3.10:80
-```
+```yaml
 apiVersion: v1
 kind: Service
 metadate:
@@ -56,7 +56,7 @@ spec:
       targetPort: 8080
 clusterIP: 10.105.10.10          # optional and use for spcify IP
 ```
-```
+```bash
 kubectl get svc
 ```
 ### 2- Nodeport service
@@ -65,12 +65,11 @@ kubectl get svc
 - ExternalIP is Mastercluster ip or workerclusterip Butt workercluster ip maybe will be change therfore use MasterIP.
 
 - Create Namespace > Pod > Nodport Service
-```
+```yaml
 apiVersion: v1
 kind: Namespace
 metadata:
   name: zabbix-NS
-
 ---
 
 apiVersion: v1
@@ -104,8 +103,11 @@ spec:
   selector:
     app: zabbix           #Point to pod label>app
 ```
-- 
-- Create Namespace > Deployment insted Pod > Nodport Service
+- ping <podIP>:80        in cluster with one pod
+- ping <serviceIP>:8080  in cluster with replica
+- Ping <hostIP>:30008    out of cluster
+
+### Create Namespace > Deployment insted Pod > Nodport Service
 ```yaml
 apiVersion: v1
 kind: Namespace
@@ -152,11 +154,11 @@ spec:
 
 ```
 show pods behind specfic service
-```
+```bash
 kubectl describe svc nginx-svc
 ```
 verify:
-```
+```bash
 kubectl get svc
 kubectl describe svc nginx-svc
 
@@ -170,7 +172,7 @@ kubectl create -f svc.yaml
 
 ### 3- LoadBalancer Service
 Use olny in Service Provider - Cant use in local Kuberneties
-```
+```yaml
 apiVersion: v1
 kind: Service
 metadate:
@@ -187,7 +189,7 @@ spec:
 
 ### 4- ExternalName Service
 Use for Cname in external name in internal environment
-```
+```yaml
 apiVersion: v1
 kind: Service
 metadate:
