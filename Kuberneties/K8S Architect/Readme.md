@@ -3,7 +3,7 @@
 * **kubeadm** → the main tool for setting up and managing the cluster.
 * **kubelet** → the primary service on each node that runs the pods.
 * **kubectl** → the command-line tool for managing the cluster
-  :x: (usually installed only on the control plane, but it can be installed on any system).
+:x: (usually installed only on the control plane, but it can be installed on any system).
 * **A container runtime** like `containerd` or `CRI-O` (Docker was used in the past, but now `containerd` or `CRI-O` is preferred).
 -----------------------------------------------------------------------
 ### Kube-system Namespace on Master
