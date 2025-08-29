@@ -31,6 +31,9 @@ kubectl get ns
 kubectl get namespace
 ```
 ```
+kubectl get ep
+```
+```
 kubectl get svc
 ```
 ```
