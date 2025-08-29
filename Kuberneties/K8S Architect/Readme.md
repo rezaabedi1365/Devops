@@ -3,8 +3,7 @@
 * **kubeadm** → the main tool for setting up and managing the cluster.
   * kubeadm init on master
   * kubeadm join on worker
-* **kubelet** → the primary service on each node that runs the pods.
-   * it is service
+* **kubelet** → it is primary service on each node that runs the pods.
    * running pod on the node
    * Monitoring Pod and container Health
    * Reconciling Actual vs Desired State
