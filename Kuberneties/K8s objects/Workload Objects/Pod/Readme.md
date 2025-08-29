@@ -42,8 +42,8 @@ spec:
     - containerPort: 80
       protocol: TCP
 ```
-:x: key: value (Map/Dictionary)
-:x: item (list)
+- :x: key: value (Map/Dictionary)
+- :x: item (list)
 ```
 kubectl create -f pod.yml
 kubectl apply -f pod,yml
