@@ -4,7 +4,13 @@
   * kubeadm init on master
   * kubeadm join on worker
 * **kubelet** → the primary service on each node that runs the pods.
-   * it is service 
+   * it is service
+   * running pod on the node
+   * Monitoring Pod and container Health
+   * Reconciling Actual vs Desired State
+   * Enforcing Resource Limit
+   * Communication with the control plane
+   * Supporting Health checks
 * **kubectl** → the command-line tool for managing the cluster
   * :x: (usually installed only on the control plane, but it can be installed on any system out of cluster .it connect to api on cluster).
 * **A container runtime** like `containerd` or `CRI-O` (Docker was used in the past, but now `containerd` or `CRI-O` is preferred).
