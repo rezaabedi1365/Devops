@@ -32,7 +32,7 @@ kind: Pod
 metadata:                  #information
   name: nginx-pod          #pod name
   namespace: zabbix-NS
-  label:
+  labels:
     app: zabbix
 spec:
   containers:
@@ -72,6 +72,23 @@ spec:
     image: nginx:1.14.2
     ports:
     - containerPort: 80
+      protocol: TCP
+    - containerPort: 443
+      protocol: TCP
+---
+apiVersion: v1
+kind: Pod
+metadata:                  #information
+  name: mysql-pod          #pod name
+  namespace: zabbix-NS
+  label:
+    app: zabbix
+spec:
+  containers:
+  - name: mysql-cont        #container-name
+    image: mysql:latest
+    ports:
+    - containerPort: 3306
       protocol: TCP
 ```
 
