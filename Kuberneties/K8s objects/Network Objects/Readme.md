@@ -104,8 +104,9 @@ spec:
   selector:
     app: zabbix           #Point to pod label>app
 ```
+- 
 - Create Namespace > Deployment insted Pod > Nodport Service
-```
+```yaml
 apiVersion: v1
 kind: Namespace
 metadata:
