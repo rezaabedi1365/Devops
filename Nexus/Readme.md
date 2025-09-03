@@ -5,6 +5,7 @@ https://github.com/sonatype/docker-nexus/blob/main/docker-compose.yml
 ```
 mkdir ./host-nexus-data
 chown 200:200 ./host-nexus-data
+sudo chmod -R 770 ./host-nexus-data
 ```
 
 ```  
@@ -77,20 +78,13 @@ step5:
 docker compuse up -d
 ```
 
-step6: upload Groovy to nexus
-- upload docker-repos.groovy
-``` 
-curl -u "admin:your-admin-pass" \
-     --header "Content-Type: application/json" \
-     'http://localhost:8081/service/rest/v1/script/' \
-     -d '{"name":"docker-repos","type":"groovy","content":"'"$(< nexus-scripts/docker-repos.groovy)"'"}'
-```
-- run docker-repos.groovy
-```
-curl -u "admin:your-admin-pass" \
-     -X POST \
-     'http://localhost:8081/service/rest/v1/script/docker-repos/run'
-```
+step6:
+- in nexus ui create linux-host-repo
+- in nexus ui create linux-proxy-repo
+- in nexus ui create linux-group-repo
+- in nexus ui create docker-host-repo
+- in nexus ui create docker-proxy-repo
+- in nexus ui create docker-group-repo
 
 
 
