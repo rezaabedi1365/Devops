@@ -80,14 +80,14 @@ docker compuse up -d
 step6: upload Groovy to nexus
 - upload docker-repos.groovy
 ``` 
-curl -u admin:your-admin-pass \
+curl -u "admin:your-admin-pass" \
      --header "Content-Type: application/json" \
      'http://localhost:8081/service/rest/v1/script/' \
      -d '{"name":"docker-repos","type":"groovy","content":"'"$(< nexus-scripts/docker-repos.groovy)"'"}'
 ```
 - run docker-repos.groovy
 ```
-curl -u admin:your-admin-pass \
+curl -u "admin:your-admin-pass" \
      -X POST \
      'http://localhost:8081/service/rest/v1/script/docker-repos/run'
 ```
@@ -96,7 +96,7 @@ curl -u admin:your-admin-pass \
 
 - upload linux-repos.groovy
 ```
-curl -u admin:your-admin-pass \
+curl -u "admin:your-admin-pass" \
      --header "Content-Type: application/json" \
      'http://localhost:8081/service/rest/v1/script/' \
      -d '{"name":"linux-repos","type":"groovy","content":"'"$(< nexus-scripts/linux-repos.groovy)"'"}'
@@ -104,7 +104,7 @@ curl -u admin:your-admin-pass \
 
 - run linux-repos.groovy
 ```
-curl -u admin:your-admin-pass \
+curl -u "admin:your-admin-pass" \
      -X POST \
      'http://localhost:8081/service/rest/v1/script/linux-repos/run'
 ```
