@@ -47,6 +47,24 @@ project-root/
     └── linux-repos.groovy   [Package group repo]
      
 ```
+# user manual for  advance install
+```
+git clone https://github.com/rezaabedi1365/Devops/tree/a4e2773a33c078a05d54f7fb8fb5723a0e18c6f7/Nexus
+```
+step2:
+  - copy your certificate in cert directory
+step3:
+  - change nexus url in nginx.conf
+
+step4:
+  - change nexus url & user & pass in env.groovy
+
+step5:
+```
+docker compuse up -d
+```
+
+
 ### docker compose
 ```
 version: "3.9"
