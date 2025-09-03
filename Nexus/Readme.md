@@ -62,6 +62,9 @@ rm -rf Devops-a4e2773a33c078a05d54f7fb8fb5723a0e18c6f7 Nexus.zip
 cd Nexus
 mkdir ./host-nexus-data
 sudo chown -R 200:200 ./host-nexus-data
+
+mkdir ./nexus-data
+sudo chown -R 200:200 ./nexus-data
 ```
 step2:
   - copy your certificate in cert directory
@@ -74,11 +77,22 @@ step4:
   - change nexus url & user & pass in env.groovy
 
 step5:
+- create privatekey for hosted apt&yum repo
+- this file maped in docker-compose
+```
+gpg --full-generate-key
+gpg --export-secret-keys --armor YOUR_KEY_ID > yam-private-key.asc
+cat yam-private-key.asc
+```
 ```
 docker compuse up -d
 ```
 
-step6:
+step6: 
+
+
+
+step7: 
 - in nexus ui create linux-host-repo
 - in nexus ui create linux-proxy-repo
 - in nexus ui create linux-group-repo
@@ -118,6 +132,7 @@ curl -u "admin:your-admin-pass" \
 --------------------------------------------------------------------
 
 ### docker compose
+
 ```
 #version: "3.9"
 services:
@@ -133,6 +148,8 @@ services:
     volumes:
       - nexus-data:/nexus-data
       - ./nexus-scripts:/opt/sonatype/nexus/etc/scripts
+      - ./private-key.asc:/nexus-data/private-key.asc:ro
+
     environment:
       - INSTALL4J_ADD_VM_PARAMS=-Dnexus.scripts.allowCreation=true
 
