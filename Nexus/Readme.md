@@ -29,3 +29,9 @@ Get admin password by executing below command
 sudo docker exec -it CONTAINER_NAME cat /nexus-data/admin.password
 ```
 # Advance Install
+
+```
+nexus-scripts/
+│── docker-repos.groovy
+└── linux-repos.groovy
+```
