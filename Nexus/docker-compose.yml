@@ -1,0 +1,34 @@
+version: "3.9"
+services:
+  nexus:
+    image: sonatype/nexus3:latest
+    container_name: nexus
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+      - "5001:5001"   #docker-hosted
+      - "5002:5002"   #docker-hub-proxy
+      - "5003:5003"   #docker-group
+    volumes:
+      - nexus-data:/nexus-data
+      - ./nexus-scripts:/opt/sonatype/nexus/etc/scripts
+    environment:
+      - INSTALL4J_ADD_VM_PARAMS=-Dnexus.scripts.allowCreation=true
+
+  nginx:
+    image: nginx:latest
+    container_name: nexus-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./certs/your_cert.crt:/etc/ssl/certs/your_cert.crt:ro
+      - ./certs/your_chain.crt:/etc/ssl/certs/your_chain.crt:ro
+      - ./certs/your_key.key:/etc/ssl/private/your_key.key:ro
+    depends_on:
+      - nexus
+
+volumes:
+  nexus-data:
