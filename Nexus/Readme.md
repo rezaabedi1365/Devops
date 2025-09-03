@@ -41,12 +41,13 @@ project-root/
 │   └── your_key.key
 │
 └── nexus-scripts/
-    ├── docker-repos.groovy
-    └── docker-repos.groovy
+    ├── docker-repos.groovy  [Docker group repo]
+    └── linux-repos.groovy   [Package group repo]
      
 ```
 
 - linux-repos.groovy
+  * Package group repo > hosted + proxy
 ```
 import org.sonatype.nexus.repository.storage.WritePolicy
 
@@ -95,6 +96,7 @@ repository.createYumGroup(
 
 ```
 - docker-repos.groovy
+  * Docker-group repo > hosted + proxy
 ```
 import org.sonatype.nexus.repository.storage.WritePolicy
 
@@ -234,6 +236,10 @@ sudo apt update
 sudo apt install splunkforwarder
 ```
 # Docker Repo
+- upload Docker image in nexus Docker repo
 ```
+docker login nexus.example.com
+docker tag my-app:latest nexus.example.com/my-project/my-app:1.0
+docker push nexus.example.com/my-project/my-app:1.0
 ```
 
