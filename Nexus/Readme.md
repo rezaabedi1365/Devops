@@ -32,8 +32,10 @@ sudo docker exec -it CONTAINER_NAME cat /nexus-data/admin.password
 ```
 project-root/
 │── docker-compose.yml
+│── .env        [environment for docker-compose]
 │── nginx.conf
-│── upload.sh                   # اسکریپت آپلود پکیج‌ها
+│── upload.sh                 
+│── .env.groovy [environment for upload.sh]
 │
 ├── certs/
 │   ├── your_cert.crt
@@ -45,7 +47,7 @@ project-root/
     └── linux-repos.groovy   [Package group repo]
      
 ```
-- docker compose
+### docker compose
 ```
 version: "3.9"
 
@@ -56,9 +58,9 @@ services:
     restart: unless-stopped
     ports:
       - "8081:8081"
-      - "5001:5001"
-      - "5002:5002"
-      - "5003:5003"
+      - "5001:5001"   #docker-hosted
+      - "5002:5002"   #docker-hub-proxy
+      - "5003:5003"   #docker-group
     volumes:
       - nexus-data:/nexus-data
       - ./nexus-scripts:/opt/sonatype/nexus/etc/scripts
@@ -84,7 +86,7 @@ volumes:
   nexus-data:
 ```
 
-- nginx.conf
+### nginx.conf
 ```
 server {
     listen 80;
@@ -126,30 +128,45 @@ server {
 ```
 
 
+### upload.sh
+- Secret in .env.groovy
+```
+# Nexus repository credentials
+NEXUS_URL=https://nexus.example.com/repository
+NEXUS_USER=admin
+NEXUS_PASS=your-secure-password
 
-
-
-- upload.sh
-  * NEXUS_URL=
-  * USER=
-  * PASS=
+```
+- uoload.sh
 ```
 #!/bin/bash
-set -e
+set -euo pipefail
 
 # ================================
-# تنظیمات Nexus
+# Load environment variables from env.groovy automatically
 # ================================
-NEXUS_URL="https://nexus.example.com/repository"
+ENV_FILE="env.groovy"
+if [ -f "$ENV_FILE" ]; then
+    source "$ENV_FILE"
+else
+    echo "❌ $ENV_FILE not found! Please create it with NEXUS_URL, NEXUS_USER, NEXUS_PASS."
+    exit 1
+fi
+
+# ================================
+# Validate required variables
+# ================================
+: "${NEXUS_URL:?Please set NEXUS_URL in $ENV_FILE}"
+: "${NEXUS_USER:?Please set NEXUS_USER in $ENV_FILE}"
+: "${NEXUS_PASS:?Please set NEXUS_PASS in $ENV_FILE}"
+
 UBUNTU_REPO="ubuntu-hosted"
 CENTOS_REPO="centos-hosted"
-USER="admin"
-PASS="your-admin-pass"
-
-# پوشه پکیج‌ها
 PKG_DIR="./packages"
 
-# پوشه لاگ
+# ================================
+# Setup logging
+# ================================
 LOG_DIR="./logs"
 mkdir -p "$LOG_DIR"
 LOG_FILE="$LOG_DIR/upload_$(date +%Y%m%d_%H%M%S).log"
@@ -157,62 +174,47 @@ LOG_FILE="$LOG_DIR/upload_$(date +%Y%m%d_%H%M%S).log"
 echo "=== Starting Nexus Upload ===" | tee -a "$LOG_FILE"
 
 # ================================
-# آپلود DEB ها (Ubuntu)
+# Function to upload files
+# ================================
+upload_file() {
+    local file=$1
+    local repo=$2
+    local basename=$(basename "$file")
+    
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] Uploading $basename to $repo..." | tee -a "$LOG_FILE"
+    
+    HTTP_CODE=$(curl -s -w "%{http_code}" -u "$NEXUS_USER:$NEXUS_PASS" --upload-file "$file" \
+        "$NEXUS_URL/$repo/$basename" -o /dev/null)
+    
+    if [ "$HTTP_CODE" -ge 200 ] && [ "$HTTP_CODE" -lt 300 ]; then
+        echo "✅ $basename uploaded successfully." | tee -a "$LOG_FILE"
+    else
+        echo "❌ Failed to upload $basename (HTTP $HTTP_CODE)" | tee -a "$LOG_FILE"
+    fi
+}
+
+# ================================
+# Upload DEB packages (Ubuntu)
 # ================================
 for deb in "$PKG_DIR"/*.deb; do
     [ -f "$deb" ] || continue
-    BASENAME=$(basename "$deb")
-    echo "Uploading $BASENAME to $UBUNTU_REPO..." | tee -a "$LOG_FILE"
-    RESPONSE=$(curl -s -w "%{http_code}" -u $USER:$PASS --upload-file "$deb" \
-        "$NEXUS_URL/$UBUNTU_REPO/$BASENAME")
-    HTTP_CODE="${RESPONSE: -3}"
-    if [ "$HTTP_CODE" -ge 200 ] && [ "$HTTP_CODE" -lt 300 ]; then
-        echo "✅ $BASENAME uploaded successfully." | tee -a "$LOG_FILE"
-    else
-        echo "❌ Failed to upload $BASENAME (HTTP $HTTP_CODE)" | tee -a "$LOG_FILE"
-    fi
+    upload_file "$deb" "$UBUNTU_REPO"
 done
 
 # ================================
-# آپلود RPM ها (CentOS)
+# Upload RPM packages (CentOS)
 # ================================
 for rpm in "$PKG_DIR"/*.rpm; do
     [ -f "$rpm" ] || continue
-    BASENAME=$(basename "$rpm")
-    echo "Uploading $BASENAME to $CENTOS_REPO..." | tee -a "$LOG_FILE"
-    RESPONSE=$(curl -s -w "%{http_code}" -u $USER:$PASS --upload-file "$rpm" \
-        "$NEXUS_URL/$CENTOS_REPO/$BASENAME")
-    HTTP_CODE="${RESPONSE: -3}"
-    if [ "$HTTP_CODE" -ge 200 ] && [ "$HTTP_CODE" -lt 300 ]; then
-        echo "✅ $BASENAME uploaded successfully." | tee -a "$LOG_FILE"
-    else
-        echo "❌ Failed to upload $BASENAME (HTTP $HTTP_CODE)" | tee -a "$LOG_FILE"
-    fi
+    upload_file "$rpm" "$CENTOS_REPO"
 done
 
 echo "=== Nexus Upload Completed ===" | tee -a "$LOG_FILE"
 
 ```
-```
-chmod +x upload.sh
-./upload.sh
-```
-
-```
-curl -u admin:your-admin-pass \
-     --header "Content-Type: application/json" \
-     'http://localhost:8081/service/rest/v1/script/' \
-     -d '{"name":"docker-repos","type":"groovy","content":"'"$(< nexus-scripts/docker-repos.groovy)"'"}'
-
-```
-```
-curl -u admin:your-admin-pass \
-     -X POST \
-     'http://localhost:8081/service/rest/v1/script/docker-repos/run'
-```
 
 
-- linux-repos.groovy
+### linux-repos.groovy
   * Package group repo > hosted + proxy
 ```
 import org.sonatype.nexus.repository.storage.WritePolicy
@@ -261,7 +263,7 @@ repository.createYumGroup(
 )
 
 ```
-- docker-repos.groovy
+### docker-repos.groovy
   * Docker-group repo > hosted + proxy
 ```
 import org.sonatype.nexus.repository.storage.WritePolicy
@@ -297,6 +299,38 @@ repository.createDockerGroup(
 
 ```
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# upload Groovy to nexus
+- upload docker-repos.groovy
+``` 
+curl -u admin:your-admin-pass \
+     --header "Content-Type: application/json" \
+     'http://localhost:8081/service/rest/v1/script/' \
+     -d '{"name":"docker-repos","type":"groovy","content":"'"$(< nexus-scripts/docker-repos.groovy)"'"}'
+```
+- run docker-repos.groovy
+```
+curl -u admin:your-admin-pass \
+     -X POST \
+     'http://localhost:8081/service/rest/v1/script/docker-repos/run'
+```
+
+
+
+- upload linux-repos.groovy
+```
+curl -u admin:your-admin-pass \
+     --header "Content-Type: application/json" \
+     'http://localhost:8081/service/rest/v1/script/' \
+     -d '{"name":"linux-repos","type":"groovy","content":"'"$(< nexus-scripts/linux-repos.groovy)"'"}'
+```
+
+- run linux-repos.groovy
+```
+curl -u admin:your-admin-pass \
+     -X POST \
+     'http://localhost:8081/service/rest/v1/script/linux-repos/run'
+```
 
 # Package Repo
 ### Upload Package in host repo
