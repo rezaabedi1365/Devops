@@ -59,9 +59,10 @@ rm -rf Devops-a4e2773a33c078a05d54f7fb8fb5723a0e18c6f7 Nexus.zip
 ```
 step2:
   - copy your certificate in cert directory
+  - change certifacates name in nginx.conf and docker-compose.yml
 
 step3:
-  - change nexus url in nginx.conf
+  - change nexus url for 80 and 443 in nginx.conf
 
 step4:
   - change nexus url & user & pass in env.groovy
@@ -78,15 +79,14 @@ docker compuse up -d
 
 ### docker compose
 ```
-version: "3.9"
-
+#version: "3.9"
 services:
   nexus:
     image: sonatype/nexus3:latest
     container_name: nexus
     restart: unless-stopped
     ports:
-      - "8081:8081"
+      - "8081:8081"   #UI - REST API - deb&yam hosted+proxy
       - "5001:5001"   #docker-hosted
       - "5002:5002"   #docker-hub-proxy
       - "5003:5003"   #docker-group
@@ -104,6 +104,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
+      - ./host-nexus-data:/nexus-data
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - ./certs/your_cert.crt:/etc/ssl/certs/your_cert.crt:ro
       - ./certs/your_chain.crt:/etc/ssl/certs/your_chain.crt:ro
@@ -111,8 +112,7 @@ services:
     depends_on:
       - nexus
 
-volumes:
-  nexus-data:
+
 ```
 
 ### nginx.conf
