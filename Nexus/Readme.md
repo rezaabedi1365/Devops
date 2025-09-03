@@ -77,6 +77,43 @@ step5:
 docker compuse up -d
 ```
 
+step6: upload Groovy to nexus
+- upload docker-repos.groovy
+``` 
+curl -u admin:your-admin-pass \
+     --header "Content-Type: application/json" \
+     'http://localhost:8081/service/rest/v1/script/' \
+     -d '{"name":"docker-repos","type":"groovy","content":"'"$(< nexus-scripts/docker-repos.groovy)"'"}'
+```
+- run docker-repos.groovy
+```
+curl -u admin:your-admin-pass \
+     -X POST \
+     'http://localhost:8081/service/rest/v1/script/docker-repos/run'
+```
+
+
+
+- upload linux-repos.groovy
+```
+curl -u admin:your-admin-pass \
+     --header "Content-Type: application/json" \
+     'http://localhost:8081/service/rest/v1/script/' \
+     -d '{"name":"linux-repos","type":"groovy","content":"'"$(< nexus-scripts/linux-repos.groovy)"'"}'
+```
+
+- run linux-repos.groovy
+```
+curl -u admin:your-admin-pass \
+     -X POST \
+     'http://localhost:8081/service/rest/v1/script/linux-repos/run'
+```
+
+
+
+
+
+
 
 --------------------------------------------------------------------
 # Detail file for advance installation
@@ -334,37 +371,7 @@ repository.createDockerGroup(
 ```
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# upload Groovy to nexus
-- upload docker-repos.groovy
-``` 
-curl -u admin:your-admin-pass \
-     --header "Content-Type: application/json" \
-     'http://localhost:8081/service/rest/v1/script/' \
-     -d '{"name":"docker-repos","type":"groovy","content":"'"$(< nexus-scripts/docker-repos.groovy)"'"}'
-```
-- run docker-repos.groovy
-```
-curl -u admin:your-admin-pass \
-     -X POST \
-     'http://localhost:8081/service/rest/v1/script/docker-repos/run'
-```
 
-
-
-- upload linux-repos.groovy
-```
-curl -u admin:your-admin-pass \
-     --header "Content-Type: application/json" \
-     'http://localhost:8081/service/rest/v1/script/' \
-     -d '{"name":"linux-repos","type":"groovy","content":"'"$(< nexus-scripts/linux-repos.groovy)"'"}'
-```
-
-- run linux-repos.groovy
-```
-curl -u admin:your-admin-pass \
-     -X POST \
-     'http://localhost:8081/service/rest/v1/script/linux-repos/run'
-```
 
 # Package Repo
 ### Upload Package in host repo
