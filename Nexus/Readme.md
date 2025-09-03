@@ -42,7 +42,7 @@ project-root/
 │
 └── nexus-scripts/
     ├── docker-repos.groovy
-    ├── docker-repos.groovy
+    └── docker-repos.groovy
      
 ```
 
