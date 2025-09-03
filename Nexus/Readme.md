@@ -49,7 +49,15 @@ project-root/
 ```
 # user manual for  advance install
 ```
-git clone https://github.com/rezaabedi1365/Devops/tree/a4e2773a33c078a05d54f7fb8fb5723a0e18c6f7/Nexus
+apt install unzip
+```
+```
+wget -O Nexus.zip https://github.com/rezaabedi1365/Devops/archive/a4e2773a33c078a05d54f7fb8fb5723a0e18c6f7.zip
+unzip -q Nexus.zip "Devops-a4e2773a33c078a05d54f7fb8fb5723a0e18c6f7/Nexus/*"
+mv Devops-a4e2773a33c078a05d54f7fb8fb5723a0e18c6f7/Nexus ./Nexus
+rm -rf Devops-a4e2773a33c078a05d54f7fb8fb5723a0e18c6f7 Nexus.zip
+
+
 ```
 step2:
   - copy your certificate in cert directory
