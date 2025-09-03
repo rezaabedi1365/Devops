@@ -59,6 +59,7 @@ rm -rf Devops-a4e2773a33c078a05d54f7fb8fb5723a0e18c6f7 Nexus.zip
 ```
 step2:
   - copy your certificate in cert directory
+
 step3:
   - change nexus url in nginx.conf
 
