@@ -96,10 +96,14 @@ curl -u "admin:your-admin-pass" \
 
 - upload linux-repos.groovy
 ```
+groovy_content=$(python3 -c 'import json, sys; print(json.dumps(sys.stdin.read()))' < nexus-scripts/linux-repos.groovy)
+
 curl -u "admin:your-admin-pass" \
      --header "Content-Type: application/json" \
+     -X POST \
      'http://localhost:8081/service/rest/v1/script/' \
-     -d '{"name":"linux-repos","type":"groovy","content":"'"$(< nexus-scripts/linux-repos.groovy)"'"}'
+     -d "{\"name\":\"linux-repos\",\"type\":\"groovy\",\"content\":$groovy_content}"
+
 ```
 
 - run linux-repos.groovy
