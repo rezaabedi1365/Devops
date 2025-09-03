@@ -57,6 +57,11 @@ unzip -q Nexus.zip "Devops-a4e2773a33c078a05d54f7fb8fb5723a0e18c6f7/Nexus/*"
 mv Devops-a4e2773a33c078a05d54f7fb8fb5723a0e18c6f7/Nexus ./Nexus
 rm -rf Devops-a4e2773a33c078a05d54f7fb8fb5723a0e18c6f7 Nexus.zip
 ```
+```
+cd Nexus
+mkdir ./host-nexus-data
+sudo chown -R 200:200 ./host-nexus-data
+```
 step2:
   - copy your certificate in cert directory
   - change certifacates name in nginx.conf and docker-compose.yml
