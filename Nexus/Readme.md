@@ -78,15 +78,20 @@ services:
     container_name: nexus
     restart: unless-stopped
     ports:
-      - "8081:8081"   #UI - REST API - deb&yam hosted+proxy
-      - "5001:5001"   #docker-hosted
-      - "5002:5002"   #docker-hub-proxy
-      - "5003:5003"   #docker-group
+      - "8081:8081"   # UI - REST API - deb&yum hosted+proxy
+      - "5001:5001"   # docker-hosted
+      - "5002:5002"   # docker-hub-proxy
+      - "5003:5003"   # docker-group
     volumes:
-      - nexus-data:/nexus-data
-      - ./nexus-scripts:/opt/sonatype/nexus/etc/scripts
       - ./private-key.asc:/nexus-data/private-key.asc:ro
+      - ./nexus-data:/nexus-data
+      - ./nexus-scripts:/opt/sonatype/nexus/etc/scripts
 
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
   nginx:
     image: nginx:latest
@@ -96,28 +101,25 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./host-nexus-data:/nexus-data
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - ./certs/cert.pem:/etc/ssl/certs/cert.pem:ro
       - ./certs/fullchain.pem:/etc/ssl/certs/fullchain.pem:ro
       - ./certs/private.key:/etc/ssl/private/private.key:ro
     depends_on:
-      - nexus
-
-
+      - nexus    
 ```
 
 ### nginx.conf
 ```
 server {
     listen 80;
-    server_name nexus.example.com;
-    return 301 https://$host$request_uri;    #Redirect 80 to 443
+    server_name nexus.faradis.net;
+    return 301 https://$host$request_uri;
 }
 
 server {
     listen 443 ssl;
-    server_name nexus.example.com;
+    server_name nexus.faradis.net;
 
     ssl_certificate     /etc/ssl/certs/cert.pem;
     ssl_certificate_key /etc/ssl/private/private.key;
