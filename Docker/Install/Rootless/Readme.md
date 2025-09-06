@@ -32,12 +32,7 @@ apt remove --purge docker-ce docker-ce-cli containerd.io docker-buildx-plugin do
 curl -fsSL https://get.docker.com/rootless | sh
 
 ```
-install dockercompose
-```
-mkdir -p ~/.docker/cli-plugins/
-curl -SL https://github.com/docker/compose/releases/download/v2.29.7/docker-compose-linux-$(uname -m) -o ~/.docker/cli-plugins/docker-compose
-chmod +x ~/.docker/cli-plugins/docker-compose
-```
+
 ### Set environment variables:
 :x:
 ```
@@ -72,6 +67,12 @@ which docker
 ```
 - /home/YOUR_USER/bin
 
+### install dockercompose
+```
+mkdir -p ~/.docker/cli-plugins/
+curl -SL https://github.com/docker/compose/releases/download/v2.29.7/docker-compose-linux-$(uname -m) -o ~/.docker/cli-plugins/docker-compose
+chmod +x ~/.docker/cli-plugins/docker-compose
+```
 ### check dockerDeamon and container with which user to run 
 check dockerDeamon with which user run
 ```
