@@ -4,20 +4,13 @@
 project-root/
 │── docker-compose.yml
 │── .env        [environment for docker-compose]
-│── nginx.conf
-│── upload.sh                 
-│── .env.groovy [environment for upload.sh]
-│
+│── nginx.conf            
 ├── certs/
-│   ├── your_cert.crt
-│   ├── your_chain.crt
-│   └── your_key.key
-│
-└── nexus-scripts/
-    ├── docker-repos.groovy  [Docker group repo]
-    └── linux-repos.groovy   [Package group repo]
-     
+    ├── your_cert.crt
+    ├── your_chain.crt
+    └── your_key.key     
 ```
+
 # user manual for  advance install
 ```
 apt install unzip
@@ -59,8 +52,6 @@ docker compuse up -d
 ```
 
 step6: 
-
-
 
 step7: 
 - in nexus ui create linux-host-repo
@@ -133,9 +124,9 @@ services:
     volumes:
       - ./host-nexus-data:/nexus-data
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./certs/your_cert.crt:/etc/ssl/certs/your_cert.crt:ro
-      - ./certs/your_chain.crt:/etc/ssl/certs/your_chain.crt:ro
-      - ./certs/your_key.key:/etc/ssl/private/your_key.key:ro
+      - ./certs/cert.pem:/etc/ssl/certs/cert.pem:ro
+      - ./certs/fullchain.pem:/etc/ssl/certs/fullchain.pem:ro
+      - ./certs/private.key:/etc/ssl/private/private.key:ro
     depends_on:
       - nexus
 
@@ -147,16 +138,16 @@ services:
 server {
     listen 80;
     server_name nexus.example.com;
-    return 301 https://$host$request_uri;
+    return 301 https://$host$request_uri;    #Redirect 80 to 443
 }
 
 server {
     listen 443 ssl;
     server_name nexus.example.com;
 
-    ssl_certificate     /etc/ssl/certs/your_cert.crt;
-    ssl_certificate_key /etc/ssl/private/your_key.key;
-    ssl_trusted_certificate /etc/ssl/certs/your_chain.crt;
+    ssl_certificate     /etc/ssl/certs/cert.pem;
+    ssl_certificate_key /etc/ssl/private/private.key;
+    ssl_trusted_certificate /etc/ssl/certs/fullchain.pem;
 
     ssl_protocols       TLSv1.2 TLSv1.3;
     ssl_ciphers         HIGH:!aNULL:!MD5;
@@ -184,221 +175,4 @@ server {
 ```
 
 
-### upload.sh
-- Secret in .env.groovy
-```
-# Nexus repository credentials
-NEXUS_URL=https://nexus.example.com/repository
-NEXUS_USER=admin
-NEXUS_PASS=your-secure-password
-
-```
-- uoload.sh
-```
-#!/bin/bash
-set -euo pipefail
-
-# ================================
-# Load environment variables from env.groovy automatically
-# ================================
-ENV_FILE="env.groovy"
-if [ -f "$ENV_FILE" ]; then
-    source "$ENV_FILE"
-else
-    echo "❌ $ENV_FILE not found! Please create it with NEXUS_URL, NEXUS_USER, NEXUS_PASS."
-    exit 1
-fi
-
-# ================================
-# Validate required variables
-# ================================
-: "${NEXUS_URL:?Please set NEXUS_URL in $ENV_FILE}"
-: "${NEXUS_USER:?Please set NEXUS_USER in $ENV_FILE}"
-: "${NEXUS_PASS:?Please set NEXUS_PASS in $ENV_FILE}"
-
-UBUNTU_REPO="ubuntu-hosted"
-CENTOS_REPO="centos-hosted"
-PKG_DIR="./packages"
-
-# ================================
-# Setup logging
-# ================================
-LOG_DIR="./logs"
-mkdir -p "$LOG_DIR"
-LOG_FILE="$LOG_DIR/upload_$(date +%Y%m%d_%H%M%S).log"
-
-echo "=== Starting Nexus Upload ===" | tee -a "$LOG_FILE"
-
-# ================================
-# Function to upload files
-# ================================
-upload_file() {
-    local file=$1
-    local repo=$2
-    local basename=$(basename "$file")
-    
-    echo "[$(date '+%Y-%m-%d %H:%M:%S')] Uploading $basename to $repo..." | tee -a "$LOG_FILE"
-    
-    HTTP_CODE=$(curl -s -w "%{http_code}" -u "$NEXUS_USER:$NEXUS_PASS" --upload-file "$file" \
-        "$NEXUS_URL/$repo/$basename" -o /dev/null)
-    
-    if [ "$HTTP_CODE" -ge 200 ] && [ "$HTTP_CODE" -lt 300 ]; then
-        echo "✅ $basename uploaded successfully." | tee -a "$LOG_FILE"
-    else
-        echo "❌ Failed to upload $basename (HTTP $HTTP_CODE)" | tee -a "$LOG_FILE"
-    fi
-}
-
-# ================================
-# Upload DEB packages (Ubuntu)
-# ================================
-for deb in "$PKG_DIR"/*.deb; do
-    [ -f "$deb" ] || continue
-    upload_file "$deb" "$UBUNTU_REPO"
-done
-
-# ================================
-# Upload RPM packages (CentOS)
-# ================================
-for rpm in "$PKG_DIR"/*.rpm; do
-    [ -f "$rpm" ] || continue
-    upload_file "$rpm" "$CENTOS_REPO"
-done
-
-echo "=== Nexus Upload Completed ===" | tee -a "$LOG_FILE"
-
-```
-
-
-### linux-repos.groovy
-  * Package group repo > hosted + proxy
-```
-import org.sonatype.nexus.repository.storage.WritePolicy
-
-// === Ubuntu/Debian (APT) ===
-
-// Hosted repo برای پکیج‌های داخلی
-repository.createAptHosted(
-    'ubuntu-hosted',
-    WritePolicy.ALLOW
-)
-
-// Proxy repo برای mirror رسمی Ubuntu
-repository.createAptProxy(
-    'ubuntu-proxy',
-    'http://archive.ubuntu.com/ubuntu'
-)
-
-// Group repo برای ترکیب hosted + proxy
-repository.createAptGroup(
-    'ubuntu-group',
-    ['ubuntu-hosted', 'ubuntu-proxy']
-)
-
-
-// === CentOS/RedHat (YUM) ===
-
-// Hosted repo برای پکیج‌های داخلی
-repository.createYumHosted(
-    'centos-hosted',
-    WritePolicy.ALLOW,
-    true   // deploy policy: allow redeploy
-)
-
-// Proxy repo برای mirror رسمی CentOS
-repository.createYumProxy(
-    'centos-proxy',
-    'http://mirror.centos.org/centos/',
-    true
-)
-
-// Group repo برای ترکیب hosted + proxy
-repository.createYumGroup(
-    'centos-group',
-    ['centos-hosted', 'centos-proxy']
-)
-
-```
-### docker-repos.groovy
-  * Docker-group repo > hosted + proxy
-```
-import org.sonatype.nexus.repository.storage.WritePolicy
-
-// ایجاد docker-hosted
-repository.createDockerHosted(
-    'docker-hosted', // name
-    5001,            // https port
-    null,            // http port
-    true,            // v1 enabled?
-    WritePolicy.ALLOW
-)
-
-// ایجاد docker-hub-proxy
-repository.createDockerProxy(
-    'docker-hub-proxy',
-    'https://registry-1.docker.io',
-    null,   // index type
-    null,   // index url
-    5002,   // https port
-    null,   // http port
-    true    // v1 enabled?
-)
-
-// ایجاد docker-group
-repository.createDockerGroup(
-    'docker-group',
-    5003,          // https port
-    null,          // http port
-    true,          // v1 enabled?
-    ['docker-hosted', 'docker-hub-proxy']
-)
-
-```
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-# Package Repo
-### Upload Package in host repo
-##### YUM repo
-```
-curl -u admin:your-pass \
-     --upload-file eset_nod32av-4.0.85.rpm \
-     https://nexus.example.com/repository/centos-hosted/eset_nod32av-4.0.85.rpm
-```
-- add package repo in client
-```
-cat <<EOF | sudo tee /etc/yum.repos.d/nexus.repo
-[nexus]
-name=Nexus YUM Repository
-baseurl=https://nexus.example.com/repository/centos-hosted/
-enabled=1
-gpgcheck=0
-EOF
-```
-```
-sudo yum clean all
-sudo yum install eset_nod32av
-```
-##### Debian repo
-```
-curl -u admin:your-pass \
-     --upload-file splunkforwarder-9.0.5.deb \
-     https://nexus.example.com/repository/ubuntu-hosted/splunkforwarder-9.0.5.deb
-```
-- add package repo in client
-```
-echo "deb [trusted=yes] https://nexus.example.com/repository/ubuntu-hosted/ jammy main" | sudo tee /etc/apt/sources.list.d/nexus.list
-```
-```
-sudo apt update
-sudo apt install splunkforwarder
-```
-# Docker Repo
-- upload Docker image in nexus Docker repo
-```
-docker login nexus.example.com
-docker tag my-app:latest nexus.example.com/my-project/my-app:1.0
-docker push nexus.example.com/my-project/my-app:1.0
-```
 
