@@ -34,8 +34,9 @@ curl -fsSL https://get.docker.com/rootless | sh
 ```
 install dockercompose
 ```
-curl -SL https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose
-chmod u+x ~/.docker/cli-plugins/docker-compose
+mkdir -p ~/.docker/cli-plugins/
+curl -SL https://github.com/docker/compose/releases/download/v2.29.7/docker-compose-linux-$(uname -m) -o ~/.docker/cli-plugins/docker-compose
+chmod +x ~/.docker/cli-plugins/docker-compose
 ```
 ### Set environment variables:
 :x:
