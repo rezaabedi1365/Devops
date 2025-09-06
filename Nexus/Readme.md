@@ -48,38 +48,17 @@ cat yam-private-key.asc
 docker compuse up -d
 ```
 
-step6: 
-
-step7: 
-- in nexus ui create linux-host-repo
-- in nexus ui create linux-proxy-repo
-- in nexus ui create linux-group-repo
-- in nexus ui create docker-host-repo
-- in nexus ui create docker-proxy-repo
-- in nexus ui create docker-group-repo
-
-
-
-- upload linux-repos.groovy
+### verify :
 ```
-groovy_content=$(python3 -c 'import json, sys; print(json.dumps(sys.stdin.read()))' < nexus-scripts/linux-repos.groovy)
-
-curl -u "admin:your-admin-pass" \
-     --header "Content-Type: application/json" \
-     -X POST \
-     'http://localhost:8081/service/rest/v1/script/' \
-     -d "{\"name\":\"linux-repos\",\"type\":\"groovy\",\"content\":$groovy_content}"
-
+docker compose ps
+docker logs nexus
+docker compose logs nexus
+docker logs nexus-nginx
+docker compose logs nexus-nginx
 ```
-
-- run linux-repos.groovy
 ```
-curl -u "admin:your-admin-pass" \
-     -X POST \
-     'http://localhost:8081/service/rest/v1/script/linux-repos/run'
+docker compose exec nexus netstat -tlnp | grep 8081
 ```
-
-
 
 
 
@@ -108,8 +87,6 @@ services:
       - ./nexus-scripts:/opt/sonatype/nexus/etc/scripts
       - ./private-key.asc:/nexus-data/private-key.asc:ro
 
-    environment:
-      - INSTALL4J_ADD_VM_PARAMS=-Dnexus.scripts.allowCreation=true
 
   nginx:
     image: nginx:latest
