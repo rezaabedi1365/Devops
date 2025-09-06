@@ -174,5 +174,17 @@ server {
 
 ```
 
-
+# PGP
+- show key ID
+```
+gpg --list-keys nexus@example.com
+```
+- show private key
+```
+gpg --armor --export-secret-keys nexus@example.com > ./pgp/private.key
+```
+- Eport public key
+```
+gpg --armor --export nexus@example.com > ./pgp/public.key
+```
 
