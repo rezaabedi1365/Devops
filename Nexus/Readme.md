@@ -187,3 +187,10 @@ gpg --batch --yes --pinentry-mode loopback --passphrase "$GPG_PASSPHRASE" \
     --armor --detach-sign -u 0123456789ABCDEF myartifact-1.0.jar
 
 ```
+
+# Change sources.list in ubunt
+```
+cp /etc/apt/sources.list /etc/apt/sources.list_bk
+sudo sed -i 's|http://ir.archive.ubuntu.com/ubuntu/|https://nexus.faradis.net/repository/apt-proxy/|g' /etc/apt/sources.list
+sudo sed -i 's|http://security.ubuntu.com/ubuntu|https://nexus.faradis.net/repository/apt-proxy/|g' /etc/apt/sources.list
+```
