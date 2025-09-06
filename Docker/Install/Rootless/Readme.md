@@ -38,13 +38,15 @@ curl -SL https://github.com/docker/compose/releases/latest/download/docker-compo
 chmod u+x ~/.docker/cli-plugins/docker-compose
 ```
 ### Set environment variables:
+:x:
 ```
 sudo loginctl enable-linger $(whoami)
 ```
 ```
-export XDG_RUNTIME_DIR=/home/$USER/.docker/run >> ~/.bashrc
 export PATH=/home/$USER/bin:$PATH >> ~/.bashrc
-export DOCKER_HOST=unix:///home/$USER/.docker/run/docker.sock >> ~/.bashrc
+export DOCKER_HOST=unix:///run/user/$(id -u)/docker.sock >> ~/.bashrc
+export XDG_RUNTIME_DIR=/run/user/$(id -u) >> ~/.bashrc
+export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus" >> ~/.bashrc
 ```
 Apply the changes in bashrc:
 ```
@@ -54,6 +56,8 @@ source ~/.bashrc
 ### Start Docker in rootless mode:
 ```
 systemctl --user daemon-reexec
+systemctl --user daemon-reload
+
 systemctl --user start docker
 systemctl --user enable docker
 systemctl --user status docker
@@ -82,6 +86,10 @@ check container with which user run
 docker exec Container_NAME id
 ```
 
+# Remove docker rootless
+```
+rm -rf ~/.docker
+```
 
 # When running Docker in rootless mode, binding to ports below 1024 (like 80 or 443) is restricted for security reasons.
 
