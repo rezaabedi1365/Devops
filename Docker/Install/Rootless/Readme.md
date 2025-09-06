@@ -43,10 +43,10 @@ chmod u+x ~/.docker/cli-plugins/docker-compose
 sudo loginctl enable-linger $(whoami)
 ```
 ```
-export PATH=/home/$USER/bin:$PATH >> ~/.bashrc
-export DOCKER_HOST=unix:///run/user/$(id -u)/docker.sock >> ~/.bashrc
-export XDG_RUNTIME_DIR=/run/user/$(id -u) >> ~/.bashrc
-export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus" >> ~/.bashrc
+echo 'export PATH=$HOME/bin:$PATH' >> ~/.bashrc
+echo 'export XDG_RUNTIME_DIR=/run/user/$(id -u)' >> ~/.bashrc
+echo 'export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock' >> ~/.bashrc
+echo 'export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus"' >> ~/.bashrc
 ```
 Apply the changes in bashrc:
 ```
