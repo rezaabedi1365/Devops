@@ -42,17 +42,18 @@ chmod u+x ~/.docker/cli-plugins/docker-compose
 sudo loginctl enable-linger $(whoami)
 ```
 ```
-export XDG_RUNTIME_DIR=/home/$USER/.docker/run
-export PATH=/home/$USER/bin:$PATH
-export DOCKER_HOST=unix:///home/$USER/.docker/run/docker.sock
+export XDG_RUNTIME_DIR=/home/$USER/.docker/run >> ~/.bashrc
+export PATH=/home/$USER/bin:$PATH >> ~/.bashrc
+export DOCKER_HOST=unix:///home/$USER/.docker/run/docker.sock >> ~/.bashrc
 ```
 Apply the changes in bashrc:
 ```
-nano ~/.bashrc
+source ~/.bashrc
 ```
 
 ### Start Docker in rootless mode:
 ```
+systemctl --user daemon-reexec
 systemctl --user start docker
 systemctl --user enable docker
 systemctl --user status docker
