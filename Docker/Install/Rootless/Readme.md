@@ -88,7 +88,7 @@ docker exec Container_NAME id
 
 # Remove docker rootless
 ```
-rm -rf ~/.docker
+rm -f /home/$USER/bin/dockerd
 ```
 
 # When running Docker in rootless mode, binding to ports below 1024 (like 80 or 443) is restricted for security reasons.
