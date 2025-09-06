@@ -175,6 +175,24 @@ server {
 ```
 
 # PGP
+- generate pgp key
+```
+gpg --full-generate-key
+```
+- generate gpg key with script
+```
+mkdir -p ./pgp
+
+gpg --batch --gen-key <<EOF
+Key-Type: RSA
+Key-Length: 4096
+Name-Real: Nexus Repo Signing
+Name-Email: nexus@example.com
+Expire-Date: 0
+%no-protection
+%commit
+EOF
+```
 - show key ID
 ```
 gpg --list-keys nexus@example.com
