@@ -174,7 +174,7 @@ server {
 
 ```
 
-# PGP
+# gpg key
 - generate pgp key
 ```
 gpg --full-generate-key
