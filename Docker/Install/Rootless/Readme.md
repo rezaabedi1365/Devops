@@ -41,6 +41,11 @@ chmod +x ~/.docker/cli-plugins/docker-compose
 ### Set environment variables:
 :x:
 ```
+systemctl --user start docker
+systemctl --user enable docker
+systemctl --user status docker
+```
+```
 sudo loginctl enable-linger $(whoami)
 ```
 ```
@@ -54,15 +59,7 @@ Apply the changes in bashrc:
 source ~/.bashrc
 ```
 
-### Start Docker in rootless mode:
-```
-systemctl --user daemon-reexec
-systemctl --user daemon-reload
 
-systemctl --user start docker
-systemctl --user enable docker
-systemctl --user status docker
-```
 ### Verify Installation :
 
 ```
@@ -91,7 +88,11 @@ docker exec Container_NAME id
 ```
 rm -f /home/$USER/bin/dockerd
 ```
-
+### daemon-reload
+```
+systemctl --user daemon-reexec
+systemctl --user daemon-reload
+```
 # When running Docker in rootless mode, binding to ports below 1024 (like 80 or 443) is restricted for security reasons.
 
 Solution : Adjust ip_unprivileged_port_start (Recommended)
