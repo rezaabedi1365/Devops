@@ -23,9 +23,6 @@ rm -rf Devops-a4e2773a33c078a05d54f7fb8fb5723a0e18c6f7 Nexus.zip
 ```
 ```
 cd Nexus
-mkdir ./host-nexus-data
-sudo chown -R 200:200 ./host-nexus-data
-
 mkdir ./nexus-data
 sudo chown -R 200:200 ./nexus-data
 ```
