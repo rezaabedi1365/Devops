@@ -205,4 +205,12 @@ gpg --armor --export-secret-keys nexus@example.com > ./pgp/private.key
 ```
 gpg --armor --export nexus@example.com > ./pgp/public.key
 ```
+### armored signature
+```
+gpg --armor --detach-sign -u 0123456789ABCDEF myartifact-1.0.jar
+```
+```
+gpg --batch --yes --pinentry-mode loopback --passphrase "$GPG_PASSPHRASE" \
+    --armor --detach-sign -u 0123456789ABCDEF myartifact-1.0.jar
 
+```
