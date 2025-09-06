@@ -41,8 +41,6 @@ step5:
 - this file maped in docker-compose
 ```
 gpg --full-generate-key
-gpg --export-secret-keys --armor YOUR_KEY_ID > yam-private-key.asc
-cat yam-private-key.asc
 ```
 ```
 docker compuse up -d
@@ -85,7 +83,6 @@ services:
     volumes:
       - ./private-key.asc:/nexus-data/private-key.asc:ro
       - ./nexus-data:/nexus-data
-      - ./nexus-scripts:/opt/sonatype/nexus/etc/scripts
 
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8081"]
