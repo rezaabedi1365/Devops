@@ -147,76 +147,7 @@ server {
 }
 
 ```
-### nginx.conf
-```
-# HTTP server
-server {
-    listen 80;
-    server_name nexus.faradis.net;
 
-    # فقط Repository روی HTTP
-    location /Repository/ {
-        proxy_pass http://nexus:8081/repository/;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-
-    # Redirect بقیه مسیرها به HTTPS
-    location / {
-        return 301 https://$host$request_uri;
-    }
-}
-
-# HTTPS server
-server {
-    listen 443 ssl;
-    server_name nexus.faradis.net;
-
-    ssl_certificate     /etc/ssl/certs/cert.pem;
-    ssl_certificate_key /etc/ssl/private/private.key;
-    ssl_trusted_certificate /etc/ssl/certs/fullchain.pem;
-
-    ssl_protocols       TLSv1.2 TLSv1.3;
-    ssl_ciphers         HIGH:!aNULL:!MD5;
-
-    # Nexus UI
-    location / {
-        proxy_pass http://nexus:8081/;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-}
-
-# Docker Registry direct on port 5003 (HTTP)
-server {
-    listen 5003;
-    server_name nexus.faradis.net;
-
-    location /v2/ {
-        proxy_pass          http://nexus:5003/v2/;
-        proxy_set_header    Host              $host;
-        proxy_set_header    X-Real-IP         $remote_addr;
-        proxy_set_header    X-Forwarded-For   $proxy_add_x_forwarded_for;
-        proxy_set_header    X-Forwarded-Proto $scheme;
-        proxy_buffering     off;
-    }
-}
-
-# Redirect /Repository بدون اسلش به /Repository/
-server {
-    listen 80;
-    server_name nexus.faradis.net;
-
-    location = /Repository {
-        return 301 /Repository/;
-    }
-}
-
-```
 
 # Change sources.list in ubuntu
 ```
