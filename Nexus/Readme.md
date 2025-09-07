@@ -3,9 +3,10 @@
 ```
 project-root/
 │── docker-compose.yml
-│── .env        [environment for docker-compose]
-│── nginx.conf            
-├── certs/
+│── .env              [environment for docker-compose]
+│── nginx.conf
+│── Private-key.asc   [generate it]           
+└── certs/
     ├── your_cert.crt
     ├── your_chain.crt
     └── your_key.key     
