@@ -30,7 +30,9 @@ sudo chown -R 200:200 ./nexus-data
 step2:
   - copy your certificate in cert directory
   - change certifacates name in nginx.conf and docker-compose.yml
-
+```
+sudo update-ca-certificates
+```
 step3:
   - change nexus url for 80 and 443 in nginx.conf
 
