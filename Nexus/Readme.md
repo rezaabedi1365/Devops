@@ -156,3 +156,7 @@ sudo sed -i 's|http://ir.archive.ubuntu.com/ubuntu/|https://nexus.faradis.net/re
 sudo sed -i 's|http://archive.ubuntu.com/ubuntu/|https://nexus.faradis.net/repository/apt-proxy/|g' /etc/apt/sources.list
 sudo sed -i 's|http://security.ubuntu.com/ubuntu/|https://nexus.faradis.net/repository/apt-proxy/|g' /etc/apt/sources.list
 ```
+- if use selfcertificate copy public and root and intermediate
+```
+/etc/ssl/certs
+```
