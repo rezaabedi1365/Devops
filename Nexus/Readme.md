@@ -30,9 +30,7 @@ sudo chown -R 200:200 ./nexus-data
 step2:
   - copy your certificate in cert directory
   - change certifacates name in nginx.conf and docker-compose.yml
-```
-sudo update-ca-certificates
-```
+
 step3:
   - change nexus url for 80 and 443 in nginx.conf
 
@@ -163,7 +161,14 @@ sudo sed -i 's|http://security.ubuntu.com/ubuntu/|https://nexus.faradis.net/repo
 ```
 - if use selfcertificate copy public and root and intermediate
 ```
-/etc/ssl/certs
+sudo cp /path/to/root.crt /usr/local/share/ca-certificates/
+sudo cp /path/to/intermediate.crt /usr/local/share/ca-certificates/
+sudo update-ca-certificates
+```
+```
+sudo cp /path/to/root.crt /etc/ssl/certs
+sudo cp /path/to/intermediate.crt /etc/ssl/certs
+sudo update-ca-certificates
 ```
 - check cert in client
 
