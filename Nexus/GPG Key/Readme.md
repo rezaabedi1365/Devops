@@ -42,6 +42,10 @@ gpg --batch --yes --pinentry-mode loopback --passphrase "$GPG_PASSPHRASE" \
 ```
 
 # Transfer gpgkey to client
+- Eport public key
+```
+gpg --armor --export nexus@example.com > ./pgp/public.key
+```
 - upload gpg key in server
 ```
 curl -u admin:pass --upload-file nexus-repo.gpg.key \
