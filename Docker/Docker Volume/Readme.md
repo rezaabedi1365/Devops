@@ -41,6 +41,14 @@ docker run --rm -v <Volune_Name>:/volume -v $(pwd):/backup ubuntu bash -c "cd /v
   	  ```
   	  docker run --mount type=volume،source=./mydir،destination=/var/www/html،readonly 
       ```
+- export volume
+```
+tar cvf my_bind_backup.tar -C /<PATH> .
+```
+- import
+```
+tar xvf my_bind_backup.tar -C /<PATH>
+```
 
 ### tempfs
     - store data in RAM 
