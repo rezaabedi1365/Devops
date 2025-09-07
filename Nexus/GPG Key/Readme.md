@@ -54,3 +54,6 @@ curl -u admin:pass --upload-file nexus-repo.gpg.key \
 ```
 curl -fsSL http://nexus.example.com/repository/keys/nexus-repo.gpg.key | sudo tee /etc/apt/trusted.gpg.d/nexus-repo.gpg > /dev/null
 ```
+```
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+```
