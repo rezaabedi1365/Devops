@@ -147,7 +147,7 @@ server {
 }
 
 ```
-# nginx.conf
+### nginx.conf
 ```
 # HTTP server
 server {
