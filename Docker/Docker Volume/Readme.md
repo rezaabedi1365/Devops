@@ -1,11 +1,11 @@
 ![image](https://github.com/rezaabedi1365/Devops/assets/117336743/440e69c6-d14d-4232-9bbd-aa35f64fbdd4)
 
 
-# Docker volume Cheat-sheet
+#### Docker volume Cheat-sheet
 
-### Type of Volume in Docker
+# Type of Volume in Docker
 
-* volume
+### Docker Volume
   	- /var/lib/docker/volume
   	- volumes use regulary
   	- share between containers is simple
@@ -15,7 +15,21 @@
   	  ```
   	   docker run --mount type=volume،source=Volume_Name،destination=/var/www/html،readonly
        ```
-* Bind Mount
+- export volume
+```
+docker volume ls
+```
+- use temp container same ubuntu or alpine with tar package to export volume
+```
+docker run --rm -v <Volune_Name>:/volume -v $(pwd):/backup ubuntu tar cvf /backup/my_volume_backup.tar /volume
+docker run --rm -v <Volune_Name>:/volume -v $(pwd):/backup alpine tar cvf /backup/my_volume_backup.tar /volume
+```
+- import
+```
+docker run --rm -v <Volune_Name>:/volume -v $(pwd):/backup ubuntu bash -c "cd /volume && tar xvf /backup/my_volume_backup.tar --strip 1"
+```
+
+### Bind Mount
   	- Bind mount use for config file mostly
   	- other proccess outside container can be change data
 
@@ -28,7 +42,7 @@
   	  docker run --mount type=volume،source=./mydir،destination=/var/www/html،readonly 
       ```
 
-* tempfs
+### tempfs
     - store data in RAM 
       ```
       docker run –dit --mount type=tmpfs,dst=/var/www/html/ nginx
@@ -36,7 +50,20 @@
       ```
       docker run –d --mount type=tmpfs,dst=/var/www/html/ nginx
       ```
-
+### Named Volume
+- with local driver
+```
+docker volume create --name my_local_volume --driver local
+```
+- with nfs driver
+```
+docker volume create \
+  --name my_nfs_volume \
+  --driver local \
+  --opt type=nfs \
+  --opt o=addr=192.168.1.100,rw \
+  --opt device=:/mnt/nfs_share
+```
 ------------------------------------------------------------------------
 ## Volume assign
 * --volume
