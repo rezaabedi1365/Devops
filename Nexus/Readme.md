@@ -58,6 +58,9 @@ docker compose logs nexus-nginx
 ```
 docker compose exec nexus netstat -tlnp | grep 8081
 ```
+```
+docker exec -it <nexus-container> curl -I http://nexus:8081/
+```
 
 
 
