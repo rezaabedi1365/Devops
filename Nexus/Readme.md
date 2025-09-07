@@ -119,7 +119,7 @@ server {
     listen 443 ssl;
     server_name nexus.faradis.net;
 
-    ssl_certificate     /etc/ssl/certs/cert.pem;
+    ssl_certificate     /etc/ssl/certs/fullchain.pem;
     ssl_certificate_key /etc/ssl/private/private.key;
     ssl_trusted_certificate /etc/ssl/certs/fullchain.pem;
 
