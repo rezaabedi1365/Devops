@@ -1,5 +1,3 @@
-
-
 # gpg key
 - generate pgp key
 ```
