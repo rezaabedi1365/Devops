@@ -184,10 +184,9 @@ openssl s_client -connect nexus.faradis.net:443 -showcerts
 - docker-apt-proxy
 ```
 cp /etc/apt/sources.list.d/docker.list /etc/apt/sources.list.d/docker.list_bk
-sudo sed -i 's|deb \[arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg\] https://download.docker.com/linux/ubuntu jammy stable|deb [trusted=yes] https://nexus.faradis.net/repository/docker-apt-proxy/ jammy stable|' /etc/apt/sources.list.d/docker.list
+echo "deb [trusted=yes] https://nexus.faradis.net/repository/docker-apt-proxy/ jammy stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 ```
-```
-```
+
 - sudo nano /etc/apt/sources.list.d/docker.list
 - deb [trusted=yes] https://nexus.faradis.net/repository/docker-apt-proxy/ jammy stable
 
