@@ -1,17 +1,32 @@
 # Senario
-export image on this host and migrate to other host
+### export image
+- on this host and migrate to other host
 ```
 #host1
 docker save postgres:14.4-alpine > mypostgres.tar
 #host2
 docker load -i mypostgres.tar
 ```
-export container on this host and migrate as a image to other host
+### export container
+- on this host and migrate as a image to other host
 ```
 #host1
 docker export example-voting-app-db-1 > voting-db.tar
 #host2
 docker import voting-db.tar voting-db:test
+```
+### export volume
+```
+docker volume ls
+```
+- use temp container same ubuntu or alpine with tar package to export volume
+```
+docker run --rm -v <Volune_Name>:/volume -v $(pwd):/backup ubuntu tar cvf /backup/my_volume_backup.tar /volume
+docker run --rm -v <Volune_Name>:/volume -v $(pwd):/backup alpine tar cvf /backup/my_volume_backup.tar /volume
+```
+- import
+```
+docker run --rm -v <Volune_Name>:/volume -v $(pwd):/backup ubuntu bash -c "cd /volume && tar xvf /backup/my_volume_backup.tar --strip 1"
 ```
 ------------------------------------------------------------------------------------------------
 
