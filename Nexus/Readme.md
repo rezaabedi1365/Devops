@@ -164,6 +164,11 @@ sudo sed -i 's|http://security.ubuntu.com/ubuntu/|https://nexus.faradis.net/repo
 /etc/ssl/certs
 ```
 - check cert in client
+
 ```
 openssl s_client -connect nexus.faradis.net:443 -CApath /etc/ssl/certs
+```
+- check cert chain
+```
+openssl s_client -connect nexus.faradis.net:443 -showcerts
 ```
