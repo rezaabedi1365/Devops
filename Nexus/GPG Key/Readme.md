@@ -1,13 +1,15 @@
 # gpg key
 ## path
-- /etc/apt/keyrings
-- /usr/share/keyrings
-- /etc/apt/trusted.gpg
-- /etc/apt/teusted.gpg.d/
+- new
+    * /etc/apt/keyrings       #official deb pakcage 
+    * /usr/share/keyrings     #costum deb package
+- old 
+    * /etc/apt/trusted.gpg    #oldest path for store gpg
+    * /etc/apt/teusted.gpg.d/ #after tristed.gpg path for solve single file 
 
 ## file format
-- .asc
-- .gpg
+- .asc  #clear
+- .gpg  #encriypted
 - 
 ### Method1: .gpg
 - download .asc and convert to gpg
