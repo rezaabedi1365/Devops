@@ -1,11 +1,26 @@
+# gpg key
+## path
 - /etc/apt/keyrings
 - /usr/share/keyrings
 - /etc/apt/trusted.gpg
 - /etc/apt/teusted.gpg.d/
 
-
-# gpg key
-- generate pgp key
+## file format
+- .asc
+- .gpg
+- 
+### Method1: .gpg
+- download .asc and convert to gpg
+```
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+```
+### Method2: .asc
+- download .asc and use .asc
+```
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+```
+--------------------------------------------------------------------------------------------------------
+### generate pgp key
 ```
 gpg --full-generate-key
 ```
@@ -35,7 +50,8 @@ gpg --armor --export-secret-keys nexus@example.com > ./pgp/private.key
 ```
 gpg --armor --export nexus@example.com > ./pgp/public.key
 ```
-### armored signature
+-------------------------------------------------------------------------------------------
+# sign packhage with gpg (armored signature)
 ```
 gpg --armor --detach-sign -u 0123456789ABCDEF myartifact-1.0.jar
 ```
@@ -45,6 +61,7 @@ gpg --batch --yes --pinentry-mode loopback --passphrase "$GPG_PASSPHRASE" \
 
 ```
 
+-----------------------------------------------------------------------------------------
 # Transfer gpgkey to client
 - Eport public key
 ```
@@ -59,7 +76,4 @@ curl -u admin:pass --upload-file nexus-repo.gpg.key \
 - Download gpgkey in client
 ```
 curl -fsSL http://nexus.example.com/repository/keys/nexus-repo.gpg.key | sudo tee /etc/apt/trusted.gpg.d/nexus-repo.gpg > /dev/null
-```
-```
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 ```
