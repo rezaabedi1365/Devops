@@ -191,7 +191,7 @@ openssl s_client -connect nexus.faradis.net:443 -CApath /etc/ssl/certs
 openssl s_client -connect nexus.faradis.net:443 -showcerts
 ```
 ### docker.list
-#### Method1 
+#### Method1 : without gpg
 - docker-apt-proxy
 ```
 cp /etc/apt/sources.list.d/docker.list /etc/apt/sources.list.d/docker.list_bk
@@ -201,8 +201,15 @@ echo "deb [trusted=yes] https://nexus.faradis.net/repository/docker-apt-proxy/ j
 - sudo nano /etc/apt/sources.list.d/docker.list
 - deb [trusted=yes] https://nexus.faradis.net/repository/docker-apt-proxy/ jammy stable
 
-##### Method2
-- deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://nexus.faradis.net/repository/docker-apt-proxy/ jammy stable
+##### Method2: with gpg
+- downloads gpg
+```
+sudo curl -fsSL https://nexus.faradis.net/keys/docker.asc -o /etc/apt/keyrings/docker.asc
+```
+```
+sudo curl -k -fsSL https://nexus.faradis.net/keys/docker.asc -o /etc/apt/keyrings/docker.asc
+```
+- deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://nexus.faradis.net/repository/docker-apt-proxy/ jammy stable
 ```
 sudo sed -i 's|https://download.docker.com/linux/ubuntu|https://nexus.faradis.net/repository/docker-apt-proxy/|' /etc/apt/sources.list.d/docker.list
 ```
