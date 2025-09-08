@@ -213,3 +213,52 @@ sudo curl -k -fsSL https://nexus.faradis.net/keys/docker.asc -o /etc/apt/keyring
 ```
 sudo sed -i 's|https://download.docker.com/linux/ubuntu|https://nexus.faradis.net/repository/docker-apt-proxy/|' /etc/apt/sources.list.d/docker.list
 ```
+# docker repo 
+- create role(docker role) with nx-repo administrator > Create user with (docekr role) group
+- Change realm
+<img width="1066" height="658" alt="image" src="https://github.com/user-attachments/assets/0929fb28-9729-4853-bc25-dbf4282ab831" />
+
+- in client
+```
+docker login nexus.faradis.net
+```
+### add cert fo docker 
+- in rootles
+```
+mkdir -p ~/.local/share/docker/certs.d/nexus.faradis.net/
+cp fullchain.pem ~/.local/share/docker/certs.d/nexus.faradis.net/ca.crt
+```
+- system-wide Docker (root user)
+```
+mkdir -p /etc/docker/certs.d/nexus.faradis.net/
+cp fullchain.pem /etc/docker/certs.d/nexus.faradis.net/ca.crt
+```
+```
+systemctl --user restart docker
+```
+- verify
+```
+openssl s_client -connect nexus.faradis.net:443 -CAfile ~/.local/share/docker/certs.d/nexus.faradis.net/ca.crt
+```
+### use docker repo without certificate
+- in rootless
+```
+mkdir -p ~/.config/docker/
+touch ~/.config/docker/daemon.json
+```
+```
+{
+  "insecure-registries": ["nexus.faradis.net:443"]
+}
+
+```
+- system-wide Docker (root user)
+```
+mkdir -p /etc/docker/daemon.json
+touch /etc/docker/daemon.json
+```
+```
+{
+  "insecure-registries": ["nexus.faradis.net:443"]
+}
+```
