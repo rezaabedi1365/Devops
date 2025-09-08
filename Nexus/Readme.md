@@ -5,7 +5,8 @@ project-root/
 │── docker-compose.yml
 │── .env              [environment for docker-compose]
 │── nginx.conf
-│── Private-key.asc   [generate it]           
+│── Private-key.asc   [generate it]
+│── keys/       
 └── certs/
     ├── your_cert.crt
     ├── your_chain.crt
@@ -102,6 +103,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
+      - ./keys:/var/www/keys:ro
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - ./certs/cert.pem:/etc/ssl/certs/cert.pem:ro
       - ./certs/fullchain.pem:/etc/ssl/certs/fullchain.pem:ro
@@ -128,6 +130,15 @@ server {
 
     ssl_protocols       TLSv1.2 TLSv1.3;
     ssl_ciphers         HIGH:!aNULL:!MD5;
+
+
+    # keys path
+    location /keys/ {
+        root /var/www;
+       #alias /var/www/keys/;
+        autoindex on;
+        try_files $uri $uri=404;
+    }
 
     # Docker Registry (Group)
     location /v2/ {
