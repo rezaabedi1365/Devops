@@ -1,3 +1,9 @@
+- /etc/apt/keyrings
+- /usr/share/keyrings
+- /etc/apt/trusted.gpg
+- /etc/apt/teusted.gpg.d/
+
+
 # gpg key
 - generate pgp key
 ```
