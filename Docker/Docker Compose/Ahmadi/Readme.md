@@ -1,13 +1,14 @@
-#
 ```
 project-root/
 │── wordpress/
-|            └── docker-compose.yml
+│   ├── docker-compose.yml
+│   └── .env
 └── caddy/
-         ├── docker-compose.yml
-         └── Caddifile   
+    ├── docker-compose.yml
+    └── Caddyfile
+ 
 ```
-
+# Caddy
 /caddy/docker-compose.yml
 ```
 services:
@@ -39,7 +40,7 @@ app.titil.online {
 }
 
 ```
-
+# wordpress
 /wordpress/docker-compose.yml
 ```
 services:
@@ -80,4 +81,13 @@ services:
 volumes:
   db_data:
   wp_data:
+```
+/wordpress/env
+```
+MYSQL_ROOT_PASSWORD=your_root_password
+MYSQL_DATABASE=wordpress
+MYSQL_USER=wordpress
+MYSQL_PASSWORD=your_password
+WP_TABLE_PREFIX=wp_
+TZ=UTC
 ```
