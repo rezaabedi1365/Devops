@@ -29,14 +29,15 @@ volumes:
 /caddy/Caddyfile
 ```
 blog.titil.online {
-        encode gzip
-        reverse_proxy 127.0.0.1:8082
+    encode gzip
+    reverse_proxy wordpress:80
 }
 
 app.titil.online {
-        encode gzip
-        reverse_proxy 127.0.0.1:5000
+    encode gzip
+    reverse_proxy app:5000
 }
+
 ```
 
 /wordpress/docker-compose.yml
