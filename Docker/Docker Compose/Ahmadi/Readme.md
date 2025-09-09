@@ -11,6 +11,8 @@ project-root/
 # Caddy
 /caddy/docker-compose.yml
 ```
+version: "3.9"
+
 services:
   caddy:
     image: caddy:2
@@ -22,9 +24,17 @@ services:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy_data:/data
       - caddy_config:/config
+    networks:
+      - web
+
 volumes:
   caddy_data:
   caddy_config:
+
+networks:
+  web:
+    external: true
+
 ```
 
 /caddy/Caddyfile
@@ -40,17 +50,12 @@ app.titil.online {
 }
 
 ```
-- Certificate Path
-```
- /data/caddy/certificates
-```
-- json configuration
-```
-/config
-```
+
 # wordpress
 /wordpress/docker-compose.yml
 ```
+version: "3.9"
+
 services:
   db:
     image: mysql:8.0
@@ -63,6 +68,8 @@ services:
       TZ: ${TZ}
     volumes:
       - db_data:/var/lib/mysql
+    networks:
+      - web
     restart: unless-stopped
 
   wordpress:
@@ -75,10 +82,10 @@ services:
       WORDPRESS_DB_USER: ${MYSQL_USER}
       WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
       WORDPRESS_TABLE_PREFIX: ${WP_TABLE_PREFIX}
-    ports:
-      - "8082:80"
     volumes:
       - wp_data:/var/www/html
+    networks:
+      - web
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost/"]
@@ -89,6 +96,11 @@ services:
 volumes:
   db_data:
   wp_data:
+
+networks:
+  web:
+    external: true
+
 ```
 /wordpress/env
 ```
