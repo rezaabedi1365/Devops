@@ -222,7 +222,7 @@ sudo sed -i 's|https://download.docker.com/linux/ubuntu|https://nexus.faradis.ne
 ```
 docker login nexus.faradis.net
 ```
-### add cert fo docker 
+### add Self-signed Certificate to docker 
 - in rootles
 ```
 mkdir -p ~/.local/share/docker/certs.d/nexus.faradis.net/
@@ -240,7 +240,7 @@ systemctl --user restart docker
 ```
 openssl s_client -connect nexus.faradis.net:443 -CAfile ~/.local/share/docker/certs.d/nexus.faradis.net/ca.crt
 ```
-### use docker repo without certificate
+### Docker Repo insecure
 - in rootless
 ```
 mkdir -p ~/.config/docker/
