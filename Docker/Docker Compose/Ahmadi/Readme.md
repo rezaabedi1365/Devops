@@ -44,6 +44,10 @@ app.titil.online {
 ```
  /data/caddy/certificates
 ```
+- json configuration
+```
+/config
+```
 # wordpress
 /wordpress/docker-compose.yml
 ```
