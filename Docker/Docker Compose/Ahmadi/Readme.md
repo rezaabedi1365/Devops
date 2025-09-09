@@ -40,6 +40,10 @@ app.titil.online {
 }
 
 ```
+- Certificate Path
+```
+ /data/caddy/certificates
+```
 # wordpress
 /wordpress/docker-compose.yml
 ```
