@@ -74,30 +74,41 @@ docker pull rezaabedi1365/my-flask-app:latest
 ```
 
 
-### Auto Workflow
- .github/workflows/deploy.yml 
+### Manual & Auto workflow
 ```
-name: Deploy on Release Commit (develop branch)
+name: Deploy Release
 
 on:
+  # اجرای خودکار روی کامیت release روی develop
   push:
     branches:
       - develop
+  # امکان اجرای دستی
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release (e.g., v1.0.0)'
+        required: false
 
 jobs:
   build-and-push:
-    if: startsWith(github.event.head_commit.message, 'release')
     runs-on: ubuntu-latest
-
     steps:
       # گرفتن سورس کد
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # استخراج نسخه از پیام کامیت (مثلا release v1.0.0 → VERSION=v1.0.0)
-      - name: Extract version
-        id: get_version
-        run: echo "VERSION=$(echo '${{ github.event.head_commit.message }}' | cut -d' ' -f2)" >> $GITHUB_ENV
+      # تعیین نسخه
+      - name: Set version
+        run: |
+          if [ -n "${{ github.event.inputs.version }}" ]; then
+            # اگر اجرای دستی بود، از ورودی استفاده کن
+            echo "VERSION=${{ github.event.inputs.version }}" >> $GITHUB_ENV
+          else
+            # اگر اجرای خودکار بود، از پیام کامیت استخراج کن
+            VERSION=$(echo "${{ github.event.head_commit.message }}" | cut -d' ' -f2)
+            echo "VERSION=$VERSION" >> $GITHUB_ENV
+          fi
 
       # لاگین به Docker Hub
       - name: Log in to Docker Hub
@@ -106,24 +117,22 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # ساخت ایمیج و تگ‌گذاری
+      # ساخت ایمیج Docker و تگ‌گذاری
       - name: Build Docker image
         run: |
           IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/my-flask-app
           docker build -t $IMAGE_NAME:latest -t $IMAGE_NAME:${{ env.VERSION }} .
 
-      # پابلیش ایمیج روی Docker Hub
+      # پابلیش روی Docker Hub
       - name: Push Docker image
         run: |
           IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/my-flask-app
           docker push $IMAGE_NAME:latest
           docker push $IMAGE_NAME:${{ env.VERSION }}
 
-  
 ```
 
 
-خیلی خوب 👍
 فرض کن روی برنچ **develop** یه کامیت می‌زنی با پیام:
 
 ```
@@ -192,54 +201,7 @@ Release با همون نسخه ساخته میشه:
 * Release روی GitHub هم همزمان ساخته میشه و کاملاً منطبق با نسخه.
 
 ---
-### Manual Workflow
-```
-name: Deploy on Release
 
-# فعال‌سازی اجرای دستی
-on:
-  workflow_dispatch:
-    inputs:
-      version:
-        description: 'Version to release (e.g., v1.0.0)'
-        required: true
-        default: 'v1.0.0'
-
-jobs:
-  build-and-push:
-    runs-on: ubuntu-latest
-
-    steps:
-      # گرفتن سورس کد
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      # تنظیم نسخه از ورودی دستی
-      - name: Set version
-        run: echo "VERSION=${{ github.event.inputs.version }}" >> $GITHUB_ENV
-
-      # لاگین به Docker Hub
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      # ساخت ایمیج و تگ‌گذاری
-      - name: Build Docker image
-        run: |
-          IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/my-flask-app
-          docker build -t $IMAGE_NAME:latest -t $IMAGE_NAME:${{ env.VERSION }} .
-
-      # پابلیش ایمیج روی Docker Hub
-      - name: Push Docker image
-        run: |
-          IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/my-flask-app
-          docker push $IMAGE_NAME:latest
-          docker push $IMAGE_NAME:${{ env.VERSION }}
-
-
-```
 
 
 ✅ تغییرات اصلی:
@@ -264,63 +226,7 @@ jobs:
 
 
 
-### Manual & Auto workflow
-```
-name: Deploy Release
 
-on:
-  # اجرای خودکار روی کامیت release روی develop
-  push:
-    branches:
-      - develop
-  # امکان اجرای دستی
-  workflow_dispatch:
-    inputs:
-      version:
-        description: 'Version to release (e.g., v1.0.0)'
-        required: false
-
-jobs:
-  build-and-push:
-    runs-on: ubuntu-latest
-    steps:
-      # گرفتن سورس کد
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      # تعیین نسخه
-      - name: Set version
-        run: |
-          if [ -n "${{ github.event.inputs.version }}" ]; then
-            # اگر اجرای دستی بود، از ورودی استفاده کن
-            echo "VERSION=${{ github.event.inputs.version }}" >> $GITHUB_ENV
-          else
-            # اگر اجرای خودکار بود، از پیام کامیت استخراج کن
-            VERSION=$(echo "${{ github.event.head_commit.message }}" | cut -d' ' -f2)
-            echo "VERSION=$VERSION" >> $GITHUB_ENV
-          fi
-
-      # لاگین به Docker Hub
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      # ساخت ایمیج Docker و تگ‌گذاری
-      - name: Build Docker image
-        run: |
-          IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/my-flask-app
-          docker build -t $IMAGE_NAME:latest -t $IMAGE_NAME:${{ env.VERSION }} .
-
-      # پابلیش روی Docker Hub
-      - name: Push Docker image
-        run: |
-          IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/my-flask-app
-          docker push $IMAGE_NAME:latest
-          docker push $IMAGE_NAME:${{ env.VERSION }}
-
-```
 ✅ قابلیت‌ها:
 
 1. وقتی commit ای با پیام `release v1.0.0` روی شاخه `develop` ایجاد شود، خودکار اجرا می‌شود.
