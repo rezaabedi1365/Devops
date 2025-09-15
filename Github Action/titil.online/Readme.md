@@ -10,6 +10,8 @@ GithubRepo-title_project/
     └── workflows/
         └── deploy.yml        # فایل GitHub Actions Build & Push to docker hub
 ```
+<img width="1433" height="730" alt="image" src="https://github.com/user-attachments/assets/184845e6-f877-4f47-b85f-d67932700f27" />
+
 ### requirements.txt
 ```
 Flask==3.0.3
