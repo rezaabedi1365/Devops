@@ -137,6 +137,49 @@ jobs:
 - use ssh
 - use selfhosted-runner
 - :x: .github/workflows/deploy-to-server.yml
+
+###### use selfhosted-runner
+```
+name: Deploy to Server
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy-to-server:
+    needs: build-and-push
+    runs-on: selfhoster-runner  # اسم همون runner که روی سرورت نصب شده
+    env:
+      IMAGE: ${{ secrets.DOCKER_USERNAME }}/my-flask-app:${{ env.VERSION }}
+    steps:
+      - name: Deploy container
+        run: |
+          set -e
+          
+          echo "Deploying image: $IMAGE"
+
+          # (۱) Stop & remove کانتینر قدیمی در صورت وجود
+          if docker ps -a --format '{{.Names}}' | grep -Eq '^my-flask-app$'; then
+            echo "Stopping old container..."
+            docker stop my-flask-app || true
+            docker rm my-flask-app || true
+          fi
+
+          # (۲) مطمئن شو شبکه web وجود داره
+          if ! docker network ls --format '{{.Name}}' | grep -wq 'web'; then
+            echo "Creating network 'web'..."
+            docker network create web
+          fi
+
+          # (۳) Run کانتینر جدید در شبکه web
+          docker run -d --name my-flask-app \
+            --restart unless-stopped \
+            --network web \
+            -p 5000:5000 \
+            $IMAGE
+
+```
+
 ###### use ssh
 ```
 name: Deploy to Server
@@ -185,9 +228,7 @@ jobs:
               $IMAGE
 
 ```
-###### use selfhosted-runner
-```
-```
+
 فرض کن روی برنچ **develop** یه کامیت می‌زنی با پیام:
 
 ```
