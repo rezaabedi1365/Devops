@@ -110,15 +110,7 @@ jobs:
           docker push $IMAGE_NAME:latest
           docker push $IMAGE_NAME:${{ env.VERSION }}
 
-      # ساخت Release در گیت‌هاب با همون نسخه
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ env.VERSION }}
-          name: Release ${{ env.VERSION }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+  
 ```
 <img width="1120" height="877" alt="image" src="https://github.com/user-attachments/assets/3a413f09-76b6-4306-a2da-048e11c4253a" />
 
@@ -237,14 +229,6 @@ jobs:
           docker push $IMAGE_NAME:latest
           docker push $IMAGE_NAME:${{ env.VERSION }}
 
-      # ساخت Release در گیت‌هاب
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ env.VERSION }}
-          name: Release ${{ env.VERSION }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 ```
 
@@ -326,15 +310,6 @@ jobs:
           IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/my-flask-app
           docker push $IMAGE_NAME:latest
           docker push $IMAGE_NAME:${{ env.VERSION }}
-
-      # ایجاد Release در GitHub
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ env.VERSION }}
-          name: Release ${{ env.VERSION }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 ```
 ✅ قابلیت‌ها:
