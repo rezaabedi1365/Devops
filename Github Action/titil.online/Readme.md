@@ -120,6 +120,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 ```
+<img width="1120" height="877" alt="image" src="https://github.com/user-attachments/assets/3a413f09-76b6-4306-a2da-048e11c4253a" />
 
 خیلی خوب 👍
 فرض کن روی برنچ **develop** یه کامیت می‌زنی با پیام:
