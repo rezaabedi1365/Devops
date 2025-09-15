@@ -25,10 +25,6 @@ Environment secrets
 
 
 -----------------------------------------------------------------------------------------------------------------------------------
-<img width="1424" height="733" alt="image" src="https://github.com/user-attachments/assets/275dc544-dedf-46fc-a824-302de8b89f59" />
-
-<img width="1044" height="605" alt="image" src="https://github.com/user-attachments/assets/780bc531-e87a-451d-ab3c-db8ee6d88a60" />
-
 ### requirements.txt
 ```
 Flask==3.0.3
@@ -333,6 +329,8 @@ jobs:
 4. GitHub Release هم بر اساس نسخه ساخته می‌شود.
 
 
+<img width="1424" height="733" alt="image" src="https://github.com/user-attachments/assets/275dc544-dedf-46fc-a824-302de8b89f59" />
 
+<img width="1044" height="605" alt="image" src="https://github.com/user-attachments/assets/780bc531-e87a-451d-ab3c-db8ee6d88a60" />
 
 
