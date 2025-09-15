@@ -121,7 +121,7 @@ jobs:
 
   
 ```
-<img width="1120" height="877" alt="image" src="https://github.com/user-attachments/assets/3a413f09-76b6-4306-a2da-048e11c4253a" />
+
 
 خیلی خوب 👍
 فرض کن روی برنچ **develop** یه کامیت می‌زنی با پیام:
@@ -332,5 +332,7 @@ jobs:
 <img width="1424" height="733" alt="image" src="https://github.com/user-attachments/assets/275dc544-dedf-46fc-a824-302de8b89f59" />
 
 <img width="1044" height="605" alt="image" src="https://github.com/user-attachments/assets/780bc531-e87a-451d-ab3c-db8ee6d88a60" />
+
+<img width="1120" height="877" alt="image" src="https://github.com/user-attachments/assets/3a413f09-76b6-4306-a2da-048e11c4253a" />
 
 
