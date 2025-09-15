@@ -291,4 +291,7 @@ Release با همون نسخه ساخته میشه:
 
 <img width="1120" height="877" alt="image" src="https://github.com/user-attachments/assets/3a413f09-76b6-4306-a2da-048e11c4253a" />
 
+<img width="1014" height="910" alt="image" src="https://github.com/user-attachments/assets/0cb59f83-df56-47ce-8880-428e65189e96" />
+
+
 
