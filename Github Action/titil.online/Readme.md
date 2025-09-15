@@ -42,6 +42,10 @@ CMD ["python", "address_book.py"]
 ```
 docker build -t titil-app .
 ```
+verify
+```
+docker run -d -p 5000:5000 titil-app
+```
 
 ### .github/workflows/deploy.yml 
 ```
