@@ -46,7 +46,13 @@ RUN gem install bundler
 ```dockerfile
 WORKDIR /myapp
 ```
+```
+WORKDIR /usr/share/nginx/html
 
+# حالا COPY می‌تواند نسبی باشد
+COPY html/ .
+
+```
 ---
 
 ### **COPY / ADD**
