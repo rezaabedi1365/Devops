@@ -137,38 +137,44 @@ jobs:
 :x: .github/workflows/deploy-to-server.yml 
 ```
 # یک job نمونه که بعد از push اجرا می‌شود
-deploy-to-server:
-  needs: build-and-push   # اگر نام job قبلی build-and-push است
-  runs-on: ubuntu-latest
-  steps:
-    - name: Deploy to remote server via SSH
-      uses: appleboy/ssh-action@v0.1.9
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        port: ${{ secrets.SSH_PORT || '22' }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        timeout: 120s
-        script: |
-          set -e
+name: Deploy to Server
 
-          # متغیرهای ایمیج و ورژن (تنظیم شده در job قبلی به عنوان env.VERSION)
-          IMAGE="{{ secrets.DOCKER_USERNAME }}/my-flask-app:${{ env.VERSION }}"
+on:
+  workflow_dispatch:
 
-          # (۱) Pull آخرین ایمیج از Docker Hub
-          docker pull $IMAGE
+jobs:
+  deploy-to-server:
+    needs: build-and-push   # اگر اسم job قبلی فرق دارد همین‌جا تغییر بده
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to remote server via SSH
+        uses: appleboy/ssh-action@v0.1.9
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          port: ${{ secrets.SSH_PORT }}   # اگر تعریف نکردی، secret بساز یا این خط رو پاک کن
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          timeout: 120s
+          script: |
+            set -e
 
-          # (۲) Stop & remove کانتینر قدیمی در صورت وجود
-          if docker ps -a --format '{{'{{'}}.Names{{'}}'}}' | grep -Eq '^my-flask-app$'; then
-            docker rm -f my-flask-app || true
-          fi
+            IMAGE=${{ secrets.DOCKER_USERNAME }}/my-flask-app:${{ env.VERSION }}
 
-          # (۳) Run کانتینر جدید (adjust ports/env/volumes as needed)
-          docker run -d --name my-flask-app \
-            --restart unless-stopped \
-            -p 5000:5000 \
-            $IMAGE
+            echo "Using image: $IMAGE"
 
+            # (۱) Pull آخرین ایمیج از Docker Hub
+            docker pull $IMAGE
+
+            # (۲) Stop & remove کانتینر قدیمی در صورت وجود
+            if docker ps -a --format '{{.Names}}' | grep -Eq '^my-flask-app$'; then
+              docker rm -f my-flask-app || true
+            fi
+
+            # (۳) Run کانتینر جدید
+            docker run -d --name my-flask-app \
+              --restart unless-stopped \
+              -p 5000:5000 \
+              $IMAGE
 ```
 
 فرض کن روی برنچ **develop** یه کامیت می‌زنی با پیام:
