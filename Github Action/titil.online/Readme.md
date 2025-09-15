@@ -134,7 +134,10 @@ jobs:
 
 ```
 ### Deploy image on server
-:x: .github/workflows/deploy-to-server.yml 
+- use ssh
+- use selfhosted-runner
+- :x: .github/workflows/deploy-to-server.yml
+###### use ssh
 ```
 name: Deploy to Server
 
@@ -182,7 +185,9 @@ jobs:
               $IMAGE
 
 ```
-
+###### use selfhosted-runner
+```
+```
 فرض کن روی برنچ **develop** یه کامیت می‌زنی با پیام:
 
 ```
