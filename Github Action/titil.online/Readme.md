@@ -1,13 +1,12 @@
 ```
-GithubRepo-titil_project/
-                      │── Dockerfile/
-                      │   ├── docker-compose.yml
-                      │   └── .env
-                      └── caddy/
-                      ├── docker-compose.yml
-                      └── Caddyfile
- 
-GithubAction-titil_project/
-                      └── .github/workflows/deploy.yml
-
+GithubRepo-title_project/
+│── Dockerfile                # فایل Dockerfile برای ساخت ایمیج
+│── docker-compose.yml        # فایل docker-compose برای اجرای سرویس‌ها (اختیاری)
+│── requirements.txt          # لیست کتابخونه‌های پایتون
+│── address_book.py           # کد اصلی Flask
+│── README.md                 # توضیحات پروژه
+│
+└── .github/
+    └── workflows/
+        └── deploy.yml        # فایل GitHub Actions برای بیلد و دیپلوی
 ```
