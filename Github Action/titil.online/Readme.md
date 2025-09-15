@@ -179,8 +179,8 @@ jobs:
             $IMAGE
 
 ```
+###### USE SSH
 
-###### use ssh
 ```
 name: Deploy to Server
 
