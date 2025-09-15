@@ -136,7 +136,6 @@ jobs:
 ### Deploy image on server
 :x: .github/workflows/deploy-to-server.yml 
 ```
-# یک job نمونه که بعد از push اجرا می‌شود
 name: Deploy to Server
 
 on:
@@ -144,7 +143,7 @@ on:
 
 jobs:
   deploy-to-server:
-    needs: build-and-push   # اگر اسم job قبلی فرق دارد همین‌جا تغییر بده
+    needs: build-and-push   # اسم job قبلی که ایمیج رو push می‌کنه
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to remote server via SSH
@@ -152,7 +151,7 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
-          port: ${{ secrets.SSH_PORT }}   # اگر تعریف نکردی، secret بساز یا این خط رو پاک کن
+          port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           timeout: 120s
           script: |
@@ -160,21 +159,28 @@ jobs:
 
             IMAGE=${{ secrets.DOCKER_USERNAME }}/my-flask-app:${{ env.VERSION }}
 
-            echo "Using image: $IMAGE"
+            echo "Deploying image: $IMAGE"
 
-            # (۱) Pull آخرین ایمیج از Docker Hub
-            docker pull $IMAGE
-
-            # (۲) Stop & remove کانتینر قدیمی در صورت وجود
+            # (۱) Stop & remove کانتینر قدیمی در صورت وجود
             if docker ps -a --format '{{.Names}}' | grep -Eq '^my-flask-app$'; then
-              docker rm -f my-flask-app || true
+              echo "Stopping old container..."
+              docker stop my-flask-app || true
+              docker rm my-flask-app || true
             fi
 
-            # (۳) Run کانتینر جدید
+            # (۲) مطمئن شو شبکه web وجود داره
+            if ! docker network ls --format '{{.Name}}' | grep -wq 'web'; then
+              echo "Creating network 'web'..."
+              docker network create web
+            fi
+
+            # (۳) Run کانتینر جدید در شبکه web
             docker run -d --name my-flask-app \
               --restart unless-stopped \
+              --network web \
               -p 5000:5000 \
               $IMAGE
+
 ```
 
 فرض کن روی برنچ **develop** یه کامیت می‌زنی با پیام:
