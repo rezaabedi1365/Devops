@@ -1,7 +1,7 @@
 ```
 project/
        │── html/
-          │    └── index.html   (فایل اصلی سایت)
+       │    └── index.html   (فایل اصلی سایت)
        │── nginx.conf
        │── Dockerfile
 ```
