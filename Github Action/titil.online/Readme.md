@@ -39,8 +39,11 @@ EXPOSE 5000
 CMD ["python", "address_book.py"]
 
 ```
+```
+docker build -t titil-app .
+```
 
- .github/workflows/deploy.yml 
+### .github/workflows/deploy.yml 
 ```
 name: Deploy on Release Commit (develop branch)
 
