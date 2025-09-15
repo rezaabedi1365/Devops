@@ -1,4 +1,14 @@
+```
+|-----html/
+|         |----html.index
+|-----nginx.conf
+|-----Dockerfile
+```
 
+copy your file in html Directory
+```
+mkdir html
+```
 nginx.conf
 ```
 # رویدادهای NGINX
