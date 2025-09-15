@@ -1,8 +1,9 @@
 ```
-|-----html/
-|         |----html.index
-|-----nginx.conf
-|-----Dockerfile
+project/
+       │── html/
+          │    └── index.html   (فایل اصلی سایت)
+       │── nginx.conf
+       │── Dockerfile
 ```
 
 copy your file in html Directory
