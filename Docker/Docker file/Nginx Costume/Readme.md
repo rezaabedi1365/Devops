@@ -1,19 +1,36 @@
 
 nginx.conf
 ```
+# رویدادهای NGINX
 events {}
 
+# تنظیمات HTTP
 http {
+    # فعال کردن فشرده‌سازی gzip
+    gzip on;
+    gzip_types text/plain text/css application/javascript application/json image/svg+xml;
+
+    # لاگ‌ها
+    access_log /var/log/nginx/access.log;
+    error_log /var/log/nginx/error.log;
+
     server {
         listen 80;
-        server_name localhost;
+        server_name _;
 
+        # مسیر ریشه سایت
         location / {
             root /usr/share/nginx/html;
-            index index.html;
+            index index.html index.htm;
+        }
+
+        # محافظت از فایل‌های مخفی (مثل .htaccess)
+        location ~ /\. {
+            deny all;
         }
     }
 }
+
 
 ```
 Dockerfile
@@ -23,9 +40,13 @@ FROM nginx:latest
 
 # کپی کردن فایل کانفیگ سفارشی به دایرکتوری NGINX
 COPY nginx.conf /etc/nginx/nginx.conf
-
 # کپی کردن محتوای سایت (اختیاری)
 COPY html/ /usr/share/nginx/html/
+
+
+#WORKDIR /usr/share/nginx/html
+# حالا COPY می‌تواند نسبی باشد
+#COPY html/ .
 
 # پورت مورد استفاده
 EXPOSE 80
