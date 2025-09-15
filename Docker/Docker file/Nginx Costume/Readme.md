@@ -64,3 +64,10 @@ run
 ```
 docker run -d -p 8080:80 my-custom-nginx
 ```
+verify
+```
+docker ps
+```
+```
+docker exec -it 131468d883de /bin/bash 
+```
