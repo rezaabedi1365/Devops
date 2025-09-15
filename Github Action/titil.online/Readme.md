@@ -10,7 +10,13 @@ GithubRepo-title_project/
     └── workflows/
         └── deploy.yml        # فایل GitHub Actions Build & Push to docker hub
 ```
-
+### requirements.txt
+```
+Flask==3.0.3
+Flask-SQLAlchemy==3.1.1
+pytest==8.3.2
+gunicorn==22.0.0
+```
 ### Dockerfile
 ```
 # استفاده از نسخه سبک پایتون
