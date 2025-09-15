@@ -10,13 +10,21 @@ GithubRepo-title_project/
     └── workflows/
         └── deploy.yml        # فایل GitHub Actions Build & Push to docker hub
 ```
+### Secret
 Repository secrets
 - Settings → Secrets and variables → Actions → New repository secret
+    + DOCKER_USERNAME
+    + DOCKER_PASSWORD
+    + SSH_HOST
+    + SSH_USERNAME
+    + SSH_PRIVATE_KEY
+    + SSH_PORT
 
 Environment secrets
 - Settings → Environments → [Create or select environment] → Secrets → New secret
 
 
+-----------------------------------------------------------------------------------------------------------------------------------
 <img width="1424" height="733" alt="image" src="https://github.com/user-attachments/assets/275dc544-dedf-46fc-a824-302de8b89f59" />
 
 <img width="1044" height="605" alt="image" src="https://github.com/user-attachments/assets/780bc531-e87a-451d-ab3c-db8ee6d88a60" />
