@@ -44,8 +44,9 @@ docker build -t titil-app .
 ```
 verify
 ```
-docker run -d -p 5000:5000 titil-app
+docker run -d -p 5050:5000 titil-app
 ```
+http://<IP>:5050
 
 ### .github/workflows/deploy.yml 
 ```
