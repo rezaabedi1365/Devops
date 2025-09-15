@@ -8,8 +8,8 @@ GithubRepo-title_project/
 │
 └── .github/
     └── workflows/
-        │── image-bulid_push  # Build & Push to docker hub
-        └── deploy.yml        # deploy-to-server  
+        │── image-bulid_push.yml        # Build & Push to docker hub
+        └── deploy-to-server.yml        # deploy-to-server  
 ```
 ### Secret
 Repository secrets
