@@ -46,6 +46,12 @@ verify
 ```
 docker run -d -p 5050:5000 titil-app
 ```
+push image
+```
+docker login
+docker tag titil-app rezaabedi1365/titilrepo:latest
+docker push rezaabedi1365/titilrepo:latest
+```
 http://<IP>:5050
 
 ### .github/workflows/deploy.yml 
