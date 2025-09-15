@@ -3,7 +3,7 @@ project/
        │── html/
        │    └── index.html   (فایل اصلی سایت)
        │── nginx.conf
-       │── Dockerfile
+       └── Dockerfile
 ```
 
 copy your file in html Directory
