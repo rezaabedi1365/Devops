@@ -54,7 +54,8 @@ docker push rezaabedi1365/titilrepo:latest
 ```
 http://<IP>:5050
 
-### .github/workflows/deploy.yml 
+### Auto Workflow
+ .github/workflows/deploy.yml 
 ```
 name: Deploy on Release Commit (develop branch)
 
@@ -178,6 +179,62 @@ Release با همون نسخه ساخته میشه:
 * Release روی GitHub هم همزمان ساخته میشه و کاملاً منطبق با نسخه.
 
 ---
+### Manual Workflow
+```
+name: Deploy on Release
+
+# فعال‌سازی اجرای دستی
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release (e.g., v1.0.0)'
+        required: true
+        default: 'v1.0.0'
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      # گرفتن سورس کد
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # تنظیم نسخه از ورودی دستی
+      - name: Set version
+        run: echo "VERSION=${{ github.event.inputs.version }}" >> $GITHUB_ENV
+
+      # لاگین به Docker Hub
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      # ساخت ایمیج و تگ‌گذاری
+      - name: Build Docker image
+        run: |
+          IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/my-flask-app
+          docker build -t $IMAGE_NAME:latest -t $IMAGE_NAME:${{ env.VERSION }} .
+
+      # پابلیش ایمیج روی Docker Hub
+      - name: Push Docker image
+        run: |
+          IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/my-flask-app
+          docker push $IMAGE_NAME:latest
+          docker push $IMAGE_NAME:${{ env.VERSION }}
+
+      # ساخت Release در گیت‌هاب
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ env.VERSION }}
+          name: Release ${{ env.VERSION }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+```
 
 
 
