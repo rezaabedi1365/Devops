@@ -3,9 +3,15 @@
 - kibana
 - Logstash
 - Beats
-  * filebeat
-  * metricbeat
-  * Winlogbeat
+  * filebeat (Install agent)
+  * metricbeat (Install agent)
+  * Winlogbeat (Install anget)
+  * Auditbeat (Install agent)
+  * Packetbeat (Install agent & SPAN port)
+  * Heartbeat (Install on ELK or Monitoring server for send Heartbeat)
+
+
+  
 
 | Beat                                                    | کاربرد اصلی                                      | موارد استفاده                                                                         |
 | ------------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------- |
@@ -110,17 +116,6 @@ setup.kibana:
 
 ```
 
-
-
-
-
-
-
-
-
-
-
-
 ### metricbeat.yml
 ```
 metricbeat.modules:
@@ -158,13 +153,6 @@ setup.kibana:
 ```
 
 
-
-
-
-
-
-
-
 ### winlogbeat.yml
 ```
 winlogbeat.event_logs:
@@ -179,4 +167,79 @@ output.elasticsearch:
 setup.kibana:
   host: "http://kibana:5601"
 
+```
+### packetbeat.yml
+```
+packetbeat.interfaces.device: any  # شنود روی همه‌ی اینترفیس‌ها
+
+packetbeat.protocols:
+  - type: http
+    ports: [80, 8080, 9200]
+  - type: dns
+    ports: [53]
+  - type: mysql
+    ports: [3306]
+
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+
+setup.kibana:
+  host: "http://kibana:5601"
+```
+
+
+### Heartbeat
+```
+heartbeat.monitors:
+  - type: http
+    id: api-healthcheck
+    name: My API Health
+    schedule: "@every 30s"
+    urls: ["http://myapi.local/health"]
+
+  - type: tcp
+    id: tcp-service
+    name: TCP Check
+    schedule: "@every 30s"
+    hosts: ["db.local:3306"]
+
+  - type: icmp
+    id: ping-server
+    name: Ping Test
+    schedule: "@every 30s"
+    hosts: ["8.8.8.8"]
+
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+
+setup.kibana:
+  host: "http://kibana:5601"
+```
+### auditbeat.yml
+```
+  - module: auditd
+    resolve_ids: true
+    failure_mode: log
+    backlog_limit: 8196
+
+  - module: file_integrity
+    paths:
+      - /bin
+      - /usr/bin
+      - /etc
+      - /var/log
+
+  - module: system
+    datasets:
+      - host    # اطلاعات میزبان
+      - login   # ورود/خروج کاربران
+      - package # تغییر پکیج‌ها
+      - process # پردازش‌ها
+      - socket  # ارتباطات شبکه‌ای
+
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+
+setup.kibana:
+  host: "http://kibana:5601"
 ```
