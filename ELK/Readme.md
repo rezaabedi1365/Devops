@@ -1,6 +1,6 @@
 ### Elastic Stack
-1 ***elasticsearch*
-- kibana
+1- elasticsearch
+2- kibana
 - Logstash
   * (Collect, optimize, then forward logs/metrics to Elasticsearch; suitable for large-scale environment
 - Beats
