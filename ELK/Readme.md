@@ -10,13 +10,19 @@ Visualize, explore, and analyze logs/metrics from Elasticsearch.
  suitable for large-scale environment
  you can direktly forward logs/metric to elasticsearch
     
-3- Beats
+### 4- Beats
   - filebeat (Install agent)
+     + Application,Nginx,Apache logs (Retrurn code 40x,300x,20x)
   - metricbeat (Install agent)
+     + System and Service Metrics (CPU/RAM/Disk)
   - Winlogbeat (Install anget)
+     + Event Viewer (Application, Security, System, DNS, etc.)
   - Auditbeat (Install agent)
+     + Security evidense
   - Packetbeat (Install agent & SPAN port)
+     + Network Trafik and Protocol Analyzer
   - Heartbeat (Install on ELK or Monitoring server for send Heartbeat)
+     + Service and API Uptime
 
 
   
