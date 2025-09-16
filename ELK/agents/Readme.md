@@ -1,5 +1,5 @@
 
-### add repo
+### Add Repo
 ```
 curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
 
@@ -9,7 +9,7 @@ echo "deb https://artifacts.elastic.co/packages/8.x/apt stable main" | sudo tee 
 # آپدیت پکیج‌ها
 sudo apt-get update
 ```
-### install
+### Install
 etc/filebeat/filebeat.yml
 ```
 sudo apt-get install filebeat
