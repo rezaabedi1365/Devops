@@ -1,6 +1,5 @@
-# دانلود پکیج GPG و Repo
-### Filebeat
-etc/filebeat/filebeat.yml
+
+### add repo
 ```
 curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
 
@@ -9,14 +8,11 @@ echo "deb https://artifacts.elastic.co/packages/8.x/apt stable main" | sudo tee 
 
 # آپدیت پکیج‌ها
 sudo apt-get update
-
-# نصب Filebeat
+```
+### install
+etc/filebeat/filebeat.yml
+```
 sudo apt-get install filebeat
-```
-
-
-
-```
 sudo apt-get install metricbeat
 sudo apt-get install auditbeat
 sudo apt-get install packetbeat
