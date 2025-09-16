@@ -17,3 +17,164 @@
 | **Heartbeat**                                           | مانیتورینگ uptime و latency سرویس‌ها             | چک کردن دسترس‌پذیری APIها، وب‌سایت‌ها، TCP/ICMP/Ping، شبیه UptimeRobot                |
 | **Functionbeat** (منسوخ شده و جایگزین با Elastic Agent) | جمع‌آوری لاگ/رویداد از Cloud Functions           | AWS Lambda, Google Cloud Functions (برای cloud-native environments)                   |
 | **Elastic Agent** (جدید و جایگزین بیشتر Beatsها)        | یک Agent همه‌کاره برای Logs + Metrics + Security | ساده‌تر از Beats جداگانه، مخصوصاً برای Elastic Cloud و Fleet Management               |
+
+
+```
+version: '3.8'
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.15.0
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - ES_JAVA_OPTS=-Xms2g -Xmx2g
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - "9200:9200"
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.15.0
+    container_name: kibana
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:8.15.0
+    container_name: filebeat
+    user: root
+    volumes:
+      - ./filebeat.yml:/usr/share/filebeat/filebeat.yml
+      - /var/log:/var/log:ro
+    depends_on:
+      - elasticsearch
+
+  metricbeat:
+    image: docker.elastic.co/beats/metricbeat:8.15.0
+    container_name: metricbeat
+    user: root
+    volumes:
+      - ./metricbeat.yml:/usr/share/metricbeat/metricbeat.yml
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - elasticsearch
+
+volumes:
+  es_data:
+    driver: local
+
+```
+
+### filebeat.yml
+```
+filebeat.inputs:
+  # لاگ‌های Nginx
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/nginx/access.log
+      - /var/log/nginx/error.log
+    tags: ["nginx"]
+
+  # لاگ‌های Apache
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/apache2/access.log
+      - /var/log/apache2/error.log
+    tags: ["apache"]
+
+  # لاگ‌های اپلیکیشن (اختیاری)
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/myapp/*.log
+    tags: ["app"]
+
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+
+setup.kibana:
+  host: "http://kibana:5601"
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+### metricbeat.yml
+```
+metricbeat.modules:
+  # سیستم عامل
+  - module: system
+    metricsets:
+      - cpu
+      - memory
+      - network
+      - diskio
+      - filesystem
+    period: 10s
+    hosts: ["localhost"]
+
+  # سرویس‌های وب
+  - module: nginx
+    metricsets:
+      - stubstatus
+    period: 10s
+    hosts: ["http://nginx:80"]
+    enabled: true
+
+  - module: apache
+    metricsets:
+      - status
+    period: 10s
+    hosts: ["http://apache:80/server-status"]
+    enabled: true
+
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+
+setup.kibana:
+  host: "http://kibana:5601"
+```
+
+
+
+
+
+
+
+
+
+### winlogbeat.yml
+```
+winlogbeat.event_logs:
+  - name: Application
+  - name: System
+  - name: Security
+    ignore_older: 72h  # فقط 3 روز اخیر
+
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+
+setup.kibana:
+  host: "http://kibana:5601"
+
+```
