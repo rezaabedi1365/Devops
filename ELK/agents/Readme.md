@@ -1,12 +1,11 @@
 
 ### Add Repo
 ```
-curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
-
 sudo apt-get install apt-transport-https
+
+curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
 echo "deb https://artifacts.elastic.co/packages/8.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-8.x.list
 
-# آپدیت پکیج‌ها
 sudo apt-get update
 ```
 ### Install
