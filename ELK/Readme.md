@@ -1,17 +1,20 @@
 ### Elastic Stack
 1- elasticsearch
-  * (Collect, optimize, then forward logs/metrics to Elasticsearch; suitable for large-scale environment
+  * Store, index, and search logs/metrics
 
 2- kibana
 - Logstash
-  * (Collect, optimize, then forward logs/metrics to Elasticsearch; suitable for large-scale environment
-- Beats
-  * filebeat (Install agent)
-  * metricbeat (Install agent)
-  * Winlogbeat (Install anget)
-  * Auditbeat (Install agent)
-  * Packetbeat (Install agent & SPAN port)
-  * Heartbeat (Install on ELK or Monitoring server for send Heartbeat)
+  * Collect, optimize, then forward logs/metrics to Elasticsearch;
+  *  suitable for large-scale environment
+  *  you can direktly forward logs/metric to elasticsearch
+  *  
+3- Beats
+  - filebeat (Install agent)
+  - metricbeat (Install agent)
+  - Winlogbeat (Install anget)
+  - Auditbeat (Install agent)
+  - Packetbeat (Install agent & SPAN port)
+  - Heartbeat (Install on ELK or Monitoring server for send Heartbeat)
 
 
   
