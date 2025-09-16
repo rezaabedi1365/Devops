@@ -1,14 +1,14 @@
 ### Elastic Stack
 ### 1- elasticsearch
- * Store, index, and search logs/metrics
+Store, index, and search logs/metrics
 
 ### 2- kibana
-  * Visualize, explore, and analyze logs/metrics from Elasticsearch.
+Visualize, explore, and analyze logs/metrics from Elasticsearch.
 
 ### 3- Logstash
-  * Collect, optimize, then forward logs/metrics to Elasticsearch;
-  *  suitable for large-scale environment
-  *  you can direktly forward logs/metric to elasticsearch
+ Collect, optimize, then forward logs/metrics to Elasticsearch;
+ suitable for large-scale environment
+ you can direktly forward logs/metric to elasticsearch
     
 3- Beats
   - filebeat (Install agent)
