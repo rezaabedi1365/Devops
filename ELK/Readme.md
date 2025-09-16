@@ -2,6 +2,7 @@
 - elasticsearch
 - kibana
 - Logstash
+  * (Collect, optimize, then forward logs/metrics to Elasticsearch; suitable for large-scale environment
 - Beats
   * filebeat (Install agent)
   * metricbeat (Install agent)
@@ -56,6 +57,16 @@ services:
     depends_on:
       - elasticsearch
 
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.15.0
+    container_name: logstash
+    volumes:
+      - ./logstash/pipeline/:/usr/share/logstash/pipeline/
+    ports:
+      - "5044:5044"  # پورت پیشفرض برای Beats input
+    depends_on:
+      - elasticsearch
+
   filebeat:
     image: docker.elastic.co/beats/filebeat:8.15.0
     container_name: filebeat
@@ -63,8 +74,9 @@ services:
     volumes:
       - ./filebeat.yml:/usr/share/filebeat/filebeat.yml
       - /var/log:/var/log:ro
+      - /etc:/etc:ro
     depends_on:
-      - elasticsearch
+      - logstash
 
   metricbeat:
     image: docker.elastic.co/beats/metricbeat:8.15.0
@@ -73,13 +85,19 @@ services:
     volumes:
       - ./metricbeat.yml:/usr/share/metricbeat/metricbeat.yml
       - /var/run/docker.sock:/var/run/docker.sock
+      - /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
+      - /proc:/hostfs/proc:ro
+      - /:/hostfs:ro
+    environment:
+      - HOST_PROC=/hostfs/proc
+      - HOST_SYS=/hostfs/sys
+      - HOST_ETC=/hostfs/etc
     depends_on:
-      - elasticsearch
+      - logstash
 
 volumes:
   es_data:
     driver: local
-
 ```
 
 ### filebeat.yml
