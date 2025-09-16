@@ -2,7 +2,7 @@
 - elasticsearch
 - kibana
 - Logstash
-  * Beats
+- Beats
   * filebeat
   * metricbeat
   * Winlogbeat
