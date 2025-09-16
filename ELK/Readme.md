@@ -12,7 +12,7 @@ Visualize, explore, and analyze logs/metrics from Elasticsearch.
     
 ### 4- Beats
   - filebeat (Install agent)
-     + Application,Nginx,Apache logs (Retrurn code 40x,300x,20x)
+     + Application,Nginx,Apache logs (Retrurn code 40x,30x,20x)
   - metricbeat (Install agent)
      + System and Service Metrics (CPU/RAM/Disk)
   - Winlogbeat (Install anget)
