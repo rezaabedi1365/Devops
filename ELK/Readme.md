@@ -1,5 +1,5 @@
 ### Elastic Stack
-1- elasticsearch
+### 1*elasticsearch*
   * Store, index, and search logs/metrics
 
 2- kibana
