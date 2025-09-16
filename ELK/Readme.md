@@ -19,6 +19,8 @@
 | **Elastic Agent** (جدید و جایگزین بیشتر Beatsها)        | یک Agent همه‌کاره برای Logs + Metrics + Security | ساده‌تر از Beats جداگانه، مخصوصاً برای Elastic Cloud و Fleet Management               |
 
 
+
+### docker-compose.yml
 ```
 version: '3.8'
 services:
