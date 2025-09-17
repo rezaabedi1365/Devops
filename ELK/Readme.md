@@ -43,13 +43,15 @@ Visualize, explore, and analyze logs/metrics from Elasticsearch.
 ### docker-compose.yml
 ```
 version: '3.8'
+
 services:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.15.0
     container_name: elasticsearch
     environment:
       - discovery.type=single-node
-      - xpack.security.enabled=false
+      - xpack.security.enabled=true
+      - ELASTIC_PASSWORD=elastic
       - ES_JAVA_OPTS=-Xms2g -Xmx2g
     ulimits:
       memlock:
@@ -65,6 +67,8 @@ services:
     container_name: kibana
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - ELASTICSEARCH_USERNAME=elastic
+      - ELASTICSEARCH_PASSWORD=elastic
     ports:
       - "5601:5601"
     depends_on:
@@ -76,7 +80,7 @@ services:
     volumes:
       - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf
     ports:
-      - "5044:5044"  # پورت پیشفرض برای Beats input
+      - "5044:5044"
     depends_on:
       - elasticsearch
 
@@ -87,30 +91,13 @@ services:
     volumes:
       - ./filebeat.yml:/usr/share/filebeat/filebeat.yml
       - /var/log:/var/log:ro
-      - /etc:/etc:ro
-    depends_on:
-      - logstash
-
-  metricbeat:
-    image: docker.elastic.co/beats/metricbeat:8.15.0
-    container_name: metricbeat
-    user: root
-    volumes:
-      - ./metricbeat.yml:/usr/share/metricbeat/metricbeat.yml
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
-      - /proc:/hostfs/proc:ro
-      - /:/hostfs:ro
-    environment:
-      - HOST_PROC=/hostfs/proc
-      - HOST_SYS=/hostfs/sys
-      - HOST_ETC=/hostfs/etc
     depends_on:
       - logstash
 
 volumes:
   es_data:
     driver: local
+
 ```
 ### logstash.conf
 
