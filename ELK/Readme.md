@@ -42,7 +42,7 @@ Visualize, explore, and analyze logs/metrics from Elasticsearch.
 
 ### docker-compose.yml
 ```
-version: '3.8'
+#version: '3.8'
 
 services:
   elasticsearch:
