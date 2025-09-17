@@ -1,5 +1,4 @@
-
-
+# Install
 ## Gitlab-ce commounity Edition
 - install gitlab-ce cumunity Edition
 ```
@@ -23,6 +22,17 @@ cat /etc/gitlab/initial_root_password
 nano /etc/gitlab/gitlab.rb
 ```
 
+## Gitlab Certificate 
+```
+/etc/gitlab/ssl/<your-domain>.crt
+/etc/gitlab/ssl/<your-domain>.key
+```
+```
+systemctl restart gitlab.slic
+```
+
+
+
 ## Gitlab Runner
 :heavy_check_mark:  you can install some runer with diffrent exexuter type for each project . 
 - for example for push project you can have one runner with kuberneties executer and one shell executer . for other project Likewise.
@@ -31,6 +41,7 @@ nano /etc/gitlab/gitlab.rb
 curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | sudo bash
 sudo apt install gitlab-runner -y
 ```
+
 ### Runner registery tag format Suggested
 
 <project>-<executor>-<stage>-<master-number>
