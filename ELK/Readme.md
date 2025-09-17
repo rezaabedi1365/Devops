@@ -42,7 +42,7 @@ Visualize, explore, and analyze logs/metrics from Elasticsearch.
 
 ### docker-compose.yml
 ```
-#version: '3.8'
+version: '3.8'
 
 services:
   elasticsearch:
@@ -51,7 +51,7 @@ services:
     environment:
       - discovery.type=single-node
       - xpack.security.enabled=true
-      - ELASTIC_PASSWORD=elastic
+      - ELASTIC_PASSWORD=YourStrongPassword123
       - ES_JAVA_OPTS=-Xms2g -Xmx2g
     ulimits:
       memlock:
@@ -68,7 +68,7 @@ services:
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
       - ELASTICSEARCH_USERNAME=elastic
-      - ELASTICSEARCH_PASSWORD=elastic
+      - ELASTICSEARCH_PASSWORD=YourStrongPassword123
     ports:
       - "5601:5601"
     depends_on:
@@ -91,6 +91,53 @@ services:
     volumes:
       - ./filebeat.yml:/usr/share/filebeat/filebeat.yml
       - /var/log:/var/log:ro
+    depends_on:
+      - logstash
+
+  metricbeat:
+    image: docker.elastic.co/beats/metricbeat:8.15.0
+    container_name: metricbeat
+    user: root
+    volumes:
+      - ./metricbeat.yml:/usr/share/metricbeat/metricbeat.yml
+      - /proc:/host/proc:ro
+      - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
+    depends_on:
+      - logstash
+
+  heartbeat:
+    image: docker.elastic.co/beats/heartbeat:8.15.0
+    container_name: heartbeat
+    user: root
+    volumes:
+      - ./heartbeat.yml:/usr/share/heartbeat/heartbeat.yml
+    depends_on:
+      - logstash
+
+  winlogbeat:
+    image: docker.elastic.co/beats/winlogbeat:8.15.0
+    container_name: winlogbeat
+    user: root
+    volumes:
+      - ./winlogbeat.yml:/usr/share/winlogbeat/winlogbeat.yml
+    depends_on:
+      - logstash
+
+  auditbeat:
+    image: docker.elastic.co/beats/auditbeat:8.15.0
+    container_name: auditbeat
+    user: root
+    volumes:
+      - ./auditbeat.yml:/usr/share/auditbeat/auditbeat.yml
+    depends_on:
+      - logstash
+
+  packetbeat:
+    image: docker.elastic.co/beats/packetbeat:8.15.0
+    container_name: packetbeat
+    user: root
+    volumes:
+      - ./packetbeat.yml:/usr/share/packetbeat/packetbeat.yml
     depends_on:
       - logstash
 
