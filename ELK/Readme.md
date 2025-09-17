@@ -100,7 +100,8 @@ volumes:
 
 ```
 ### logstash.conf
-
+- user => "elastic"
+- password => "elastic"
 ```
 input {
   beats {
@@ -111,9 +112,12 @@ input {
 output {
   elasticsearch {
     hosts => ["http://elasticsearch:9200"]
+    user => "elastic"
+    password => "elastic"
     index => "my-logs-%{+YYYY.MM.dd}"
   }
 }
+
 
 ```
 ### filebeat.yml
