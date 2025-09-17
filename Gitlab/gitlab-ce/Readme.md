@@ -24,6 +24,20 @@ nano /etc/gitlab/gitlab.rb
 
 ## Gitlab Certificate 
 ```
+nano /etc/gitlab/gitlab.rb
+```
+```
+external_url 'https://gitlabregistry.faradis.net'
+nginx['redirect_http_to_https'] = true
+nginx['ssl_certificate'] = "/etc/gitlab/ssl/bundle-fullchain.crt"
+nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/private.key"
+external_url 'https://gitlabregistry.faradis.net'
+nginx['redirect_http_to_https'] = true
+nginx['ssl_certificate'] = "/etc/gitlab/ssl/bundle-fullchain.crt"
+nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/private.key"
+```
+
+```
 /etc/gitlab/ssl/<your-domain>.crt
 /etc/gitlab/ssl/<your-domain>.key
 ```
