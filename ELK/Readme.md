@@ -121,6 +121,13 @@ output {
 
 ```
 ### filebeat.yml
+- you can forward to elasticsearch without preprocess
+```
+#with repelace in filebeat.yml
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+```
+
 ```
 filebeat.inputs:
   # لاگ‌های Nginx
@@ -146,8 +153,9 @@ filebeat.inputs:
       - /var/log/myapp/*.log
     tags: ["app"]
 
-output.elasticsearch:
-  hosts: ["http://elasticsearch:9200"]
+
+output.logstash:
+  hosts: ["logstash:5044"]
 
 setup.kibana:
   host: "http://kibana:5601"
@@ -155,6 +163,12 @@ setup.kibana:
 ```
 
 ### metricbeat.yml
+- you can forward to elasticsearch without preprocess
+```
+#with repelace in metricbeat.yml
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+```
 ```
 metricbeat.modules:
   # سیستم عامل
@@ -192,6 +206,13 @@ setup.kibana:
 
 
 ### winlogbeat.yml
+- you can forward to elasticsearch without preprocess
+```
+#with repelace in winlogbeat.yml
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+```
+
 ```
 winlogbeat.event_logs:
   - name: Application
@@ -207,6 +228,13 @@ setup.kibana:
 
 ```
 ### packetbeat.yml
+- you can forward to elasticsearch without preprocess
+```
+#with repelace in packetbeat.yml
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+```
+
 ```
 packetbeat.interfaces.device: any  # شنود روی همه‌ی اینترفیس‌ها
 
@@ -227,6 +255,13 @@ setup.kibana:
 
 
 ### heartbeat.yml
+- you can forward to elasticsearch without preprocess
+```
+#with repelace in heartbeat.yml
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+```
+
 ```
 heartbeat.monitors:
   - type: http
@@ -254,6 +289,13 @@ setup.kibana:
   host: "http://kibana:5601"
 ```
 ### auditbeat.yml
+- you can forward to elasticsearch without preprocess
+```
+#with repelace in auditbeat.yml
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+```
+
 ```
   - module: auditd
     resolve_ids: true
