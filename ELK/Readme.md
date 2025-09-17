@@ -169,12 +169,17 @@ output {
 ```
 ### filebeat.yml
 - you can forward to elasticsearch without preprocess
+:x: if forwarf direkly to elasticsearch you need write elasticsearch user and password
 ```
 #with repelace in filebeat.yml
 output.elasticsearch:
   hosts: ["http://elasticsearch:9200"]
+  username: "elastic"
+  password: "elastic"
 ```
 
+- user => "elastic"
+- password => "elastic"
 ```
 filebeat.inputs:
   # لاگ‌های Nginx
@@ -215,7 +220,11 @@ setup.kibana:
 #with repelace in metricbeat.yml
 output.elasticsearch:
   hosts: ["http://elasticsearch:9200"]
+  username: "elastic"
+  password: "elastic"
 ```
+- user => "elastic"
+- password => "elastic"
 ```
 metricbeat.modules:
   # سیستم عامل
@@ -244,8 +253,8 @@ metricbeat.modules:
     hosts: ["http://apache:80/server-status"]
     enabled: true
 
-output.elasticsearch:
-  hosts: ["http://elasticsearch:9200"]
+output.logstash:
+  hosts: ["logstash:5044"]
 
 setup.kibana:
   host: "http://kibana:5601"
@@ -258,8 +267,11 @@ setup.kibana:
 #with repelace in winlogbeat.yml
 output.elasticsearch:
   hosts: ["http://elasticsearch:9200"]
+  username: "elastic"
+  password: "elastic"
 ```
-
+- user => "elastic"
+- password => "elastic"
 ```
 winlogbeat.event_logs:
   - name: Application
@@ -267,8 +279,8 @@ winlogbeat.event_logs:
   - name: Security
     ignore_older: 72h  # فقط 3 روز اخیر
 
-output.elasticsearch:
-  hosts: ["http://elasticsearch:9200"]
+output.logstash:
+  hosts: ["logstash:5044"]
 
 setup.kibana:
   host: "http://kibana:5601"
@@ -280,8 +292,11 @@ setup.kibana:
 #with repelace in packetbeat.yml
 output.elasticsearch:
   hosts: ["http://elasticsearch:9200"]
+  username: "elastic"
+  password: "elastic"
 ```
-
+- user => "elastic"
+- password => "elastic"
 ```
 packetbeat.interfaces.device: any  # شنود روی همه‌ی اینترفیس‌ها
 
@@ -293,8 +308,9 @@ packetbeat.protocols:
   - type: mysql
     ports: [3306]
 
-output.elasticsearch:
-  hosts: ["http://elasticsearch:9200"]
+output.logstash:
+  hosts: ["logstash:5044"]
+
 
 setup.kibana:
   host: "http://kibana:5601"
@@ -307,8 +323,11 @@ setup.kibana:
 #with repelace in heartbeat.yml
 output.elasticsearch:
   hosts: ["http://elasticsearch:9200"]
+  username: "elastic"
+  password: "elastic"
 ```
-
+- user => "elastic"
+- password => "elastic"
 ```
 heartbeat.monitors:
   - type: http
@@ -329,8 +348,8 @@ heartbeat.monitors:
     schedule: "@every 30s"
     hosts: ["8.8.8.8"]
 
-output.elasticsearch:
-  hosts: ["http://elasticsearch:9200"]
+output.logstash:
+  hosts: ["logstash:5044"]
 
 setup.kibana:
   host: "http://kibana:5601"
@@ -341,8 +360,11 @@ setup.kibana:
 #with repelace in auditbeat.yml
 output.elasticsearch:
   hosts: ["http://elasticsearch:9200"]
+  username: "elastic"
+  password: "elastic"
 ```
-
+- user => "elastic"
+- password => "elastic"
 ```
   - module: auditd
     resolve_ids: true
@@ -364,8 +386,8 @@ output.elasticsearch:
       - process # پردازش‌ها
       - socket  # ارتباطات شبکه‌ای
 
-output.elasticsearch:
-  hosts: ["http://elasticsearch:9200"]
+output.logstash:
+  hosts: ["logstash:5044"]
 
 setup.kibana:
   host: "http://kibana:5601"
