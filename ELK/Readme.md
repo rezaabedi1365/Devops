@@ -74,7 +74,7 @@ services:
     image: docker.elastic.co/logstash/logstash:8.15.0
     container_name: logstash
     volumes:
-      - ./logstash :/usr/share/logstash/pipeline/
+      - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf
     ports:
       - "5044:5044"  # پورت پیشفرض برای Beats input
     depends_on:
