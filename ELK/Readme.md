@@ -235,7 +235,7 @@ setup.kibana:
 ```
 
 
-### Heartbeat
+### heartbeat.yml
 ```
 heartbeat.monitors:
   - type: http
