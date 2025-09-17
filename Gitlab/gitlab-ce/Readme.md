@@ -28,7 +28,8 @@ nano /etc/gitlab/gitlab.rb
 /etc/gitlab/ssl/<your-domain>.key
 ```
 ```
-systemctl restart gitlab.slic
+sudo gitlab-ctl reconfigure
+sudo gitlab-ctl restart
 ```
 
 
