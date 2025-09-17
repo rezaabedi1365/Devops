@@ -74,7 +74,7 @@ services:
     image: docker.elastic.co/logstash/logstash:8.15.0
     container_name: logstash
     volumes:
-      - ./logstash/pipeline/:/usr/share/logstash/pipeline/
+      - ./logstash :/usr/share/logstash/pipeline/
     ports:
       - "5044:5044"  # پورت پیشفرض برای Beats input
     depends_on:
@@ -112,7 +112,23 @@ volumes:
   es_data:
     driver: local
 ```
+### logstash.conf
 
+```
+input {
+  beats {
+    port => 5044
+  }
+}
+
+output {
+  elasticsearch {
+    hosts => ["http://elasticsearch:9200"]
+    index => "my-logs-%{+YYYY.MM.dd}"
+  }
+}
+
+```
 ### filebeat.yml
 ```
 filebeat.inputs:
