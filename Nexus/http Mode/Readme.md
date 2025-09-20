@@ -54,8 +54,6 @@ docker login nexus.faradis.net:5001
 #login to docker-proxy
 docker login nexus.faradis.net:5002
 
-#login to docker-proxy
-docker login nexus.faradis.net:5003
 ```
 - file path
 ```
@@ -77,10 +75,6 @@ docker login nexus.faradis.net:5003
                 },
                 "nexus.faradis.net:5002": {
                         "auth": "YWRtaW46LXFZSTVfQCpUJj8r"
-                },
-                "nexus.faradis.net:5003": {
-                        "auth": "YWRtaW46LXFZSTVfQCpUJj8r"
-                }
         }
 }
 ```
