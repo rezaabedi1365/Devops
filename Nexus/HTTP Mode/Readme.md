@@ -90,15 +90,19 @@ docker tag nginx:latest nexus.faradis.net:5002/docker-proxy/nginx:latest
 docker pull library/mysql
 ```
 
-### docker push docker-hosted
+### docker push and pull docker-hosted
 ```
-docker login nexus.faradis.net:5002
-```
-```
-docker tag nginx:latest nexus.faradis.net:5002/nginx:custom1
-docker tag nginx:latest nexus.faradis.net:5002/docker-hosted/nginx:custom1
+docker login nexus.faradis.net:500
 ```
 ```
-docker push nexus.faradis.net:5002/nginx:custom1
-docker push nexus.faradis.net:5002/docker-hosted/nginx:custom1
+docker tag nginx:latest nexus.faradis.net:5001/nginx:custom1
+docker tag nginx:latest nexus.faradis.net:5001/docker-hosted/nginx:custom1
 ```
+```
+docker push nexus.faradis.net:5001/nginx:custom1
+docker push nexus.faradis.net:5001/docker-hosted/nginx:custom1
+```
+```
+docker pull nexus.faradis.net:5001/nginx:custom1
+```
+
