@@ -77,11 +77,12 @@ docker login nexus.faradis.net:5003
                 },
                 "nexus.faradis.net:5002": {
                         "auth": "YWRtaW46LXFZSTVfQCpUJj8r"
+                },
+                "nexus.faradis.net:5003": {
+                        "auth": "YWRtaW46LXFZSTVfQCpUJj8r"
                 }
         }
 }
-
-
 ```
 
 ### docker pull docker-proxy
