@@ -164,7 +164,8 @@ server {
 ```
 
 
-# Change sources.list in ubuntu
+# APT Repo
+- Change sources.list in ubuntu
 ```
 cp /etc/apt/sources.list /etc/apt/sources.list_bk
 sudo sed -i 's|http://ir.archive.ubuntu.com/ubuntu/|https://nexus.faradis.net/repository/apt-proxy/|g' /etc/apt/sources.list
@@ -191,6 +192,18 @@ openssl s_client -connect nexus.faradis.net:443 -CApath /etc/ssl/certs
 ```
 openssl s_client -connect nexus.faradis.net:443 -showcerts
 ```
+
+# docker repo 
+- create role(docker role) with nx-repo administrator > Create user with (docekr role) group
+- Change realm
+<img width="1066" height="658" alt="image" src="https://github.com/user-attachments/assets/0929fb28-9729-4853-bc25-dbf4282ab831" />
+
+- in client
+```
+docker login nexus.faradis.net:5001
+docker login nexus.faradis.net:5002
+```
+
 ### docker.list
 #### Method1 : without gpg
 - docker-apt-proxy
@@ -213,16 +226,6 @@ sudo curl -k -fsSL https://nexus.faradis.net/keys/docker.asc -o /etc/apt/keyring
 - deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://nexus.faradis.net/repository/docker-apt-proxy/ jammy stable
 ```
 sudo sed -i 's|https://download.docker.com/linux/ubuntu|https://nexus.faradis.net/repository/docker-apt-proxy/|' /etc/apt/sources.list.d/docker.list
-```
-# docker repo 
-- create role(docker role) with nx-repo administrator > Create user with (docekr role) group
-- Change realm
-<img width="1066" height="658" alt="image" src="https://github.com/user-attachments/assets/0929fb28-9729-4853-bc25-dbf4282ab831" />
-
-- in client
-```
-docker login nexus.faradis.net:5001
-docker login nexus.faradis.net:5002
 ```
 ### Docker Repo with Self-signed Certificate
 - in rootles
