@@ -192,6 +192,26 @@ openssl s_client -connect nexus.faradis.net:443 -CApath /etc/ssl/certs
 ```
 openssl s_client -connect nexus.faradis.net:443 -showcerts
 ```
+### Upload Package to apt-hosted
+Method1) with curl
+```
+curl -v -u <username>:<password> \
+  --upload-file mypackage_1.0.0_amd64.deb \
+  http://<nexus-host>:<port>/repository/apt-hosted/pool/m/mypackage/mypackage_1.0.0_amd64.deb
+
+```
+Method2) with dput
+- /etc/dput.cf
+```
+[nexus]
+fqdn = nexus.faradis.net:8081
+method = http
+login = <username>
+pass = <password>
+incoming = /repository/apt-hosted
+```
+
+
 
 # docker repo 
 - create role(docker role) with nx-repo administrator > Create user with (docekr role) group
@@ -202,6 +222,9 @@ openssl s_client -connect nexus.faradis.net:443 -showcerts
 ```
 docker login nexus.faradis.net:5001
 docker login nexus.faradis.net:5002
+```
+```
+dput nexus mypackage_1.0.0_source.changes
 ```
 
 ### docker.list
