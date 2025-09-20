@@ -91,7 +91,7 @@ docker pull library/mysql
 
 ### docker push docker-hosted
 ```
-docker login nexus.faradis.net:5001
+docker login nexus.faradis.net:5002
 ```
 ```
 docker tag nginx:latest nexus.faradis.net:5001/nginx:custom1
