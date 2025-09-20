@@ -50,8 +50,12 @@ $HOME/.config/docker/daemon.json
 ```
 #login to docker-hosted
 docker login nexus.faradis.net:5001
+
 #login to docker-proxy
 docker login nexus.faradis.net:5002
+
+#login to docker-proxy
+docker login nexus.faradis.net:5003
 ```
 - file path
 ```
