@@ -85,7 +85,8 @@ docker login nexus.faradis.net:5001
 ```
 
 ```
-docker pull nexus.faradis.net:5001/nginx:latest
+docker pull nexus.faradis.net:5002/nginx:latest
+docker tag nginx:latest nexus.faradis.net:5002/docker-proxy/nginx:latest
 docker pull library/mysql
 ```
 
