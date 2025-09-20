@@ -221,9 +221,10 @@ sudo sed -i 's|https://download.docker.com/linux/ubuntu|https://nexus.faradis.ne
 
 - in client
 ```
-docker login nexus.faradis.net
+docker login nexus.faradis.net:5001
+docker login nexus.faradis.net:5002
 ```
-### add Self-signed Certificate to docker 
+### Docker Repo with Self-signed Certificate
 - in rootles
 ```
 mkdir -p ~/.local/share/docker/certs.d/nexus.faradis.net/
@@ -241,25 +242,4 @@ systemctl --user restart docker
 ```
 openssl s_client -connect nexus.faradis.net:443 -CAfile ~/.local/share/docker/certs.d/nexus.faradis.net/ca.crt
 ```
-### Docker Repo insecure
-- in rootless
-```
-mkdir -p ~/.config/docker/
-touch ~/.config/docker/daemon.json
-```
-```
-{
-  "insecure-registries": ["nexus.faradis.net:443"]
-}
 
-```
-- system-wide Docker (root user)
-```
-mkdir -p /etc/docker/daemon.json
-touch /etc/docker/daemon.json
-```
-```
-{
-  "insecure-registries": ["nexus.faradis.net:443"]
-}
-```
