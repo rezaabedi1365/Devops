@@ -22,7 +22,7 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o 
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 ```
 --------------------------------------------------------------------------------------------------------
-### generate pgp key
+# generate pgp key
 ```
 gpg --full-generate-key
 ```
@@ -40,17 +40,26 @@ Expire-Date: 0
 %commit
 EOF
 ```
-- show key ID
+### Export pgp key
+show key ID
 ```
 gpg --list-keys nexus@example.com
 ```
-- show private key
+Export subkeys (Recomended for privatekey)
+```
+gpg --armor --export-secret-subkeys "nexus@example.com" > /root/composfiles/nexus/private-subkeys.asc
+```
+Export private key Plantext
 ```
 gpg --armor --export-secret-keys nexus@example.com > ./pgp/private.key
 ```
-- Eport public key
+Eport public key
 ```
 gpg --armor --export nexus@example.com > ./pgp/public.key
+```
+### Import pgp key
+```
+gpg --decrypt /root/composfiles/nexus/private-subkeys.asc.gpg | gpg --import
 ```
 -------------------------------------------------------------------------------------------
 # sign packhage with gpg (armored signature)
