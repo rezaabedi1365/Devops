@@ -183,6 +183,7 @@ server {
 - Change sources.list in ubuntu
 ```
 cp /etc/apt/sources.list /etc/apt/sources.list_bk
+sudo sed -i 's|http://[^ ]*|http://nexus.example.com/repository/apt/|g' /etc/apt/sources.list
 sudo sed -i 's|http://ir.archive.ubuntu.com/ubuntu/|https://nexus.faradis.net/repository/apt-proxy/|g' /etc/apt/sources.list
 sudo sed -i 's|http://archive.ubuntu.com/ubuntu/|https://nexus.faradis.net/repository/apt-proxy/|g' /etc/apt/sources.list
 sudo sed -i 's|http://security.ubuntu.com/ubuntu/|https://nexus.faradis.net/repository/apt-proxy/|g' /etc/apt/sources.list
