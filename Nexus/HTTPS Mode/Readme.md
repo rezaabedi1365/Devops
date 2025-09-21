@@ -6,8 +6,12 @@ project-root/
 │── docker-compose.yml
 │── .env              [environment for docker-compose]
 │── nginx.conf
-│── Private-key.asc   [generate it]
-│── keys/       
+│── gpg
+    └── Private-key.asc   [generate it]
+│── keys/
+    ├── nexusrepo.gpg
+    ├── docker.gpg
+    └── kubernetes-apt-keyring.gpg
 └── certs/
     ├── your_cert.crt
     ├── your_chain.crt
