@@ -87,9 +87,10 @@ services:
     restart: unless-stopped
     ports:
       - "8081:8081"   # UI - REST API - deb&yum hosted+proxy
-      - "5001:5001"   # docker-hosted
-      - "5002:5002"   # docker-hub-proxy
-      - "5003:5003"   # docker-group
+      - "5001:5001" #docker-proxy
+      - "5002:5002" #docker-hosted
+      - "5003:5003" #quay.io proxy
+      - "5004:5004" #quay.io proxy
     volumes:
       - ./private-key.asc:/nexus-data/private-key.asc:ro
       - ./nexus-data:/nexus-data
