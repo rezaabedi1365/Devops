@@ -109,6 +109,7 @@ services:
       - "443:443"
     volumes:
       - ./keys:/var/www/keys:ro
+      - ./applications:/var/www/applications:ro
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - ./certs/cert.pem:/etc/ssl/certs/cert.pem:ro
       - ./certs/fullchain.pem:/etc/ssl/certs/fullchain.pem:ro
@@ -145,15 +146,24 @@ server {
         try_files $uri $uri=404;
     }
 
-    # Docker Registry (Group)
-    location /v2/ {
-        proxy_pass          http://nexus:5003/v2/;
-        proxy_set_header    Host              $host;
-        proxy_set_header    X-Real-IP         $remote_addr;
-        proxy_set_header    X-Forwarded-For   $proxy_add_x_forwarded_for;
-        proxy_set_header    X-Forwarded-Proto $scheme;
-        proxy_buffering     off;
+
+    # applicatioin path
+    location /applications/ {
+        root /var/www;
+       #alias /var/www/applicatioins/;
+        autoindex on;
+        try_files $uri $uri=404;
     }
+
+#    # Docker Registry (Group)
+#    location /v2/ {
+#        proxy_pass          http://nexus:5003/v2/;
+#        proxy_set_header    Host              $host;
+#        proxy_set_header    X-Real-IP         $remote_addr;
+#        proxy_set_header    X-Forwarded-For   $proxy_add_x_forwarded_for;
+#       proxy_set_header    X-Forwarded-Proto $scheme;
+#        proxy_buffering     off;
+#   }
 
     # Nexus UI
     location / {
