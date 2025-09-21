@@ -92,8 +92,8 @@ services:
       - "5003:5003" #quay.io proxy
       - "5004:5004" #quay.io proxy
     volumes:
-      - ./private-key.asc:/nexus-data/private-key.asc:ro
       - ./nexus-data:/nexus-data
+      - ./private-key.asc:/nexus-data/private-key.asc:ro
 
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8081"]
