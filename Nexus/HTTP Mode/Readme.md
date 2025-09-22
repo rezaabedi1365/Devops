@@ -30,7 +30,11 @@ Get admin password by executing below command
 sudo docker exec -it CONTAINER_NAME cat /nexus-data/admin.password
 ```
 
-### Client Config
+
+
+# Authorize
+
+### insecure-registries
 - in rootful
 ```
 /etc/docker/daemon.json
@@ -46,9 +50,7 @@ systemctl --user restart docker
   "insecure-registries" : ["nexus.faradis.net:5001", "nexus.faradis.net:5002", "nexus.faradis.net:5003"]
 }
 ```
-
-
-### login authrize 
+# docker login
 ```
 #login to docker-hosted
 docker login nexus.faradis.net:5001
@@ -81,7 +83,7 @@ docker login nexus.faradis.net:5002
 }
 ```
 
-### docker pull docker-proxy
+# docker pull docker-proxy
 ```
 docker login nexus.faradis.net:5001
 ```
@@ -92,7 +94,7 @@ docker tag nginx:latest nexus.faradis.net:5002/docker-proxy/nginx:latest
 docker pull library/mysql
 ```
 
-### docker push and pull docker-hosted
+# docker push and pull docker-hosted
 ```
 docker login nexus.faradis.net:500
 ```
