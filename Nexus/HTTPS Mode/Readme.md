@@ -156,16 +156,6 @@ server {
         try_files $uri $uri=404;
     }
 
-#    # Docker Registry (Group)
-#    location /v2/ {
-#        proxy_pass          http://nexus:5003/v2/;
-#        proxy_set_header    Host              $host;
-#        proxy_set_header    X-Real-IP         $remote_addr;
-#        proxy_set_header    X-Forwarded-For   $proxy_add_x_forwarded_for;
-#       proxy_set_header    X-Forwarded-Proto $scheme;
-#        proxy_buffering     off;
-#   }
-
     # Nexus UI
     location / {
         proxy_pass http://nexus:8081/;
@@ -174,6 +164,43 @@ server {
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
     }
+
+
+    # Docker proxy repository
+    location /repository/docker-proxy/ {
+        proxy_pass http://nexus:5001/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_buffering off;
+    }
+
+    # Docker hosted repository
+    location /repository/docker-hosted/ {
+        proxy_pass http://nexus:5002/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_buffering off;
+    }
+
+
+    # Quay.io proxy repository
+    location /repository/quay.io-proxy/ {
+        proxy_pass http://nexus:5003/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_buffering off;
+    }
+
+
+
+
+
 }
 
 ```
