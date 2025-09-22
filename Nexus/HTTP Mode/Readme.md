@@ -1,6 +1,3 @@
-
-
-# Advance Install
 ```
 project-root/
 │── docker-compose.yml
