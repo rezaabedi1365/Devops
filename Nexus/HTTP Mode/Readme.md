@@ -38,7 +38,9 @@ sudo docker exec -it CONTAINER_NAME cat /nexus-data/admin.password
 - in rootless
 ```
 $HOME/.config/docker/daemon.json
+systemctl --user restart docker
 ```
+
 ```
 {
   "insecure-registries" : ["nexus.faradis.net:5001", "nexus.faradis.net:5002", "nexus.faradis.net:5003"]
