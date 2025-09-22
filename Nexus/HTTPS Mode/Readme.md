@@ -167,6 +167,7 @@ server {
 
     # Docker proxy repository
     location /repository/docker-proxy/ {
+        rewrite ^/repository/docker-proxy(/v2/.*)$ $1 break;
         proxy_pass http://nexus:5001;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
@@ -178,6 +179,7 @@ server {
 
     # Docker hosted repository
     location /repository/docker-hosted/ {
+        rewrite ^/repository/docker-hosted(/v2/.*)$ $1 break;
         proxy_pass http://nexus:5002;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
@@ -189,6 +191,7 @@ server {
 
     # Quay.io proxy repository
     location /repository/quay.io-proxy/ {
+        rewrite ^/repository/quay.io-proxy(/v2/.*)$ $1 break;
         proxy_pass http://nexus:5003;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
@@ -198,6 +201,7 @@ server {
         proxy_buffering off;
     }
 }
+
 
 ```
 
