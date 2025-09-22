@@ -123,16 +123,15 @@ services:
 # Redirect HTTP to HTTPS
 server {
     listen 80;
-    server_name nexus.faradis.net;
+    server_name nexus.faradis.net *.nexus.faradis.net;
     return 301 https://$host$request_uri;
 }
 
-# HTTPS server
+# Nexus UI + file server
 server {
     listen 443 ssl;
     server_name nexus.faradis.net;
 
-    # SSL Certificates
     ssl_certificate     /etc/ssl/certs/fullchain.pem;
     ssl_certificate_key /etc/ssl/private/private.key;
     ssl_trusted_certificate /etc/ssl/certs/fullchain.pem;
@@ -164,35 +163,18 @@ server {
         proxy_set_header X-Forwarded-Proto $scheme;
         proxy_redirect http://nexus:8081/ /;
     }
+}
 
-    # Docker proxy repository
-    location /repository/docker-proxy/ {
-        rewrite ^/repository/docker-proxy(/v2/.*)$ $1 break;
-        proxy_pass http://nexus:5001;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_set_header Docker-Distribution-Api-Version registry/2;
-        proxy_buffering off;
-    }
+# Docker Hosted
+server {
+    listen 443 ssl;
+    server_name docker-hosted.nexus.faradis.net;
 
-    # Docker hosted repository
-    location /repository/docker-hosted/ {
-        rewrite ^/repository/docker-hosted(/v2/.*)$ $1 break;
-        proxy_pass http://nexus:5002;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_set_header Docker-Distribution-Api-Version registry/2;
-        proxy_buffering off;
-    }
+    ssl_certificate     /etc/ssl/certs/fullchain.pem;
+    ssl_certificate_key /etc/ssl/private/private.key;
 
-    # Quay.io proxy repository
-    location /repository/quay.io-proxy/ {
-        rewrite ^/repository/quay.io-proxy(/v2/.*)$ $1 break;
-        proxy_pass http://nexus:5003;
+    location /v2/ {
+        proxy_pass http://nexus:5002/v2/;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -202,6 +184,43 @@ server {
     }
 }
 
+# Docker Proxy
+server {
+    listen 443 ssl;
+    server_name docker-proxy.nexus.faradis.net;
+
+    ssl_certificate     /etc/ssl/certs/fullchain.pem;
+    ssl_certificate_key /etc/ssl/private/private.key;
+
+    location /v2/ {
+        proxy_pass http://nexus:5001/v2/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Docker-Distribution-Api-Version registry/2;
+        proxy_buffering off;
+    }
+}
+
+# Quay.io Proxy
+server {
+    listen 443 ssl;
+    server_name quay-proxy.nexus.faradis.net;
+
+    ssl_certificate     /etc/ssl/certs/fullchain.pem;
+    ssl_certificate_key /etc/ssl/private/private.key;
+
+    location /v2/ {
+        proxy_pass http://nexus:5003/v2/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Docker-Distribution-Api-Version registry/2;
+        proxy_buffering off;
+    }
+}
 
 ```
 
