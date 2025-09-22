@@ -120,14 +120,12 @@ services:
 
 ### nginx.conf
 ```
-# Redirect HTTP to HTTPS
 server {
     listen 80;
-    server_name nexus.faradis.net *.nexus.faradis.net;
+    server_name nexus.faradis.net;
     return 301 https://$host$request_uri;
 }
 
-# Nexus UI + file server
 server {
     listen 443 ssl;
     server_name nexus.faradis.net;
@@ -138,90 +136,62 @@ server {
 
     ssl_protocols       TLSv1.2 TLSv1.3;
     ssl_ciphers         HIGH:!aNULL:!MD5;
-    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
 
-    # Keys path
-    location /keys/ {
-        root /var/www;
-        autoindex on;
-        try_files $uri $uri=404;
-    }
-
-    # Applications path
-    location /applications/ {
-        root /var/www;
-        autoindex on;
-        try_files $uri $uri=404;
-    }
-
-    # Nexus UI
+    # ---------------------------
+    # Nexus UI (وب‌اینترفیس)
+    # ---------------------------
     location / {
         proxy_pass http://nexus:8081/;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_redirect http://nexus:8081/ /;
     }
-}
 
-# Docker Hosted
-server {
-    listen 443 ssl;
-    server_name docker-hosted.nexus.faradis.net;
-
-    ssl_certificate     /etc/ssl/certs/fullchain.pem;
-    ssl_certificate_key /etc/ssl/private/private.key;
-
+    # ---------------------------
+    # Docker Hosted Registry (خصوصی → نیاز به login)
+    # روی /v2/ فوروارد میشه
+    # ---------------------------
     location /v2/ {
         proxy_pass http://nexus:5002/v2/;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_set_header Docker-Distribution-Api-Version registry/2;
         proxy_buffering off;
     }
-}
 
-# Docker Proxy
-server {
-    listen 443 ssl;
-    server_name docker-proxy.nexus.faradis.net;
-
-    ssl_certificate     /etc/ssl/certs/fullchain.pem;
-    ssl_certificate_key /etc/ssl/private/private.key;
-
-    location /v2/ {
-        proxy_pass http://nexus:5001/v2/;
+    # ---------------------------
+    # Docker Proxy (مثلاً DockerHub کش میشه)
+    # ---------------------------
+    location /repository/docker-proxy/ {
+        proxy_pass http://nexus:5001/;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_set_header Docker-Distribution-Api-Version registry/2;
         proxy_buffering off;
     }
-}
 
-# Quay.io Proxy
-server {
-    listen 443 ssl;
-    server_name quay-proxy.nexus.faradis.net;
-
-    ssl_certificate     /etc/ssl/certs/fullchain.pem;
-    ssl_certificate_key /etc/ssl/private/private.key;
-
-    location /v2/ {
-        proxy_pass http://nexus:5003/v2/;
+    # ---------------------------
+    # quay.io-proxy 
+    # ---------------------------
+    location /repository/quay.io-proxy/ {
+        proxy_pass http://nexus:5003/;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_set_header Docker-Distribution-Api-Version registry/2;
         proxy_buffering off;
     }
 }
 
+
+```
+:x: docker-proxy and docker-proxy-
+login to docker hosted
+```
+docker login nexus.faradis.net
 ```
 
 
