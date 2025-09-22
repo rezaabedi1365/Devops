@@ -120,37 +120,37 @@ services:
 
 ### nginx.conf
 ```
+# Redirect HTTP to HTTPS
 server {
     listen 80;
     server_name nexus.faradis.net;
     return 301 https://$host$request_uri;
 }
 
+# HTTPS server
 server {
     listen 443 ssl;
     server_name nexus.faradis.net;
 
+    # SSL Certificates
     ssl_certificate     /etc/ssl/certs/fullchain.pem;
     ssl_certificate_key /etc/ssl/private/private.key;
     ssl_trusted_certificate /etc/ssl/certs/fullchain.pem;
 
     ssl_protocols       TLSv1.2 TLSv1.3;
     ssl_ciphers         HIGH:!aNULL:!MD5;
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
 
-
-    # keys path
+    # Keys path
     location /keys/ {
         root /var/www;
-       #alias /var/www/keys/;
         autoindex on;
         try_files $uri $uri=404;
     }
 
-
-    # applicatioin path
+    # Applications path
     location /applications/ {
         root /var/www;
-       #alias /var/www/applicatioins/;
         autoindex on;
         try_files $uri $uri=404;
     }
@@ -162,41 +162,41 @@ server {
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_redirect http://nexus:8081/ /;
     }
-
 
     # Docker proxy repository
     location /repository/docker-proxy/ {
-        proxy_pass http://nexus:5001/;
+        proxy_pass http://nexus:5001;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Docker-Distribution-Api-Version registry/2;
         proxy_buffering off;
     }
 
     # Docker hosted repository
     location /repository/docker-hosted/ {
-        proxy_pass http://nexus:5002/;
+        proxy_pass http://nexus:5002;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Docker-Distribution-Api-Version registry/2;
         proxy_buffering off;
     }
-
 
     # Quay.io proxy repository
     location /repository/quay.io-proxy/ {
-        proxy_pass http://nexus:5003/;
+        proxy_pass http://nexus:5003;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Docker-Distribution-Api-Version registry/2;
         proxy_buffering off;
     }
-
-
 }
 
 ```
