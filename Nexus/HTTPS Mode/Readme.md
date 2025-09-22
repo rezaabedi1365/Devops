@@ -195,8 +195,13 @@ server {
 ```
 docker login nexus.faradis.net
 ```
-
-
+```
+docker tag alpine:latest nexus.faradis.net/myproject/test-alpine:latest
+docker push nexus.faradis.net/myproject/test-alpine:latest
+```
+```
+docker pull nexus.faradis.net/myproject/namad:latest
+```
 # APT Repo
 - Change sources.list in ubuntu
 ```
