@@ -200,7 +200,8 @@ docker tag alpine:latest nexus.faradis.net/myproject/test-alpine:latest
 docker push nexus.faradis.net/myproject/test-alpine:latest
 ```
 ```
-docker pull nexus.faradis.net/myproject/namad:latest
+docker pull nexus.faradis.net/myproject/test-alpine:latest
+docker pull myproject/test-alpine:latest
 ```
 # APT Repo
 - Change sources.list in ubuntu
