@@ -188,8 +188,9 @@ server {
 
 
 ```
-:x: docker-proxy and docker-proxy-
-login to docker hosted
+- :heavy_check_mark:  login to docker hosted
+- :x: docker-proxy and docker-proxy-
+
 ```
 docker login nexus.faradis.net
 ```
