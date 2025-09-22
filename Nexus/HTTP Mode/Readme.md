@@ -50,7 +50,7 @@ systemctl --user restart docker
   "insecure-registries" : ["nexus.faradis.net:5001", "nexus.faradis.net:5002", "nexus.faradis.net:5003"]
 }
 ```
-# docker login
+### docker login
 ```
 #login to docker-hosted
 docker login nexus.faradis.net:5001
