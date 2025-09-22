@@ -90,6 +90,7 @@ services:
       - "5001:5001" #docker-proxy
       - "5002:5002" #docker-hosted
       - "5003:5003" #quay.io proxy
+      - "5004:5004" #docker-group
     volumes:
       - ./nexus-data:/nexus-data
       - ./private-key.asc:/nexus-data/private-key.asc:ro
