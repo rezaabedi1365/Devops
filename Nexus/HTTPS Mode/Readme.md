@@ -193,19 +193,24 @@ server {
 }
 
 ```
-- :heavy_check_mark:  login to docker hosted
-- :x: docker-proxy and docker-proxy-
 
 ```
-docker login nexus.faradis.net
+docker login pull.faradis.net
+docker login push.faradis.net
 ```
+
 ```
-docker tag alpine:latest nexus.faradis.net/myproject/test-alpine:latest
-docker push nexus.faradis.net/myproject/test-alpine:latest
+docker tag namad-api:1.0.71 push.faradis.net/namad/namad-api:1.0.71
+docker push push.faradis.net/namad/namad-api:1.0.71
 ```
+pull from docker-hoster
 ```
-docker pull nexus.faradis.net/myproject/test-alpine:latest
-docker pull myproject/test-alpine:latest
+docker pull pull.faradis.net/<project>/<Image>
+docker pull pull.faradis.net/namad/namad-api:1.0.71
+```
+pull from docker-proxy
+```
+docker pull pull.faradis.net/nginx:latest
 ```
 # APT Repo
 - Change sources.list in ubuntu
