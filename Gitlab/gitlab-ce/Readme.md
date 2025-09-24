@@ -72,7 +72,35 @@ main:
     last_name:  'sn'
 EOS
 ```
+```
+sudo gitlab-ctl reconfigure
+sudo gitlab-ctl restart
+```
 # Email Configuration
 ```
-```
+gitlab_rails['smtp_enable'] = true
+gitlab_rails['smtp_address'] = "mail.faradis.net"
+gitlab_rails['smtp_port'] = 587
+gitlab_rails['smtp_user_name'] = "gitlab@faradis.net"        # یوزری که روی میل‌سرور ساختی
+gitlab_rails['smtp_password'] = "YourStrongPassword"         # پسورد اون یوزر
+gitlab_rails['smtp_domain'] = "faradis.net"
+gitlab_rails['smtp_authentication'] = "login"
+gitlab_rails['smtp_enable_starttls_auto'] = true
+gitlab_rails['smtp_tls'] = false
 
+# فرستنده پیش‌فرض ایمیل‌ها
+gitlab_rails['gitlab_email_from'] = 'gitlab@faradis.net'
+gitlab_rails['gitlab_email_display_name'] = 'GitLab Faradis'
+gitlab_rails['gitlab_email_reply_to'] = 'noreply@faradis.net'
+
+```
+if have tls
+```
+gitlab_rails['smtp_port'] = 465
+gitlab_rails['smtp_tls'] = true
+gitlab_rails['smtp_enable_starttls_auto'] = false
+```
+```
+sudo gitlab-ctl reconfigure
+sudo gitlab-ctl restart
+```
