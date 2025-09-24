@@ -71,8 +71,8 @@ main:
     first_name: 'givenName'
     last_name:  'sn'
 EOS
-
-
 ```
-
+# Email Configuration
+```
+```
 
