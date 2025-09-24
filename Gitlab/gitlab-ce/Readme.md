@@ -72,6 +72,11 @@ main:
     last_name:  'sn'
 EOS
 ```
+verify:
+```
+gitlab-rake gitlab:ldap:check
+ldapsearch -x -H ldap://dc01.faradis.net -D "CN=gitlab-svc,OU=Faradis Service Users,OU=Faradis,DC=faradis,DC=net" -w 'YourStrongPassword' -b "DC=faradis,DC=net" "(sAMAccountName=testuser)"
+```
 ```
 sudo gitlab-ctl reconfigure
 sudo gitlab-ctl restart
