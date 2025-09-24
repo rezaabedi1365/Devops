@@ -44,6 +44,16 @@ sudo gitlab-ctl restart
 ```
 
 # ldap
+add DC Certificate to gitlab server
+```
+sudo cp ca.crt /usr/local/share/ca-certificates/faradis-ca.crt
+sudo update-ca-certificates
+```
+or ignore certificate check
+```
+verify_certificates: false
+```
+encryption: 'plain'
 nano /etc/gitlab/gitlab.
 ```
 gitlab_rails['ldap_enabled'] = true
