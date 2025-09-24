@@ -87,7 +87,10 @@ verify:
 gitlab-rake gitlab:ldap:check
 
 apt install ldap-utils
-ldapsearch -x -H ldap://dc01.faradis.net -D "CN=gitlab-svc,OU=Faradis Service Users,OU=Faradis,DC=faradis,DC=net" -w 'YourStrongPassword' -b "DC=faradis,DC=net" "(sAMAccountName=testuser)"
+ldapsearch -x -H ldap://dc01.faradis.net \
+  -D "CN=gitlab-svc,OU=Faradis Service Users,OU=Faradis,DC=faradis,DC=net" \
+  -w 'NewStrongPasswordHere' \
+  -b "DC=faradis,DC=net" "(sAMAccountName=testuser)"
 ```
 ```
 sudo gitlab-ctl reconfigure
