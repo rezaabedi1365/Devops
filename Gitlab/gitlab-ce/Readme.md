@@ -43,5 +43,36 @@ sudo gitlab-ctl reconfigure
 sudo gitlab-ctl restart
 ```
 
+# ldap
+nano /etc/gitlab/gitlab.
+```
+gitlab_rails['ldap_enabled'] = true
+gitlab_rails['ldap_servers'] = YAML.load <<-EOS
+main:
+  label: 'Active Directory'
+  host: 'dc01.faradis.net'           # آدرس Domain Controller
+  port: 389
+  uid: 'sAMAccountName'
+  bind_dn: 'CN=gitlab-svc,OU=Faradis Service Users,OU=Faradis,DC=faradis,DC=net'  # یوزر سرویس
+  password: 'YourStrongPassword'
+  encryption: 'start_tls'
+  verify_certificates: true
+  active_directory: true
+  allow_username_or_email_login: true
+  lowercase_usernames: false
+  block_auto_created_users: false
+  base: 'DC=faradis,DC=net'          # این باعث میشه کل دامنه سرچ بشه
+  group_base: 'DC=faradis,DC=net'    # گروه‌ها هم از کل دامنه گرفته میشن
+  admin_group: 'GitLab-Admins'       # گروهی که ادمین میشه
+  attributes:
+    username: ['uid', 'sAMAccountName']
+    email:    ['mail', 'userPrincipalName']
+    name:     'cn'
+    first_name: 'givenName'
+    last_name:  'sn'
+EOS
+
+
+```
 
 
