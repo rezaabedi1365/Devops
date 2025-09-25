@@ -11,7 +11,8 @@ sudo apt-get update && sudo apt-get install -y terraform
 ### snap 
 ```
 sudo apt update
-sudo apt install snapd -y```
+sudo apt install snapd -y
+```
 ```
 sudo snap install semaphore --classic
 ```
