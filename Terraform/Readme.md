@@ -7,15 +7,20 @@ sudo apt-get update && sudo apt-get install -y terraform
 ```
 
 # Semaphore UI
+
+### snap 
 ```
-sudo apt-get update
-sudo apt-get install -y software-properties-common
-sudo add-apt-repository ppa:ansible-semaphore/semaphore
-sudo apt-get update
+sudo apt update
+sudo apt install snapd -y```
+```
+sudo snap install semaphore --classic
 ```
 ```
-sudo apt-get install semaphore
+sudo snap start semaphore
+sudo snap stop semaphore
+sudo snap remove semaphore
 ```
+
 ```
 semaphore setup
 ```
@@ -23,6 +28,10 @@ semaphore setup
 semaphore server
 ```
 http://localhost:3000
+
+
+
+
 ### Docker compose 
 ```
 version: '3'
