@@ -9,6 +9,13 @@ sudo apt-get update && sudo apt-get install -y terraform
 ```
 
 ### HCL (HashiCorp Configuration Language)
+- main.tf
+```
+terraform init
+terraform plan
+terraform apply
+
+```
 
 می‌توانی از آن برای **ایجاد و مدیریت زیرساخت به‌صورت کد (Infrastructure as Code)** استفاده کنی. این ابزار بسیار منعطف و قدرتمند است.
 
