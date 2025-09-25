@@ -9,6 +9,7 @@ sudo apt-get update && sudo apt-get install -y terraform
 # Semaphore UI
 
 ### snap 
+:x: limited for CLI Command
 ```
 sudo apt update
 sudo apt install snapd -y
@@ -30,7 +31,13 @@ semaphore server
 ```
 http://localhost:3000
 
-
+- these command not work in snap install
+```
+semaphore user list
+semaphore user add --admin --login admin --name admin --email user123@example.com --password 2TDtvxRVYU
+#change password
+semaphore user change-by-login --login admin --password OTBtMIxc4q
+```
 
 
 ### Docker compose 
