@@ -44,7 +44,29 @@ send file
 sudo cp ./mydb_backup.sql /mnt/smb_share/
 ```
 
+sctipt
+```
+#!/bin/bash
 
+# تنظیمات
+BACKUP_DIR="/mnt/smb_share"        # مسیر SMB mount شده
+DB_CONTAINER="my_postgres"         # نام کانتینر PostgreSQL
+DB_NAME="mydb"                     # نام دیتابیس
+DB_USER="postgres"                 # یوزر دیتابیس
+
+# حذف فایل‌های قدیمی‌تر از 7 روز
+echo "حذف فایل‌های قدیمی‌تر از 7 روز در $BACKUP_DIR ..."
+find "$BACKUP_DIR" -type f -name "*.sql" -mtime +7 -exec rm -f {} \;
+
+# گرفتن بکاپ با نام شامل تاریخ
+DATE=$(date +%F)
+BACKUP_FILE="$BACKUP_DIR/${DB_NAME}_backup_$DATE.sql"
+echo "در حال گرفتن بکاپ دیتابیس $DB_NAME ..."
+docker exec -t $DB_CONTAINER pg_dump -U $DB_USER $DB_NAME > "$BACKUP_FILE"
+
+echo "بکاپ در $BACKUP_FILE ذخیره شد."
+
+```
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 ##### pg_dumpall Backup (Not OK)
