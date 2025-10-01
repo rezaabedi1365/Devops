@@ -1,5 +1,3 @@
-
-
 # Postgres
 - plain text Backup
   + .sql
@@ -8,10 +6,12 @@
   + 
 - Binary Backup
   + .backup or .dump
-  + Backup with -FC 
+  + Backup with -FC
+  + Restore with pgAdmin
 
 
-### Method1: pg_dump Backup
+### Method1: plain text Backup
+pg_dump Backup
 ```
 docker exec -t my_postgres \
   pg_dump -U postgres mydb > mydb_backup.sql
@@ -21,8 +21,7 @@ Restore
 ```
 cat mydb_backup.sql | docker exec -i my_postgres psql -U postgres -d mydb
 ```
-
-### Method2: pg_dumpall Backup
+pg_dumpall Backup
 ```
 docker exec -t my_postgres \
   pg_dumpall -U postgres > alldb_backup.sql
@@ -31,7 +30,15 @@ Restore
 ```
 cat alldb_backup.sql | docker exec -i my_postgres psql -U postgres
 ```
-### sample
+
+### Method2: Binary Backup
+
+
+
+
+
+
+### sample: plain text Backup
 compose environment
 ```
 ervices:
