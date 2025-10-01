@@ -32,23 +32,30 @@ docker exec -it fpaydb-container psql -U postgres -d test -c "\dt"
 
 ##### mount smb
 mount
+- 445&139 use port
 ```
 sudo apt install cifs-utils -y
 mkdir -p /mnt/smb_share
 ```
+- nano /root/.smbcredentials
 ```
-sudo mount -t cifs //192.168.1.100/share /mnt/smb_share -o username=USER,password=PASS
+username=backupdb
+password=123456@
 ```
-send directly
+```
+sudo mount -t cifs //192.168.1.10/backupdb/verification-db /mnt/smb_share -o credentials=/root/.smbcredentials,vers=3.0
+```
+----------------------------------------------
+###### send directly
 ```
 docker exec -t my_postgres pg_dump -U postgres mydb > /mnt/smb_share/mydb_backup.sql
 ```
-send file
+###### send file
 ```
 sudo cp ./mydb_backup.sql /mnt/smb_share/
 ```
 
-sctipt
+###### sctipt
 ```
 #!/bin/bash
 
