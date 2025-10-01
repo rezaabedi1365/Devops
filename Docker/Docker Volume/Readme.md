@@ -8,7 +8,7 @@
 ### Docker Volume
 - /var/lib/docker/volume
 - volumes use regulary
-- share between containers is simple
+- :heavy_check_mark: share between containers is simple
 ```     
 docker run -d -v Volume_Name:/var/www/html/    nginx 
 ```
