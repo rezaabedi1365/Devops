@@ -33,3 +33,31 @@ Restore
 ```
 cat alldb_backup.sql | docker exec -i my_postgres psql -U postgres
 ```
+### sample
+compose environment
+```
+environment:
+  POSTGRES_USER: user1
+  POSTGRES_PASSWORD: 123456
+  POSTGRES_DB: database1
+  PGDATA: /var/lib/postgresql/data/pgdata
+```
+pg_dump
+```
+docker exec -t my_postgres \
+  pg_dump -U namadu namadb > ./namadb_backup.sql
+```
+Restore
+```
+cat alldb_backup.sql | docker exec -i my_postgres psql -U namadu
+```
+
+pg_dumpall
+```
+docker exec -t my_postgres \
+  pg_dumpall -U namadu > alldb_backup.sql
+```
+Restore
+```
+cat namadb_backup.sql | docker exec -i my_postgres psql -U namadu -d namadb
+```
