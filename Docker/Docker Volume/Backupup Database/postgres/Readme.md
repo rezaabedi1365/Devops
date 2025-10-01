@@ -44,8 +44,14 @@ docker exec -it postgres-ctr psql -U namadu -c "\l"
 ```
 docker exec -t my_postgres pg_dump -U namadu -F c -d mydb > ./mydb_custom.backup
 ```
-
-
+restore
+```
+exec -t fpaydb-container pg_dump -U postgres -F c -d ApplicationManagment > ./mydb_custom.backup
+```
+verify
+```
+docker exec -it fpaydb-container psql -U postgres -d test -c "\dt"
+```
 
 
 ### sample: plain text Backup
