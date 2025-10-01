@@ -6,15 +6,16 @@
 # Type of Volume in Docker
 
 ### Docker Volume
-  	- /var/lib/docker/volume
-  	- volumes use regulary
-  	- share between containers is simple
-      ```     
-      docker run -d -v Volume_Name:/var/www/html/    nginx 
-      ```
-  	  ```
-  	   docker run --mount type=volume،source=Volume_Name،destination=/var/www/html،readonly
-       ```
+- /var/lib/docker/volume
+- volumes use regulary
+- share between containers is simple
+```     
+docker run -d -v Volume_Name:/var/www/html/    nginx 
+```
+
+```
+docker run --mount type=volume،source=Volume_Name،destination=/var/www/html،readonly
+```
 
 - export volume
 ```
