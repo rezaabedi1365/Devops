@@ -7,7 +7,7 @@
 
 ### Docker Volume
 - /var/lib/docker/volume
-- volumes use regulary
+- Default volumes
 - :heavy_check_mark: share between containers is simple
 ```     
 docker run -d -v Volume_Name:/var/www/html/    nginx 
@@ -17,18 +17,26 @@ docker run -d -v Volume_Name:/var/www/html/    nginx
 docker run --mount type=volume،source=Volume_Name،destination=/var/www/html،readonly
 ```
 
-- export volume
+- Backup volume
 ```
 docker volume ls
 ```
 - use temp container same ubuntu or alpine with tar package to export volume
 ```
-docker run --rm -v <Volune_Name>:/volume -v $(pwd):/backup ubuntu tar cvf /backup/my_volume_backup.tar /volume
-docker run --rm -v <Volune_Name>:/volume -v $(pwd):/backup alpine tar cvf /backup/my_volume_backup.tar /volume
+docker run --rm \
+  -v mydb_data:/data \
+  -v $(pwd):/backup \
+  alpine \
+  tar czf /backup/mydb_data_backup.tar.gz -C /data .
+
 ```
-- import
+- Restore
 ```
-docker run --rm -v <Volune_Name>:/volume -v $(pwd):/backup ubuntu bash -c "cd /volume && tar xvf /backup/my_volume_backup.tar --strip 1"
+docker run --rm \
+  -v mydb_data:/data \
+  -v $(pwd):/backup \
+  alpine \
+  sh -c "cd /data && tar xzf /backup/mydb_data_backup.tar.gz"
 ```
 
 ### Bind Mount
