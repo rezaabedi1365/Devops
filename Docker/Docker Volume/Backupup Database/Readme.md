@@ -12,7 +12,7 @@ docker cp sqlserver:/var/opt/mssql/backup/MyDB.bak ./MyDB.bak
 Restore
 
 # Postgres
-pg_dump Backup
+### Method1: pg_dump Backup
 ```
 docker exec -t my_postgres \
   pg_dump -U postgres mydb > mydb_backup.sql
@@ -23,8 +23,7 @@ Restore
 cat mydb_backup.sql | docker exec -i my_postgres psql -U postgres -d mydb
 ```
 
--------------
-pg_dumpall Backup
+### Method2: pg_dumpall Backup
 ```
 docker exec -t my_postgres \
   pg_dumpall -U postgres > alldb_backup.sql
@@ -36,11 +35,20 @@ cat alldb_backup.sql | docker exec -i my_postgres psql -U postgres
 ### sample
 compose environment
 ```
-environment:
-  POSTGRES_USER: user1
-  POSTGRES_PASSWORD: 123456
-  POSTGRES_DB: database1
-  PGDATA: /var/lib/postgresql/data/pgdata
+ervices:
+  postgres:
+    image: postgres:14.4-alpine
+    container_name: postgres
+    environment:
+      POSTGRES_USER: namadu
+      POSTGRES_PASSWORD: 123456789
+      POSTGRES_DB: namadb
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
 ```
 pg_dump
 ```
