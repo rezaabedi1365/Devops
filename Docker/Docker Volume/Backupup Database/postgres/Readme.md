@@ -11,6 +11,10 @@
 
 
 ### Method1: plain text Backup
+list of database
+```
+docker exec -it postgres-ctr psql -U namadu -c "\l"
+```
 pg_dump Backup
 ```
 docker exec -t my_postgres \
@@ -33,7 +37,13 @@ cat alldb_backup.sql | docker exec -i my_postgres psql -U postgres
 
 ### Method2: Binary Backup
 
-
+list of database
+```
+docker exec -it postgres-ctr psql -U namadu -c "\l"
+```
+```
+docker exec -t my_postgres pg_dump -U namadu -F c -d mydb > ./mydb_custom.backup
+```
 
 
 
