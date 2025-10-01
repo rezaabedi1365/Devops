@@ -1,6 +1,6 @@
 
 ### SQLserver
-
+Backup
 ```
 docker exec -it sqlserver \
   /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "YourPassword123" \
@@ -8,4 +8,28 @@ docker exec -it sqlserver \
 ```
 ```
 docker cp sqlserver:/var/opt/mssql/backup/MyDB.bak ./MyDB.bak
+```
+Restore
+
+### Postgres
+pg_dump Backup
+```
+docker exec -t my_postgres \
+  pg_dump -U postgres mydb > mydb_backup.sql
+```
+
+Restore
+```
+cat mydb_backup.sql | docker exec -i my_postgres psql -U postgres -d mydb
+```
+
+-------------
+pg_dumpall Backup
+```
+docker exec -t my_postgres \
+  pg_dumpall -U postgres > alldb_backup.sql
+```
+Restore
+```
+cat alldb_backup.sql | docker exec -i my_postgres psql -U postgres
 ```
