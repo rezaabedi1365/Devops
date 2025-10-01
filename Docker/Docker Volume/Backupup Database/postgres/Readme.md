@@ -33,6 +33,10 @@ docker exec -it fpaydb-container psql -U postgres -d test -c "\dt"
 ##### mount smb
 mount
 ```
+sudo apt install cifs-utils -y
+mkdir -p /mnt/smb_share
+```
+```
 sudo mount -t cifs //192.168.1.100/share /mnt/smb_share -o username=USER,password=PASS
 ```
 send directly
