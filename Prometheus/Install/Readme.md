@@ -27,8 +27,8 @@ services:
     container_name: prometheus
     volumes:
       - /opt/monitoring/prometheus/data:/prometheus
-      - /opt/monitoring/prometheus/config/prometheus.yml:/etc/prometheus/prometheus.yml
-      - /opt/monitoring/prometheus/rules:/etc/prometheus/rules
+      - /opt/monitoring/prometheus/config/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - /opt/monitoring/prometheus/rules:/etc/prometheus/rules:ro
     restart: unless-stopped
     ports:
       - "9090:9090"
@@ -37,7 +37,7 @@ services:
     image: prom/alertmanager:latest
     container_name: alertmanager
     volumes:
-      - /opt/monitoring/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
+      - /opt/monitoring/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
     restart: unless-stopped
     ports:
       - "9093:9093"
@@ -92,60 +92,44 @@ services:
 ```
 
 prometheus.yml
-```
-# my global config
+# /opt/monitoring/prometheus/config/prometheus.yml
+
 global:
-  scrape_interval:     15s # By default, scrape targets every 15 seconds.
-  evaluation_interval: 15s # By default, scrape targets every 15 seconds.
-  # scrape_timeout is set to the global default (10s).
-
-  # Attach these labels to any time series or alerts when communicating with
-  # external systems (federation, remote storage, Alertmanager).
+  scrape_interval: 15s        # زمان پیش‌فرض برای جمع‌آوری داده‌ها
+  evaluation_interval: 15s    # زمان پیش‌فرض برای ارزیابی قوانین
   external_labels:
-      monitor: 'my-project'
+    monitor: 'my-project'
 
-# Load and evaluate rules in this file every 'evaluation_interval' seconds.
+# بارگذاری فایل‌های قوانین
 rule_files:
-  - 'alert.rules'
-  # - "first.rules"
-  # - "second.rules"
+  - 'alert.rules.yml'
 
-# alert
+# تنظیمات Alertmanager
 alerting:
   alertmanagers:
-  - scheme: http
-    static_configs:
-    - targets:
-      - "alertmanager:9093"
+    - scheme: http
+      static_configs:
+        - targets:
+            - "alertmanager:9093"
 
-# A scrape configuration containing exactly one endpoint to scrape:
-# Here it's Prometheus itself.
+# تنظیمات Scrape
 scrape_configs:
-  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
 
   - job_name: 'prometheus'
-
-    # Override the global default and scrape targets from this job every 5 seconds.
     scrape_interval: 15s
-
     static_configs:
-         - targets: ['localhost:9090']
+      - targets: ['prometheus:9090']   # تغییر localhost به نام سرویس Docker
 
   - job_name: 'cadvisor'
-
-    # Override the global default and scrape targets from this job every 5 seconds.
     scrape_interval: 15s
-
     static_configs:
       - targets: ['cadvisor:8080']
 
   - job_name: 'node-exporter'
-
-    # Override the global default and scrape targets from this job every 5 seconds.
     scrape_interval: 15s
-  
     static_configs:
       - targets: ['node-exporter:9100']
+
 ```
 
 alert.rules.yml
