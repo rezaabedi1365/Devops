@@ -92,6 +92,7 @@ services:
 ```
 
 prometheus.yml
+```
 # /opt/monitoring/prometheus/config/prometheus.yml
 
 global:
