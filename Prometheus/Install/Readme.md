@@ -93,44 +93,85 @@ services:
 
 prometheus.yml
 ```
+# my global config
 global:
-  scrape_interval: 15s
+  scrape_interval:     15s # By default, scrape targets every 15 seconds.
+  evaluation_interval: 15s # By default, scrape targets every 15 seconds.
+  # scrape_timeout is set to the global default (10s).
 
+  # Attach these labels to any time series or alerts when communicating with
+  # external systems (federation, remote storage, Alertmanager).
+  external_labels:
+      monitor: 'my-project'
+
+# Load and evaluate rules in this file every 'evaluation_interval' seconds.
 rule_files:
-  - "/etc/prometheus/rules/alert.rules.yml"
+  - 'alert.rules'
+  # - "first.rules"
+  # - "second.rules"
 
+# alert
 alerting:
   alertmanagers:
-    - static_configs:
-        - targets: ['alertmanager:9093']
+  - scheme: http
+    static_configs:
+    - targets:
+      - "alertmanager:9093"
 
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
 scrape_configs:
-  - job_name: 'prometheus'
-    static_configs:
-      - targets: ['localhost:9090']
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
 
-  - job_name: 'node-exporter'
+  - job_name: 'prometheus'
+
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 15s
+
     static_configs:
-      - targets: ['node-exporter:9100']
+         - targets: ['localhost:9090']
 
   - job_name: 'cadvisor'
+
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 15s
+
     static_configs:
       - targets: ['cadvisor:8080']
+
+  - job_name: 'node-exporter'
+
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 15s
+  
+    static_configs:
+      - targets: ['node-exporter:9100']
 ```
 
 alert.rules.yml
 ```
 groups:
-  - name: example-alerts
-    rules:
-      - alert: HighCPUUsage
-        expr: node_cpu_seconds_total{mode="system"} > 0.7
-        for: 2m
-        labels:
-          severity: warning
-        annotations:
-          summary: "CPU بالاست روی {{ $labels.instance }}"
-          description: "CPU بیش از 70٪ برای بیش از 2 دقیقه"
+- name: example
+  rules:
+
+  # Alert for any instance that is unreachable for >2 minutes.
+  - alert: service_down
+    expr: up == 0
+    for: 2m
+    labels:
+      severity: page
+    annotations:
+      summary: "Instance {{ $labels.instance }} down"
+      description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 2 minutes."
+
+  - alert: high_load
+    expr: node_load1 > 0.5
+    for: 2m
+    labels:
+      severity: page
+    annotations:
+      summary: "Instance {{ $labels.instance }} under high load"
+      description: "{{ $labels.instance }} of job {{ $labels.job }} is under high load."
 ```
 
 alertmanager.yml
