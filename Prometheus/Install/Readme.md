@@ -176,3 +176,51 @@ receivers:
 
 ```
 
+
+nginx.conf
+```
+# /opt/monitoring/nginx.conf
+
+# ریدایرکت تمام ترافیک HTTP به HTTPS
+server {
+    listen 80;
+    server_name _;
+
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+# سرور HTTPS
+server {
+    listen 443 ssl;
+    server_name _;
+
+    ssl_certificate /etc/nginx/certs/fullchain.pem;
+    ssl_certificate_key /etc/nginx/certs/privkey.pem;
+
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers HIGH:!aNULL:!MD5;
+
+    # Prometheus در مسیر /prometheus
+    location /prometheus/ {
+        proxy_pass http://prometheus:9090/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+
+    # Grafana در مسیر /grafana
+    location /grafana/ {
+        proxy_pass http://grafana:3000/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+
+    # در صورت نیاز به سایر مسیرها، می‌توانید location های جدید اضافه کنید
+    location / {
+        return 404;
+    }
+}
+```
