@@ -26,9 +26,9 @@ services:
     image: prom/prometheus:latest
     container_name: prometheus
     volumes:
-      - /opt/monitoring/prometheus/data:/prometheus
-      - /opt/monitoring/prometheus/config/prometheus.yml:/etc/prometheus/prometheus.yml:ro
-      - /opt/monitoring/prometheus/rules:/etc/prometheus/rules:ro
+      - ./prometheus/data:/prometheus
+      - ./prometheus/config/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./prometheus/rules:/etc/prometheus/rules:ro
     restart: unless-stopped
     ports:
       - "9090:9090"
@@ -37,7 +37,7 @@ services:
     image: prom/alertmanager:latest
     container_name: alertmanager
     volumes:
-      - /opt/monitoring/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
+      - ./alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
     restart: unless-stopped
     ports:
       - "9093:9093"
@@ -45,8 +45,11 @@ services:
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
+    environment:
+      - GF_SERVER_ROOT_URL=%(protocol)s://%(domain)s:%(http_port)s/grafana/
+      - GF_SERVER_SERVE_FROM_SUB_PATH=true
     volumes:
-      - /opt/monitoring/grafana/data:/var/lib/grafana
+      - ./grafana/data:/var/lib/grafana
     restart: unless-stopped
     ports:
       - "3000:3000"
@@ -81,14 +84,13 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - /opt/monitoring/certs/fullchain.pem:/etc/nginx/certs/fullchain.pem:ro
-      - /opt/monitoring/certs/privkey.pem:/etc/nginx/certs/privkey.pem:ro
-      - /opt/monitoring/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./certs/fullchain.pem:/etc/nginx/certs/fullchain.pem:ro
+      - ./certs/privkey.pem:/etc/nginx/certs/privkey.pem:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
       - prometheus
       - grafana
     restart: unless-stopped
-
 ```
 
 prometheus.yml
