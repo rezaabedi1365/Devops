@@ -1,15 +1,23 @@
 
 ```
-/opt/monitoring/
+/root/composefiles/prometheus/
   ├─ docker-compose.yml
   ├─ prometheus/
-  │  ├─ config/prometheus.yml
-  │  ├─ rules/alert.rules.yml
+  │  ├─ prometheus.yml
+  │  ├─ alert.rules
   │  └─ data/
   ├─ grafana/
+  │  ├─ config.monitoring
+  │  ├─ provisioning/
+  │  │   ├─ dashboard
+  │  │   └─ datasources
   │  └─ data/
+  ├─ dashboards /
+  │      ├─ Grafana_Dashboard.json
+  │      ├─ Grafana_Dashboard_prom_2.json
+  │      └─ System_Monitoring.json
   ├─ alertmanager/
-  │  └─ alertmanager.yml
+  │  └─ config.yml
   ├─ nginx.conf
   └─ certs/
      ├─ fullchain.pem
