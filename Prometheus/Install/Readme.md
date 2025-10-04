@@ -19,78 +19,125 @@
 
 docker-compose.yml
 ```
-version: "3.9"
+version: '3.7'
+
+volumes:
+    prometheus_data: {}
+    grafana_data: {}
+
+networks:
+  front-tier:
+  back-tier:
 
 services:
+
   prometheus:
-    image: prom/prometheus:latest
-    container_name: prometheus
+    image: prom/prometheus
     volumes:
-      - ./prometheus/data:/prometheus
-      - ./prometheus/config/prometheus.yml:/etc/prometheus/prometheus.yml:ro
-      - ./prometheus/rules:/etc/prometheus/rules:ro
-    restart: unless-stopped
+      - ./prometheus/:/etc/prometheus/
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
     ports:
-      - "9090:9090"
-
-  alertmanager:
-    image: prom/alertmanager:latest
-    container_name: alertmanager
-    volumes:
-      - ./alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
-    restart: unless-stopped
-    ports:
-      - "9093:9093"
-
-  grafana:
-    image: grafana/grafana:latest
-    container_name: grafana
-    environment:
-      - GF_SERVER_ROOT_URL=%(protocol)s://%(domain)s:%(http_port)s/grafana/
-      - GF_SERVER_SERVE_FROM_SUB_PATH=true
-    volumes:
-      - ./grafana/data:/var/lib/grafana
-    restart: unless-stopped
-    ports:
-      - "3000:3000"
+      - 9090:9090
+    links:
+      - cadvisor:cadvisor
+      - alertmanager:alertmanager
+#      - pushgateway:pushgateway
+    depends_on:
+      - cadvisor
+#      - pushgateway
+    networks:
+      - back-tier
+    restart: always
+#    deploy:
+#      placement:
+#        constraints:
+#          - node.hostname == ${HOSTNAME}
 
   node-exporter:
-    image: prom/node-exporter:latest
-    container_name: node-exporter
-    pid: host
-    network_mode: host
-    restart: unless-stopped
+    image: quay.io/prometheus/node-exporter:latest
     volumes:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /:/rootfs:ro
-
-  cadvisor:
-    image: google/cadvisor:latest
-    container_name: cadvisor
-    restart: unless-stopped
+      - /:/host:ro,rslave
+    command: 
+      - '--path.rootfs=/host'
+      - '--path.procfs=/host/proc' 
+      - '--path.sysfs=/host/sys'
+      - --collector.filesystem.ignored-mount-points
+      - "^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)"
     ports:
-      - "8080:8080"
+      - 9100:9100
+    networks:
+      - back-tier
+    restart: always
+    deploy:
+      mode: global
+
+  alertmanager:
+    image: prom/alertmanager
+    ports:
+      - 9093:9093
+    volumes:
+      - ./alertmanager/:/etc/alertmanager/
+    networks:
+      - back-tier
+    restart: always
+    command:
+      - '--config.file=/etc/alertmanager/config.yml'
+      - '--storage.path=/alertmanager'
+#    deploy:
+#      placement:
+#        constraints:
+#          - node.hostname == ${HOSTNAME}
+  cadvisor:
+    image: ghcr.io/google/cadvisor:159a7b2-159a7b24b50446f9ae319a32f0812bdf9dac1bb3
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
-
-  nginx:
-    image: nginx:latest
-    container_name: nginx
     ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./certs/fullchain.pem:/etc/nginx/certs/fullchain.pem:ro
-      - ./certs/privkey.pem:/etc/nginx/certs/privkey.pem:ro
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - 8080:8080
+    networks:
+      - back-tier
+    restart: always
+    privileged: true
+    deploy:
+      mode: global
+
+  grafana:
+    image: grafana/grafana
+    user: "472"
     depends_on:
       - prometheus
-      - grafana
-    restart: unless-stopped
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+    env_file:
+      - ./grafana/config.monitoring
+    networks:
+      - back-tier
+      - front-tier
+    restart: always
+
+#  pushgateway:
+#    image: prom/pushgateway
+#    restart: always
+#    expose:
+#      - 9091
+#    ports:
+#      - "9091:9091"
+#    networks:
+#      - back-tier
+
 ```
 
 prometheus.yml
