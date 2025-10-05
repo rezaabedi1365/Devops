@@ -13,9 +13,9 @@
   │  │   └─ datasources
   │  └─ data/
   ├─ dashboards /
-  │      ├─ Grafana_Dashboard.json
-  │      ├─ Grafana_Dashboard_prom_2.json
-  │      └─ System_Monitoring.json
+  │  ├─ Grafana_Dashboard.json
+  │  ├─ Grafana_Dashboard_prom_2.json
+  │  └─ System_Monitoring.json
   ├─ alertmanager/
   │  └─ config.yml
   ├─ nginx.conf
