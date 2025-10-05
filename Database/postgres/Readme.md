@@ -3,8 +3,6 @@
 
 
 
-### Backup
-
 # Postgres
 - plain text Backup
   + .sql
