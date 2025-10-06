@@ -55,3 +55,6 @@
       debug:
         msg: "✅ Nexus Repository Manager با موفقیت در Docker روی پورت {{ nexus_port }} اجرا شد!"
 ```
+```
+ansible-galaxy collection install community.docker
+```
