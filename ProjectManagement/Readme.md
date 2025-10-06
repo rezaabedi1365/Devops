@@ -1,4 +1,17 @@
-حتماً! 😄
+Traditional 
+   -  Waterfall
+      + Task List
+          - Milestone
+      + Gantt Chart
+   -  CPM
+   -  PERT
+
+Agile
+   - Backlog
+       + Sprint / Iteration
+       + Board
+   - scrum / Kanban
+
 مدیریت پروژه (Project Management) چند مدل و متدولوژی مختلف دارد که هر کدام فلسفه و کاربرد خاص خود را دارند. بیای یک دسته‌بندی جامع با توضیح کوتاه و مثال بزنیم:
 
 ---
