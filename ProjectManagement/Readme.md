@@ -8,6 +8,9 @@
 
 ### Agile
    - scrum
+      + Backlog
+         - Sprint / Iteration
+      + Board
    - Kanban
    - Scrumban
    - XP (Extreme Programming)
