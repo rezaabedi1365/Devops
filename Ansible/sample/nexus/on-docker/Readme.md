@@ -1,3 +1,4 @@
+```
 ---
 - name: نصب و اجرای Nexus Repository Manager 3 در Docker
   hosts: nexus_servers
@@ -53,3 +54,4 @@
     - name: نمایش پیام موفقیت
       debug:
         msg: "✅ Nexus Repository Manager با موفقیت در Docker روی پورت {{ nexus_port }} اجرا شد!"
+```
