@@ -48,7 +48,6 @@
     │     ├── ClickUp → ترکیبی Agile/Waterfall، Board، Gantt، Sprint
           └── Asana → مدیریت Taskها، Board و Timeline
 
-بهینه‌سازی فرآیند، حذف اتلاف، جریان ارزش
 
 
 ```
