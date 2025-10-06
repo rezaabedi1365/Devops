@@ -1,4 +1,4 @@
-Traditional 
+### Traditional 
    -  Waterfall
       + Task List
           - Milestone
@@ -6,7 +6,7 @@ Traditional
    -  CPM
    -  PERT
 
-Agile
+### Agile
    - Backlog
        + Sprint / Iteration
        + Board
