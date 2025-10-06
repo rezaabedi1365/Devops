@@ -56,11 +56,13 @@
         ├── ClickUp → ترکیبی Agile/Waterfall، Board، Gantt، Sprint
         ├── Asana → مدیریت Taskها، Board و Timeline
         ├── GitLab
+        |       ├──  Scrum & Kanban can impliment 
         │       ├── Issue Boards
         │       ├── Epics و Milestones
         │       ├── Task Lists داخل Issue
         │       └── Roadmaps
         └── GitHub
+                ├──  Scrum & Kanban and Scrumban can impliment
                 ├── Project Boards
                 ├── Issues
                 └── Milestones
