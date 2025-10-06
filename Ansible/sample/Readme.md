@@ -1,3 +1,9 @@
+
+```
+ubuntu ALL=(ALL) NOPASSWD:ALL
+```
+
+
 ```
 ansible-project/
 ├── inventory/
