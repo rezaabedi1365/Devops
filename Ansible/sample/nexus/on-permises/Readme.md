@@ -1,15 +1,19 @@
+
 ```
-roles/
-└── nexus/
-    ├── tasks/
-    │   └── main.yml
-    ├── handlers/
-    │   └── main.yml
-    ├── templates/
-    │   └── nexus.service.j2
-    ├── vars/
-    │   └── main.yml
-    └── README.md
+ansible-project/
+├── inventory.ini          ← 📁 فایل اینونتوری (تعریف سرورها)
+├── playbook.yml           ← 📘 
+└── roles/
+       └── nexus/
+           ├── tasks/
+           │   └── main.yml
+           ├── handlers/
+           │   └── main.yml
+           ├── templates/
+           │   └── nexus.service.j2
+           ├── vars/
+           │   └── main.yml
+           └── README.md
 ```
 inventory.ini
 ```
