@@ -2,7 +2,7 @@
 ```
 ansible-project/
 ├── inventory.ini          ← 📁 لیست سرورها و اطلاعات SSH
-├── playbook.yml           ← 📘 پلی‌بوک اصلی (فراخوانی role)
+├── nexus.yml              ← 📘 پلی‌بوک اصلی (فراخوانی role)
 └── roles/
     └── nexus/             ← 📦 رول نصب و پیکربندی Nexus
         ├── tasks/
