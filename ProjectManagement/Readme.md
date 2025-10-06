@@ -24,19 +24,29 @@
     │
     ├── Models
     │   ├── Scrum
-    │   │   ├── Roles
-    │   │   │   ├── Product Owner
-    │   │   │   ├── Scrum Master
-    │   │   │   └── Development Team
-    │   │   ├── Artifacts
-    │   │   │   ├── Product Backlog
-    │   │   │   ├── Sprint Backlog
-    │   │   │   └── Increment
-    │   │   ├── Events
-    │   │   │   └── Sprint
-    │   │   ├── Board
-    │   │   │   └── Task Board / Scrum Board
-    │   │   └── Sprint / Iteration
+
+│
+          ├── Roles / نقش‌ها
+          │   ├── Product Owner → مدیریت نیازمندی‌ها و اولویت‌بندی Backlog
+          │   ├── Scrum Master → راهنمای تیم، حذف موانع، تسهیل فرآیند Scrum
+          │   └── Development Team → تیم اجرایی که کارها را انجام می‌دهد
+│
+          ├── Artifacts / ابزارها
+          │   ├── Product Backlog → لیست تمام نیازمندی‌ها، وظایف و ویژگی‌های محصول
+          │   ├── Sprint Backlog → مجموعه‌ای از وظایف Backlog که در یک Sprint انجام می‌شود
+          │   └── Increment → نتیجه نهایی یا محصول قابل استفاده در پایان Sprint
+│
+          ├── Events / رویدادها
+          │   ├── Sprint → بازه زمانی کوتاه (مثلاً ۱–۴ هفته) برای انجام مجموعه‌ای از کارها
+          │   ├── Sprint Planning → جلسه برنامه‌ریزی برای انتخاب Backlog Items
+          │   ├── Daily Standup → جلسه روزانه تیم برای بررسی پیشرفت
+          │   ├── Sprint Review → جلسه بازبینی محصول تولید شده
+          │   └── Sprint Retrospective → جلسه بازخورد و بهبود فرآیند
+          │
+          └── Board
+              └── Task Board / Scrum Board → تخته بصری جریان کار (To Do / In Progress / Done)
+        └── نمایش وضعیت Backlog Items
+
     │   │
     │   ├── Kanban → مدیریت بصری جریان کار، محدودیت WIP
     │   ├── Scrumban → ترکیب Scrum و Kanban
