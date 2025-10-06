@@ -4,9 +4,10 @@
 ├── Traditional
 │   │
 │   ├── Waterfall
-│   │   ├── Task List
-│   │   │   └── Milestone
-│   │   └── Gantt Chart
+|   |   └── Microsoft Project , Primavera P6 (Oracle),  Smartsheet , Wrike , TeamGantt
+│   │                                                                           ├── Task List
+│   │                                                                           │   └── Milestone
+│   │                                                                           └── Gantt Chart
 │   │
 │   ├── CPM
 │   └── PERT
@@ -14,9 +15,10 @@
 └── Agile
     │
     ├── Scrum
-    │   ├── Backlog
-    │   │   └── Sprint / Iteration
-    │   └── Board
+    |   └── Jira , Trello , Azure DevOps , Monday.com , ClickUp , Asana
+    │                                                               ├── Backlog
+    │                                                               │   └── Sprint / Iteration
+    │                                                               └── Board
     │
     ├── Kanban
     ├── Scrumban
