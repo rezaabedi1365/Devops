@@ -2,7 +2,7 @@
 ```
 فلسفه‌ها (Philosophy / Mindset)
 --------------------------------
-Agile Manifesto
+Agile Manifesto  > Agile (Frameworks / Models) use for convert Agile Manifesto to project
 Lean Software Development
 DevOps / Continuous Delivery
         |
