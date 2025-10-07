@@ -1,5 +1,5 @@
 nginx/Dockerfile
-```
+```dockerfile
 FROM nginx:alpine
 
 # ایجاد کاربر غیر روت (مثلاً uid=1001)
