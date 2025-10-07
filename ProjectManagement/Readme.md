@@ -1,3 +1,32 @@
+
+```
+فلسفه‌ها (Philosophy / Mindset)
+--------------------------------
+Agile Manifesto
+Lean Software Development
+DevOps / Continuous Delivery
+        |
+        |-----------> متدها (Methods)
+                         --------------------------
+                         Kanban
+                         XP (Extreme Programming)
+                         Crystal
+                         DSDM
+                         FDD
+                         AUP
+        |
+        |-----------> فریم‌ورک‌ها (Frameworks)
+                         --------------------------
+                         Scrum
+                         SAFe
+                         LeSS
+                         Nexus
+                         Spotify Model
+                         Disciplined Agile (DA)
+                         ScrumBan
+
+```
+
 ```
 مدیریت پروژه
 │
