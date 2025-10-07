@@ -44,16 +44,7 @@ sudo gitlab-ctl restart
 ```
 
 # ldap
-add DC Certificate to gitlab server
-```
-sudo cp ca.crt /usr/local/share/ca-certificates/faradis-ca.crt
-sudo update-ca-certificates
-```
-or ignore certificate check
-```
-verify_certificates: false
-```
-encryption: 'plain'
+
 nano /etc/gitlab/gitlab.
 ```
 gitlab_rails['ldap_enabled'] = true
@@ -66,13 +57,17 @@ main:
   bind_dn: 'CN=gitlab-svc,OU=Faradis Service Users,OU=Faradis,DC=faradis,DC=net'  # یوزر سرویس
   password: 'YourStrongPassword'
   encryption: 'start_tls'
-  verify_certificates: true
+  verify_certificates: false  #ignore certificate check
   active_directory: true
   allow_username_or_email_login: true
   lowercase_usernames: false
   block_auto_created_users: false
+
   base: 'DC=faradis,DC=net'          # این باعث میشه کل دامنه سرچ بشه
   group_base: 'DC=faradis,DC=net'    # گروه‌ها هم از کل دامنه گرفته میشن
+  user_filter: '(memberOf=CN=GitLab-Users,OU=Groups,DC=faradis,DC=net)'   # فقط اعضای این گروه
+  # user_filter: '(|(memberOf=CN=GitLab-Users,OU=Groups,DC=faradis,DC=net)(memberOf=CN=DevOps,OU=Groups,DC=faradis,DC=net))'    #اگر چند گروه داشتیم 
+
   admin_group: 'GitLab-Admins'       # گروهی که ادمین میشه
   attributes:
     username: ['uid', 'sAMAccountName']
@@ -96,6 +91,17 @@ ldapsearch -x -H ldap://dc01.faradis.net \
 sudo gitlab-ctl reconfigure
 sudo gitlab-ctl restart
 ```
+### ldaps
+add DC Certificate to gitlab server
+```
+sudo cp ca.crt /usr/local/share/ca-certificates/faradis-ca.crt
+sudo update-ca-certificates
+```
+ldaps
+```
+verify_certificates: true
+```
+
 # Email Configuration
 ```
 gitlab_rails['smtp_enable'] = true
