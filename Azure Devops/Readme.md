@@ -1,5 +1,3 @@
-باشه، متن مربوط به Azure DevOps را برایت **راست‌چین و آماده استفاده می‌کنم**:
-
 ---
 
 <div style="text-align: right; direction: rtl;">
