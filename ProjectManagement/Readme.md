@@ -281,3 +281,85 @@ GitLab ابزار رسمی Scrum نیست، اما با **Issue‌ها، Milesto
 
 
 ### Scrum in jira or Azure Devops
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div dir="rtl">
+
+# 🟢 Kanban در GitLab
+
+دقیقاً، **Issue Board** در گیت‌لب می‌تواند به شکل یک **Kanban Board** عمل کند.  
+
+## ۱. تعریف Issue Board
+- **Issue Board**: ابزار ویژوال برای مدیریت Issue‌ها  
+- هر Issue می‌تواند یک تسک، باگ، فیچر یا کار کوچک باشد  
+- مشاهده وضعیت Issue‌ها در یک نگاه  
+
+## ۲. شبیه‌سازی Kanban
+<div style="display:flex; gap:20px;">
+
+<div style="flex:1; background:#f8f9fa; padding:10px; border-radius:8px;">
+### 📝 To Do
+- تعریف Issue‌ها
+- برنامه‌ریزی کارها
+</div>
+
+<div style="flex:1; background:#fff3cd; padding:10px; border-radius:8px;">
+### 🔄 Doing
+- شروع توسعه
+- انجام تست اولیه
+</div>
+
+<div style="flex:1; background:#d1ecf1; padding:10px; border-radius:8px;">
+### 🧪 Testing
+- تست‌های QA
+- بررسی باگ‌ها
+</div>
+
+<div style="flex:1; background:#d4edda; padding:10px; border-radius:8px;">
+### ✅ Done
+- کارهای تکمیل شده
+- آماده انتشار
+</div>
+
+</div>
+
+## ۳. ویژگی‌های کلیدی
+- **WIP Limit**: محدودیت تعداد کارت‌ها توسط قواعد تیمی  
+- **Labels و Assignee**: تعیین مسئول و نوع کار  
+- **فیلترها**: مشاهده Issue‌های خاص بر اساس Milestone یا Label  
+
+---
+
+# 🔵 Scrum در GitLab
+
+GitLab ابزار Scrum رسمی نیست، اما با کمی تنظیم می‌توان فرآیند کامل Scrum را شبیه‌سازی کرد.  
+
+## ۱. اجزای Scrum در GitLab
+
+| اجزای Scrum | نحوه پیاده‌سازی در GitLab |
+|-------------|---------------------------|
+| Product Backlog | ثبت همه کارها به شکل Issues و اولویت‌بندی با Labels/Milestones |
+| Sprint Backlog | ایجاد Milestone برای هر Sprint و اضافه کردن Issue‌ها |
+| Sprint | Milestone همان Sprint است؛ تاریخ شروع و پایان مشخص |
+| Daily Stand-up | بررسی Issue Board + Discussions یا Stand-up خارج از GitLab |
+| Review/Retrospective | استفاده از Burndown Charts و Discussions پس از پایان Sprint |
+| Scrum Roles | Assign کردن Issue‌ها و استفاده از Labels برای نقش‌ها |
+
+## ۲. ابزارهای کمکی
+- **Issue Board**: مدیریت Sprint Backlog و وضعیت کارها  
+- **Milestones**: تعریف Sprint‌ها و زمان‌بندی تحویل‌ها  
+- **Labels**: اولویت، نوع کار و نقش‌ها  
+- **Burndown Charts**: دنبال کردن پیشرفت S
