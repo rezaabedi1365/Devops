@@ -1,3 +1,8 @@
+
+
+
+
+
 ```
                  ┌─────────────────────┐
                  │  Azure DevOps       │
@@ -18,7 +23,8 @@
 ```
 
 ### Azure DevOps 
-
+- Azure DevOps Services (Cloud)
+- Azure DevOps Server (On-Premises)
 
 ### ۱. مدیریت پروژه و کارها
 
