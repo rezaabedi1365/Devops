@@ -225,4 +225,59 @@ Scrum Framework
 ---
 
 
+
+
+
+
+
+
+
+
+
+
+### scrum in Gitlab
+بله، کاملاً میشه **Scrum را در GitLab پیاده کرد**، ولی باید بدانیم GitLab ذاتاً ابزار Kanban است و برای Scrum نیاز به کمی تنظیم و استفاده از امکانات دیگر دارد. بذار مرحله به مرحله توضیح بدهم:
+
+---
+
+### ۱. اجزای Scrum که باید در GitLab شبیه‌سازی شوند
+
+| اجزای Scrum                | نحوه پیاده‌سازی در GitLab                                                                                                                                                  |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Product Backlog**        | می‌توانید همه کارها (Features، Tasks، Bugs) را به شکل **Issues** ثبت کنید و از **Labels یا Milestones** برای اولویت‌بندی استفاده کنید.                                     |
+| **Sprint Backlog**         | با ایجاد یک **Milestone برای هر Sprint** و اضافه کردن Issue‌ها به آن، Sprint Backlog شبیه‌سازی می‌شود.                                                                     |
+| **Sprint**                 | Milestone همان Sprint است؛ می‌توانید تاریخ شروع و پایان مشخص کنید.                                                                                                         |
+| **Daily Stand-up**         | GitLab خودش ابزار Stand-up ندارد، اما می‌توان از **Issue Board + Discussions** استفاده کرد یا Stand-up روزانه را بیرون از GitLab برگزار کرد و وضعیت Issue‌ها را بررسی کرد. |
+| **Review / Retrospective** | بعد از پایان Milestone، می‌توان از **Burndown Charts** و Discussions برای Review و Retrospective استفاده کرد.                                                              |
+| **Scrum Roles**            | هیچ Role رسمی در GitLab وجود ندارد، ولی می‌توان با Assign کردن Issue‌ها و استفاده از Labels نقش‌ها را شبیه‌سازی کرد (مثلاً Developer، Product Owner).                      |
+
+---
+
+### ۲. ابزارهای GitLab که کمک می‌کنند
+
+1. **Issue Board:** برای مدیریت Sprint Backlog و وضعیت کارها (To Do, Doing, Done)
+2. **Milestones:** برای تعریف Sprint‌ها و زمان‌بندی تحویل‌ها
+3. **Labels:** برای اولویت، نوع کار و نقش‌ها
+4. **Burndown Charts:** برای دنبال کردن پیشرفت Sprint
+
+---
+
+### ۳. نمونه پیاده‌سازی Scrum در GitLab
+
+فرض کنید یک تیم توسعه وبسایت دارد:
+
+* **Sprint 1:** Milestone با تاریخ 1 تا 14 آبان
+* **Issues:** “صفحه ورود کاربران”، “ثبت‌نام ایمیل”، “سبد خرید”
+* **Issue Board:** ستون‌ها To Do, In Progress, Testing, Done
+* هر توسعه‌دهنده Issue‌ها را Assign می‌کند و پیشرفت را در Board مشاهده می‌کند
+* بعد از پایان Milestone، تیم Burndown Chart را بررسی کرده و Retrospective غیررسمی برگزار می‌کند
+
+---
+
+✅ **نتیجه:**
+GitLab ابزار رسمی Scrum نیست، اما با **Issue‌ها، Milestone‌ها و Board‌ها** می‌توان تقریباً همه فرآیند Scrum را پیاده کرد و مدیریت Sprint و Backlog داشت.
+
+---
+
+
 ### Scrum in jira or Azure Devops
