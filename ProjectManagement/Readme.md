@@ -240,17 +240,16 @@ Scrum Framework
 
 ---
 
-### ۱. اجزای Scrum که باید در GitLab شبیه‌سازی شوند
+## ۱. اجزای Scrum در GitLab
 
-| اجزای Scrum                | نحوه پیاده‌سازی در GitLab                                                                                                                                                  |
-| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Product Backlog**        | می‌توانید همه کارها (Features، Tasks، Bugs) را به شکل **Issues** ثبت کنید و از **Labels یا Milestones** برای اولویت‌بندی استفاده کنید.                                     |
-| **Sprint Backlog**         | با ایجاد یک **Milestone برای هر Sprint** و اضافه کردن Issue‌ها به آن، Sprint Backlog شبیه‌سازی می‌شود.                                                                     |
-| **Sprint**                 | Milestone همان Sprint است؛ می‌توانید تاریخ شروع و پایان مشخص کنید.                                                                                                         |
-| **Daily Stand-up**         | GitLab خودش ابزار Stand-up ندارد، اما می‌توان از **Issue Board + Discussions** استفاده کرد یا Stand-up روزانه را بیرون از GitLab برگزار کرد و وضعیت Issue‌ها را بررسی کرد. |
-| **Review / Retrospective** | بعد از پایان Milestone، می‌توان از **Burndown Charts** و Discussions برای Review و Retrospective استفاده کرد.                                                              |
-| **Scrum Roles**            | هیچ Role رسمی در GitLab وجود ندارد، ولی می‌توان با Assign کردن Issue‌ها و استفاده از Labels نقش‌ها را شبیه‌سازی کرد (مثلاً Developer، Product Owner).                      |
-
+| اجزای Scrum | نحوه پیاده‌سازی در GitLab |
+|-------------|---------------------------|
+| Product Backlog | ثبت همه کارها به شکل Issues و اولویت‌بندی با Labels/Milestones |
+| Sprint Backlog | ایجاد Milestone برای هر Sprint و اضافه کردن Issue‌ها |
+| Sprint | Milestone همان Sprint است؛ تاریخ شروع و پایان مشخص |
+| Daily Stand-up | بررسی Issue Board + Discussions یا Stand-up خارج از GitLab |
+| Review/Retrospective | استفاده از Burndown Charts و Discussions پس از پایان Sprint |
+| Scrum Roles | Assign کردن Issue‌ها و استفاده از Labels برای نقش‌ها |
 ---
 
 ### ۲. ابزارهای GitLab که کمک می‌کنند
@@ -347,16 +346,6 @@ GitLab ابزار رسمی Scrum نیست، اما با **Issue‌ها، Milesto
 
 GitLab ابزار Scrum رسمی نیست، اما با کمی تنظیم می‌توان فرآیند کامل Scrum را شبیه‌سازی کرد.  
 
-## ۱. اجزای Scrum در GitLab
-
-| اجزای Scrum | نحوه پیاده‌سازی در GitLab |
-|-------------|---------------------------|
-| Product Backlog | ثبت همه کارها به شکل Issues و اولویت‌بندی با Labels/Milestones |
-| Sprint Backlog | ایجاد Milestone برای هر Sprint و اضافه کردن Issue‌ها |
-| Sprint | Milestone همان Sprint است؛ تاریخ شروع و پایان مشخص |
-| Daily Stand-up | بررسی Issue Board + Discussions یا Stand-up خارج از GitLab |
-| Review/Retrospective | استفاده از Burndown Charts و Discussions پس از پایان Sprint |
-| Scrum Roles | Assign کردن Issue‌ها و استفاده از Labels برای نقش‌ها |
 
 ## ۲. ابزارهای کمکی
 - **Issue Board**: مدیریت Sprint Backlog و وضعیت کارها  
