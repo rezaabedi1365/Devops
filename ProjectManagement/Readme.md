@@ -291,64 +291,114 @@ GitLab ابزار رسمی Scrum نیست، اما با **Issue‌ها، Milesto
 
 
 
+<div dir="rtl" style="text-align:right;">
 
+### Kanban in Gitlab
 
-
-
-<div dir="rtl">
-
-# 🟢 Kanban در GitLab
-
-دقیقاً، **Issue Board** در گیت‌لب می‌تواند به شکل یک **Kanban Board** عمل کند.  
-
-## ۱. تعریف Issue Board
-- **Issue Board**: ابزار ویژوال برای مدیریت Issue‌ها  
-- هر Issue می‌تواند یک تسک، باگ، فیچر یا کار کوچک باشد  
-- مشاهده وضعیت Issue‌ها در یک نگاه  
-
-## ۲. شبیه‌سازی Kanban
-<div style="display:flex; gap:20px;">
-
-<div style="flex:1; background:#f8f9fa; padding:10px; border-radius:8px;">
-### 📝 To Do
-- تعریف Issue‌ها
-- برنامه‌ریزی کارها
-</div>
-
-<div style="flex:1; background:#fff3cd; padding:10px; border-radius:8px;">
-### 🔄 Doing
-- شروع توسعه
-- انجام تست اولیه
-</div>
-
-<div style="flex:1; background:#d1ecf1; padding:10px; border-radius:8px;">
-### 🧪 Testing
-- تست‌های QA
-- بررسی باگ‌ها
-</div>
-
-<div style="flex:1; background:#d4edda; padding:10px; border-radius:8px;">
-### ✅ Done
-- کارهای تکمیل شده
-- آماده انتشار
-</div>
-
-</div>
-
-## ۳. ویژگی‌های کلیدی
-- **WIP Limit**: محدودیت تعداد کارت‌ها توسط قواعد تیمی  
-- **Labels و Assignee**: تعیین مسئول و نوع کار  
-- **فیلترها**: مشاهده Issue‌های خاص بر اساس Milestone یا Label  
+دقیقاً، **Issue Board در گیت‌لب می‌تواند به شکل یک Kanban Board عمل کند**. بذار مرحله به مرحله توضیح بدم که چطور:
 
 ---
 
-# 🔵 Scrum در GitLab
+### ۱. تعریف Issue Board
 
-GitLab ابزار Scrum رسمی نیست، اما با کمی تنظیم می‌توان فرآیند کامل Scrum را شبیه‌سازی کرد.  
+* **Issue Board** یک ابزار **ویژوال برای مدیریت Issue‌ها** در GitLab است.  
+* هر Issue می‌تواند یک تسک، باگ، فیچر یا کار کوچک باشد.  
+* Issue Board به شما اجازه می‌دهد وضعیت هر Issue را در یک نگاه ببینید و مدیریت کنید.
+
+---
+
+### ۲. شبیه‌سازی Kanban
+
+* شما می‌توانید **ستون‌های مختلف (Lists)** ایجاد کنید، مثلاً:
+
+  1. **To Do** – کارهایی که هنوز شروع نشده‌اند  
+  2. **Doing** – کارهایی که در حال انجام هستند  
+  3. **Testing** – کارهایی که در حال تست هستند  
+  4. **Done** – کارهایی که تکمیل شده‌اند  
+
+* سپس Issue‌ها را **با کشیدن و رها کردن (drag & drop)** بین ستون‌ها جابجا می‌کنید، دقیقا مثل Kanban واقعی.
+
+---
+
+### ۳. ویژگی‌های کلیدی
+
+* **WIP Limit:** GitLab به صورت خودکار محدودیت تعداد کارت‌ها در یک ستون را ندارد، اما می‌توان با **قواعد تیمی** این محدودیت را اعمال کرد.  
+* **Labels و Assignee:** به شما کمک می‌کند تا مشخص کنید چه کسی مسئول هر Issue است یا نوع کار چیست.  
+* **فیلترها:** می‌توانید فقط Issueهای یک Milestone یا یک برچسب خاص را مشاهده کنید.
+
+---
+
+### Scrum in Gitlab
+
+بله، کاملاً میشه **Scrum را در GitLab پیاده کرد**، ولی باید بدانیم GitLab ذاتاً ابزار Kanban است و برای Scrum نیاز به کمی تنظیم و استفاده از امکانات دیگر دارد. بذار مرحله به مرحله توضیح بدهم:
+
+---
+
+## ۱. اجزای Scrum در GitLab
+
+<table dir="rtl" style="text-align:right; width:100%; border:1px solid #ccc; border-collapse:collapse;">
+<tr style="background:#f0f0f0;">
+<th style="border:1px solid #ccc; padding:5px;">اجزای Scrum</th>
+<th style="border:1px solid #ccc; padding:5px;">نحوه پیاده‌سازی در GitLab</th>
+</tr>
+<tr>
+<td style="border:1px solid #ccc; padding:5px;">Product Backlog</td>
+<td style="border:1px solid #ccc; padding:5px;">ثبت همه کارها به شکل Issues و اولویت‌بندی با Labels/Milestones</td>
+</tr>
+<tr>
+<td style="border:1px solid #ccc; padding:5px;">Sprint Backlog</td>
+<td style="border:1px solid #ccc; padding:5px;">ایجاد Milestone برای هر Sprint و اضافه کردن Issue‌ها</td>
+</tr>
+<tr>
+<td style="border:1px solid #ccc; padding:5px;">Sprint</td>
+<td style="border:1px solid #ccc; padding:5px;">Milestone همان Sprint است؛ تاریخ شروع و پایان مشخص</td>
+</tr>
+<tr>
+<td style="border:1px solid #ccc; padding:5px;">Daily Stand-up</td>
+<td style="border:1px solid #ccc; padding:5px;">بررسی Issue Board + Discussions یا Stand-up خارج از GitLab</td>
+</tr>
+<tr>
+<td style="border:1px solid #ccc; padding:5px;">Review/Retrospective</td>
+<td style="border:1px solid #ccc; padding:5px;">استفاده از Burndown Charts و Discussions پس از پایان Sprint</td>
+</tr>
+<tr>
+<td style="border:1px solid #ccc; padding:5px;">Scrum Roles</td>
+<td style="border:1px solid #ccc; padding:5px;">Assign کردن Issue‌ها و استفاده از Labels برای نقش‌ها</td>
+</tr>
+</table>
+
+---
+
+### ۲. ابزارهای GitLab که کمک می‌کنند
+
+1. **Issue Board:** برای مدیریت Sprint Backlog و وضعیت کارها (To Do, Doing, Done)  
+2. **Milestones:** برای تعریف Sprint‌ها و زمان‌بندی تحویل‌ها  
+3. **Labels:** برای اولویت، نوع کار و نقش‌ها  
+4. **Burndown Charts:** برای دنبال کردن پیشرفت Sprint
+
+---
+
+### ۳. نمونه پیاده‌سازی Scrum در GitLab
+
+فرض کنید یک تیم توسعه وبسایت دارد:
+
+* **Sprint 1:** Milestone با تاریخ 1 تا 14 آبان  
+* **Issues:** “صفحه ورود کاربران”، “ثبت‌نام ایمیل”، “سبد خرید”  
+* **Issue Board:** ستون‌ها To Do, In Progress, Testing, Done  
+* هر توسعه‌دهنده Issue‌ها را Assign می‌کند و پیشرفت را در Board مشاهده می‌کند  
+* بعد از پایان Milestone، تیم Burndown Chart را بررسی کرده و Retrospective غیررسمی برگزار می‌کند
+
+---
+
+✅ **نتیجه:**  
+GitLab ابزار رسمی Scrum نیست، اما با **Issue‌ها، Milestone‌ها و Board‌ها** می‌توان تقریباً همه فرآیند Scrum را پیاده کرد و مدیریت Sprint و Backlog داشت.
+
+---
+
+### Scrum in Jira or Azure DevOps
+
+</div>
 
 
-## ۲. ابزارهای کمکی
-- **Issue Board**: مدیریت Sprint Backlog و وضعیت کارها  
-- **Milestones**: تعریف Sprint‌ها و زمان‌بندی تحویل‌ها  
-- **Labels**: اولویت، نوع کار و نقش‌ها  
-- **Burndown Charts**: دنبال کردن پیشرفت S
+
+
