@@ -178,6 +178,19 @@ Scrum Framework
 
 
 
+
+
+
+### Kanban in Gitlab
+
+
+
+
+
+
+
+
+
 دقیقاً، **Issue Board در گیت‌لب می‌تواند به شکل یک Kanban Board عمل کند**. بذار مرحله به مرحله توضیح بدم که چطور:
 
 ---
