@@ -39,7 +39,7 @@ docker exec -it fpaydb-container psql -U postgres -d test -c "\dt"
 mount
 - 445&139 use port
 ```
-sudo apt install cifs-utils -y
+sudo apt install cifs-utils smbclient -y
 mkdir -p /mnt/smb_share
 ```
 - nano /root/.smbcredentials
@@ -47,6 +47,11 @@ mkdir -p /mnt/smb_share
 username=backupdb
 password=123456@
 ```
+verify Credential:
+```
+smbclient //192.168.31.98/backupdb/verification-db -A /root/.smbcredentials -c 'ls'
+```
+mount:
 ```
 sudo mount -t cifs //192.168.1.10/backupdb/verification-db /mnt/smb_share -o credentials=/root/.smbcredentials,vers=3.0
 ```
