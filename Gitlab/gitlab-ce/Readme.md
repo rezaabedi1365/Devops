@@ -130,3 +130,12 @@ gitlab_rails['smtp_enable_starttls_auto'] = false
 sudo gitlab-ctl reconfigure
 sudo gitlab-ctl restart
 ```
+
+verify:
+```
+sudo gitlab-rails console
+Notify.test_email('email@domain.com', 'Test Subject', 'This is a test email.').deliver_now
+```
+```
+sudo gitlab-rake gitlab:email:send_test[to=email@domain.com]
+```
