@@ -1,4 +1,21 @@
+```
+                 ┌────────────────────┐
+                 │  Azure DevOps 
+                 │  - Repos            │
+                 │  - Boards           │
+                 │  - Pipelines        │
+                 │  - Artifacts        │
+                 └────────┬────────────┘
+                          │
+      ┌───────────────────┴───────────────────┐
+      │                                       │
+┌──────────────┐                     ┌────────────────┐
+│ Windows Agent│                     │ macOS/Android  │
+│ (Delphi Build│                     │ Agent (Mobile) │
+│   Installed) │                     │                │
+└──────────────┘                     └────────────────┘
 
+```
 
 ### Azure DevOps 
 
