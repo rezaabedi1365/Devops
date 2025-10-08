@@ -1,6 +1,6 @@
 ```
-                 ┌────────────────────┐
-                 │  Azure DevOps 
+                 ┌─────────────────────┐
+                 │  Azure DevOps       │
                  │  - Repos            │
                  │  - Boards           │
                  │  - Pipelines        │
