@@ -1,10 +1,7 @@
----
 
-<div style="text-align: right; direction: rtl;">
 
 Azure DevOps (آژور دواپس) یک **پلتفرم کامل برای توسعه نرم‌افزار و مدیریت پروژه** است که تیم‌ها را در کل چرخه عمر توسعه نرم‌افزار (ALM – Application Lifecycle Management) پشتیبانی می‌کند.
 
----
 
 ### ۱. مدیریت پروژه و کارها
 
