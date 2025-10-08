@@ -144,7 +144,6 @@ Scrum Framework
        └── Notion / Confluence .. مستندسازی Backlog و جلسات
 
 ```
-<img width="814" height="388" alt="image" src="https://github.com/user-attachments/assets/9f6a065e-8155-4d2f-818e-e6230168d4db" />
-
+### Method vs Framwork
 <img width="751" height="294" alt="image" src="https://github.com/user-attachments/assets/45b5443c-9dca-4007-9a1b-e80537c9a23a" />
 
