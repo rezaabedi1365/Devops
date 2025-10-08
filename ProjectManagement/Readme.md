@@ -238,18 +238,42 @@ Scrum Framework
 ### scrum in Gitlab
 بله، کاملاً میشه **Scrum را در GitLab پیاده کرد**، ولی باید بدانیم GitLab ذاتاً ابزار Kanban است و برای Scrum نیاز به کمی تنظیم و استفاده از امکانات دیگر دارد. بذار مرحله به مرحله توضیح بدهم:
 
+
 ---
 
 ## ۱. اجزای Scrum در GitLab
 
-| اجزای Scrum | نحوه پیاده‌سازی در GitLab |
-|-------------|---------------------------|
-| Product Backlog | ثبت همه کارها به شکل Issues و اولویت‌بندی با Labels/Milestones |
-| Sprint Backlog | ایجاد Milestone برای هر Sprint و اضافه کردن Issue‌ها |
-| Sprint | Milestone همان Sprint است؛ تاریخ شروع و پایان مشخص |
-| Daily Stand-up | بررسی Issue Board + Discussions یا Stand-up خارج از GitLab |
-| Review/Retrospective | استفاده از Burndown Charts و Discussions پس از پایان Sprint |
-| Scrum Roles | Assign کردن Issue‌ها و استفاده از Labels برای نقش‌ها |
+<table dir="rtl" style="text-align:right; width:100%; border:1px solid #ccc; border-collapse:collapse;">
+<tr style="background:#f0f0f0;">
+<th style="border:1px solid #ccc; padding:5px;">اجزای Scrum</th>
+<th style="border:1px solid #ccc; padding:5px;">نحوه پیاده‌سازی در GitLab</th>
+</tr>
+<tr>
+<td style="border:1px solid #ccc; padding:5px;">Product Backlog</td>
+<td style="border:1px solid #ccc; padding:5px;">ثبت همه کارها به شکل Issues و اولویت‌بندی با Labels/Milestones</td>
+</tr>
+<tr>
+<td style="border:1px solid #ccc; padding:5px;">Sprint Backlog</td>
+<td style="border:1px solid #ccc; padding:5px;">ایجاد Milestone برای هر Sprint و اضافه کردن Issue‌ها</td>
+</tr>
+<tr>
+<td style="border:1px solid #ccc; padding:5px;">Sprint</td>
+<td style="border:1px solid #ccc; padding:5px;">Milestone همان Sprint است؛ تاریخ شروع و پایان مشخص</td>
+</tr>
+<tr>
+<td style="border:1px solid #ccc; padding:5px;">Daily Stand-up</td>
+<td style="border:1px solid #ccc; padding:5px;">بررسی Issue Board + Discussions یا Stand-up خارج از GitLab</td>
+</tr>
+<tr>
+<td style="border:1px solid #ccc; padding:5px;">Review/Retrospective</td>
+<td style="border:1px solid #ccc; padding:5px;">استفاده از Burndown Charts و Discussions پس از پایان Sprint</td>
+</tr>
+<tr>
+<td style="border:1px solid #ccc; padding:5px;">Scrum Roles</td>
+<td style="border:1px solid #ccc; padding:5px;">Assign کردن Issue‌ها و استفاده از Labels برای نقش‌ها</td>
+</tr>
+</table>
+
 ---
 
 ### ۲. ابزارهای GitLab که کمک می‌کنند
@@ -332,42 +356,6 @@ GitLab ابزار رسمی Scrum نیست، اما با **Issue‌ها، Milesto
 
 بله، کاملاً میشه **Scrum را در GitLab پیاده کرد**، ولی باید بدانیم GitLab ذاتاً ابزار Kanban است و برای Scrum نیاز به کمی تنظیم و استفاده از امکانات دیگر دارد. بذار مرحله به مرحله توضیح بدهم:
 
----
-
-## ۱. اجزای Scrum در GitLab
-
-<table dir="rtl" style="text-align:right; width:100%; border:1px solid #ccc; border-collapse:collapse;">
-<tr style="background:#f0f0f0;">
-<th style="border:1px solid #ccc; padding:5px;">اجزای Scrum</th>
-<th style="border:1px solid #ccc; padding:5px;">نحوه پیاده‌سازی در GitLab</th>
-</tr>
-<tr>
-<td style="border:1px solid #ccc; padding:5px;">Product Backlog</td>
-<td style="border:1px solid #ccc; padding:5px;">ثبت همه کارها به شکل Issues و اولویت‌بندی با Labels/Milestones</td>
-</tr>
-<tr>
-<td style="border:1px solid #ccc; padding:5px;">Sprint Backlog</td>
-<td style="border:1px solid #ccc; padding:5px;">ایجاد Milestone برای هر Sprint و اضافه کردن Issue‌ها</td>
-</tr>
-<tr>
-<td style="border:1px solid #ccc; padding:5px;">Sprint</td>
-<td style="border:1px solid #ccc; padding:5px;">Milestone همان Sprint است؛ تاریخ شروع و پایان مشخص</td>
-</tr>
-<tr>
-<td style="border:1px solid #ccc; padding:5px;">Daily Stand-up</td>
-<td style="border:1px solid #ccc; padding:5px;">بررسی Issue Board + Discussions یا Stand-up خارج از GitLab</td>
-</tr>
-<tr>
-<td style="border:1px solid #ccc; padding:5px;">Review/Retrospective</td>
-<td style="border:1px solid #ccc; padding:5px;">استفاده از Burndown Charts و Discussions پس از پایان Sprint</td>
-</tr>
-<tr>
-<td style="border:1px solid #ccc; padding:5px;">Scrum Roles</td>
-<td style="border:1px solid #ccc; padding:5px;">Assign کردن Issue‌ها و استفاده از Labels برای نقش‌ها</td>
-</tr>
-</table>
-
----
 
 ### ۲. ابزارهای GitLab که کمک می‌کنند
 
