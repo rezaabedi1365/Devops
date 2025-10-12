@@ -136,4 +136,30 @@ verify:
 sudo gitlab-rails console
 Notify.test_email('email@domain.com', 'Test Subject', 'This is a test email.').deliver_now
 ```
+### Docker registry
 
+```
+# فعال‌سازی ریجستری
+gitlab_rails['registry_enabled'] = true
+
+# آدرس خارجی ریجستری (مثلاً registry.cleanstart.com)
+gitlab_rails['registry_host'] = "registry.cleanstart.com"
+
+# URL که GitLab از آن برای تماس داخلی استفاده می‌کند
+gitlab_rails['registry_api_url'] = "http://localhost:5000"
+
+# مسیر ذخیره‌سازی ایمیج‌ها روی سرور
+registry['storage'] = {
+  'filesystem' => {
+    'rootdirectory' => "/var/opt/gitlab/gitlab-rails/shared/registry"
+  }
+}
+
+# اگر GitLab پشت HTTPS است:
+registry_external_url "https://registry.cleanstart.com"
+
+```
+verify:
+```
+sudo gitlab-ctl status | grep registry
+```
