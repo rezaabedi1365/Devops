@@ -77,7 +77,9 @@ docker exec -it <nexus-container> curl -I http://nexus:8081/
 --------------------------------------------------------------------
 
 ### docker compose
-
+```
+sudo chown -R 200:200 ./nexus-data
+```
 ```
 #version: "3.9"
 services:
