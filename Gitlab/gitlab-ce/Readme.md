@@ -161,17 +161,17 @@ registry_nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/private.key"
 verify:
 ```
 sudo gitlab-ctl status | grep registry
+###result:registry: run: log: (pid ...) ...
 ```
-registry: run: log: (pid ...) ...
 
 
 ```
 docker login registry.cleanstart.com
-```
-```
-docker login registry.cleanstart.com
+
 docker tag nginx registry.cleanstart.com/group/project/nginx:latest
 docker push registry.cleanstart.com/group/project/nginx:latest
+
+docker pull registry.cleanstart.com/group/project/nginx:latest
 ```
 
 ### verity
