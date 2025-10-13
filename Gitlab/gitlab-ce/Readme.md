@@ -196,3 +196,17 @@ run: redis-exporter: (pid 3947) 167274s; run: log: (pid 3933) 167274s
 run: registry: (pid 261467) 55598s; run: log: (pid 253648) 55803s
 run: sidekiq: (pid 253948) 55796s; run: log: (pid 3936) 167274s
 ```
+service 
+```
+sudo gitlab-ctl restart nginx
+sudo gitlab-ctl restart postgresql
+sudo gitlab-ctl restart redis
+sudo gitlab-ctl restart alertmanager
+```
+show log
+```
+```
+sudo gitlab-ctl tail nginx
+```
+sudo tail -n 30 /var/log/gitlab/nginx/current
+```
