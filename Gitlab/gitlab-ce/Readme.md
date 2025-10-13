@@ -169,6 +169,7 @@ registry: run: log: (pid ...) ...
 docker login registry.cleanstart.com
 ```
 ```
+docker login registry.cleanstart.com
 docker tag nginx registry.cleanstart.com/group/project/nginx:latest
 docker push registry.cleanstart.com/group/project/nginx:latest
 ```
