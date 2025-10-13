@@ -140,6 +140,9 @@ Notify.test_email('email@domain.com', 'Test Subject', 'This is a test email.').d
 
 
 ## Docker registry
+```
+sudo mkdir -p /mnt/registry
+```
 
 ```
 gitlab_rails['registry_enabled'] = true
