@@ -174,3 +174,25 @@ docker tag nginx registry.cleanstart.com/group/project/nginx:latest
 docker push registry.cleanstart.com/group/project/nginx:latest
 ```
 
+### verity
+```
+sudo gitlab-ctl status
+```
+```
+down: alertmanager: 1s, normally up, want up; run: log: (pid 3921) 167274s
+run: gitaly: (pid 3955) 167274s; run: log: (pid 3932) 167274s
+run: gitlab-exporter: (pid 3948) 167274s; run: log: (pid 3930) 167274s
+run: gitlab-kas: (pid 3953) 167274s; run: log: (pid 3927) 167274s
+run: gitlab-workhorse: (pid 3956) 167274s; run: log: (pid 3939) 167274s
+run: logrotate: (pid 2462541) 1669s; run: log: (pid 3929) 167274s
+down: nginx: 1s, normally up, want up; run: log: (pid 3937) 167274s
+down: node-exporter: 1s, normally up, want up; run: log: (pid 3945) 167274s
+run: postgres-exporter: (pid 3934) 167274s; run: log: (pid 3922) 167274s
+run: postgresql: (pid 3946) 167274s; run: log: (pid 3931) 167274s
+down: prometheus: 1s, normally up, want up; run: log: (pid 3928) 167274s
+run: puma: (pid 254382) 55785s; run: log: (pid 3938) 167274s
+run: redis: (pid 3952) 167274s; run: log: (pid 3935) 167274s
+run: redis-exporter: (pid 3947) 167274s; run: log: (pid 3933) 167274s
+run: registry: (pid 261467) 55598s; run: log: (pid 253648) 55803s
+run: sidekiq: (pid 253948) 55796s; run: log: (pid 3936) 167274s
+```
