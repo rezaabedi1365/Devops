@@ -181,7 +181,7 @@ docker push registry.cleanstart.com/group/project/nginx:latest
 docker pull registry.cleanstart.com/group/project/nginx:latest
 ```
 
-### verity
+### verify
 ```
 sudo gitlab-ctl status
 ```
