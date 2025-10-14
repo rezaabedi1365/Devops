@@ -137,7 +137,11 @@ sudo gitlab-rails console
 Notify.test_email('email@domain.com', 'Test Subject', 'This is a test email.').deliver_now
 ```
 
-
+## Package registry
+Default path for Package registry
+```
+/var/opt/gitlab/git-data/repositories/
+```
 
 ## Docker registry
 ```
