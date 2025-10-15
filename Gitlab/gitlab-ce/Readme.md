@@ -114,7 +114,7 @@ gitlab_rails['gitlab_email_from'] = 'gitlab@faradis.net'
 gitlab_rails['gitlab_email_display_name'] = 'GitLab Faradis'
 gitlab_rails['gitlab_email_reply_to'] = 'noreply@faradis.net'
 gitlab_rails['smtp_openssl_verify_mode'] = 'none'
-
+```
 
 ```
 sudo gitlab-ctl reconfigure
