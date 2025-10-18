@@ -8,20 +8,23 @@
 # git Configuration 
 
 * 1-System 
-  - /etc/gitconfig 
+  - /etc/gitconfig
+  - C:\Program Files\Git\etc\gitconfig
     ```
     git config --system user.name "Reza Abedi"
     git config --system user.email r.abedi@faradis.net
     ```
         
 * 2-User 
-  - ~/.gitconfig 
+  - ~/.gitconfig
+  - C:\Users\r.abedi\.gitconfig
     ```
     git config --global user.name "Reza Abedi"
     git config --global user.email r.abedi@faradis.net
     ```
 * 3-Project
   - My_projcet/.git/config
+  - My_projcet\.git\config
     ```
     git config --local user.name "Reza Abedi"
     git config --local user.email r.abedi@faradis.net
