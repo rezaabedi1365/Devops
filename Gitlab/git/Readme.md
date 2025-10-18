@@ -49,21 +49,23 @@ git config --list
     ```
     ```
     git add File_Name
-    git add *
+    git add .
     ```
     ![image](https://github.com/rezaabedi1365/Devops/assets/117336743/8ac3ffac-cf53-492a-a531-7dfb57fda439)
 
 
 * 3- working
     ```
-    git commit -m Commit_Name
+    git commit -m "Commit_Name"
     ```
     ![image](https://github.com/rezaabedi1365/Devops/assets/117336743/c4e51818-d42d-4a69-84a7-85faeec49892)
 
 
 ## Verify:
 ```
+#show change 
 git status
+#show commit history and current head
 git log
 ```
   
